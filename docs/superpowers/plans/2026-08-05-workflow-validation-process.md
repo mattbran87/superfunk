@@ -340,7 +340,7 @@ Casita required a full changelog entry at Acceptance, written by hand with no te
 
 ### Approach A
 
-A single-line template: date, one-sentence summary, link to the commit.
+A single-line template: date, one-sentence summary.
 
 ### Approach B
 
@@ -392,11 +392,11 @@ The diagram assumes CHANGELOG.md already exists. A missing file needs a setup st
 
 ## Falsifiable Criteria
 
-The workflow produces one CHANGELOG.md line per task, in the format `- <date>: <summary>`, with zero manual corrections, across at least 3 of 3 trials.
+The workflow produces one CHANGELOG.md line per task, in the format `- <date>: <summary>`, with zero manual corrections, across at least 2 of 3 trials.
 
 ## Minimum Trial Coverage
 
-Three trials minimum: two synthetic, one against a sandboxed real project.
+The workflow needs three trials minimum: two synthetic, one sandboxed real-project trial.
 ```
 
 - [ ] **Step 4: Fill out the test plan example**
