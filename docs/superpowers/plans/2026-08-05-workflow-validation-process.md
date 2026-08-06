@@ -279,10 +279,11 @@ This directory holds the working files for the Workflow Validation Process, defi
 
 1. Create a directory: `workflows/<workflow-name>/`.
 2. Copy each file from `workflows/_template/` into the new directory.
-3. Work through the stages in order: Brainstorm, Diagram, Success Criteria, Test Plan, Trials + Trial Log, Verdict.
-4. Check every approach in `brainstorm.md` against `workflows/anti-patterns.md`.
-5. On a Ship verdict, promote `diagram.md` and `criteria.md` into the workflow's canonical spec.
-6. On a Kill verdict, return to `brainstorm.md` and revise the approach.
+3. Work through the stages in order: Brainstorm, Diagram, Success Criteria, Test Plan, Trials + Trial Log, Verdict. At the Brainstorm stage, check every approach in `brainstorm.md` against `workflows/anti-patterns.md`.
+4. Act on the Verdict:
+   - **Ship** — promote `diagram.md` and `criteria.md` into the workflow's canonical spec.
+   - **Revise** — return to Diagram or Test Plan, whichever stage sits closer to the problem.
+   - **Kill** — return to `brainstorm.md` and revise the approach.
 
 ## Example
 
