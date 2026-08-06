@@ -11,7 +11,7 @@ Casita required a full changelog entry at Acceptance, written by hand with no te
 
 ### Approach A
 
-A single-line template: date, one-sentence summary, link to the commit.
+A single-line template: date, one-sentence summary.
 
 ### Approach B
 
