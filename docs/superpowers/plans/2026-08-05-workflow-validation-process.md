@@ -206,9 +206,10 @@ git commit -m "docs: add success criteria stage template"
 | 2 | | | |
 | 3 | | | |
 
-<!-- Environment: synthetic test project, or sandboxed copy of a real project. -->
-<!-- Driver: hands-on, or autonomous agent run. -->
-<!-- Variation: how this trial differs from the others — project size or language, ambiguous requirements, mid-workflow interruption, and so on. -->
+<!-- Add or remove rows to match the trial count set in criteria.md. The number 3 serves only as a starting point, not a requirement. -->
+<!-- State the environment: synthetic test project, or sandboxed copy of a real project. -->
+<!-- State the driver: hands-on, or autonomous agent run. -->
+<!-- State the variation: how this trial differs from the others — project size or language, ambiguous requirements, mid-workflow interruption, and so on. -->
 ```
 
 - [ ] **Step 2: Self-review against STE + E-Prime**
