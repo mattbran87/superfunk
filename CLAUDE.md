@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `superfunk` is a ground-up rebuild of an AI-assisted, spec-driven engineering framework, building on lessons learned from an earlier framework (`claude-spec-framework` / Casita) without continuing that codebase. No build/test tooling exists yet — the project is currently in the design and specification stage.
 
-Design specs live in `docs/superpowers/specs/`. See `docs/superpowers/specs/2026-08-05-workflow-validation-process-design.md` for the first sub-project: a repeatable process for designing, diagramming, testing, and validating any candidate workflow's efficacy before it ships into the framework.
+Design specs live in `docs/superpowers/specs/`. See `docs/superpowers/specs/2026-08-05-workflow-validation-process-design.md` for the first sub-project: a repeatable process for designing, diagramming, testing, and validating any candidate workflow's efficacy before it ships into the framework. The working templates and operator guide for that process live in `workflows/` — start there to run a workflow through the process.
 
 When code is added to this project, update this file with:
 - Commands for building, linting, testing, and running the project (including how to run a single test)
