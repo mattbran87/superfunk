@@ -31,7 +31,7 @@ Each template file matches its example counterpart field-for-field — the examp
 **Files:**
 - Create: `workflows/anti-patterns.md`
 
-- [ ] **Step 1: Write the checklist file**
+- [x] **Step 1: Write the checklist file**
 
 ```markdown
 # Anti-Pattern Checklist
@@ -46,11 +46,11 @@ Source: `docs/superpowers/specs/2026-08-05-workflow-validation-process-design.md
 - Does this require a dedicated SME or agent, when a checklist or a single prompt could serve the same purpose?
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm: no sentence exceeds ~25 words, no banned "to be" forms (is/are/was/were/be/being/been or their contractions), active voice throughout, imperative mood for instructions.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/anti-patterns.md
@@ -64,7 +64,7 @@ git commit -m "docs: add workflow anti-pattern checklist"
 **Files:**
 - Create: `workflows/_template/brainstorm.md`
 
-- [ ] **Step 1: Write the template file**
+- [x] **Step 1: Write the template file**
 
 ```markdown
 # Brainstorm — <Workflow Name>
@@ -97,11 +97,11 @@ git commit -m "docs: add workflow anti-pattern checklist"
 <!-- For each rejected approach, state why the team rejected it. -->
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm every instruction comment uses imperative mood and contains no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/_template/brainstorm.md
@@ -115,7 +115,7 @@ git commit -m "docs: add brainstorm stage template"
 **Files:**
 - Create: `workflows/_template/diagram.md`
 
-- [ ] **Step 1: Write the template file**
+- [x] **Step 1: Write the template file**
 
 ````markdown
 # Diagram — <Workflow Name>
@@ -137,11 +137,11 @@ flowchart TD
 <!-- Record open questions or assumptions the diagram makes. -->
 ````
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm the instruction comments use imperative mood and contain no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/_template/diagram.md
@@ -155,7 +155,7 @@ git commit -m "docs: add diagram stage template"
 **Files:**
 - Create: `workflows/_template/criteria.md`
 
-- [ ] **Step 1: Write the template file**
+- [x] **Step 1: Write the template file**
 
 ```markdown
 # Success Criteria — <Workflow Name>
@@ -172,11 +172,11 @@ git commit -m "docs: add diagram stage template"
 <!-- State the minimum number and mix of trials (synthetic vs. real-project) the workflow needs before a Verdict. -->
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm the instruction comments use imperative mood and contain no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/_template/criteria.md
@@ -190,7 +190,7 @@ git commit -m "docs: add success criteria stage template"
 **Files:**
 - Create: `workflows/_template/test-plan.md`
 
-- [ ] **Step 1: Write the template file**
+- [x] **Step 1: Write the template file**
 
 ```markdown
 # Test Plan — <Workflow Name>
@@ -212,11 +212,11 @@ git commit -m "docs: add success criteria stage template"
 <!-- State the variation: how this trial differs from the others — project size or language, ambiguous requirements, mid-workflow interruption, and so on. -->
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm the instruction comments use imperative mood and contain no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/_template/test-plan.md
@@ -230,7 +230,7 @@ git commit -m "docs: add test plan stage template"
 **Files:**
 - Create: `workflows/_template/trial-log.md`
 
-- [ ] **Step 1: Write the template file**
+- [x] **Step 1: Write the template file**
 
 ```markdown
 # Trial Log — <Workflow Name>
@@ -250,11 +250,11 @@ Append-only. Add a new entry per trial; do not edit past entries.
 **Friction:** <!-- Record every point where a human intervened, corrected output, or where the diagram did not match reality. -->
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm the instruction comments use imperative mood and contain no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/_template/trial-log.md
@@ -268,7 +268,7 @@ git commit -m "docs: add trial log stage template"
 **Files:**
 - Create: `workflows/README.md`
 
-- [ ] **Step 1: Write the README file**
+- [x] **Step 1: Write the README file**
 
 ```markdown
 # Workflow Validation Process
@@ -300,11 +300,11 @@ See `workflows/_example/` for a filled-out dry run of this process against a tri
 | `trial-log.md` | 4 |
 ```
 
-- [ ] **Step 2: Self-review against STE + E-Prime**
+- [x] **Step 2: Self-review against STE + E-Prime**
 
 Re-read the file. Confirm every sentence stays under ~25 words, uses active voice, and contains no banned "to be" forms.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add workflows/README.md
@@ -322,9 +322,9 @@ git commit -m "docs: add workflow validation process operator guide"
 - Create: `workflows/_example/test-plan.md`
 - Create: `workflows/_example/trial-log.md`
 
-This task fills out every template against a trivial toy workflow — a "write one changelog line after finishing a task" workflow — to prove the template set captures what a real run needs. This is the closest equivalent to a test in a process/documentation deliverable: if a field in the templates turns out to be unfillable or a needed field is missing, that is a defect the earlier tasks must fix before this task can pass.
+This task fills out every template against a trivial toy workflow — a "write one changelog line after finishing a task" workflow — to prove the template set captures what a real run needs. This task provides the closest equivalent to a test in a process/documentation deliverable: if a field in the templates turns out unfillable, or a needed field goes missing, that counts as a defect the earlier tasks must fix before this task can pass.
 
-- [ ] **Step 1: Fill out the brainstorm example**
+- [x] **Step 1: Fill out the brainstorm example**
 
 ```markdown
 # Brainstorm — Changelog Entry Workflow (example)
@@ -360,7 +360,7 @@ Approach A. It captures the minimum useful record and adds no gate.
 Approach B: the extra fields and gate cost more effort than the entries deliver in value, for a change this small.
 ```
 
-- [ ] **Step 2: Fill out the diagram example**
+- [x] **Step 2: Fill out the diagram example**
 
 ````markdown
 # Diagram — Changelog Entry Workflow (example)
@@ -382,7 +382,7 @@ flowchart TD
 The diagram assumes CHANGELOG.md already exists. A missing file needs a setup step this example does not cover.
 ````
 
-- [ ] **Step 3: Fill out the criteria example**
+- [x] **Step 3: Fill out the criteria example**
 
 ```markdown
 # Success Criteria — Changelog Entry Workflow (example)
@@ -399,7 +399,7 @@ The workflow produces one CHANGELOG.md line per task, in the format `- <date>: <
 The workflow needs three trials minimum: two synthetic, one sandboxed real-project trial.
 ```
 
-- [ ] **Step 4: Fill out the test plan example**
+- [x] **Step 4: Fill out the test plan example**
 
 ```markdown
 # Test Plan — Changelog Entry Workflow (example)
@@ -416,7 +416,7 @@ The workflow needs three trials minimum: two synthetic, one sandboxed real-proje
 | 3 | Sandboxed real project | Hands-on | Existing CHANGELOG.md with inconsistent formatting |
 ```
 
-- [ ] **Step 5: Fill out the trial log example**
+- [x] **Step 5: Fill out the trial log example**
 
 ```markdown
 # Trial Log — Changelog Entry Workflow (example)
@@ -440,13 +440,21 @@ Append-only. Add a new entry per trial; do not edit past entries.
 **Driver:** Autonomous agent run
 **Outcome:** Missed criteria. The agent wrote a two-sentence summary instead of one line.
 **Friction:** A human shortened the summary to one line by hand.
+
+## Trial 3
+
+**Date:** 2026-08-05
+**Environment:** Sandboxed real project
+**Driver:** Hands-on
+**Outcome:** Met criteria. The new line matched the format despite inconsistent existing entries.
+**Friction:** None.
 ```
 
-- [ ] **Step 6: Verify template coverage**
+- [x] **Step 6: Verify template coverage**
 
 Compare each `_example/*.md` file against its `_template/*.md` counterpart. Confirm every fixed field defined in the template got a value in the example. Repeatable sections (`### Approach`, `## Trial N`) can occur a different number of times in the example than in the template — check that each occurrence carries the same field set, not that the count matches. Confirm the example introduced no field the template does not define. Fix either file if a mismatch turns up.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add workflows/_example/
@@ -460,7 +468,7 @@ git commit -m "docs: add dry-run example validating workflow templates"
 **Files:**
 - Modify: `CLAUDE.md`
 
-- [ ] **Step 1: Add a pointer to the workflows directory**
+- [x] **Step 1: Add a pointer to the workflows directory**
 
 In `CLAUDE.md`, in the "Project status" section, change:
 
@@ -474,7 +482,7 @@ to:
 Design specs live in `docs/superpowers/specs/`. See `docs/superpowers/specs/2026-08-05-workflow-validation-process-design.md` for the first sub-project: a repeatable process for designing, diagramming, testing, and validating any candidate workflow's efficacy before it ships into the framework. The working templates and operator guide for that process live in `workflows/` — start there to run a workflow through the process.
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add CLAUDE.md
