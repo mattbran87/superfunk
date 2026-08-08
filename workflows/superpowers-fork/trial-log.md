@@ -21,3 +21,11 @@ Append-only. Add a new entry per trial; do not edit past entries.
 **Driver:** Autonomous agent run
 **Outcome:** A separate `claude -p` process, launched with `--plugin-dir` pointed at a marked clone of the fork, correctly loaded the modified skill. The session's skill listing showed the planted marker attached to `superpowers:brainstorming`'s description, exactly as edited. Criterion 2 passes for this trial.
 **Friction:** The isolated session also inherited every globally-configured plugin beyond the one under test — `--plugin-dir` adds a plugin; it does not create a clean room. A `superfunk` session pointed the same way at its own in-repo fork content would start running on it immediately, mixed in with everything else already active. This reinforces why Criterion 3 (isolation) matters. A future trial could test whether `--bare` combined with `--plugin-dir` produces a true clean-room session, if that ever matters for a specific validation.
+
+## Trial 3
+
+**Date:** 2026-08-08
+**Environment:** Fresh disposable local test project
+**Driver:** Autonomous agent run
+**Outcome:** A second isolated `claude -p` session used `--plugin-dir`, pointed at a fork clone with a marker planted in the `session-start` hook script rather than a skill file. That session received the marker verbatim in its initial hook-injected context. The install mechanism generalizes to hook changes, not just skill-file edits. Criterion 2 passes again, on a different kind of change, per the Test Plan's intent.
+**Friction:** The isolated session flagged the hook's own injected `<EXTREMELY_IMPORTANT>` block as a likely prompt injection before it followed any part of it. Out of conversation context, superpowers' emphatic, mandatory-sounding hook injection reads identically to an adversarial injection attempt. This observation falls outside this workflow's scope. It belongs to a future workflow about how a reworked framework enforces skill usage without looking indistinguishable from an attack.
