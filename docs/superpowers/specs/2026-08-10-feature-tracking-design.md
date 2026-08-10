@@ -20,12 +20,16 @@ This decision ran through the Workflow Validation Process. A four-lens explorati
 
 ## Feature Intake Procedure
 
+`.superfunk/add_feature.py --module <module> --bundle <bundle> --feature "<Feature Name>" [--rebuild-index]` automates this procedure deterministically. A person or agent still decides which module and bundle a feature belongs to. The script then executes the mechanical part without improvising markdown. This closes the bug class Trial 2 found in the fully manual version (see Follow-ups).
+
+The steps the script automates:
+
 1. Pick the module: an existing `specs/<module>/` directory, or create one with a fresh `roadmap.md`.
 2. Pick the Bundle: an existing heading, or a new one.
 3. Create `specs/<module>/<YYYY-MM-DD-slug>/` from `specs/_template/`.
 4. Set `spec.md`'s `Status:` line to `Planned`.
 5. Add a link for the feature under its Bundle heading in `roadmap.md`, matching the format `[Feature Name](./<feature-dir>/)`. Remove the template's instructional comment once the module has its first bundle and feature.
-6. Rebuild the SQLite index. This step stays optional at this stage, since a `Planned` feature carries no urgency.
+6. Rebuild the SQLite index. This step stays optional at this stage, since a `Planned` feature carries no urgency — pass `--rebuild-index` to run it in the same step.
 
 ## Flow
 
@@ -67,7 +71,7 @@ flowchart TD
 - No defined home exists yet for a feature spanning multiple modules — flagged during the multi-lens exploration and in the Diagram's Notes, never resolved here.
 - No fallback exists for a project not yet organized into modules, including `superfunk` itself today.
 - Running the intake procedure via a non-interactive agent session needs write permissions granted up front. Otherwise it stalls on a prompt nobody can answer (Trial 1 finding).
-- A dedicated command can replace the manual intake procedure later, once it proves itself, mirroring the same deferred-automation pattern chosen for the SQLite rebuild trigger.
+- **Resolved 2026-08-10:** `.superfunk/add_feature.py` now automates the procedure deterministically. Five scenarios verified it before it landed: brand-new module, existing module plus existing bundle, existing module plus new bundle, `--rebuild-index` integration, and a duplicate-feature guard. It structurally eliminates the format-inconsistency bug class Trial 2 found, since the script — not an agent — produces the markdown.
 
 ## Deferred (per the earlier scoping decisions)
 
