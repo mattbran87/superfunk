@@ -16,6 +16,7 @@ This decision ran through the Workflow Validation Process. A four-lens explorati
 - **Feature** — a directory named with the `YYYY-MM-DD-<slug>` convention already used elsewhere in this repo, holding Casita's four files unchanged: `spec.md`, `tasks.md`, `decisions.md`, `notes.md`.
 - **Status** — `spec.md`'s `Status:` line stays the single authoritative source. `roadmap.md` never carries a status column.
 - **SQLite index** (`.superfunk/tracking.db`, gitignored) — `.superfunk/rebuild_index.py` walks every `spec.md` and rebuilds the index from scratch. Queries answer "is X complete" directly.
+- **Dependencies** — `spec.md`'s `Dependencies:` line names other features by title (not path), comma-separated, spanning every module — a dependency can live anywhere, or not be filed yet at all. The rebuild script resolves each title and derives `blocked`/`blocked_reason` per feature: a matched, `Done` dependency clears it; a matched, not-`Done` dependency blocks it and names the status; an unmatched title blocks it as "not filed yet"; a title matching more than one feature blocks it as ambiguous. Nothing gets manually typed as blocked — it derives from the same source of truth as everything else in the index.
 - **Templates** — `specs/_template/` holds the scaffold: `spec.md`, `tasks.md`, `decisions.md`, `notes.md`, and `roadmap.md` for a brand-new module.
 
 ## Feature Intake Procedure
@@ -72,6 +73,7 @@ flowchart TD
 - No fallback exists for a project not yet organized into modules, including `superfunk` itself today.
 - Running the intake procedure via a non-interactive agent session needs write permissions granted up front. Otherwise it stalls on a prompt nobody can answer (Trial 1 finding).
 - **Resolved 2026-08-10:** `.superfunk/add_feature.py` now automates the procedure deterministically. Five scenarios verified it before it landed: brand-new module, existing module plus existing bundle, existing module plus new bundle, `--rebuild-index` integration, and a duplicate-feature guard. It structurally eliminates the format-inconsistency bug class Trial 2 found, since the script — not an agent — produces the markdown.
+- **Resolved 2026-08-10:** dependency tracking, added after comparing this design against Casita's real, battle-tested roadmap format (`ArcGISProSDKMCP`, `ArcGISRuntimeMCP`, and `claude-spec-framework`'s own dogfooded roadmap). That comparison also confirmed the ID scheme (date-slug, not Casita's sequential numeric IDs) and the status-in-roadmap tradeoff (kept out of `roadmap.md`) both stay as originally shipped, after discussion. The multi-file scaling split Casita eventually needed for its own roadmap stays a known future concern, not yet warranted at `superfunk`'s current scale.
 
 ## Deferred (per the earlier scoping decisions)
 
