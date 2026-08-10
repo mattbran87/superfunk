@@ -27,7 +27,7 @@ Two tiers. The user picks explicitly which one a project gets — no heuristic g
 
 Content per section comes from codebase exploration where the codebase can answer it (for example, Building Block View, Deployment View), confirmed with the user. Sections that need human judgment or intent (for example, Goals, Constraints, Quality Requirements) come from direct interview instead.
 
-Output structure: `docs/architecture.md` as a single file for the lightweight tier. Full arc42 uses `docs/architecture/NN-section-name.md`, one file per section, mirroring arc42's own numbered-section convention. This keeps an update to one section from touching the rest.
+Output structure: both tiers live under the same directory, `docs/architecture/`, regardless of tier. The lightweight tier holds one file there, `docs/architecture/project-definition.md`. Full arc42 holds one file per section instead, `docs/architecture/NN-section-name.md`, mirroring arc42's own numbered-section convention. The shared parent directory keeps "where do I look for this" consistent across tiers. It also lets a project upgrade from lightweight to full later by adding files, not moving or renaming anything.
 
 Built as a Claude Code Skill (conversational, judgment-driven), not a deterministic script. This task requires interviewing, exploring, and synthesizing — not the mechanical file operations `add_feature.py` and `rebuild_index.py` handle.
 
