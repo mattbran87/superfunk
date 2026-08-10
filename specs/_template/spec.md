@@ -3,6 +3,7 @@
 **Module:** <module-slug>
 **Bundle:** <bundle-name>
 **Status:** Planned
+**Dependencies:** None
 
 ## Requirements
 

@@ -73,7 +73,7 @@ def ensure_bundle_and_link(roadmap_path: Path, bundle: str, feature_name: str, f
     print(f"Linked feature under '## Bundle: {bundle}' in {roadmap_path}")
 
 
-def scaffold_feature(specs_root: Path, template_root: Path, module: str, bundle: str, feature_name: str) -> str:
+def scaffold_feature(specs_root: Path, template_root: Path, module: str, bundle: str, feature_name: str, depends_on: str) -> str:
     date_str = datetime.date.today().isoformat()
     slug = slugify(feature_name)
     feature_dir_name = f"{date_str}-{slug}"
@@ -89,6 +89,7 @@ def scaffold_feature(specs_root: Path, template_root: Path, module: str, bundle:
             content = content.replace("<Feature Name>", feature_name)
             content = content.replace("**Module:** <module-slug>", f"**Module:** {module}")
             content = content.replace("**Bundle:** <bundle-name>", f"**Bundle:** {bundle}")
+            content = content.replace("**Dependencies:** None", f"**Dependencies:** {depends_on}")
         else:
             content = content.replace("<Feature Name>", feature_name)
         (feature_dir / filename).write_text(content, encoding="utf-8")
@@ -101,6 +102,7 @@ def main():
     parser.add_argument("--module", required=True)
     parser.add_argument("--bundle", required=True)
     parser.add_argument("--feature", required=True, help="Feature name")
+    parser.add_argument("--depends-on", default="None", help='Comma-separated feature titles this feature depends on, or omit for "None"')
     parser.add_argument("--rebuild-index", action="store_true")
     parser.add_argument("repo_root", nargs="?", default=".")
     args = parser.parse_args()
@@ -113,7 +115,7 @@ def main():
         raise SystemExit(f"Error: template directory not found at {template_root}")
 
     roadmap_path = ensure_module(specs_root, template_root, args.module)
-    feature_dir_name = scaffold_feature(specs_root, template_root, args.module, args.bundle, args.feature)
+    feature_dir_name = scaffold_feature(specs_root, template_root, args.module, args.bundle, args.feature, args.depends_on)
     ensure_bundle_and_link(roadmap_path, args.bundle, args.feature, feature_dir_name)
 
     if args.rebuild_index:
