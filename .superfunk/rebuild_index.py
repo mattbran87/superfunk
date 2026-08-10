@@ -12,6 +12,7 @@ from pathlib import Path
 FIELD_RE = re.compile(r"^\*\*(?P<key>[A-Za-z]+):\*\*\s*(?P<value>.*)$")
 H1_RE = re.compile(r"^#\s+(?P<name>.+)$")
 DONE_STATUS = "Done"
+VALID_STATUSES = {"Planned", "In Progress", "Done", "Deferred", "Dropped"}
 
 
 def parse_spec(spec_path: Path):
@@ -133,6 +134,12 @@ def rebuild(repo_root: Path):
 
     conn.commit()
     conn.close()
+
+    for record in records:
+        status = record["status"]
+        if status not in VALID_STATUSES:
+            print(f'Warning: {record["path"]} has an unrecognized Status: "{status}" (expected one of {sorted(VALID_STATUSES)})')
+
     print(f"Rebuilt {db_path} with {len(records)} feature(s).")
 
 
