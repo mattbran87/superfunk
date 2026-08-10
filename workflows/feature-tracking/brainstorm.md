@@ -49,6 +49,19 @@ This recommendation combines elements from multiple approaches. A pre-mortem sur
 - **Rebuild trigger** — an on-demand command for now. An automatic hook (rebuilding on every `spec.md` status change) stays a deferred enhancement, added once the manual version proves itself and once hook infrastructure exists to validate it properly.
 - **Bundle**, confirmed with the user: purely organizational grouping, carrying no status or other independent state of its own.
 
+## Feature Intake
+
+The brainstorming skill already covers scoping a new feature's content — this workflow only defines where that output lands. Filing a feature follows a documented procedure, not a dedicated command, since it involves only template copying and one markdown edit:
+
+1. Pick the module: an existing `specs/<module>/` directory, or note that a new module needs one, along with a fresh `roadmap.md`.
+2. Pick the Bundle within that module: an existing heading, or a new one.
+3. Create `specs/<module>/<YYYY-MM-DD-slug>/` from the feature template: `spec.md`, `tasks.md`, `decisions.md`, `notes.md`.
+4. Set `spec.md`'s `Status:` line to `Planned`.
+5. Add a link for the feature under its Bundle heading in `roadmap.md`, creating the heading if it's new.
+6. Rebuild the SQLite index. This step stays optional at this stage, since a `Planned` feature carries no urgency.
+
+A dedicated command can replace this procedure later, once it proves itself — the same pattern already chosen for the SQLite rebuild trigger.
+
 ## Rejected Approaches
 
 Approach A / C as originally proposed both leave status to drift between two hand-typed copies with no structural protection. Making `spec.md` the sole authoritative source and dropping status from `roadmap.md` entirely supersedes both.
