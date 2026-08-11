@@ -13,7 +13,7 @@ from pathlib import Path
 
 TEMPLATE_FILES = ["spec.md", "tasks.md", "decisions.md", "notes.md"]
 BUNDLE_HEADING_RE = re.compile(r"^## Bundle: (?P<name>.+)$")
-INSTRUCTIONAL_COMMENT_RE = re.compile(r"^<!--.*-->\s*\n?", re.MULTILINE)
+INSTRUCTIONAL_COMMENT_RE = re.compile(r"^<!--(?!\s*status:).*-->\s*\n?", re.MULTILINE)
 
 
 def slugify(text: str) -> str:

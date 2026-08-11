@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Rebuild .superfunk/tracking.db from every specs/<module>/<feature>/spec.md.
 
+Also patches a generated status-summary block into each module's roadmap.md,
+between <!-- status:start --> and <!-- status:end --> markers. The markers get
+inserted automatically, right after the H1 heading, if a roadmap.md doesn't
+have them yet. Nothing outside the markers is ever touched.
+
 Usage: python .superfunk/rebuild_index.py [repo_root]
 """
 
@@ -11,8 +16,14 @@ from pathlib import Path
 
 FIELD_RE = re.compile(r"^\*\*(?P<key>[A-Za-z]+):\*\*\s*(?P<value>.*)$")
 H1_RE = re.compile(r"^#\s+(?P<name>.+)$")
+BUNDLE_HEADING_RE = re.compile(r"^##\s+Bundle:\s*(?P<name>.+)$")
+LINK_RE = re.compile(r"^-\s*\[(?P<name>.+?)\]\(\./(?P<dir>[^/)]+)/?\)\s*$")
 DONE_STATUS = "Done"
 VALID_STATUSES = {"Planned", "In Progress", "Done", "Deferred", "Dropped"}
+
+STATUS_START = "<!-- status:start -->"
+STATUS_END = "<!-- status:end -->"
+STATUS_BLOCK_RE = re.compile(re.escape(STATUS_START) + r".*?" + re.escape(STATUS_END), re.DOTALL)
 
 
 def parse_spec(spec_path: Path):
@@ -55,6 +66,78 @@ def resolve_dependency(title: str, name_index: dict):
     if status == DONE_STATUS:
         return "done", None
     return "not_done", f'"{title}" is not Done yet (status: {status or "unset"})'
+
+
+def parse_roadmap_links(roadmap_path: Path):
+    """Ordered list of (bundle_name, feature_dir), walking the file top to bottom.
+
+    Skips the generated status block itself, so re-parsing after a patch never
+    picks up table rows as if they were hand-authored links.
+    """
+    entries = []
+    current_bundle = None
+    in_status_block = False
+    for line in roadmap_path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped == STATUS_START:
+            in_status_block = True
+            continue
+        if stripped == STATUS_END:
+            in_status_block = False
+            continue
+        if in_status_block:
+            continue
+        bundle_match = BUNDLE_HEADING_RE.match(stripped)
+        if bundle_match:
+            current_bundle = bundle_match.group("name").strip()
+            continue
+        link_match = LINK_RE.match(stripped)
+        if link_match:
+            entries.append((current_bundle, link_match.group("dir")))
+    return entries
+
+
+def build_status_table(entries, path_index, module):
+    lines = ["## Status Summary", ""]
+    if not entries:
+        lines.append("_No features filed yet._")
+    else:
+        lines.append("| Feature | Bundle | Status |")
+        lines.append("|---|---|---|")
+        for bundle, feature_dir in entries:
+            path = f"specs/{module}/{feature_dir}"
+            record = path_index.get(path)
+            name = record["name"] if record else feature_dir
+            status = record["status"] if record else "unknown"
+            lines.append(f"| [{name}](./{feature_dir}/) | {bundle or ''} | {status or 'unset'} |")
+    return "\n".join(lines)
+
+
+def patch_roadmap_status(roadmap_path: Path, table_content: str) -> bool:
+    text = roadmap_path.read_text(encoding="utf-8")
+    new_block = f"{STATUS_START}\n{table_content}\n{STATUS_END}"
+
+    if STATUS_BLOCK_RE.search(text):
+        new_text = STATUS_BLOCK_RE.sub(lambda _m: new_block, text, count=1)
+    else:
+        lines = text.splitlines()
+        h1_idx = 0
+        for i, line in enumerate(lines):
+            if H1_RE.match(line):
+                h1_idx = i
+                break
+        insert_at = h1_idx + 1
+        # Skip past any existing blank lines right after the H1, so we don't
+        # stack our own separator blank line on top of one that's already there.
+        while insert_at < len(lines) and lines[insert_at].strip() == "":
+            insert_at += 1
+        new_lines = lines[: h1_idx + 1] + ["", new_block, ""] + lines[insert_at:]
+        new_text = "\n".join(new_lines) + "\n"
+
+    if new_text != text:
+        roadmap_path.write_text(new_text, encoding="utf-8")
+        return True
+    return False
 
 
 def rebuild(repo_root: Path):
@@ -139,6 +222,22 @@ def rebuild(repo_root: Path):
         status = record["status"]
         if status not in VALID_STATUSES:
             print(f'Warning: {record["path"]} has an unrecognized Status: "{status}" (expected one of {sorted(VALID_STATUSES)})')
+
+    # Pass 3: patch each module's roadmap.md with a generated status-summary block.
+    path_index = {record["path"]: record for record in records}
+    modules = sorted({record["module"] for record in records})
+    if specs_root.is_dir():
+        for module_dir in sorted(specs_root.iterdir()):
+            if not module_dir.is_dir() or module_dir.name.startswith("_"):
+                continue
+            roadmap_path = module_dir / "roadmap.md"
+            if not roadmap_path.is_file():
+                continue
+            entries = parse_roadmap_links(roadmap_path)
+            table = build_status_table(entries, path_index, module_dir.name)
+            changed = patch_roadmap_status(roadmap_path, table)
+            if changed:
+                print(f"Updated status summary in {roadmap_path}")
 
     print(f"Rebuilt {db_path} with {len(records)} feature(s).")
 
