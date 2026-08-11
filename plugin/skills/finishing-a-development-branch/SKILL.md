@@ -55,7 +55,7 @@ Confirm before merging: merging into the wrong base is expensive to undo.
 Ask before presenting the menu: "Would you like to review the changes
 yourself before deciding what to do next?"
 
-**If no:** continue to Step 5, unchanged.
+**If no:** continue to Step 5.
 
 **If yes:**
 
@@ -64,11 +64,13 @@ git diff --stat <base-branch>...HEAD
 ```
 
 Show that output. If a `spec.md` or plan doc exists for this work,
-point to its Requirements section too — this puts what changed next to
-what the work needed to do. Offer the full diff
+point to its Requirements section too, so your human partner can
+compare what changed against what was required. Offer the full diff
 (`git diff <base-branch>...HEAD`) if your human partner wants to see
 it. Wait for explicit confirmation the changes look right before
-continuing to Step 5.
+continuing to Step 5. If your human partner raises an issue instead,
+address it — or pause this skill until it's resolved — before
+returning to this step; do not proceed to Step 5 without confirmation.
 
 ## Step 5: Present Options
 
