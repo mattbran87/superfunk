@@ -21,3 +21,11 @@ Append-only. Add a new entry per trial; do not edit past entries.
 **Driver:** Autonomous agent run
 **Outcome:** This trial corresponds to Test Plan row 3 (module-assignment). Given a hypothetical feature request -- "add a refund processing feature that reverses a completed payment and updates the invoice status" -- the fresh session correctly named `src/billing`, reasoning that the feature touches both `payment.js` (money movement) and `invoice.js` (status), both already billing's stated responsibility. This matches what someone with full codebase knowledge would decide. Criterion 3 passes.
 **Friction:** None. Reusing Trial 1's generated Building Block View for this trial, rather than generating a fresh one, kept the two trials cleanly separable while still testing a real generated document, not a hand-crafted one.
+
+## Trial 3
+
+**Date:** 2026-08-11
+**Environment:** Fresh copy of the same synthetic codebase
+**Driver:** Autonomous agent run
+**Outcome:** This trial corresponds to Test Plan row 2 (full tier). An isolated session produced exactly 12 files under `docs/architecture/`, correctly named and numbered, matching the skill's specified section list exactly -- no extras, none missing. Content quality exceeded expectations: Architecture Decisions correctly detected that no `specs/<module>/<feature>/decisions.md` files exist anywhere in this test repo and said so explicitly, rather than fabricating decision history, then correctly captured only the project-level decisions actually given in the interview context. Building Block View independently identified a "Notable Absences" section -- no persistence layer, no product/order module despite the project's stated purpose, no middleware -- an accurate observation the skill was never explicitly told to make. Quality Requirements correctly synthesized the interview priorities into ranked goals with concrete, arc42-appropriate quality scenarios. Criteria 1 and 2 both pass, with stronger evidence than Trial 1 gave for the lightweight tier alone.
+**Friction:** None found in the output. The trial itself took noticeably longer than the lightweight-tier trial (12 sections' worth of exploration and interview synthesis vs. 3), which is expected and not a defect, but worth noting for anyone running this skill for real: full arc42 generation is a genuinely long single session.
