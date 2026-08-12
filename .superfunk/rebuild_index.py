@@ -299,11 +299,26 @@ def rebuild(repo_root: Path):
                             break
                     bundles.append((name or filename, filename))
 
+                seen_names = set()
+                deduped_bundles = []
+                for name, file in bundles:
+                    if name in seen_names:
+                        print(f"Warning: module '{module_dir.name}' has two bundle files both named '{name}' -- keeping the first, ignoring {file}")
+                        continue
+                    seen_names.add(name)
+                    deduped_bundles.append((name, file))
+                bundles = deduped_bundles
+
                 entries = []
                 bundle_stats = []
                 for bundle_name, bundle_file in bundles:
                     bundle_path = module_dir / bundle_file
-                    bundle_entries = parse_roadmap_links(bundle_path) if bundle_path.is_file() else []
+                    if not bundle_path.is_file():
+                        if bundle_file in known_files:
+                            print(f"Warning: {roadmap_path} lists bundle '{bundle_name}' pointing at {bundle_file}, but that file doesn't exist")
+                        bundle_entries = []
+                    else:
+                        bundle_entries = parse_roadmap_links(bundle_path)
                     entries.extend(bundle_entries)
                     done = 0
                     for _, feature_dir in bundle_entries:
