@@ -25,6 +25,15 @@ STATUS_START = "<!-- status:start -->"
 STATUS_END = "<!-- status:end -->"
 STATUS_BLOCK_RE = re.compile(re.escape(STATUS_START) + r".*?" + re.escape(STATUS_END), re.DOTALL)
 
+BUNDLES_START = "<!-- bundles:start -->"
+BUNDLES_END = "<!-- bundles:end -->"
+BUNDLES_BLOCK_RE = re.compile(re.escape(BUNDLES_START) + r".*?" + re.escape(BUNDLES_END), re.DOTALL)
+BUNDLE_ROW_RE = re.compile(
+    r"^\|\s*(?P<name>[^|]+?)\s*\|\s*\d+\s*\|[^|]*\|\s*\[[^\]]*\]\(\./(?P<file>[^)]+)\)\s*\|\s*$"
+)
+
+LINE_THRESHOLD = 150
+
 
 def parse_spec(spec_path: Path):
     name = None
@@ -66,6 +75,42 @@ def resolve_dependency(title: str, name_index: dict):
     if status == DONE_STATUS:
         return "done", None
     return "not_done", f'"{title}" is not Done yet (status: {status or "unset"})'
+
+
+def is_split(roadmap_path: Path) -> bool:
+    return BUNDLES_START in roadmap_path.read_text(encoding="utf-8")
+
+
+def parse_bundles_table(roadmap_path: Path):
+    """Ordered list of (bundle_name, bundle_filename) from the generated Bundles table."""
+    text = roadmap_path.read_text(encoding="utf-8")
+    match = BUNDLES_BLOCK_RE.search(text)
+    if not match:
+        return []
+    entries = []
+    for line in match.group(0).splitlines():
+        row = BUNDLE_ROW_RE.match(line.strip())
+        if row:
+            entries.append((row.group("name").strip(), row.group("file").strip()))
+    return entries
+
+
+def build_bundles_table(bundle_stats):
+    """bundle_stats: ordered list of (bundle_name, filename, done_count, total_count)."""
+    lines = ["## Bundles", "", "| Bundle | Features | Status | File |", "|---|---|---|---|"]
+    for bundle, filename, done, total in bundle_stats:
+        lines.append(f"| {bundle} | {total} | {done}/{total} Done | [{filename}](./{filename}) |")
+    return "\n".join(lines)
+
+
+def patch_bundles_table(roadmap_path: Path, table_content: str) -> bool:
+    text = roadmap_path.read_text(encoding="utf-8")
+    new_block = f"{BUNDLES_START}\n{table_content}\n{BUNDLES_END}"
+    new_text = BUNDLES_BLOCK_RE.sub(lambda _m: new_block, text, count=1)
+    if new_text != text:
+        roadmap_path.write_text(new_text, encoding="utf-8")
+        return True
+    return False
 
 
 def parse_roadmap_links(roadmap_path: Path):
@@ -223,9 +268,9 @@ def rebuild(repo_root: Path):
         if status not in VALID_STATUSES:
             print(f'Warning: {record["path"]} has an unrecognized Status: "{status}" (expected one of {sorted(VALID_STATUSES)})')
 
-    # Pass 3: patch each module's roadmap.md with a generated status-summary block.
+    # Pass 3: patch each module's roadmap.md with generated status (and, for a
+    # split module, Bundles) content.
     path_index = {record["path"]: record for record in records}
-    modules = sorted({record["module"] for record in records})
     if specs_root.is_dir():
         for module_dir in sorted(specs_root.iterdir()):
             if not module_dir.is_dir() or module_dir.name.startswith("_"):
@@ -233,11 +278,59 @@ def rebuild(repo_root: Path):
             roadmap_path = module_dir / "roadmap.md"
             if not roadmap_path.is_file():
                 continue
-            entries = parse_roadmap_links(roadmap_path)
-            table = build_status_table(entries, path_index, module_dir.name)
-            changed = patch_roadmap_status(roadmap_path, table)
-            if changed:
-                print(f"Updated status summary in {roadmap_path}")
+
+            if is_split(roadmap_path):
+                # Trust the existing table's order for bundles it already knows
+                # about, then append anything discovered on disk that isn't in
+                # the table yet -- e.g. a bundle add_feature.py just created.
+                known = parse_bundles_table(roadmap_path)
+                known_files = {file for _, file in known}
+                discovered = sorted(
+                    p.name for p in module_dir.glob("roadmap-*.md") if p.name not in known_files
+                )
+                bundles = list(known)
+                for filename in discovered:
+                    bundle_path = module_dir / filename
+                    name = None
+                    for line in bundle_path.read_text(encoding="utf-8").splitlines():
+                        m = BUNDLE_HEADING_RE.match(line.strip())
+                        if m:
+                            name = m.group("name").strip()
+                            break
+                    bundles.append((name or filename, filename))
+
+                entries = []
+                bundle_stats = []
+                for bundle_name, bundle_file in bundles:
+                    bundle_path = module_dir / bundle_file
+                    bundle_entries = parse_roadmap_links(bundle_path) if bundle_path.is_file() else []
+                    entries.extend(bundle_entries)
+                    done = 0
+                    for _, feature_dir in bundle_entries:
+                        record = path_index.get(f"specs/{module_dir.name}/{feature_dir}")
+                        if record and record["status"] == DONE_STATUS:
+                            done += 1
+                    bundle_stats.append((bundle_name, bundle_file, done, len(bundle_entries)))
+
+                table = build_status_table(entries, path_index, module_dir.name)
+                status_changed = patch_roadmap_status(roadmap_path, table)
+                bundles_table = build_bundles_table(bundle_stats)
+                bundles_changed = patch_bundles_table(roadmap_path, bundles_table)
+                if status_changed or bundles_changed:
+                    print(f"Updated status summary and Bundles table in {roadmap_path}")
+            else:
+                entries = parse_roadmap_links(roadmap_path)
+                table = build_status_table(entries, path_index, module_dir.name)
+                changed = patch_roadmap_status(roadmap_path, table)
+                if changed:
+                    print(f"Updated status summary in {roadmap_path}")
+
+                line_count = len(roadmap_path.read_text(encoding="utf-8").splitlines())
+                if line_count > LINE_THRESHOLD:
+                    print(
+                        f"Warning: {roadmap_path} has {line_count} lines (over {LINE_THRESHOLD}) -- "
+                        f"consider running: python .superfunk/split_roadmap.py --module {module_dir.name}"
+                    )
 
     print(f"Rebuilt {db_path} with {len(records)} feature(s).")
 
