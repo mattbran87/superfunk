@@ -214,12 +214,16 @@ and fix-round diffs need it.
   (5) the report-file path and report contract. Exact values (numbers,
   magic strings, signatures, test cases) appear only in the brief. Never
   make a subagent read the whole plan file.
-- **Directory context:** before dispatching, read the `.context.md` for
-  every directory this task touches (per `docs/ai-code-guidelines.md`'s
+- **Directory context:** before dispatching, list the directories this
+  task touches — from the task brief's file structure — and read the
+  `.context.md` for each one (per `docs/ai-code-guidelines.md`'s
   Per-Directory Context Files section). Fold a short summary of each
-  into the dispatch's Context section — the implementer never reads
-  `.context.md` itself, it gets curated context, not raw file access to
-  figure out on its own. Skip silently for a directory that has none.
+  into the dispatch's Context section, since the implementer never reads
+  `.context.md` itself — it gets curated context, not raw file access to
+  figure out on its own. A directory with no `.context.md` needs no
+  mention in the dispatch, but note which directories you checked (in
+  the dispatch's Context section or the ledger), so the check stays
+  visible instead of quietly not happening.
 - **Report file:** name the implementer's report file after the brief
   (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
   the dispatch prompt. The implementer writes the full report there and
