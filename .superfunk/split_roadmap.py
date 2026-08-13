@@ -24,6 +24,33 @@ import add_feature
 import rebuild_index
 
 
+def _validate_only_recognized_content(roadmap_path: Path) -> None:
+    in_status_block = False
+    for line in roadmap_path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped == rebuild_index.STATUS_START:
+            in_status_block = True
+            continue
+        if stripped == rebuild_index.STATUS_END:
+            in_status_block = False
+            continue
+        if in_status_block:
+            continue
+        if rebuild_index.H1_RE.match(stripped):
+            continue
+        if rebuild_index.BUNDLE_HEADING_RE.match(stripped):
+            continue
+        if rebuild_index.LINK_RE.match(stripped):
+            continue
+        raise SystemExit(
+            f"Error: {roadmap_path} has content this script doesn't recognize "
+            f"(\"{stripped}\") -- refusing to split, since rewriting the file would "
+            f"silently discard it. Remove or relocate that content first, then retry."
+        )
+
+
 def split_module(repo_root: Path, specs_root: Path, module: str) -> None:
     roadmap_path = specs_root / module / "roadmap.md"
     if not roadmap_path.is_file():
@@ -31,11 +58,14 @@ def split_module(repo_root: Path, specs_root: Path, module: str) -> None:
 
     if rebuild_index.is_split(roadmap_path):
         print(f"Module '{module}' is already split. Nothing to do.")
+        rebuild_index.rebuild(repo_root)
         return
 
     entries = rebuild_index.parse_roadmap_links(roadmap_path)
     if not entries:
         raise SystemExit(f"Error: no bundles/features found in {roadmap_path} -- nothing to split.")
+
+    _validate_only_recognized_content(roadmap_path)
 
     # Real feature names come from each spec.md, the same source rebuild_index.py
     # already trusts -- not from the roadmap.md link text, which could in
@@ -59,9 +89,19 @@ def split_module(repo_root: Path, specs_root: Path, module: str) -> None:
     slug_to_bundle = {}
     bundle_files = {}
     for bundle in bundles_order:
+        if bundle is None:
+            raise SystemExit(
+                f"Error: {roadmap_path} has a feature link that appears before any "
+                f"'## Bundle:' heading -- fix the file's structure before splitting."
+            )
         slug = add_feature.slugify(bundle)
+        if not slug:
+            raise SystemExit(
+                f"Error: bundle '{bundle}' slugifies to an empty string -- rename it "
+                f"to include at least one letter or digit before splitting."
+            )
         filename = f"roadmap-{slug}.md"
-        if slug in slug_to_bundle and slug_to_bundle[slug] != bundle:
+        if slug in slug_to_bundle:
             raise SystemExit(
                 f"Error: bundles '{slug_to_bundle[slug]}' and '{bundle}' both slugify to "
                 f"'{slug}' -- cannot split with colliding file names."
