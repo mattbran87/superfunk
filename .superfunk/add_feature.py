@@ -80,26 +80,7 @@ def ensure_bundle_and_link(roadmap_path: Path, bundle: str, feature_name: str, f
     print(f"Linked feature under '## Bundle: {bundle}' in {roadmap_path}")
 
 
-def _ensure_bundle_and_link_split(roadmap_path: Path, bundle: str, feature_name: str, feature_dir_name: str) -> None:
-    module_dir = roadmap_path.parent
-    bundles = rebuild_index.parse_bundles_table(roadmap_path)
-    bundle_file = next((f for name, f in bundles if name == bundle), None)
-    link_line = f"- [{feature_name}](./{feature_dir_name}/)\n"
-
-    if bundle_file is None:
-        slug = slugify(bundle)
-        bundle_file = f"roadmap-{slug}.md"
-        bundle_path = module_dir / bundle_file
-        if bundle_path.exists():
-            raise SystemExit(
-                f"Error: {bundle_path} already exists but isn't listed in {roadmap_path}'s "
-                f"Bundles table. Run rebuild_index.py to sync the table first, then retry."
-            )
-        bundle_path.write_text(f"## Bundle: {bundle}\n\n{link_line}", encoding="utf-8")
-        print(f"Created new bundle file: {bundle_path} (run rebuild_index.py to add it to the Bundles table)")
-        return
-
-    bundle_path = module_dir / bundle_file
+def _append_link_to_bundle_file(bundle_path: Path, bundle: str, link_line: str) -> None:
     lines = bundle_path.read_text(encoding="utf-8").splitlines(keepends=True)
     insert_at = len(lines)
     while insert_at > 0 and lines[insert_at - 1].strip() == "":
@@ -107,6 +88,51 @@ def _ensure_bundle_and_link_split(roadmap_path: Path, bundle: str, feature_name:
     lines.insert(insert_at, link_line)
     bundle_path.write_text("".join(lines), encoding="utf-8")
     print(f"Linked feature under '## Bundle: {bundle}' in {bundle_path}")
+
+
+def _ensure_bundle_and_link_split(roadmap_path: Path, bundle: str, feature_name: str, feature_dir_name: str) -> None:
+    module_dir = roadmap_path.parent
+    bundles = rebuild_index.parse_bundles_table(roadmap_path)
+    bundle_file = next((f for name, f in bundles if name == bundle), None)
+    link_line = f"- [{feature_name}](./{feature_dir_name}/)\n"
+
+    if bundle_file is not None:
+        _append_link_to_bundle_file(module_dir / bundle_file, bundle, link_line)
+        return
+
+    slug = slugify(bundle)
+    if not slug:
+        raise SystemExit(
+            f"Error: bundle '{bundle}' slugifies to an empty string -- rename it "
+            f"to include at least one letter or digit before filing a feature into it."
+        )
+    bundle_path = module_dir / f"roadmap-{slug}.md"
+
+    if bundle_path.exists():
+        existing_name = None
+        for line in bundle_path.read_text(encoding="utf-8").splitlines():
+            m = BUNDLE_HEADING_RE.match(line.strip())
+            if m:
+                existing_name = m.group("name").strip()
+                break
+        if existing_name == bundle:
+            # The file already belongs to this exact bundle -- the Bundles table
+            # just hasn't caught up yet (e.g. filed twice before a rebuild).
+            _append_link_to_bundle_file(bundle_path, bundle, link_line)
+            return
+        if existing_name is not None:
+            raise SystemExit(
+                f"Error: {bundle_path} already exists for bundle '{existing_name}', but "
+                f"'{bundle}' slugifies to the same file name -- rename one of the two "
+                f"bundles so they don't collide."
+            )
+        raise SystemExit(
+            f"Error: {bundle_path} already exists but isn't listed in {roadmap_path}'s "
+            f"Bundles table. Run rebuild_index.py to sync the table first, then retry."
+        )
+
+    bundle_path.write_text(f"## Bundle: {bundle}\n\n{link_line}", encoding="utf-8")
+    print(f"Created new bundle file: {bundle_path} (run rebuild_index.py to add it to the Bundles table)")
 
 
 def scaffold_feature(specs_root: Path, template_root: Path, module: str, bundle: str, feature_name: str, depends_on: str) -> str:
