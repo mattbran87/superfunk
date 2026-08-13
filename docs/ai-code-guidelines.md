@@ -2,8 +2,6 @@
 
 Code conventions for AI-assisted development. Each principle includes the engineering rationale and the specific reason it matters for AI context and generation quality.
 
-Adapted from `claude-spec-framework`'s `docs/ai-code-guidelines.md` — most of the content ports directly, since it's project- and language-agnostic. Two sections got adapted to superfunk's actual structure (Per-Directory Context Files) and skill chain (Confidence-Calibrated Recommendations, cross-referenced rather than duplicated).
-
 ---
 
 ## File Organization
@@ -200,28 +198,3 @@ When a real decision needs to weigh named alternatives — not casual conversati
 
 This discipline stays skill-scoped in superfunk, not a standing rule for every recommendation Claude makes. Applying pre-mortem/confidence/steelman ceremony to every casual suggestion in ordinary conversation would spend real bias-mitigation cost where it doesn't earn it — reach for the research skills when a decision actually needs that rigor, and let them carry this behavior automatically once invoked.
 
----
-
-## When Editing Numbered Process Lists, Audit Step-Number References
-
-When a numbered step is inserted into a process list — pushing subsequent steps to higher numbers — every downstream reference to those step numbers becomes stale. This is a two-location edit, not one.
-
-**After inserting a step:**
-1. Search the same file for other "Step N" references — headings, prose mentions, cross-references inside code blocks or bash comments.
-2. Update every reference that now points to the wrong number.
-
-superfunk hit this directly: adding a new Step 4 to `finishing-a-development-branch/SKILL.md` required renumbering three subsequent steps and fixing every internal `(Step N)` cross-reference in the file — a `grep -n "Step 6\|Step 5"` sanity check after the edit was what caught it was done completely, not a visual read-through.
-
-**Engineering:** Step-number references in prose act as cross-references. They are prose, not code, so no type system catches the mismatch. The only reliable check is a search immediately after the renumbering.
-
----
-
-## New Mechanisms Require an Action Step in the Triggering Prompt or Process
-
-When work introduces a new tracker, gate, counter, or event-driven mechanism — anything that advances its state on a recurring trigger — verify that the process actually invokes it at the intended trigger point.
-
-**The check:** After designing the mechanism, ask: "Which specific step causes this mechanism to advance its state? Does that step exist and name this mechanism explicitly?"
-
-A design document that describes the mechanism is not sufficient. superfunk's own code-quality review process caught this exact gap twice: `finishing-a-development-branch`'s new human-review step originally had no defined behavior for what happens if the human raises an issue instead of confirming (the mechanism existed but one of its two branches was silently absent), and `rebuild_index.py`'s split-awareness logic originally left duplicate bundle names and deleted bundle-file references undetected (the aggregation logic ran, but nothing surfaced the anomaly). Both got caught by review before shipping, not by design review alone — a design can look complete and still have a state transition nothing actually triggers.
-
-**Engineering:** Event-driven mechanisms built without a verified trigger point are inoperable by default, or operable only on the happy path. The design can be correct; without an explicit step that fires it — on every relevant branch, not just the expected one — the mechanism is dead weight or a silent gap that appears to exist until someone checks.
