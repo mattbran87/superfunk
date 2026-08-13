@@ -15,6 +15,11 @@ Subagent (general-purpose):
     Read your task brief first: [BRIEF_FILE]
     It contains the full task text from the plan.
 
+    Also read `docs/ai-code-guidelines.md` before writing any code — it
+    holds this project's code conventions (naming, control flow, dead
+    code, side effects, comments, tests) and applies to everything you
+    write in this task.
+
     ## Context
 
     [Scene-setting: where this fits, dependencies, architectural context]

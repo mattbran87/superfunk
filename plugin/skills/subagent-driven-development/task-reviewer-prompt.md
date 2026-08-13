@@ -110,6 +110,12 @@ Subagent (general-purpose):
       significantly grow existing files? (Don't flag pre-existing file
       sizes — focus on what this change contributed.)
 
+    **Project conventions:** Read `docs/ai-code-guidelines.md` and check
+    the diff against it — naming, explicit-over-implicit, flat control
+    flow, dead code, side-effect isolation, why-comments, signal
+    clarity, behavioral test naming. A violation is a Code Quality
+    finding like any other, cited by file:line.
+
     Your report should point at evidence: file:line references for every
     finding and for any check you would otherwise answer with a bare
     "yes." A tight report that cites lines gives the controller everything
