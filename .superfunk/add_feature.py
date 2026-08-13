@@ -11,6 +11,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+import rebuild_index
+
 TEMPLATE_FILES = ["spec.md", "tasks.md", "decisions.md", "notes.md"]
 BUNDLE_HEADING_RE = re.compile(r"^## Bundle: (?P<name>.+)$")
 INSTRUCTIONAL_COMMENT_RE = re.compile(r"^<!--(?!\s*status:).*-->\s*\n?", re.MULTILINE)
@@ -39,6 +42,10 @@ def ensure_module(specs_root: Path, template_root: Path, module: str) -> Path:
 
 
 def ensure_bundle_and_link(roadmap_path: Path, bundle: str, feature_name: str, feature_dir_name: str) -> None:
+    if rebuild_index.is_split(roadmap_path):
+        _ensure_bundle_and_link_split(roadmap_path, bundle, feature_name, feature_dir_name)
+        return
+
     lines = roadmap_path.read_text(encoding="utf-8").splitlines(keepends=True)
     link_line = f"- [{feature_name}](./{feature_dir_name}/)\n"
 
@@ -71,6 +78,35 @@ def ensure_bundle_and_link(roadmap_path: Path, bundle: str, feature_name: str, f
 
     roadmap_path.write_text("".join(lines), encoding="utf-8")
     print(f"Linked feature under '## Bundle: {bundle}' in {roadmap_path}")
+
+
+def _ensure_bundle_and_link_split(roadmap_path: Path, bundle: str, feature_name: str, feature_dir_name: str) -> None:
+    module_dir = roadmap_path.parent
+    bundles = rebuild_index.parse_bundles_table(roadmap_path)
+    bundle_file = next((f for name, f in bundles if name == bundle), None)
+    link_line = f"- [{feature_name}](./{feature_dir_name}/)\n"
+
+    if bundle_file is None:
+        slug = slugify(bundle)
+        bundle_file = f"roadmap-{slug}.md"
+        bundle_path = module_dir / bundle_file
+        if bundle_path.exists():
+            raise SystemExit(
+                f"Error: {bundle_path} already exists but isn't listed in {roadmap_path}'s "
+                f"Bundles table. Run rebuild_index.py to sync the table first, then retry."
+            )
+        bundle_path.write_text(f"## Bundle: {bundle}\n\n{link_line}", encoding="utf-8")
+        print(f"Created new bundle file: {bundle_path} (run rebuild_index.py to add it to the Bundles table)")
+        return
+
+    bundle_path = module_dir / bundle_file
+    lines = bundle_path.read_text(encoding="utf-8").splitlines(keepends=True)
+    insert_at = len(lines)
+    while insert_at > 0 and lines[insert_at - 1].strip() == "":
+        insert_at -= 1
+    lines.insert(insert_at, link_line)
+    bundle_path.write_text("".join(lines), encoding="utf-8")
+    print(f"Linked feature under '## Bundle: {bundle}' in {bundle_path}")
 
 
 def scaffold_feature(specs_root: Path, template_root: Path, module: str, bundle: str, feature_name: str, depends_on: str) -> str:
@@ -119,8 +155,6 @@ def main():
     ensure_bundle_and_link(roadmap_path, args.bundle, args.feature, feature_dir_name)
 
     if args.rebuild_index:
-        sys.path.insert(0, str(Path(__file__).parent))
-        import rebuild_index
         rebuild_index.rebuild(repo_root)
 
 
