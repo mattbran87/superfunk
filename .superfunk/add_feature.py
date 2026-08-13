@@ -97,7 +97,14 @@ def _ensure_bundle_and_link_split(roadmap_path: Path, bundle: str, feature_name:
     link_line = f"- [{feature_name}](./{feature_dir_name}/)\n"
 
     if bundle_file is not None:
-        _append_link_to_bundle_file(module_dir / bundle_file, bundle, link_line)
+        bundle_path = module_dir / bundle_file
+        if not bundle_path.exists():
+            raise SystemExit(
+                f"Error: {roadmap_path}'s Bundles table lists '{bundle}' pointing at "
+                f"{bundle_path}, but that file doesn't exist. Run rebuild_index.py to "
+                f"sync the table first, then retry."
+            )
+        _append_link_to_bundle_file(bundle_path, bundle, link_line)
         return
 
     slug = slugify(bundle)
