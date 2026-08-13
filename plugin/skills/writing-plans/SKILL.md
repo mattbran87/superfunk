@@ -30,6 +30,7 @@ Before defining tasks, map out which files will be created or modified and what 
 - You reason best about code you can hold in context at once, and your edits are more reliable when files are focused. Prefer smaller, focused files over large ones that do too much.
 - Files that change together should live together. Split by responsibility, not by technical layer.
 - In existing codebases, follow established patterns. If the codebase uses large files, don't unilaterally restructure - but if a file you're modifying has grown unwieldy, including a split in the plan is reasonable.
+- Read the `.context.md` for each directory before mapping its role in the plan, if one exists — it holds the directory's purpose, key decisions, and watch-outs (per `docs/ai-code-guidelines.md`'s Per-Directory Context Files section).
 
 This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
 
