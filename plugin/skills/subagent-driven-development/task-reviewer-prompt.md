@@ -111,10 +111,10 @@ Subagent (general-purpose):
       sizes — focus on what this change contributed.)
 
     **Project conventions:**
-    - Does the diff follow `docs/ai-code-guidelines.md`? Check in
-      particular: naming, explicit-over-implicit, flat control flow,
-      dead code, side-effect isolation, why-comments, signal clarity,
-      behavioral test naming.
+    - Read `docs/ai-code-guidelines.md` and check whether the diff
+      follows it — in particular: naming, explicit-over-implicit, flat
+      control flow, dead code, side-effect isolation, why-comments,
+      signal clarity, behavioral test naming.
     - A violation is a Code Quality finding like any other, cited by
       file:line.
 
