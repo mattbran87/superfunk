@@ -107,6 +107,10 @@ digraph brainstorming {
 
 - Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
+- Give it a `Status` line: `Proposed`, `Approved` (approved, not yet implemented), or `Superseded by <filename>`. Never a free-text description — `subagent-driven-development`'s Finish step is what advances `Approved` to `Shipped` once the work actually ships.
+- Include a `Consequences` section after Decision (and after Falsifiable Criteria or Testing, if either applies): what becomes easier or harder because of this decision, what assumptions must hold.
+- If `multi-lens-research` or `branching-research` ran for this decision, capture the comparison (the candidates, the recommendation, the steelmanned alternative) as an `Alternatives Considered` section. Skip the section entirely if no formal research skill ran — an empty one is the placeholder problem the self-review below already bans.
+- If this design changes or replaces a decision an earlier spec made, update that earlier spec's `Status` to `Superseded by <this-filename>` as part of writing this one.
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 - Commit the design document to git
 
