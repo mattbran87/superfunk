@@ -426,12 +426,15 @@ finishing-a-development-branch presents the options.
 ## Finish
 
 When the final whole-branch review is clean and its fixes are merged,
-update the originating design spec's `Status` line from `Approved` to
-`Shipped` — this is the only point in the plan where "implemented and
-merged" becomes true, so it is the right moment to record it. Then
-delete this plan's workspace (`rm -rf <workspace>`) — the git history is
-the record now. Sibling directories belong to other plans; leave them
-alone.
+check whether this plan traces to a design spec (named in the plan's
+Goal line or a task's commit trailer, e.g. "Part of
+docs/superpowers/specs/..."). If it does, update that spec's `Status`
+line from `Approved` to `Shipped` and commit the change on this branch
+— the only point in this process where the work is both reviewed and
+merged, so it is the right moment to record it. No spec, or already
+`Shipped`: skip this step. Then delete this plan's workspace
+(`rm -rf <workspace>`) — the git history is the record now. Sibling
+directories belong to other plans; leave them alone.
 
 Use superpowers:finishing-a-development-branch.
 
