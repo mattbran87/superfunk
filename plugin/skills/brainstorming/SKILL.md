@@ -85,7 +85,7 @@ digraph brainstorming {
 - Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
 - Ask after each section whether it looks right so far
 - Cover: architecture, components, data flow, error handling, testing
-- For each design decision, name what actually checks or enforces it — a review step, a script, a derived value — not just what states it (per `docs/principles.md`'s Mechanisms, Not Goodwill). A decision with no enforcement mechanism is worth flagging as a gap, not silently presenting as settled.
+- For each design decision, name what actually checks or enforces it — a review step, a script, a derived value — not just what states it (per `docs/principles.md`'s Mechanisms, Not Goodwill principle). Flag a decision with no enforcement mechanism as a gap instead of presenting it as settled.
 - Be ready to go back and clarify if something doesn't make sense
 
 **Design for isolation and clarity:**
@@ -117,6 +117,7 @@ After writing the spec document, look at it with fresh eyes:
 2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
 3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
 4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
+5. **Enforcement check:** Does each design decision in the written spec name what checks or enforces it, or explicitly flag the gap (per Mechanisms, Not Goodwill)? A mechanism named only during the presentation conversation and not carried into the file doesn't count.
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
