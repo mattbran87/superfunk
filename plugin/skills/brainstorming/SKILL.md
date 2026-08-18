@@ -85,6 +85,7 @@ digraph brainstorming {
 - Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
 - Ask after each section whether it looks right so far
 - Cover: architecture, components, data flow, error handling, testing
+- For each design decision, name what actually checks or enforces it — a review step, a script, a derived value — not just what states it (per `docs/principles.md`'s Mechanisms, Not Goodwill). A decision with no enforcement mechanism is worth flagging as a gap, not silently presenting as settled.
 - Be ready to go back and clarify if something doesn't make sense
 
 **Design for isolation and clarity:**
