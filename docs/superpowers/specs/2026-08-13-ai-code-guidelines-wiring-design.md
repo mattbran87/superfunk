@@ -1,7 +1,7 @@
 # AI Code Guidelines Wiring — Design
 
 **Date:** 2026-08-13
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 

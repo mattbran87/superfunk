@@ -1,7 +1,7 @@
 # Roadmap Multi-File Split Automation — Design
 
 **Date:** 2026-08-12
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 

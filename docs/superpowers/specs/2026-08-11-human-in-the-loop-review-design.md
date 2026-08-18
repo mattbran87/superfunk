@@ -1,7 +1,7 @@
 # Human-in-the-Loop Review Checkpoint — Design
 
 **Date:** 2026-08-11
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 
