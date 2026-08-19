@@ -18,13 +18,13 @@ This spec covers the template and process fix, plus the retroactive correction t
 - **Alternatives Considered — conditional, not a fixed template slot.** `brainstorming`'s "Write design doc" step gains a check: if `multi-lens-research` or `branching-research` actually ran for this decision, capture the comparison (the candidates, the recommendation, the steelmanned alternative) as an Alternatives Considered section. If no formal research skill ran, skip the section — forcing an empty one for every simple decision would itself become the placeholder problem the spec self-review already bans.
 - **Retroactive fix**: update the four already-shipped specs' `Status` lines (`2026-08-11-human-in-the-loop-review-design.md`, `2026-08-12-roadmap-multifile-split-automation-design.md`, `2026-08-13-ai-code-guidelines-wiring-design.md`, `2026-08-13-mechanisms-not-goodwill-wiring-design.md`) from `Approved, not yet implemented` to `Shipped`. A direct, cheap consequence of this investigation, not separate cleanup work.
 
-## Consequences
-
-Every future design spec carries one more required section (Consequences) and, when research ran, a second conditional one (Alternatives Considered) — a small but real increase in what `brainstorming`'s "Write design doc" step produces each time. The `Shipped` trigger only fires through `subagent-driven-development`'s "Finish" step; a design implemented through a different path (direct authoring, the "lighter path" this session used repeatedly for small doc-only additions) won't get its `Status` updated automatically and needs the same manual correction this spec is applying retroactively right now. `docs/ai-code-guidelines.md` and `docs/principles.md` (the two sub-projects shipped via direct authoring, no `subagent-driven-development` pipeline) already show this: both say `Shipped` correctly today, but only because whoever wrote them remembered to set it, not because a mechanism enforced it.
-
 ## Falsifiable Criteria
 
 No trials for the template/vocabulary decisions themselves — like the prior sub-projects, these produce reference material and prose conventions, not executable behavior. The two skill-file edits (`subagent-driven-development`'s Finish-step trigger, `brainstorming`'s Write-design-doc-step triggers) get the same disposable `--plugin-dir` baseline-trial treatment already used for every prior wiring change in this session.
+
+## Consequences
+
+Every future design spec carries one more required section (Consequences) and, when research ran, a second conditional one (Alternatives Considered) — a small but real increase in what `brainstorming`'s "Write design doc" step produces each time. The `Shipped` trigger only fires through `subagent-driven-development`'s "Finish" step; a design implemented through a different path (direct authoring, the "lighter path" this session used repeatedly for small doc-only additions) won't get its `Status` updated automatically and needs the same manual correction this spec is applying retroactively right now. `docs/ai-code-guidelines.md` and `docs/principles.md` (the two sub-projects shipped via direct authoring, no `subagent-driven-development` pipeline) already show this: both say `Shipped` correctly today, but only because whoever wrote them remembered to set it, not because a mechanism enforced it.
 
 ## Deferred
 
