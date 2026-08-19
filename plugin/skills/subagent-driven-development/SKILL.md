@@ -326,7 +326,12 @@ Before the loop starts, two routes leave it immediately:
   contradiction: present the finding and the plan text, ask which governs.
   Do not dismiss the finding because the plan mandates it, and do not
   dispatch a fix that contradicts the plan without asking.
-Everything else enters the loop. A fix round is one fix dispatch plus one
+Everything else enters the loop. Before the first fix dispatch,
+append one line per open finding to
+`docs/superpowers/process-reviews/notes.md`:
+`- <YYYY-MM-DD> | Catch | Task <N> | <one-line finding>`. The review
+loop is already doing the work; logging it costs one line and feeds
+`process-review` later. A fix round is one fix dispatch plus one
 scoped re-review. Five rounds maximum per task:
 
 **Rounds 1-3 — resume the original implementer.** Send it the open findings
@@ -411,8 +416,11 @@ superpowers:requesting-code-review's
 the ledger's deferred-minor and parked lines so it can triage which must be
 fixed before merge.
 
-If the final whole-branch review returns findings, dispatch ONE fix subagent
-with the complete findings list — not one fixer per finding.
+If the final whole-branch review returns findings, append one line per
+finding to `docs/superpowers/process-reviews/notes.md`
+(`- <YYYY-MM-DD> | Catch | Final review | <one-line finding>`), then
+dispatch ONE fix subagent with the complete findings list — not one
+fixer per finding.
 Per-finding fixers each rebuild context and re-run suites; a real
 session's final-review fix wave cost more than all its tasks combined.
 Then run exactly one scoped re-review of the fix wave
@@ -432,7 +440,17 @@ docs/superpowers/specs/..."). If it does, update that spec's `Status`
 line from `Approved` to `Shipped` and commit the change on this branch
 — the only point in this process where the work is both reviewed and
 merged, so it is the right moment to record it. No spec, or already
-`Shipped`: skip this step. Then delete this plan's workspace
+`Shipped`: skip this step.
+
+If you updated a spec's Status to `Shipped`, also append its filename
+to `docs/superpowers/process-reviews/tracker.md`'s "Specs shipped
+since" list, and commit that change in the same commit. If the list
+now holds 3 or more filenames, offer to run superpowers:process-review
+right now — the same ask-don't-force pattern as any other checkpoint
+in this process. Run it if your human partner agrees; otherwise leave
+the tracker as-is and continue.
+
+Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
 
