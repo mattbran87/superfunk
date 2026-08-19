@@ -15,8 +15,9 @@ commit, not to memory of how the work felt.
 
 ## When to Use
 
-Invoked by two callers, never run standalone without one of these
-triggers:
+Reads `docs/superpowers/process-reviews/tracker.md` and
+`docs/superpowers/process-reviews/notes.md`. Invoked by two callers,
+never run standalone without one of these triggers:
 
 - `subagent-driven-development`'s Finish step, when the tracker's
   "Specs shipped since" list reaches 3 entries.
@@ -37,6 +38,8 @@ triggers:
    commit whose message names a defect with no matching notes.md
    entry, treat it as a Catch the running log missed, and include it.
 4. Synthesize the collected Catches into the review's sections:
+   - **Specs Reviewed** — list the "Specs shipped since" filenames
+     from the tracker; these are the specs this review covers.
    - **Catches** — list each Catch entry, grouped by spec.
    - **Misses** — a Catch that recurs across 2 or more of the
      reviewed specs signals something upstream should catch it
@@ -56,8 +59,10 @@ triggers:
    where `<last-spec-slug>` is the filename (minus `.md`) of the most
    recently shipped spec in the "Specs shipped since" list.
 6. Update `docs/superpowers/process-reviews/tracker.md`: set "Last
-   review" to this review's spec filename and today's date, and clear
-   "Specs shipped since" to `(none)`.
+   review" to `<spec-filename> — <YYYY-MM-DD>` (e.g.
+   `2026-08-19-process-review-design.md — 2026-08-19`), using this
+   review's spec filename and today's date, and clear "Specs shipped
+   since" to `(none)`.
 7. Commit the review file and the tracker update together.
 
 ## No Placeholders
