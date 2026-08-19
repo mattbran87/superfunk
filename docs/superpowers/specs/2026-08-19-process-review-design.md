@@ -26,7 +26,7 @@ superfunk's design specs (`docs/superpowers/specs/`) carry no per-spec companion
 - **The review procedure — a new skill, `plugin/skills/process-review/SKILL.md`.** Both trigger points invoke this shared procedure instead of duplicating it:
   1. Read `docs/superpowers/process-reviews/notes.md`, filtered to entries dated after the tracker's last-review date.
   2. Cross-reference `git log` across the shipped specs' commits. This confirms each logged entry, and catches any Catch a fix-commit message names that the running log missed.
-  3. Write `docs/superpowers/process-reviews/review-after-<last-spec-slug>.md`, with five sections: **Specs Reviewed**, **Catches**, **Misses**, **Friction**, **Gaps**, and **Recommendations**. Each Recommendation gets a checkbox item (`- [ ] ...`) naming a target file and the exact change.
+  3. Write `docs/superpowers/process-reviews/review-after-<last-spec-slug>.md`, with six sections: **Specs Reviewed**, **Catches**, **Misses**, **Friction**, **Gaps**, and **Recommendations**. Each Recommendation gets a checkbox item (`- [ ] ...`) naming a target file and the exact change.
   4. Update the tracker: write a new last-review entry, and clear the "shipped since" list.
 
 - **Recommendation lifecycle.** A Recommendation stays open until someone checks its box. Checking happens two ways: making the named change (checked off in the same commit), or the user explicitly deferring it at brainstorming's gate. A deferral adds a `(deferred: <reason>)` note beside the item without checking the box. A deferred Recommendation keeps surfacing at every future gate until someone resolves it or removes it explicitly.
