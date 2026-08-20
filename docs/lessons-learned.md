@@ -25,3 +25,26 @@ not just each one individually against the source spec.
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/cross-check-shared-rule-restatements.md*
+
+## Review
+
+### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)
+
+Three separate code-quality reviews in this sub-project each flagged
+something as a defect by applying a stated rule literally, without
+first checking what the rule's source actually meant or whether the
+identical pattern already shipped elsewhere without issue. None of
+the three survived independent verification: a "5-9 item cap" read
+as a floor when the source draft explicitly framed it as a ceiling;
+a tagging-consistency complaint didn't hold once the compared
+bullet's different context got read; a "needs concrete examples"
+finding ignored two already-shipped instances of the identical
+open-ended pattern. **Rule:** before treating a literal rule-match as
+a real defect, check the rule's source intent and whether the same
+pattern already shipped elsewhere without the same complaint — a
+rule applied too literally, without that context, produces a false
+positive as often as it catches a real gap.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/verify-against-precedent-before-flagging.md*
