@@ -24,7 +24,7 @@ This spec ports the draft's discipline in two parts. It writes the general rule 
 - **Split GREEN into two named sub-phases.** "GREEN Phase — Metadata" (name format, frontmatter fields, description wording, description person: 4 items) and "GREEN Phase — Content" (address RED's baseline failures, guidance-form match, the no-guidance-control micro-test, code/example format, re-test with the skill: 6 items).
 - **Change the checklist's own instruction from all-at-once to per-phase.** "Create a todo for EACH checklist item below" becomes: at the start of each phase, create a todo only for that phase's items. Complete the phase's work. Confirm against that phase's list. Move to the next phase.
 - **Add one lessons-learned check near the top of the whole checklist section**, run once before RED starts: check `docs/lessons-learned.md` for anything relevant to skill-authoring, and apply anything it flags.
-- **Wire failure-log sourcing into the fork's other DO-CONFIRM checklists.** `writing-plans`' Self-Review and No Placeholders, and `test-driven-development`'s Verification Checklist each gain one new item: check `docs/lessons-learned.md` for any entry relevant to this checklist's domain, and apply anything it flags.
+- **Wire failure-log sourcing into the fork's other DO-CONFIRM checklists.** `writing-plans`' Self-Review and `test-driven-development`'s Verification Checklist each gain one new item: check `docs/lessons-learned.md` for any entry relevant to this checklist's domain, and apply anything it flags. `writing-plans`' No Placeholders section stays untouched — it lists forbidden content patterns for Self-Review's own scan to consult, not a run-and-confirm pass of its own, so it doesn't fit this wiring.
 
 ## Falsifiable Criteria
 
@@ -38,9 +38,9 @@ This spec changes checklist structure and prose, not executable behavior a `--pl
 
 `writing-skills`' checklist now runs as six shorter pause points, instead of one 27-item list created at task start. A skill-writer holds fewer items in mind at any one pause. The cost: six explicit stopping points instead of one.
 
-Three other checklists each gain one more item, checking `docs/lessons-learned.md`. This grows each checklist by one item, still inside the 5-9 cap for all three.
+Two other checklists each gain one more item, checking `docs/lessons-learned.md`. This grows each checklist by one item, still inside the 5-9 cap for both.
 
-Future skill-writers get a written rule to follow, instead of re-deriving checklist discipline from first principles each time a new skill needs one. The rule binds new work going forward. It doesn't retroactively audit every checklist already in the fork — only the three this spec directly touches.
+Future skill-writers get a written rule to follow, instead of re-deriving checklist discipline from first principles each time a new skill needs one. The rule binds new work going forward. It doesn't retroactively audit every checklist already in the fork — only the three files this spec directly touches.
 
 ## Deferred
 
