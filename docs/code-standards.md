@@ -77,7 +77,7 @@ Two related but distinct artifacts capture what the project learns from real wor
 
 - `[Rule]` Choose READ-DO (a fixed sequence, run in order) or DO-CONFIRM (do the work, then pause and confirm nothing got missed) deliberately, per checklist.
 - `[Rule]` A checklist item exists to catch a step people easily skip. An item that restates the obvious earns no place on the list.
-- `[Rule]` Cap a single checklist at 5-9 items. Past that, split into grouped sub-checklists by phase or component, each with its own pause point.
+- `[Rule]` Cap a single checklist at 5-9 items — a ceiling, not a floor; a shorter checklist needs no padding. Past that, split into grouped sub-checklists by phase or component, each with its own pause point.
 - `[Rule]` A DO-CONFIRM checklist checks `docs/lessons-learned.md` for entries relevant to its own domain, once per run, not once per sub-checklist.
 
 ---
