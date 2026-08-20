@@ -59,6 +59,18 @@ beyond what File Structure already states gets
 padded pseudocode block is the same placeholder problem "No
 Placeholders" already bans.
 
+Example, for a task that calls an external weather API:
+
+````
+- **T1 — API call sites:**
+  ```
+  function get_weather(city):
+      response = call OpenWeather /forecast/{city}
+      return WeatherResponse with temperature, humidity, hourly forecasts from response
+  ```
+- **T2 — Handler/pattern reuse:** Skipped: no handler or controller pattern involved.
+````
+
 No trigger silently omitted: every plan states T1 through T4, each
 either populated or explicitly skipped.
 
@@ -163,6 +175,7 @@ Every step must contain the actual content an engineer needs. These are **plan f
 - "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
 - Steps that describe what to do without showing how (code blocks required for code steps)
 - References to types, functions, or methods not defined in any task
+- A Pseudocode entry with no real content, or a `Skipped` reason that just restates the trigger name instead of saying why
 
 ## Self-Review
 
@@ -174,7 +187,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
 
-**4. Pseudocode coverage:** Does the Pseudocode section state all four triggers (T1–T4), each either populated with real pseudocode or marked `Skipped: <reason>`? A trigger left out entirely is a plan failure, the same as a missing task for a spec requirement.
+**4. Pseudocode coverage:** Does the Pseudocode section state all four triggers (T1–T4), each either populated with real pseudocode or marked `Skipped: <reason>`? A trigger left out entirely is a plan failure, the same as a missing task for a spec requirement. For each populated trigger, confirm the pseudocode stays natural-language only — no real code, no type annotations, no library calls. For each `Skipped` trigger, confirm the reason names a real absence, not a restatement of the trigger's name.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
