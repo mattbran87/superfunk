@@ -1,7 +1,7 @@
 # Continuous Improvement — Process Review — Design
 
 **Date:** 2026-08-19
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 
