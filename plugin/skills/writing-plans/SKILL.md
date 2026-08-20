@@ -200,6 +200,8 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **6. Cross-file rule restatement:** Does this plan restate the same source rule in more than one target file? If so, read every restatement side by side. Confirm they describe the same underlying logic — the same conditions, the same structure — not just similar wording.
 
+**7. Lessons-learned check:** Check `docs/lessons-learned.md` for any entry relevant to this plan's domain. Apply anything it flags.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
