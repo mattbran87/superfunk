@@ -46,5 +46,5 @@
 
 ## Recommendations
 
-- [ ] Add a check to `plugin/skills/writing-plans/SKILL.md`'s Self-Review section: when a plan adds a new instruction next to an existing sibling instruction in the same target file, confirm the new instruction mirrors the sibling's established shape (why-explanation, visibility clause) before finalizing the plan.
-- [ ] Add a check to `plugin/skills/writing-plans/SKILL.md`'s Self-Review section: when a plan restates the same source rule into more than one target file, cross-check every restatement against every other restatement before finalizing — this directly operationalizes `docs/patterns/cross-check-shared-rule-restatements.md` as an actual plan-writing check, not only a recorded Lesson.
+- [x] Add a check to `plugin/skills/writing-plans/SKILL.md`'s Self-Review section: when a plan adds a new instruction next to an existing sibling instruction in the same target file, confirm the new instruction mirrors the sibling's established shape (why-explanation, visibility clause) before finalizing the plan. (Shipped as Self-Review item 5, commit `7992e30`.)
+- [x] Add a check to `plugin/skills/writing-plans/SKILL.md`'s Self-Review section: when a plan restates the same source rule into more than one target file, cross-check every restatement against every other restatement before finalizing — this directly operationalizes `docs/patterns/cross-check-shared-rule-restatements.md` as an actual plan-writing check, not only a recorded Lesson. (Shipped as Self-Review item 6, commit `7992e30`.)
