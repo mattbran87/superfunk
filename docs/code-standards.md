@@ -61,6 +61,18 @@ Coding and documentation standards for superfunk. Contributors and Claude both f
 
 ---
 
+## Lessons vs. Patterns
+
+Two related but distinct artifacts capture what the project learns from real work.
+
+- `[Rule]` A Lesson answers *what happened and what to watch out for* — one retrospective fact, tied to the plan that surfaced it. Lives in `docs/lessons-learned.md`.
+- `[Rule]` A Pattern answers *what future work should do* — a prospective, reusable rule that applies across many future situations. Lives in `docs/patterns/` as its own file.
+- `[Preference]` Secondary test when the distinction feels unclear: one specific fact tied to one context makes a Lesson; a rule that applies broadly makes a Pattern.
+- `[Rule]` A Lesson gets captured at `subagent-driven-development`'s Finish step; "nothing notable" counts as a complete answer.
+- `[Rule]` A Lesson promotes to a Pattern when it expresses a prospective rule, or when the same failure mode recurs a second time — whichever comes first.
+
+---
+
 ## CLAUDE.md Maintenance
 
 `CLAUDE.md` is a living document — it drifts from reality unless actively maintained.
