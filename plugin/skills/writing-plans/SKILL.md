@@ -196,6 +196,10 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **4. Pseudocode coverage:** Does the Pseudocode section state all four triggers (T1–T4), each either populated with real pseudocode or marked `Skipped: <reason>`? A trigger left out entirely is a plan failure, the same as a missing task for a spec requirement. For each populated trigger, confirm the pseudocode stays natural-language only — no real code, no type annotations, no library calls. For each `Skipped` trigger, confirm the reason names a real absence, not a restatement of the trigger's name.
 
+**5. Sibling-pattern parity:** When a plan adds a new instruction next to an existing sibling instruction in the same target file, does it mirror that sibling's established shape (a why-explanation, a visibility clause)? If not, add what's missing.
+
+**6. Cross-file rule restatement:** Does this plan restate the same source rule in more than one target file? If so, read every restatement side by side. Confirm they describe the same underlying logic — the same conditions, the same structure — not just similar wording.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
