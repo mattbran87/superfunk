@@ -468,15 +468,17 @@ Capture a notable learning in `docs/lessons-learned.md`, or record
 that nothing notable arose — either answer completes this step. A
 new Lesson entry: `### <title> (<spec-slug>)` as an H3 heading under
 the nearest-fitting H2 category (create one if none fits), a prose
-paragraph ending in a **Rule:** sentence, then a promotion note. Ask:
-"Does this Lesson express a prospective rule that applies across many
-future situations?" A second instance of the same failure mode
-justifies promoting even when that question reads ambiguous. On
-promotion, write `docs/patterns/<slug>.md` from
-`docs/patterns/pattern-template.md`, and add `*Pattern promoted — see
-docs/patterns/<slug>.md*` after the entry. Otherwise add `*No pattern
-promoted — <one-line reason>.*` after the entry. Commit both the
-Lesson (and, if written, the Pattern) in the same commit as the
+paragraph ending in a **Rule:** sentence, then a promotion note. Use
+the design spec's own slug for `<spec-slug>` when one exists; no
+spec: use this plan's own filename slug instead. Ask: "Does this
+Lesson express a prospective rule that applies across many future
+situations?" A Lesson promotes to a Pattern when it answers that
+question yes, or when the same failure mode recurs a second time —
+whichever comes first. On promotion, write `docs/patterns/<slug>.md`
+from `docs/patterns/pattern-template.md`, and add `*Pattern promoted
+— see docs/patterns/<slug>.md*` after the entry. Otherwise add `*No
+pattern promoted — <one-line reason>.*` after the entry. Commit both
+the Lesson (and, if written, the Pattern) in the same commit as the
 tracker update above, or their own commit if the tracker didn't
 change.
 
