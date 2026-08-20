@@ -224,10 +224,17 @@ and fix-round diffs need it.
   mention in the dispatch, but note which directories you checked (in
   the dispatch's Context section or the ledger), so the check stays
   visible instead of quietly not happening.
-- **Pseudocode context:** if the plan's Pseudocode section has a
-  populated (non-`Skipped`) subsection for a trigger this task fires,
-  fold that subsection into the dispatch's Context section. A task
-  whose triggers are all `Skipped` needs no mention.
+- **Pseudocode context:** determine which triggers (T1-T4) this task
+  fires by reading its brief's responsibilities against the trigger
+  definitions in the plan's Pseudocode section. For each matching
+  trigger with a populated (non-`Skipped`) subsection, fold it into
+  the dispatch's Context section, since the implementer never reads
+  the plan's Pseudocode section itself — it gets curated pseudocode,
+  not raw access to figure out relevance on its own. A task whose
+  matching triggers are all `Skipped`, or that matches none, needs no
+  mention, but note which triggers you evaluated (in the dispatch's
+  Context section or the ledger), so the check stays visible instead
+  of quietly not happening.
 - **Report file:** name the implementer's report file after the brief
   (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
   the dispatch prompt. The implementer writes the full report there and
