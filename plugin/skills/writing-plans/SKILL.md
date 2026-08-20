@@ -34,6 +34,34 @@ Before defining tasks, map out which files will be created or modified and what 
 
 This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
 
+## Pseudocode
+
+Before breaking the plan into tasks, evaluate the files and
+responsibilities from File Structure against four triggers, unchanged
+from Casita's own proven set:
+
+- **T1 — API call sites:** a task calls an external or internal API
+  with more than a trivial signature.
+- **T2 — Handler/pattern reuse:** a task implements a handler,
+  controller, or pattern this codebase already uses elsewhere, where
+  the shape matters.
+- **T3 — DTO/schema shape:** a task defines or consumes a data shape
+  with more than one or two fields.
+- **T4 — User-designated:** the user asked for pseudocode on a
+  specific piece of this plan.
+
+For each trigger that fires, write natural-language pseudocode in a
+`## Pseudocode` section of the plan document: standard idioms
+(`for each`, `if`, `return`), no language-specific syntax, no type
+system, no library calls. A trigger that fires but adds no signal
+beyond what File Structure already states gets
+`Skipped: <one-line reason>` instead of forced content — an empty or
+padded pseudocode block is the same placeholder problem "No
+Placeholders" already bans.
+
+No trigger silently omitted: every plan states T1 through T4, each
+either populated or explicitly skipped.
+
 ## Task Right-Sizing
 
 A task is the smallest unit that carries its own test cycle and is worth a
@@ -145,6 +173,8 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 **2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+
+**4. Pseudocode coverage:** Does the Pseudocode section state all four triggers (T1–T4), each either populated with real pseudocode or marked `Skipped: <reason>`? A trigger left out entirely is a plan failure, the same as a missing task for a spec requirement.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
