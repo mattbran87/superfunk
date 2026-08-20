@@ -36,7 +36,7 @@ superfunk's design specs (`docs/superpowers/specs/`) carry no per-spec companion
 Same disposable `--plugin-dir` baseline-trial approach used for every other wiring change this session:
 
 1. Build a scratch fixture with a pre-seeded `notes.md` (3 fake log entries) and no tracker file. Trigger `subagent-driven-development`'s Finish step for a 3rd shipped spec. Confirm it detects the threshold and offers to run `process-review`.
-2. Using the same fixture, run `process-review` directly. Confirm it produces a review file with all five sections populated from the log entries. Confirm it updates the tracker.
+2. Using the same fixture, run `process-review` directly. Confirm it produces a review file with all six sections populated from the log entries. Confirm it updates the tracker.
 3. Build a scratch fixture with a tracker that names a review overdue, plus a review file with one unchecked Recommendation. Trigger `brainstorming`'s "Explore project context" step. Confirm it surfaces both the overdue review and the open Recommendation, and waits for an explicit act-or-defer answer before continuing.
 
 ## Consequences

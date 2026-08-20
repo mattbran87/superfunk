@@ -466,7 +466,7 @@ Confirm:
 1. `2026-01-03-fake-spec-c-design.md`'s `Status` line reads `Shipped`.
 2. `tracker.md`'s "Specs shipped since" line reads `(none)` — process-review ran and reset it.
 3. `tracker.md`'s "Last review" line names `2026-01-03-fake-spec-c-design.md` and a date — not `none yet`.
-4. A file matching `review-after-2026-01-03-fake-spec-c-design.md` exists, with all five sections (Specs Reviewed, Catches, Misses, Friction, Gaps, Recommendations) and at least the two seeded Catch entries reflected in its Catches section.
+4. A file matching `review-after-2026-01-03-fake-spec-c-design.md` exists, with all six sections (Specs Reviewed, Catches, Misses, Friction, Gaps, Recommendations) and at least the two seeded Catch entries reflected in its Catches section.
 
 If any of these four is missing, treat this as DONE_WITH_CONCERNS and report exactly which check failed, quoting what the files actually contain.
 
