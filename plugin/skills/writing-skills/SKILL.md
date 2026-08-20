@@ -629,9 +629,9 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 Before starting RED, check `docs/lessons-learned.md` for anything
 relevant to skill-authoring, and apply anything it flags.
 
-At the start of each phase below, create a todo only for that
-phase's items. Complete the phase's work. Confirm against that
-phase's list. Then move to the next phase.
+At the start of each section below, create a todo only for that
+section's items. Complete the section's work. Confirm against that
+section's list. Then move to the next section.
 
 **RED Phase - Write Failing Test:**
 - [ ] Create pressure scenarios (3+ combined pressures for discipline skills)
