@@ -69,7 +69,7 @@ Two related but distinct artifacts capture what the project learns from real wor
 - `[Rule]` A Pattern answers *what future work should do* — a prospective, reusable rule that applies across many future situations. Lives in `docs/patterns/` as its own file.
 - `[Preference]` Secondary test when the distinction feels unclear: one specific fact tied to one context makes a Lesson; a rule that applies broadly makes a Pattern.
 - `[Rule]` A Lesson gets captured at `subagent-driven-development`'s Finish step; "nothing notable" counts as a complete answer.
-- `[Rule]` A Lesson promotes to a Pattern when it expresses a prospective rule, or when the same failure mode recurs a second time — whichever comes first.
+- `[Rule]` A Lesson promotes to a Pattern when it expresses a prospective rule that applies across many future situations, or when the same failure mode recurs a second time — whichever comes first.
 
 ---
 
