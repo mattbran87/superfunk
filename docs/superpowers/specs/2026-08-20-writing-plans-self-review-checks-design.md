@@ -1,7 +1,7 @@
 # Writing-Plans Self-Review Checks — Design
 
 **Date:** 2026-08-20
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 
