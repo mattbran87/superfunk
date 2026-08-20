@@ -59,6 +59,13 @@ beyond what File Structure already states gets
 padded pseudocode block is the same placeholder problem "No
 Placeholders" already bans.
 
+If more than one task fires the same trigger, label each task's
+pseudocode separately within that trigger's subsection — for example
+`T1 — API call sites (Task 2):` and `T1 — API call sites (Task 4):`
+as two distinct entries, not one combined block. An unlabeled entry
+under a trigger that fires for more than one task leaves later
+readers unable to tell which task it describes.
+
 Example, for a task that calls an external weather API:
 
 ````

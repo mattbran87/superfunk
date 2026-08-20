@@ -228,13 +228,16 @@ and fix-round diffs need it.
   fires by reading its brief's responsibilities against the trigger
   definitions in the plan's Pseudocode section. For each matching
   trigger with a populated (non-`Skipped`) subsection, fold it into
-  the dispatch's Context section, since the implementer never reads
-  the plan's Pseudocode section itself — it gets curated pseudocode,
-  not raw access to figure out relevance on its own. A task whose
-  matching triggers are all `Skipped`, or that matches none, needs no
-  mention, but note which triggers you evaluated (in the dispatch's
-  Context section or the ledger), so the check stays visible instead
-  of quietly not happening.
+  the dispatch's Context section — if that trigger's subsection holds
+  more than one task's labeled entry (e.g. `T1 — API call sites
+  (Task 2):` and `(Task 4):`), fold in only this task's own labeled
+  entry, never another task's. The implementer never reads the plan's
+  Pseudocode section itself — it gets curated pseudocode, not raw
+  access to figure out relevance on its own. A task whose matching
+  triggers are all `Skipped`, or that matches none, needs no mention,
+  but note which triggers you evaluated (in the dispatch's Context
+  section or the ledger), so the check stays visible instead of
+  quietly not happening.
 - **Report file:** name the implementer's report file after the brief
   (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
   the dispatch prompt. The implementer writes the full report there and
