@@ -31,7 +31,7 @@ This spec ports the draft's discipline in two parts. It writes the general rule 
 This spec changes checklist structure and prose, not executable behavior a `--plugin-dir` trial can exercise directly. The falsifiable test stays direct:
 
 1. Grep `writing-skills/SKILL.md` for the six phase headers (RED, GREEN Phase — Metadata, GREEN Phase — Content, REFACTOR, Quality Checks, Deployment). Confirm each groups 9 or fewer items.
-2. Grep `writing-skills/SKILL.md`, `writing-plans/SKILL.md`, and `test-driven-development/SKILL.md` for the phrase "check `docs/lessons-learned.md`." Confirm at least one match per file.
+2. Grep `writing-skills/SKILL.md`, `writing-plans/SKILL.md`, and `test-driven-development/SKILL.md` for `docs/lessons-learned.md`. Confirm at least one match per file, worded as an instruction to check it (imperative or past tense both count — "check `docs/lessons-learned.md`" and "Checked `docs/lessons-learned.md`" both satisfy this).
 3. Confirm "Keywords throughout for search" and "Clear overview with core principle" no longer appear in `writing-skills/SKILL.md`.
 
 ## Consequences
