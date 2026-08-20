@@ -464,6 +464,22 @@ right now — the same ask-don't-force pattern as any other checkpoint
 in this process. Run it if your human partner agrees; otherwise leave
 the tracker as-is and continue.
 
+Capture a notable learning in `docs/lessons-learned.md`, or record
+that nothing notable arose — either answer completes this step. A
+new Lesson entry: `### <title> (<spec-slug>)` as an H3 heading under
+the nearest-fitting H2 category (create one if none fits), a prose
+paragraph ending in a **Rule:** sentence, then a promotion note. Ask:
+"Does this Lesson express a prospective rule that applies across many
+future situations?" A second instance of the same failure mode
+justifies promoting even when that question reads ambiguous. On
+promotion, write `docs/patterns/<slug>.md` from
+`docs/patterns/pattern-template.md`, and add `*Pattern promoted — see
+docs/patterns/<slug>.md*` after the entry. Otherwise add `*No pattern
+promoted — <one-line reason>.*` after the entry. Commit both the
+Lesson (and, if written, the Pattern) in the same commit as the
+tracker update above, or their own commit if the tracker didn't
+change.
+
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
