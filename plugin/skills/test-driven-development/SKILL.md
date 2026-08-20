@@ -292,6 +292,7 @@ Before marking work complete:
 - [ ] Output pristine (no errors, warnings)
 - [ ] Tests use real code (mocks only if unavoidable)
 - [ ] Edge cases and errors covered
+- [ ] Checked `docs/lessons-learned.md` for any entry relevant to this work, and applied anything it flags
 
 Can't check all boxes? You skipped TDD. Start over.
 
