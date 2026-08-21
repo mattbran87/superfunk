@@ -1,7 +1,7 @@
 # Hazard Signal Words and Code-Standards Wiring — Design
 
 **Date:** 2026-08-21
-**Status:** Approved, not yet implemented
+**Status:** Shipped
 
 ## Context
 
