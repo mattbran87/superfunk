@@ -43,7 +43,7 @@ This spec scopes to `docs/superpowers/plans/` — the pipeline every sub-project
 
 - **`subagent-driven-development/SKILL.md`'s "Complete the task" step gains one instruction**, run alongside the existing ledger completion line: append the task's Outcome field to `docs/superpowers/plans/<plan-slug>-outcomes.md` as `## Task <N>: <task name>`, creating the file with its header the first time a task writes an entry.
 
-  Git tracks the outcomes file; the ledger stays git-ignored, per its existing workspace-scratch status. Since no task-loop step currently commits anything by itself (implementers commit their own code; the ledger stays uncommitted workspace state), the outcomes file rides on the next commit that already happens in the normal flow — the next task's implementer commit. For the plan's final task, the controller commits the outcomes file explicitly, right before the final whole-branch review runs, so it never sits uncommitted at `Finish`.
+  Git tracks the outcomes file; the ledger stays git-ignored, per its existing workspace-scratch status. The controller commits the outcomes file itself, directly, right after each append — the same pattern it already uses for other git-tracked bookkeeping (`process-reviews/tracker.md`, `lessons-learned.md`) at `Finish`, just running once per task instead of once per plan. This avoids adding a foreign-file instruction to every implementer dispatch prompt, which this project's own dispatch guidance already discourages (a dispatch describes one task, not accumulated session state).
 
 - **`process-review/SKILL.md`'s Step 2 gains a companion step.** For each spec in the tracker's "Specs shipped since" list, derive its plan's slug by stripping `-design` from the spec's filename, then read `docs/superpowers/plans/<slug>-outcomes.md` if it exists — a spec shipped before this mechanism existed has no outcomes file, and that absence never counts as an error. Collect every entry reporting a real divergence or follow-up; skip terse "shipped as planned" entries, which carry no signal.
 
@@ -57,12 +57,12 @@ This spec scopes to `docs/superpowers/plans/` — the pipeline every sub-project
 
 1. A disposable `--plugin-dir` trial, seeded with a real 2-task plan (per this project's `seed-trial-fixtures-with-real-docs` pattern), runs `subagent-driven-development` end to end. Both implementer reports carry the required Outcome field. `docs/superpowers/plans/<slug>-outcomes.md` exists after Task 1 with the exact header format above, and gains a second `## Task 2:` entry after Task 2.
 2. In the same trial, the task that ships exactly as planned still produces a non-empty entry ("Shipped as planned; no divergence, no follow-ups"), not a skipped one.
-3. The outcomes file's git history shows it landing on the commit timing this spec specifies — riding the next task's commit, or committed explicitly before the final review for the plan's last task — never left uncommitted at `Finish`.
+3. The outcomes file's git history shows one controller commit per task, immediately after each append — never left uncommitted at `Finish`.
 4. A direct read-through (or trial) of the updated `process-review` confirms it derives a plan slug from a spec filename correctly, reads that plan's outcomes file, and tolerates a missing outcomes file without erroring.
 
 ## Consequences
 
-Every task's status report grows by one required field, and every task completion writes one more file operation. The plan's final task always carries one extra explicit commit, for the outcomes file, right before the final review.
+Every task's status report grows by one required field, and every task completion writes one more file operation plus one more controller-made commit, for the outcomes file.
 
 `process-review` gains a second evidence source. Its four output sections stay the same shape — outcomes-derived signal joins the same Misses/Recommendations/Gaps categories reviewer-derived signal already feeds, rather than growing the report format.
 
