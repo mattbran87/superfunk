@@ -114,7 +114,10 @@ Subagent (general-purpose):
     - Read `docs/ai-code-guidelines.md` and check whether the diff
       follows it — in particular: naming, explicit-over-implicit, flat
       control flow, dead code, side-effect isolation, why-comments,
-      signal clarity, behavioral test naming.
+      hazard signal words, signal clarity, behavioral test naming.
+    - Read `docs/code-standards.md` and check whether the diff and its
+      commit messages follow it — in particular: file naming, commit
+      message format, and the severity-trailer rule for risky changes.
     - A violation is a Code Quality finding like any other, cited by
       file:line.
 
