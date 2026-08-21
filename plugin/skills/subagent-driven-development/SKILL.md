@@ -413,6 +413,40 @@ message as your other bookkeeping:
 - `Task <N>: complete (commits <base7>..<head7>, <K> parked)` after a
   tripped breaker
 
+Also record this task's Outcome field — from the implementer's most
+recent status report, the final round's if the task went through the
+fix loop — in `docs/superpowers/plans/<plan-basename>-outcomes.md`
+(`<plan-basename>` is PLAN_FILE's filename with `.md` removed, the
+same value `scripts/sdd-workspace` derives). If this is the plan's
+first completed task, create the file first with this header:
+
+```markdown
+# Outcomes — <plan filename>
+
+One entry per completed task: what shipped, what diverged from the
+plan, what to follow up on — in the implementer's own words, captured
+before Finish deletes the plan's workspace (and its full report files).
+
+<!-- entries below this line -->
+```
+
+Then append the entry itself:
+
+```markdown
+## Task <N>: <task name>
+<the Outcome field's exact text>
+```
+
+Commit the outcomes file yourself, directly, in its own small commit —
+this is controller bookkeeping, the same kind `process-reviews/tracker.md`
+and `docs/lessons-learned.md` already get at Finish, just running once
+per task here:
+
+```bash
+git add docs/superpowers/plans/<plan-basename>-outcomes.md
+git commit -m "docs: record Task <N> outcome for <plan-basename>"
+```
+
 Then mark the todo complete and move on. Never move to the next task while
 the review has open Critical/Important issues that are neither fixed nor
 parked-with-ruling at the cap.
