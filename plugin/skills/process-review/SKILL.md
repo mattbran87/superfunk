@@ -35,14 +35,23 @@ standalone without one of these triggers:
    entry dated after the tracker's last-review date (or every entry,
    if the tracker reads "none yet").
 3. For each spec in the "Specs shipped since" list, derive its plan's
-   basename by stripping `-design` from the spec's filename (minus
-   `.md`), then read
-   `docs/superpowers/plans/<plan-basename>-outcomes.md` if it exists —
-   a spec shipped before this mechanism existed has no outcomes file,
-   and that absence never counts as an error. Collect every entry
-   reporting a real divergence or follow-up; skip an entry that reads
-   "shipped as planned" with no divergence or follow-up, since it
-   carries no signal.
+   basename by stripping the trailing `-design` from the spec's
+   filename (minus `.md`) — the trailing occurrence specifically,
+   since some filenames contain "design" more than once (e.g.
+   `2026-08-13-design-spec-template-quality-design.md`). Read
+   `docs/superpowers/plans/<plan-basename>-outcomes.md` if it exists
+   at that exact path. If it doesn't, fall back to matching
+   `docs/superpowers/plans/*-outcomes.md` against the spec's own
+   `YYYY-MM-DD` date prefix, to cover a plan whose filename doesn't
+   share the spec's exact stem: a single match still counts as found;
+   zero matches means no outcomes file exists for this spec (most
+   commonly a spec shipped before this mechanism existed), and that
+   absence never counts as an error; more than one match is a genuine
+   ambiguity — name the candidate filenames in the review's Gaps
+   section and skip reading any of them, rather than guessing. Collect
+   every entry reporting a real divergence or follow-up from a file
+   you did read; skip an entry that reads "shipped as planned" with no
+   divergence or follow-up, since it carries no signal.
 4. Cross-reference `git log --oneline` for each shipped spec's
    implementing commits (the spec name usually appears in a commit
    trailer, e.g. "Part of docs/superpowers/specs/..."). For any fix
