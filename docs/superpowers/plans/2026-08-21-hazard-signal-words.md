@@ -363,7 +363,7 @@ Replace with:
 ```
 - Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
-- Check the written spec against `docs/code-standards.md`'s Spec File Conventions section before committing — self-contained (readable without external context beyond `CLAUDE.md`), testable acceptance criteria, a current `Status` line.
+- Check the written spec against `docs/code-standards.md`'s Spec File Conventions section before committing — self-contained (readable without external context beyond `CLAUDE.md`), testable acceptance criteria (Falsifiable Criteria, or a Testing section with quoted evidence). That section's Status-line and template rules target feature-tracking's `spec.md`, not this design-spec system — the next bullet's `Status` vocabulary governs here instead.
 - Give it a `Status` line: `Proposed`, `Approved` (not yet implemented), or `Superseded by <filename>`. Never a free-text description — `subagent-driven-development`'s Finish step is what advances `Approved` to `Shipped` once the work actually ships.
 ```
 
