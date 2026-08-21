@@ -48,3 +48,49 @@ positive as often as it catches a real gap.
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/verify-against-precedent-before-flagging.md*
+
+### When wiring a new reviewer check, verify the reviewer can actually see what it's asked to check (2026-08-21-hazard-signal-words)
+
+A code-quality reviewer got a new instruction to check commit
+messages for a severity trailer. The instruction shipped clean
+through spec-compliance and its own code-quality review — but the
+reviewer's actual data source, `scripts/review-package`, built its
+"## Commits" section with `git log --oneline`, which truncates every
+commit to its subject line. The trailer the reviewer was told to
+check lives in the commit body. The check was unrunnable from day
+one, and nothing caught this until a later review happened to trace
+the data path instead of just reading the instruction's wording.
+**Rule:** when wiring a new "check X" instruction into a reviewer,
+confirm the reviewer's actual input (the diff, the review package,
+whatever it reads) really contains X — a well-written instruction
+pointing at data the reviewer never receives is a defect the
+instruction's own wording won't reveal.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/verify-reviewer-can-see-what-it-checks.md*
+
+## Testing
+
+### A --plugin-dir trial fixture needs the real convention docs it's testing copied in, not just the scratch structure (2026-08-21-hazard-signal-words)
+
+A live trial dispatched a scratch session to read `docs/ai-code-guidelines.md`
+and `docs/code-standards.md` and apply their conventions — but the
+scratch fixture never copied those files in, only a bare `README.md`.
+The trial ran anyway and produced plausible-looking output (a hazard
+comment, a commit trailer), but using generic conventions the AI
+invented on its own, not the specific vocabulary the trial existed to
+verify. The gap wasn't caught by the trial passing or failing — it
+was caught by the AI itself reporting that the files it was told to
+read didn't exist. This same requirement was already written down
+once before, in an earlier sub-project's Testing section ("a
+meaningful trial needs docs/ai-code-guidelines.md... copied into the
+scratch fixture first"), and still got missed here. **Rule:** before
+running any `--plugin-dir` trial that depends on a project convention
+doc, copy that doc into the scratch fixture as part of building it —
+check this explicitly, since a documented step already proved easy to
+forget once.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/seed-trial-fixtures-with-real-docs.md*
