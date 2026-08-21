@@ -33,7 +33,7 @@ fi
   echo "# Review package: ${base}..${head}"
   echo
   echo "## Commits"
-  git log --oneline "${base}..${head}"
+  git log --format="%h %s%n%b%n" "${base}..${head}"
   echo
   echo "## Files changed"
   git diff --stat "${base}..${head}"
