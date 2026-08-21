@@ -1,7 +1,7 @@
 # Per-Task Outcome Capture — Design
 
 **Date:** 2026-08-21
-**Status:** Approved
+**Status:** Shipped
 
 ## Context
 

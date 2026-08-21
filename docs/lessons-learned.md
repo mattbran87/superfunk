@@ -94,3 +94,27 @@ forget once.
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/seed-trial-fixtures-with-real-docs.md*
+
+### A --plugin-dir trial that tells the agent to hunt for a skill's own file breaks under a plugin name collision (2026-08-21-per-task-outcome-capture)
+
+A live trial's prompt told a simulated implementer to locate and read
+`implementer-prompt.md` on its own. It reported the file didn't exist
+and improvised the task from scratch instead — its status report had
+no Outcome field at all. The fork under test and the globally-cached
+`superpowers` plugin share the same plugin name on disk, so a broad
+file search had no principled way to prefer one over the other, and
+resolved to the wrong copy. A direct diagnostic proved the fork's
+content loads correctly: when told to use the Skill tool first and
+then resolve a referenced sibling file "using whatever path resolution
+you would naturally use," the agent opened the fork's own copy every
+time, quoting content that only exists there. **Rule:** a
+`--plugin-dir` trial that needs an agent to see a skill's own file
+(not just a project doc already copied into the fixture) must tell it
+to invoke the Skill tool first and resolve any referenced file
+relative to the skill it just loaded — never tell it to Glob or
+broadly search the filesystem, which has no way to prefer the fork
+under test over an identically-named globally-installed plugin.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/resolve-skill-files-via-skill-tool-not-glob.md*
