@@ -66,7 +66,7 @@ digraph process {
         "Any load-bearing finding?" [shape=diamond];
         "STOP: report BLOCKED to human partner" [shape=box];
         "Park findings in ledger with rulings" [shape=box];
-        "Append completion to ledger, mark todo complete" [shape=box];
+        "Append completion + outcomes entry to ledger, mark todo complete" [shape=box];
     }
 
     "Setup: worktree, ledger check, read plan, pre-flight review" [shape=box];
@@ -83,22 +83,22 @@ digraph process {
     "Implementer asks questions?" -> "Implementer implements, tests, commits, self-reviews" [label="no"];
     "Implementer implements, tests, commits, self-reviews" -> "Generate review package, dispatch task reviewer (./task-reviewer-prompt.md)";
     "Generate review package, dispatch task reviewer (./task-reviewer-prompt.md)" -> "Spec ✅ and quality approved?";
-    "Spec ✅ and quality approved?" -> "Append completion to ledger, mark todo complete" [label="yes"];
+    "Spec ✅ and quality approved?" -> "Append completion + outcomes entry to ledger, mark todo complete" [label="yes"];
     "Spec ✅ and quality approved?" -> "Finding conflicts with plan text?" [label="no"];
     "Finding conflicts with plan text?" -> "Ask human partner which governs" [label="yes"];
     "Ask human partner which governs" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model";
     "Finding conflicts with plan text?" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" [label="no"];
     "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" -> "Dispatch scoped re-review (./re-review-prompt.md)";
     "Dispatch scoped re-review (./re-review-prompt.md)" -> "All findings addressed?";
-    "All findings addressed?" -> "Append completion to ledger, mark todo complete" [label="yes"];
+    "All findings addressed?" -> "Append completion + outcomes entry to ledger, mark todo complete" [label="yes"];
     "All findings addressed?" -> "R = 5?" [label="no"];
     "R = 5?" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" [label="no - next round"];
     "R = 5?" -> "Adjudicate each open finding" [label="yes - breaker trips"];
     "Adjudicate each open finding" -> "Any load-bearing finding?";
     "Any load-bearing finding?" -> "STOP: report BLOCKED to human partner" [label="yes"];
     "Any load-bearing finding?" -> "Park findings in ledger with rulings" [label="no"];
-    "Park findings in ledger with rulings" -> "Append completion to ledger, mark todo complete";
-    "Append completion to ledger, mark todo complete" -> "More tasks remain?";
+    "Park findings in ledger with rulings" -> "Append completion + outcomes entry to ledger, mark todo complete";
+    "Append completion + outcomes entry to ledger, mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [label="no"];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" -> "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals";
@@ -417,8 +417,10 @@ Also record this task's Outcome field — from the implementer's most
 recent status report, the final round's if the task went through the
 fix loop — in `docs/superpowers/plans/<plan-basename>-outcomes.md`
 (`<plan-basename>` is PLAN_FILE's filename with `.md` removed, the
-same value `scripts/sdd-workspace` derives). If this is the plan's
-first completed task, create the file first with this header:
+same value `scripts/sdd-workspace` derives; the header below instead
+uses `<plan filename>`, PLAN_FILE's filename unchanged, `.md` and
+all). If this is the plan's first completed task, create the file
+first with this header:
 
 ```markdown
 # Outcomes — <plan filename>
@@ -444,7 +446,7 @@ per task here:
 
 ```bash
 git add docs/superpowers/plans/<plan-basename>-outcomes.md
-git commit -m "docs: record Task <N> outcome for <plan-basename>"
+git commit -m "docs(plans): record Task <N> outcome for <plan-basename>"
 ```
 
 Then mark the todo complete and move on. Never move to the next task while
@@ -557,6 +559,7 @@ Implementer: [Later]
   - Implemented install-hook command
   - Added tests, 5/5 passing
   - Self-review: Found I missed --force flag, added it
+  - Outcome: Shipped as planned; no divergence, no follow-ups.
   - Committed
 
 [Run review-package PLAN_FILE BASE HEAD; dispatch task reviewer with the printed path]
@@ -564,6 +567,7 @@ Task reviewer: Spec ✅ - all requirements met, nothing extra.
   Strengths: Good test coverage, clean. Issues: None. Task quality: Approved.
 
 [Ledger: Task 1: complete (commits a1b2c3d..d4e5f6a, review clean)]
+[Append + commit outcomes entry for Task 1: docs/superpowers/plans/feature-plan-outcomes.md created]
 
 Task 2: Recovery modes
 
@@ -572,6 +576,7 @@ Task 2: Recovery modes
 Implementer: [No questions]
   - Added verify/repair modes
   - 8/8 tests passing
+  - Outcome: Shipped as planned; no divergence, no follow-ups.
   - Committed
 
 [Run review-package PLAN_FILE BASE HEAD; dispatch task reviewer with the printed path]
@@ -582,6 +587,9 @@ Task reviewer: Spec ❌:
 [Fix round 1: resume the implementer with both findings]
 Implementer: Added progress reporting, extracted PROGRESS_INTERVAL constant.
   Re-ran test/recovery.test.js — 10/10 passing. Fix report appended.
+  Outcome: Diverged from the original attempt by extracting a
+  PROGRESS_INTERVAL constant instead of leaving the magic number in
+  place, per the reviewer's finding; no other follow-ups.
 
 [Run review-package PLAN_FILE FIX_BASE HEAD; dispatch scoped re-review]
 Re-reviewer: Missing progress reporting — ADDRESSED (src/recovery.js:41).
@@ -590,6 +598,7 @@ Re-reviewer: Missing progress reporting — ADDRESSED (src/recovery.js:41).
 
 [Ledger: Task 2: fix round 1/5 (2 addressed, 0 open; commits d4e5f6a..b7c8d9e)]
 [Ledger: Task 2: complete (commits d4e5f6a..b7c8d9e, review clean)]
+[Append + commit outcomes entry for Task 2: docs/superpowers/plans/feature-plan-outcomes.md updated with the fix round's final Outcome]
 
 ...
 
