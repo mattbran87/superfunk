@@ -66,7 +66,7 @@ digraph process {
         "Any load-bearing finding?" [shape=diamond];
         "STOP: report BLOCKED to human partner" [shape=box];
         "Park findings in ledger with rulings" [shape=box];
-        "Append completion + outcomes entry to ledger, mark todo complete" [shape=box];
+        "Append ledger completion + outcomes entry, mark todo complete" [shape=box];
     }
 
     "Setup: worktree, ledger check, read plan, pre-flight review" [shape=box];
@@ -83,22 +83,22 @@ digraph process {
     "Implementer asks questions?" -> "Implementer implements, tests, commits, self-reviews" [label="no"];
     "Implementer implements, tests, commits, self-reviews" -> "Generate review package, dispatch task reviewer (./task-reviewer-prompt.md)";
     "Generate review package, dispatch task reviewer (./task-reviewer-prompt.md)" -> "Spec ✅ and quality approved?";
-    "Spec ✅ and quality approved?" -> "Append completion + outcomes entry to ledger, mark todo complete" [label="yes"];
+    "Spec ✅ and quality approved?" -> "Append ledger completion + outcomes entry, mark todo complete" [label="yes"];
     "Spec ✅ and quality approved?" -> "Finding conflicts with plan text?" [label="no"];
     "Finding conflicts with plan text?" -> "Ask human partner which governs" [label="yes"];
     "Ask human partner which governs" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model";
     "Finding conflicts with plan text?" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" [label="no"];
     "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" -> "Dispatch scoped re-review (./re-review-prompt.md)";
     "Dispatch scoped re-review (./re-review-prompt.md)" -> "All findings addressed?";
-    "All findings addressed?" -> "Append completion + outcomes entry to ledger, mark todo complete" [label="yes"];
+    "All findings addressed?" -> "Append ledger completion + outcomes entry, mark todo complete" [label="yes"];
     "All findings addressed?" -> "R = 5?" [label="no"];
     "R = 5?" -> "Fix round R of 5: R≤3 resume implementer; R≥4 fresh implementer, more capable model" [label="no - next round"];
     "R = 5?" -> "Adjudicate each open finding" [label="yes - breaker trips"];
     "Adjudicate each open finding" -> "Any load-bearing finding?";
     "Any load-bearing finding?" -> "STOP: report BLOCKED to human partner" [label="yes"];
     "Any load-bearing finding?" -> "Park findings in ledger with rulings" [label="no"];
-    "Park findings in ledger with rulings" -> "Append completion + outcomes entry to ledger, mark todo complete";
-    "Append completion + outcomes entry to ledger, mark todo complete" -> "More tasks remain?";
+    "Park findings in ledger with rulings" -> "Append ledger completion + outcomes entry, mark todo complete";
+    "Append ledger completion + outcomes entry, mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [label="no"];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" -> "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals";
@@ -587,9 +587,9 @@ Task reviewer: Spec ❌:
 [Fix round 1: resume the implementer with both findings]
 Implementer: Added progress reporting, extracted PROGRESS_INTERVAL constant.
   Re-ran test/recovery.test.js — 10/10 passing. Fix report appended.
-  Outcome: Diverged from the original attempt by extracting a
-  PROGRESS_INTERVAL constant instead of leaving the magic number in
-  place, per the reviewer's finding; no other follow-ups.
+  Outcome: Shipped as planned overall; the fix round addressed both
+  review findings directly (already reflected in this task's review
+  record), no other divergence or follow-ups of my own to add.
 
 [Run review-package PLAN_FILE FIX_BASE HEAD; dispatch scoped re-review]
 Re-reviewer: Missing progress reporting — ADDRESSED (src/recovery.js:41).
