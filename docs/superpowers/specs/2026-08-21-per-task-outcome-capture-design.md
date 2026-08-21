@@ -15,7 +15,7 @@ This spec scopes to `docs/superpowers/plans/` — the pipeline every sub-project
 
 ## Decision
 
-- **New file per plan: `docs/superpowers/plans/<plan-slug>-outcomes.md`.** Created on the first task's completion, with a header:
+- **New file per plan: `docs/superpowers/plans/<plan-basename>-outcomes.md`.** Created on the first task's completion, with a header:
 
   ```markdown
   # Outcomes — <plan filename>
@@ -32,20 +32,22 @@ This spec scopes to `docs/superpowers/plans/` — the pipeline every sub-project
 - **`implementer-prompt.md`'s Report Format gains a required Outcome field**, part of the same short (under-15-line) status contract already returned after every task and every fix round:
 
   ```
-  - **Outcome (2-3 sentences):** What shipped, what diverged from the
-    task brief, what to follow up on. State plainly when nothing
-    diverged — e.g. "Shipped as planned; no divergence, no follow-ups."
+  - **Outcome (2-3 sentences):** What shipped, and what diverged from
+    the task brief on your own initiative — not a review finding
+    already fixed in the loop, which the ledger already records —
+    and what to follow up on. State plainly when nothing diverged —
+    e.g. "Shipped as planned; no divergence, no follow-ups."
   ```
 
   Every task reports this field, including one that went exactly to plan — matching this project's existing bias toward mandatory-but-terse checks (the Pseudocode section's `Skipped, reason` pattern) over an optional field that quietly degrades into "always skip." If a report omits it, the controller treats it as a missing required field, the same way it already would a missing Status or commit list, and asks the implementer to supply it before marking the task complete.
 
   A task that goes through fix rounds resends this field on every round's reply, since the contract already gets resent verbatim each round. The controller appends only the field's final value — the one reported at the round where the task actually completes — to the outcomes file. It reflects the task's whole journey, not just the first attempt.
 
-- **`subagent-driven-development/SKILL.md`'s "Complete the task" step gains one instruction**, run alongside the existing ledger completion line: append the task's Outcome field to `docs/superpowers/plans/<plan-slug>-outcomes.md` as `## Task <N>: <task name>`, creating the file with its header the first time a task writes an entry.
+- **`subagent-driven-development/SKILL.md`'s "Complete the task" step gains one instruction**, run alongside the existing ledger completion line: append the task's Outcome field to `docs/superpowers/plans/<plan-basename>-outcomes.md` as `## Task <N>: <task name>`, creating the file with its header the first time a task writes an entry.
 
   Git tracks the outcomes file; the ledger stays git-ignored, per its existing workspace-scratch status. The controller commits the outcomes file itself, directly, right after each append — the same pattern it already uses for other git-tracked bookkeeping (`process-reviews/tracker.md`, `lessons-learned.md`) at `Finish`, just running once per task instead of once per plan. This avoids adding a foreign-file instruction to every implementer dispatch prompt, which this project's own dispatch guidance already discourages (a dispatch describes one task, not accumulated session state).
 
-- **`process-review/SKILL.md`'s Step 2 gains a companion step.** For each spec in the tracker's "Specs shipped since" list, derive its plan's slug by stripping `-design` from the spec's filename, then read `docs/superpowers/plans/<slug>-outcomes.md` if it exists — a spec shipped before this mechanism existed has no outcomes file, and that absence never counts as an error. Collect every entry reporting a real divergence or follow-up; skip terse "shipped as planned" entries, which carry no signal.
+- **`process-review/SKILL.md`'s Step 2 gains a companion step.** For each spec in the tracker's "Specs shipped since" list, derive its plan's basename by stripping the trailing `-design` from the spec's filename (minus `.md`) — the trailing occurrence specifically, since some filenames contain "design" more than once. Read `docs/superpowers/plans/<plan-basename>-outcomes.md` if it exists at that exact path. If it doesn't, fall back to matching `docs/superpowers/plans/*-outcomes.md` against the spec's own `YYYY-MM-DD` date prefix: a single match still counts as found; zero matches means no outcomes file exists for this spec and that absence never counts as an error; more than one match is a genuine ambiguity, named in the review's Gaps section rather than guessed at. Collect every entry reporting a real divergence or follow-up; skip terse "shipped as planned" entries, which carry no signal.
 
   Step 4's synthesis folds these into the existing four sections, adding no new section:
   - A divergence recurring across 2 or more reviewed specs joins **Misses**, the same recurrence threshold already applied to Catches.
@@ -55,10 +57,10 @@ This spec scopes to `docs/superpowers/plans/` — the pipeline every sub-project
 
 ## Falsifiable Criteria
 
-1. A disposable `--plugin-dir` trial, seeded with a real 2-task plan (per this project's `seed-trial-fixtures-with-real-docs` pattern), runs `subagent-driven-development` end to end. Both implementer reports carry the required Outcome field. `docs/superpowers/plans/<slug>-outcomes.md` exists after Task 1 with the exact header format above, and gains a second `## Task 2:` entry after Task 2.
+1. A disposable `--plugin-dir` trial, seeded with a real 2-task plan (per this project's `seed-trial-fixtures-with-real-docs` pattern), runs `subagent-driven-development` end to end. Both implementer reports carry the required Outcome field. `docs/superpowers/plans/<plan-basename>-outcomes.md` exists after Task 1 with the exact header format above, and gains a second `## Task 2:` entry after Task 2.
 2. In the same trial, the task that ships exactly as planned still produces a non-empty entry ("Shipped as planned; no divergence, no follow-ups"), not a skipped one.
 3. The outcomes file's git history shows one controller commit per task, immediately after each append — never left uncommitted at `Finish`.
-4. A direct read-through (or trial) of the updated `process-review` confirms it derives a plan slug from a spec filename correctly, reads that plan's outcomes file, and tolerates a missing outcomes file without erroring.
+4. A direct read-through (or trial) of the updated `process-review` confirms it derives a plan basename from a spec filename correctly, reads that plan's outcomes file, and tolerates a missing outcomes file without erroring.
 
 ## Consequences
 
@@ -73,3 +75,5 @@ An outcomes file exists only for plans built after this mechanism ships. Every e
 - `specs/<module>/<feature>/notes.md` (feature-tracking's own freeform notes file) — out of scope; revisit only if that pipeline sees real use.
 - A dedicated "Divergences" section in `process-review`'s output — deferred until outcomes files exist and have real content to show whether the existing four sections hold up or need a fifth.
 - Recovering or backfilling outcomes for plans shipped before this mechanism existed — not possible; Finish already deleted their report files.
+- Making the "whole journey" claim mechanically enforced for rounds 4-5 of the fix loop, where a fresh implementer only sees the report file, not the original attempt's own memory — the claim holds in practice for most tasks but isn't structurally guaranteed. Revisit if this becomes a real problem.
+- Capturing an outcome for the final whole-branch review's own fix wave (a separate, plan-wide fix dispatch outside the per-task loop) — its divergences currently go unrecorded. Deliberately deferred, not an oversight: revisit if that fix wave's own divergences prove to matter in practice.
