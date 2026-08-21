@@ -137,6 +137,9 @@ Subagent (general-purpose):
     - **Status:** DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
     - Commits created (short SHA + subject)
     - One-line test summary (e.g. "14/14 passing, output pristine")
+    - **Outcome (2-3 sentences):** What shipped, what diverged from the
+      task brief, what to follow up on. State plainly when nothing
+      diverged — e.g. "Shipped as planned; no divergence, no follow-ups."
     - Your concerns, if any
     - The report file path
 
