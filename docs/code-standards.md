@@ -49,6 +49,16 @@ Coding and documentation standards for superfunk. Contributors and Claude both f
 - `[Rule]` Example: `feat(feature-tracking): add dependency tracking to spec.md`
 - `[Preference]` Keep commits focused — one logical change per commit
 - `[Rule]` Never commit build artifacts, secrets, or generated files — `.superfunk/tracking.db` and `.superfunk/__pycache__/` are real, already-gitignored examples of exactly this
+- `[Rule]` A commit may carry one severity trailer, present only when it applies: `DANGER:` (irreversible once merged — a destructive migration, deleted data, rewritten shared history), `WARNING:` (hard to reverse or affects production/shared systems — a breaking API change, a default changed for all environments), `CAUTION:` (reversible but has a real blast radius — a large refactor, a major dependency upgrade), or `NOTICE:` (worth flagging, no risk — a deprecation heads-up, follow-up work still needed). Composes with the type/scope header the same way `BREAKING CHANGE:` does in Conventional Commits.
+
+```
+Reduce default request timeout from 30s to 5s
+
+Aligns client timeout with the upstream service's actual p99 latency.
+
+WARNING: Lowers the default timeout for all callers; may increase retry
+rate for slow-network clients until they set an explicit override.
+```
 
 ---
 
