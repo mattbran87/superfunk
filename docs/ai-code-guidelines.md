@@ -98,6 +98,44 @@ MAX_RETRIES = 3
 
 ---
 
+## Hazard Signal Words
+
+Mark a hazard inherent in the code — what breaks if a future caller
+gets it wrong — with a fixed severity word: DANGER, WARNING, CAUTION,
+or NOTICE. This answers a different question than a `why:` comment:
+`why:` explains a non-obvious constraint; a hazard word flags what
+happens if someone ignores the code that follows. A line can carry
+both.
+
+- **DANGER** — triggering this causes irreversible data loss or corruption
+- **WARNING** — triggering this causes a serious but partially-recoverable problem
+- **CAUTION** — non-obvious behavior that causes bugs if the reader doesn't know it
+- **NOTICE** — important non-hazard context worth knowing
+
+DANGER and WARNING go inline, directly at the hazardous line. CAUTION
+and NOTICE go in the function or class's own documentation comment,
+since they describe the unit as a whole rather than one exact line.
+
+```python
+def purge_records(user_id):
+    # DANGER: a null user_id deletes every record in the table
+    db.execute(f"DELETE FROM records WHERE user_id = {user_id}")
+```
+
+```python
+def rebalance_shards():
+    """
+    CAUTION: must be called with the cluster lock held; concurrent calls corrupt shard state.
+    """
+    ...
+```
+
+**Engineering:** A hazard without a fixed severity word forces every reader to independently judge how bad the failure mode is. A consistent vocabulary makes severity legible at a glance, the same way a safety label does on physical equipment.
+
+**AI:** Claude generates code near a hazardous line without knowing the blast radius of getting it wrong, unless the hazard is marked. A DANGER-level comment at the exact point of risk gives Claude a concrete signal to preserve the guard it protects, instead of "simplifying" it away.
+
+---
+
 ## Signal Clarity
 
 Use consistent patterns across the codebase. When similar problems are solved differently in different places, AI cannot know which pattern is intentional. One pattern per concern, applied consistently, is the highest-leverage code quality investment for AI-assisted development.
