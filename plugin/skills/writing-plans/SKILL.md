@@ -199,7 +199,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **5. Sibling-pattern parity:** When a plan adds a new instruction next to an existing sibling instruction in the same target file, does it mirror that sibling's established shape (a why-explanation, a visibility clause)? If not, add what's missing.
 
-**6. Cross-file rule restatement:** Does this plan restate the same source rule in more than one target file? If so, read every restatement side by side. Confirm they describe the same underlying logic — the same conditions, the same structure — not just similar wording.
+**6. Rule-restatement accuracy:** Does this plan restate or summarize a source rule anywhere — in one target file or several? For a restatement spanning multiple files, read every instance side by side and confirm they describe the same underlying logic, not just similar wording. For a single bullet summarizing one source rule, re-read that rule's actual source text directly and confirm the bullet doesn't narrow, broaden, or drop part of its real scope.
 
 **7. Lessons-learned check:** Check `docs/lessons-learned.md` for any entry relevant to this plan's domain. Apply anything it flags.
 
