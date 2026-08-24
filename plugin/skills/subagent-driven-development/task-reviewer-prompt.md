@@ -121,6 +121,12 @@ Subagent (general-purpose):
     - A violation is a Code Quality finding like any other, cited by
       file:line.
 
+    Before citing `docs/ai-code-guidelines.md` or `docs/code-standards.md` in
+    a finding, re-read the exact section you're citing — not from memory of
+    what it "usually says." A finding that claims a diff drifts from one of
+    these docs must quote or paraphrase the section's actual current text,
+    not an assumed or half-remembered version of the rule.
+
     Your report should point at evidence: file:line references for every
     finding and for any check you would otherwise answer with a bare
     "yes." A tight report that cites lines gives the controller everything
