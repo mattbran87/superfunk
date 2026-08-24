@@ -58,3 +58,4 @@ Both process-review Recommendations close, and the tracker's next review can sta
 
 - Extending the same pre-finding check to spec-compliance findings (Part 1) or to re-review-prompt.md — no logged recurrence justifies it yet; revisit if one shows up.
 - Extending the check to citations of the task brief or Global Constraints, not just the two convention docs — same reasoning.
+- `verify-against-precedent-before-flagging.md`'s second step (search the broader codebase for the same pattern already shipped elsewhere) — deliberately not operationalized here. It directly conflicts with `task-reviewer-prompt.md`'s existing "Do not crawl the broader codebase" scoping, which keeps a task-scoped reviewer bounded to its diff. Re-reading the cited section (step 1) is cheap and bounded; a codebase-wide precedent search is not, for a review that runs once per task. Revisit only if a recurrence shows step 1 alone isn't enough.
