@@ -125,7 +125,11 @@ Subagent (general-purpose):
     a finding, re-read the exact section you're citing — not from memory of
     what it "usually says." A finding that claims a diff drifts from one of
     these docs must quote or paraphrase the section's actual current text,
-    not an assumed or half-remembered version of the rule.
+    not an assumed or half-remembered version of the rule. Then re-check the
+    diff hunk the finding is about: confirm what the diff actually contains,
+    not what you recall it containing from earlier in the review. Two prior
+    reviews filed false findings this way — one misremembered a doc's rule,
+    the other claimed a diff omitted something the diff actually included.
 
     Your report should point at evidence: file:line references for every
     finding and for any check you would otherwise answer with a bare
