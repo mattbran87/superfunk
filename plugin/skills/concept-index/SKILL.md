@@ -16,7 +16,7 @@ Two entry points exist: a full build (this skill, invoked directly, for a codeba
 A concept unit is one of:
 
 - **Skill** — a directory at `plugin/skills/<name>/` containing a `SKILL.md`. Described by that file's own frontmatter `description:` field.
-- **Feature** — a directory at `specs/<module>/<feature>/` (the `feature-tracking` pipeline), excluding `specs/_template/`. Described by its `spec.md`'s `#` heading and Requirements section.
+- **Feature** — a directory at `specs/<module>/<feature>/` (the `feature-tracking` pipeline), excluding `specs/_template/`. Its Concept column entry uses the feature directory's own name — the `<feature>` segment of that path. Described by its `spec.md`'s `#` heading and Requirements section.
 - **Directory** — any directory meeting `docs/ai-code-guidelines.md`'s Per-Directory Context Files section's significant-directory threshold: "any directory with 3 or more non-generated files, or any top-level directory whose purpose is not evident from its name alone," excluding `.git/`, `node_modules/`, `__pycache__/`, `dist/`, `build/`. Described by its own `.context.md`'s `**Purpose:**` line, if one exists.
 
 Never index `docs/superpowers/specs/` or `docs/superpowers/plans/` — that pipeline records this framework's own meta-development history (designing this project's own skills), not a downstream project's domain concepts.
@@ -57,12 +57,13 @@ Sort rows alphabetically by Concept. Commit the file.
 Triggered by `subagent-driven-development`'s Finish step — never run this step standalone; it needs a specific plan's File Structure section as input, not a fresh codebase scan. Given that plan's File Structure section:
 
 1. A new `plugin/skills/<name>/`, `specs/<module>/<feature>/`, or newly-significant directory: add one row, deriving its Description the same way Step 2 does for that unit type.
-2. A renamed or moved unit: update its existing row's Concept name and/or Location — do not add a duplicate row.
-3. A deleted unit: remove its row entirely.
-4. No File Structure entry crosses any of these three boundaries: make no change to the index.
+2. Before updating or removing an existing row (items 3 and 4 below), check whether its content looks hand-edited since the last automated write — a Description that doesn't match what Step 2's derivation rules would produce. If it looks hand-edited, skip the automated change and flag it in the Finish-step report instead of silently overwriting it. See Updating an Existing Index by Hand, below, for the general policy this enforces.
+3. A renamed or moved unit: update its existing row's Concept name and/or Location — do not add a duplicate row.
+4. A deleted unit: remove its row entirely.
+5. No File Structure entry crosses any of the addition, rename, or deletion boundaries above: make no change to the index.
 
 Commit the index change in its own small commit, separate from the plan's other Finish-step bookkeeping commits.
 
 ## Updating an Existing Index by Hand
 
-A user may edit `docs/architecture/concept-index.md` directly (correcting a description, reordering rows). Never overwrite a hand-edited row without confirming with the user first — the same living-document discipline `project-definition` applies to its own generated sections.
+A user may edit `docs/architecture/concept-index.md` directly (correcting a description, reordering rows). Never overwrite a hand-edited row without confirming first — the same living-document discipline `project-definition` applies to its own generated sections. In an interactive run (Step 2), ask the user directly before overwriting. In an unattended run (Step 3), there is no human in the loop to ask: follow that step's hand-edit check instead — skip the automated change and flag it in the Finish-step report.
