@@ -518,6 +518,17 @@ the Lesson (and, if written, the Pattern) in the same commit as the
 tracker update above, or their own commit if the tracker didn't
 change.
 
+If `docs/architecture/concept-index.md` exists, check this plan's own
+File Structure section for whether it created, renamed, moved, or
+deleted a `plugin/skills/<name>/`, a `specs/<module>/<feature>/`, or a
+directory crossing `docs/ai-code-guidelines.md`'s significant-directory
+threshold. If so, use superpowers:concept-index's Step 3 to add,
+update, or remove that row, and commit the index change in its own
+small commit. If the index file doesn't exist yet, or no File
+Structure entry crosses one of those three boundaries, skip this step
+— do not run a full rebuild here, and do not treat a missing index as
+something this step must create.
+
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
