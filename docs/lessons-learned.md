@@ -118,3 +118,19 @@ under test over an identically-named globally-installed plugin.
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/resolve-skill-files-via-skill-tool-not-glob.md*
+
+### A live trial priming a false belief needs a true A/B control to show an instruction actually changed behavior (2026-08-24-review-recommendations-followup)
+
+A live trial claimed to verify that a new reviewer instruction ("re-read the cited doc before citing it") prevented a false finding: it primed the reviewer with a wrong claim about a doc's rule, and the reviewer correctly caught and rejected it. But the trial's own dispatch prompt coached the exact behavior under test ("follow the reviewer template's instructions about re-reading," "quote the exact current text ... read fresh from disk"), and the pre-edit template already told the reviewer to check the relevant topic. A genuine two-arm run — the same fixture, a coaching-free prompt, dispatched once against the plugin before the edit and once after — found both arms independently caught the planted error; the pre-edit reviewer did this unprompted. The instruction demonstrably added no detectable value in this scenario, something the original trial's "pass" could never have revealed, since it was structurally incapable of failing. **Rule:** a live trial meant to prove a new instruction changes behavior (not just that the instruction reads correctly and gets followed) needs a real control — the same fixture and a coaching-free prompt, run once against the pre-edit plugin and once against the post-edit plugin. A trial whose own dispatch prompt tells the agent to perform the behavior under test cannot fail, and a "pass" against that kind of prompt proves nothing about the instruction's actual effect.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/ab-test-live-trials-for-behavior-change.md*
+
+### Follow this project's own outcomes-file mechanism when executing subagent-driven-development, or its own author misses it first (2026-08-24-review-recommendations-followup)
+
+The per-task outcome capture mechanism shipped three days earlier in this session, wiring `subagent-driven-development`'s "Complete the task" step to require an Outcome field in every implementer report and to append it to a git-tracked outcomes file. Executing this sub-project's own plan, the controller dispatched implementers with custom prompts that never asked for an Outcome field and never created the outcomes file — missing the very mechanism this session had just built and reviewed. **Rule:** when dispatching an implementer subagent under `subagent-driven-development`, use `implementer-prompt.md`'s actual current Report Format section (which already names every required field) rather than reconstructing a report contract from memory or from an older mental model of the template — a mechanism this project ships into its own skill files applies to running this project's own skills, not only to the tasks those skills execute.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — a single first-instance operational slip; promote if this recurs a second time.*
