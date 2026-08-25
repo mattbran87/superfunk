@@ -527,7 +527,9 @@ update, or remove that row, and commit the index change in its own
 small commit. If the index file doesn't exist yet, or no File
 Structure entry crosses one of those three boundaries, skip this step
 — do not run a full rebuild here, and do not treat a missing index as
-something this step must create.
+something this step must create. This keeps the index accurate the
+same moment the rest of Finish's bookkeeping happens, rather than
+letting it drift until someone notices.
 
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
