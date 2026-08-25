@@ -238,6 +238,14 @@ and fix-round diffs need it.
   but note which triggers you evaluated (in the dispatch's Context
   section or the ledger), so the check stays visible instead of
   quietly not happening.
+- **Concept-index context:** if `docs/architecture/concept-index.md`
+  exists, check whether the task brief names a concept already in the
+  index (a skill it modifies, a feature it extends). If it does, fold
+  that row's Location into the dispatch's Context section, the same
+  "curated, not raw access" pattern Directory context and Pseudocode
+  context already establish — the implementer receives the location,
+  it never searches for it. No index file, or the brief names nothing
+  in it: no mention needed.
 - **Report file:** name the implementer's report file after the brief
   (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
   the dispatch prompt. The implementer writes the full report there and
