@@ -25,7 +25,7 @@ Never index `docs/superpowers/specs/` or `docs/superpowers/plans/` — that pipe
 
 ### Step 1: Check for an existing index
 
-Look for `docs/architecture/concept-index.md`. If it exists, this run is incremental maintenance — proceed to Step 3, and add/update/remove only the rows the current change calls for; never rebuild the whole table from scratch on top of an existing one. If it doesn't exist, proceed to Step 2.
+Look for `docs/architecture/concept-index.md`. If it doesn't exist, proceed to Step 2 — this is the only case a human invokes this skill directly for. If it exists, this run is `subagent-driven-development`'s Finish step calling into Step 3, never a standalone human invocation (Step 3's own header repeats this). Add, update, or remove only the rows the current plan's File Structure section calls for. Never rebuild the whole table from scratch on top of an existing one.
 
 ### Step 2: Full build
 
@@ -57,7 +57,7 @@ Sort rows alphabetically by Concept. Commit the file.
 Triggered by `subagent-driven-development`'s Finish step — never run this step standalone; it needs a specific plan's File Structure section as input, not a fresh codebase scan. Given that plan's File Structure section:
 
 1. A new `plugin/skills/<name>/`, `specs/<module>/<feature>/`, or newly-significant directory: add one row, deriving its Description the same way Step 2 does for that unit type.
-2. Before updating or removing an existing row (items 3 and 4 below), re-read the unit's current underlying source: its `SKILL.md` frontmatter, `spec.md` heading, or `.context.md` Purpose line. Compare it word-for-word against the row's stored Description. A match means proceed automatically — nothing changed since the last automated write. A mismatch is not proof of a hand edit on its own. Step 2's Skill-description trim is a judgment call, so two derivations can legitimately differ. Flag it rather than guess: quote both the stored and freshly-derived text in the Finish-step report. Skip the automated update or removal until a human confirms whether it was a hand edit. See Updating an Existing Index by Hand, below, for the general policy this enforces. This check does not detect a hand-edited row order — reordering is not otherwise protected.
+2. Before updating an existing row (item 3 below), re-read the unit's current underlying source: its `SKILL.md` frontmatter, `spec.md` heading, or `.context.md` Purpose line. Compare it word-for-word against the row's stored Description. A match means proceed automatically — nothing changed since the last automated write. A mismatch is not proof of a hand edit on its own. Step 2's Skill-description trim is a judgment call, so two derivations can legitimately differ. Flag it rather than guess: quote both the stored and freshly-derived text in the Finish-step report. Skip the automated update until a human confirms whether it was a hand edit. See Updating an Existing Index by Hand, below, for the general policy this enforces. This check does not detect a hand-edited row order — reordering is not otherwise protected. A deleted unit (item 4 below) has no current source left to compare against — remove its row directly, with no comparison step.
 3. A renamed or moved unit: update its existing row's Concept name and/or Location — do not add a duplicate row.
 4. A deleted unit: remove its row entirely.
 5. No File Structure entry crosses any of the addition, rename, or deletion boundaries above: make no change to the index.
