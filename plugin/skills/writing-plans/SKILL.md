@@ -203,6 +203,15 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **7. Lessons-learned check:** Check `docs/lessons-learned.md` for any entry relevant to this plan's domain. Apply anything it flags.
 
+**8. Cross-section mechanism consistency:** Does any task edit content
+describing a routing, trigger, or lifecycle mechanism — language like
+"if X exists, proceed to...", "triggered by...", "never run
+standalone," or a cross-reference like "see Y, below"? If so, grep
+the same target file — and the design spec, if it also describes this
+mechanism — for every other mention of the key terms involved, and
+read each hit. Confirm the edit doesn't leave any of them
+contradicting the new content.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
