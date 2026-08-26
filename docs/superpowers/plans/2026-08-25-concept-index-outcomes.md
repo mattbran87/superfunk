@@ -13,3 +13,6 @@ Shipped the Finish-step bookkeeping paragraph as specified. Code-quality review 
 
 ## Task 3: Wire concept-index consumption into the dispatch step
 Shipped the "Concept-index context" dispatch bullet as specified, approved on first review. One Minor finding noted but not fixed: the bullet's negative case (no index, or brief names nothing in it) drops the "note which X you checked, so the check stays visible instead of quietly not happening" clause both sibling bullets (Directory context, Pseudocode context) carry — this traces to the plan's own text, not an implementer deviation, and is deferred to the final whole-branch review.
+
+## Task 4: Verify the full-build entry point with a live trial
+Shipped as planned; the trial (fresh fixture, two skills, one significant directory with a real `.context.md`) confirmed all five checks passed on the first run, independently reproduced with entirely different content by a second agent. No divergence, no follow-ups.
