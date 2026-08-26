@@ -16,6 +16,7 @@ For controller-owned bookkeeping with no downstream consumer that fails loudly i
 2. Make that precondition a blocking gate on the next dependent action, not a reminder before it. For per-task outcomes: do not dispatch Task N+1's implementer until `git log --oneline -1 -- docs/superpowers/plans/<plan-basename>-outcomes.md` shows a commit whose content matches Task N's completion.
 3. If the precondition fails, stop and perform the missed bookkeeping before proceeding — don't let the gap accumulate into a batch to reconstruct later, which produces a plausible-looking but fabricated record (an "Outcome" entry describing information the implementer's own report never contained).
 4. Prefer this gate pattern over adding more reminder text, more explicit instructions, or restating the mechanism's importance — none of those changed behavior the second time either.
+5. A gate whose precondition is a fact checkable in git history (a specific commit exists, matching a specific pattern) is closer to self-enforcing and doesn't need a gate of its own; a gate that asks the controller to "confirm" or "check" something from memory or from the current conversation state is weaker and may need to be tightened further, the same way the per-task outcomes gate and the notes.md logging gate both needed tightening after their first real-world exercise surfaced a gap.
 
 ## Example
 
