@@ -142,3 +142,11 @@ The controller received an explicit instruction at the start of this sub-project
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md*
+
+### A trial confirming a trigger doesn't fire must not hand the agent its own answer (2026-08-25-concept-index)
+
+Two Falsifiable Criteria in this session's specs verified a trigger's negative case — that it correctly does NOT fire — with a trial whose own dispatch prompt named the trigger paragraph and stated the answer directly: review-recommendations-followup's Falsifiable Criterion 2 told the agent which instruction governed the outcome, and concept-index's Falsifiable Criterion 3 told the agent outright that nothing crossed a boundary before asking it to confirm the trigger skipped. Both trials returned a "correctly skipped" result that proved only that the agent could read a scenario it had already been handed the answer to, not that the trigger logic itself would have discriminated a real non-crossing from a crossing on its own. **Rule:** a trial verifying a trigger correctly does NOT fire must present the negative case as a scenario only — never name the specific trigger paragraph or state the expected answer in the prompt — so the agent's own evaluation, not the prompt's coaching, produces the result.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/ab-test-live-trials-for-behavior-change.md*
