@@ -133,4 +133,12 @@ The per-task outcome capture mechanism shipped three days earlier in this sessio
 
 **Tags:** none yet — tags deferred.
 
-*No pattern promoted — a single first-instance operational slip; promote if this recurs a second time.*
+*Pattern promoted retroactively after a second occurrence — see docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md*
+
+### An explicit reminder does not stop controller-owned bookkeeping from being deferred; only a blocking gate does (2026-08-25-concept-index)
+
+The controller received an explicit instruction at the start of this sub-project to follow the per-task outcome capture mechanism, specifically because it had missed the mechanism entirely one sub-project earlier. It missed it again: Tasks 1-3's outcomes entries were reconstructed after the fact, in one batched commit, from review history the entries claim came from the implementer's own real-time report — not genuinely captured per task, the way Tasks 4-6 correctly were once the controller noticed. The original Lesson's Rule (use the template's current Report Format instead of reconstructing from memory) does not explain this recurrence: the contract was known and named explicitly, and the step still got deferred. The shared root cause across both instances: outcomes capture is controller-owned bookkeeping with no downstream consumer that fails loudly if skipped — everything else the controller does (dispatching, review packages, task commits) has something that breaks visibly if missed; this doesn't, so it stays silently deferrable. **Rule:** for controller-owned bookkeeping with no loud downstream failure mode, do not rely on a reminder or an explicit instruction — require a mechanical, checkable gate before the next dependent action proceeds (e.g., confirm Task N's outcomes commit exists in git log before dispatching Task N+1's implementer). Visibility (stating a check as its own explicit line) is necessary but not sufficient on its own, as this same sub-project's own Finish-step design argued while the controller was concurrently failing to follow a different check that already met that visibility bar.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md*

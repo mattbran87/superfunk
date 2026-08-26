@@ -1,7 +1,7 @@
 # Concept Index — Design
 
 **Date:** 2026-08-25
-**Status:** Approved
+**Status:** Shipped
 
 ## Context
 
