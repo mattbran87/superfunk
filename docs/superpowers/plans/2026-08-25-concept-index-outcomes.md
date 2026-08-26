@@ -16,3 +16,6 @@ Shipped the "Concept-index context" dispatch bullet as specified, approved on fi
 
 ## Task 4: Verify the full-build entry point with a live trial
 Shipped as planned; the trial (fresh fixture, two skills, one significant directory with a real `.context.md`) confirmed all five checks passed on the first run, independently reproduced with entirely different content by a second agent. No divergence, no follow-ups.
+
+## Task 5: Verify the Finish-step trigger (add, skip, delete) with live trials
+Shipped as planned; all three trials (add a skill, modify-only, delete a skill) passed on the first run, each producing the correct row change (or correctly no change) in its own separate commit, independently reproduced end to end with entirely different fixture names by a second agent. No divergence, no follow-ups.
