@@ -31,9 +31,9 @@ The third Recommendation — a harder, less-mechanical Self-Review check for cro
 
 ## Consequences
 
-Every task whose fix loop runs at least one round now also gets one more mechanical check before completion — one more grep, one more possible append, matching the cost the outcomes-bookkeeping gate already carries.
+Every task whose fix loop runs at least one round now also gets one more mechanical check before completion — a real grep command and an explicit commit step, matching the concreteness the outcomes-bookkeeping gate already carries.
 
-The Pattern file grows by one rule and one worked example; no other file changes.
+The Pattern file grows by one rule, one worked example, and (after the final review found the notes.md gate's first draft still read as a reminder) one more numbered item stating when a gate needs a git-checkable precondition to become self-enforcing. The final review also surfaced the sub-project's own real-time proof of the problem it exists to solve — Task 3's own notes.md entry landed after the controller marked Task 3 complete — captured as a new Lesson in `docs/lessons-learned.md`.
 
 ## Deferred
 
