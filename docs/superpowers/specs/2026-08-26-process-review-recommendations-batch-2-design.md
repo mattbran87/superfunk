@@ -27,7 +27,7 @@ The third Recommendation — a harder, less-mechanical Self-Review check for cro
 1. A direct read-through of the shipped `subagent-driven-development/SKILL.md` confirms the logging template includes the `(<plan-slug>)` parenthetical, and "Complete the task" names the notes.md check as its own explicit line.
 2. A disposable `--plugin-dir` trial runs a task through a fix loop (a planted finding forces one round) with the notes.md entry deliberately missing at "Complete the task" time. The controller catches the gap and appends the missing entry before proceeding.
 3. A second trial runs a task whose fix loop already logged its entry correctly, confirming the gate doesn't duplicate an existing entry or misfire on the already-compliant case.
-4. A direct read-through of the shipped `ab-test-live-trials-for-behavior-change.md` confirms the second rule states a trigger condition distinct from the first, and its worked example accurately cites both real recurrences.
+4. A direct read-through of the shipped `ab-test-live-trials-for-behavior-change.md` confirms the second rule states a trigger condition distinct from the first, and each rule's own worked example accurately cites its own real recurrence (Rule 1: `review-recommendations-followup`'s Falsifiable Criterion 2; Rule 2: `concept-index`'s Falsifiable Criterion 3) — not necessarily both recurrences duplicated into each example.
 
 ## Consequences
 
