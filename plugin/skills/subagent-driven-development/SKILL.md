@@ -355,11 +355,15 @@ Everything else enters the loop. Before the first fix dispatch,
 append one line per open finding to
 `docs/superpowers/process-reviews/notes.md`:
 `- <YYYY-MM-DD> | Catch | Task <N> (<plan-slug>) | <one-line finding>`.
-The parenthetical plan-slug is what lets `process-review` group Catches
-by spec later — a bare `Task <N>` is ambiguous across sub-projects that
-each have their own Task 1. The review loop is already doing the work;
-logging it costs one line and feeds `process-review` later. A fix
-round is one fix dispatch plus one scoped re-review. Five rounds
+`<plan-slug>` is the plan's filename with both the `.md` extension and
+the leading `YYYY-MM-DD-` date prefix removed (`2026-08-25-concept-index.md`
+→ `concept-index`) — the short form every real entry in that file
+uses. The parenthetical plan-slug is what lets `process-review` group
+Catches by spec later — a bare `Task <N>` is ambiguous across
+sub-projects that each have their own Task 1. The review loop is
+already doing the work; logging it costs one line and feeds
+`process-review` later. A fix round is one fix dispatch plus one
+scoped re-review. Five rounds
 maximum per task:
 
 **Rounds 1-3 — resume the original implementer.** Send it the open findings
