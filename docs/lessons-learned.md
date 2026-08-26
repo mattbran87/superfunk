@@ -150,3 +150,11 @@ Two Falsifiable Criteria in this session's specs verified a trigger's negative c
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/ab-test-live-trials-for-behavior-change.md*
+
+### Building a gate against a failure mode doesn't stop you from committing that failure mode while building it (2026-08-26-process-review-recommendations-batch-2)
+
+This sub-project shipped a mechanical gate specifically to catch notes.md logging being deferred — the grep-and-commit check in `subagent-driven-development/SKILL.md`'s Complete-the-task step. In the same sub-project's own execution, Task 3's fix-round notes.md entry landed eight minutes after Task 3 was marked complete, batched together with Task 4's own finding instead of committed on its own — the exact failure shape the new gate exists to prevent. A final whole-branch review's timestamp analysis caught it; the gate itself did not, because the gate was not yet built when Task 3 ran. Separately, the same review observed that a gate whose precondition is checkable only from the controller's own recollection (e.g., "confirm X before continuing") will keep needing sharper enforcement, while a gate whose precondition is a fact in git history (a specific commit exists) is closer to self-enforcing and doesn't need a gate of its own. **Rule:** verify a new gate's own real-world adherence with git timestamps before trusting it shipped correctly, and prefer a gate whose precondition is a checkable git fact over one that asks the controller to "confirm" or "check" from memory.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — the specific gate-design principle (prefer git-checkable preconditions) is worth folding into `docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md` directly rather than creating a new Pattern file; see Fix 5.*
