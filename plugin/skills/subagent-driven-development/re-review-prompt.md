@@ -80,6 +80,16 @@ Subagent (general-purpose):
     Anything the fix itself broke or introduced, with severity
     (Critical/Important/Minor) and file:line. "None" if clean.
 
+    If the fix diff changes content describing a routing, trigger, or
+    lifecycle mechanism (language like "if X exists, proceed to...",
+    "triggered by...", "never run standalone," or a cross-reference like
+    "see Y, below"), this is the one case where you must look outside the
+    diff: grep the rest of the touched file — and the design spec, if the
+    plan's Goal line names one — for every other mention of the same key
+    terms, and read each hit. A contradiction there is New Breakage, not
+    an Out-of-Scope Observation, since the fix itself caused it even
+    though the contradicted text sits outside the literal diff.
+
     ### Out-of-Scope Observations
 
     Issues you noticed entirely outside the fix diff. Non-blocking; the
