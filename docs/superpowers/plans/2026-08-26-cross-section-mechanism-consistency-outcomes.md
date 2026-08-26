@@ -7,3 +7,6 @@ before Finish deletes the plan's workspace (and its full report files).
 <!-- entries below this line -->
 ## Task 1: Add Self-Review item 8 to writing-plans
 Shipped as planned; approved with one Minor noted (item 8's raw-source line-wrapping is inconsistent with siblings' single-line style, but that wrapping was already present in the plan's own Replace block and the design spec — not introduced by this task's execution). No divergence, no follow-ups.
+
+## Task 2: Add scope carve-out to re-review-prompt.md
+Shipped as planned; approved with two Minors noted, both design-spec-level (not this task's drift): the spec-location clause only covers the Goal-line channel, not the commit-trailer channel SKILL.md's Finish step also recognizes; and Task 1's item 8 gates the design-spec grep on content while this carve-out gates it on plan structure, a minor asymmetry between the two otherwise-identical mechanisms. No divergence, no follow-ups.
