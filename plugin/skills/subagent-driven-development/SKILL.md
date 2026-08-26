@@ -427,6 +427,17 @@ message as your other bookkeeping:
 - `Task <N>: complete (commits <base7>..<head7>, <K> parked)` after a
   tripped breaker
 
+If this task's fix loop ran at least one round, confirm
+`docs/superpowers/process-reviews/notes.md` contains at least one
+`Task <N> (<plan-slug>)` entry before continuing — a task whose review
+passed clean on the first pass never entered the loop, so this check
+doesn't apply to it. If no entry exists, append one now for each
+finding the review reported, using the findings you already have from
+the review, before marking the task complete. Don't defer this the
+way outcomes-file bookkeeping was once deferred — the same
+mechanical-gate reasoning `docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md`
+already sets out applies here too.
+
 Also record this task's Outcome field — from the implementer's most
 recent status report, the final round's if the task went through the
 fix loop — in `docs/superpowers/plans/<plan-basename>-outcomes.md`
