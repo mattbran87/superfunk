@@ -157,4 +157,4 @@ This sub-project shipped a mechanical gate specifically to catch notes.md loggin
 
 **Tags:** none yet — tags deferred.
 
-*No pattern promoted — the specific gate-design principle (prefer git-checkable preconditions) is worth folding into `docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md` directly rather than creating a new Pattern file; see Fix 5.*
+*No pattern promoted for the git-checkable-preconditions half of this Rule — folded directly into `docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md`'s existing numbered list instead of a new Pattern file. The verify-with-timestamps half stays a Lesson only, not yet promoted: one instance so far, revisit if it recurs.*
