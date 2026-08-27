@@ -208,10 +208,11 @@ describing a routing, trigger, or lifecycle mechanism — language like
 "if X exists, proceed to...", "triggered by...", "never run
 standalone," or a cross-reference like "see Y, below"? If so, grep
 the same target file, every other file in the same
-`plugin/skills/<name>/` directory if the target file lives in one,
-and the design spec, if it also describes this mechanism — for every
-other mention of the key terms involved, and read each hit. Confirm
-the edit doesn't leave any of them contradicting the new content.
+`plugin/skills/<name>/` directory (top-level files only, not
+subdirectories) if the target file lives in one, and the design spec,
+if it also describes this mechanism — for every other mention of the
+key terms involved, and read each hit. Confirm the edit doesn't leave
+any of them contradicting the new content.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
