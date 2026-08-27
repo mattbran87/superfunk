@@ -10,3 +10,6 @@ Shipped as planned. This session's Agent-tool subagent spawn limit (200/200) was
 
 ## Task 2: Live trial — the missing-bookkeeping case
 Shipped as planned; the trial correctly flipped the spec's Status, appended the tracker entry, and matched-and-checked-off the correct Recommendation by content, all three in one commit as instructed. All three verification greps returned 1, independently confirmed against the actual fixture files rather than trusting the trial's self-report. Notably, the trial's own shipped-as annotation cited the spec's filename (not an implementing commit/file the way this session's real annotations have), which the gate's design anticipated by matching on the Recommendation's own original wording rather than any particular annotation shape — validated as robust to that variation. No divergence, no follow-ups.
+
+## Task 3: Live trial — the already-compliant case
+Shipped as planned; the trial correctly identified all three bookkeeping items as already done, ran all three greps (each returning 1), and explicitly made no edit and no commit — independently confirmed via git log showing exactly the fixture's original single commit, no duplicate. No divergence, no follow-ups.
