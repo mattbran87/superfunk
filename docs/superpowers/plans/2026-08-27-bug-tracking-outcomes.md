@@ -13,3 +13,6 @@ Shipped as planned; exact text match confirmed against the Decision block. One p
 
 ## Task 3: Live trial for on-demand bug reporting
 Shipped as planned; the trial correctly created BUG-0001 with the exact schema, correct tracker row, and one clean commit — independently confirmed against the actual fixture files, not just the trial's report. The trial made one reasonable, unprompted judgment call (inferring three Reproduction steps from the bug description, since none were explicitly supplied) — noted as sound use of the schema's "if applicable" allowance, not a defect. No divergence, no follow-ups.
+
+## Task 4: Live trial for the Finish-time auto-ledger
+Shipped as planned; the trial correctly identified the sole real-and-deferred parked line (distinguishing it from a contestable "reviewer is wrong" ruling, though the fixture only exercised the real case), assigned BUG-0002 with no collision against the seeded BUG-0001, and correctly named the ledger finding and plan-slug in Origin — independently confirmed against the actual fixture files. The trial also transparently flagged that it skipped the lessons-learned step since it was told to stop right after bug-tracking, rather than silently completing more of Finish than asked. No divergence, no follow-ups.
