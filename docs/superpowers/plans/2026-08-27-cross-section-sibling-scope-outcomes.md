@@ -10,3 +10,6 @@ Shipped as planned. Spec compliance confirmed exact text match. A code-quality r
 
 ## Task 2: Widen the re-review carve-out's grep scope
 Shipped as planned. Spec compliance confirmed exact text match. Code-quality review approved clean on first pass — explicitly applied verify-against-precedent-before-flagging itself and confirmed the same construction Task 1's review had flagged (then had overridden) is pre-existing house style, not a new defect. No fix round, no divergence.
+
+## Task 3: Live trial for item 8's sibling-directory scope
+Shipped as planned; the trial correctly triggered item 8's pattern, explicitly enumerated and checked the sibling file (not just the edited target file), and correctly cited the sibling's contradicting line. The trial also surfaced two unprompted secondary observations (the fixture's proposed edit was internally self-contradictory on its own "always" qualifier, and a real fix would need to touch the sibling file too) — noted as evidence of thorough engagement, not a fixture defect, since the trial's actual job (does the widened grep reach the sibling) was met regardless. No divergence, no follow-ups.
