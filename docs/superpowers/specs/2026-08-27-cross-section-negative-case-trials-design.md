@@ -24,7 +24,7 @@ Neither dispatch prompt names item 8, the carve-out's trigger phrases, or states
 
 1. Trial A's trial output reports item 8's trigger condition does NOT apply to the Style Notes edit, with reasoning that names the specific reason (the word "trigger" appears in prose about message wording, not in routing/trigger/lifecycle phrasing describing a mechanism) — not just "no keyword match."
 2. Trial B's trial output reports the carve-out's cross-section check does NOT apply to this fix diff, with equivalent reasoning.
-3. Neither dispatch prompt names "item 8," "Cross-section mechanism consistency," "the carve-out," or states the expected answer anywhere in its own text — verified by re-reading each prompt against Rule 2 before trusting either result.
+3. Each dispatch prompt names the mechanism to invoke (Self-Review item 8, or the re-review carve-out) — necessary so the agent knows what to run, and consistent with every prior trial in this line — but neither prompt states or implies whether this specific edit triggers it, and neither prompt explains why the word "trigger" in the edit does or doesn't count. Verified by re-reading each prompt against Rule 2 before trusting either result: Rule 2 forbids revealing the discriminating fact or the answer, not naming which check to run.
 
 ## Consequences
 
