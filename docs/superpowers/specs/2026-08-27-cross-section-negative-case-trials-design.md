@@ -1,11 +1,11 @@
 # Cross-Section Negative-Case Trials — Design
 
 **Date:** 2026-08-27
-**Status:** Approved
+**Status:** Shipped
 
 ## Context
 
-The design spec for `cross-section-mechanism-consistency` deferred trial coverage for the negative (correctly-does-not-fire) case for both Self-Review item 8 and the re-review carve-out. `cross-section-sibling-scope`, extending the same two mechanisms one clause further, deferred the identical gap again, for the identical reasoning, without noting the recurrence. `docs/patterns/escalate-deferred-items-on-second-recurrence.md` names exactly this shape: a Deferred item surviving two consecutive sub-projects on the same mechanism needs an explicit decision, not a third deferral. This spec resolves it.
+The process review `docs/superpowers/process-reviews/review-after-2026-08-27-cross-section-sibling-scope-design.md` named its second Recommendation: resolve the negative-case (correctly-does-not-fire) trial gap for Self-Review item 8 and the re-review carve-out. The design spec for `cross-section-mechanism-consistency` deferred this trial coverage first; `cross-section-sibling-scope`, extending the same two mechanisms one clause further, deferred the identical gap again, for the identical reasoning, without noting the recurrence. `docs/patterns/escalate-deferred-items-on-second-recurrence.md` names exactly this shape: a Deferred item surviving two consecutive sub-projects on the same mechanism needs an explicit decision, not a third deferral. This spec resolves it.
 
 `docs/patterns/ab-test-live-trials-for-behavior-change.md`'s Rule 2 governs how a negative-case trial has to work: the dispatch prompt presents a scenario only, never names which trigger paragraph governs the outcome, and never states the expected answer. Two prior trials in this project violated Rule 2 by doing exactly that, so this spec's trial fixtures need scrutiny against Rule 2 before trusting their results.
 
