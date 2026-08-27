@@ -433,14 +433,15 @@ message as your other bookkeeping:
 - `Task <N>: complete (commits <base7>..<head7>, <K> parked)` after a
   tripped breaker
 
-If this task's fix loop ran at least one round, run
+If this task's fix loop ran at least one round, or if you implemented
+and reviewed this task directly — without dispatching an implementer
+subagent — and caught a real issue during that direct review, run
 `grep -c "Task <N> (<plan-slug>)" docs/superpowers/process-reviews/notes.md`
 to confirm at least one entry exists — a task whose review passed
-clean on the first pass never entered the loop, so this check doesn't
-apply to it. If the grep returns 0, append one entry now for each
-finding the review reported, naming the specific finding (not
-"review findings addressed"), using the findings you already have
-from the review:
+clean on the first pass, dispatched or direct, never triggers this
+check. If the grep returns 0, append one entry now for each finding
+you caught, naming the specific finding (not "review findings
+addressed" or "issues fixed"), using the findings you already have:
 
 ```bash
 git add docs/superpowers/process-reviews/notes.md
