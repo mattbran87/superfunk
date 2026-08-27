@@ -15,7 +15,8 @@ Subagent (general-purpose):
   prompt: |
     You are re-reviewing one task's fix round. A previous review produced
     findings; an implementer has attempted to fix them. Your job is to
-    verdict each finding and inspect the fix diff — nothing else.
+    verdict each finding and inspect the fix diff, plus the one exception
+    described under Scope, below.
 
     ## The Task
 
@@ -52,9 +53,9 @@ Subagent (general-purpose):
     does not block this task and does not extend the loop. A broad
     whole-branch review happens after all tasks are complete.
 
-    One exception: if the fix diff changes a routing, trigger, or lifecycle
-    mechanism, look outside the diff too — see the cross-section check
-    under New Breakage in the Fix Diff, below.
+    One exception: if the fix diff changes content describing a routing,
+    trigger, or lifecycle mechanism, look outside the diff too — see the
+    cross-section check under New Breakage in the Fix Diff, below.
 
     ## Tests
 
@@ -97,8 +98,9 @@ Subagent (general-purpose):
 
     ### Out-of-Scope Observations
 
-    Issues you noticed entirely outside the fix diff. Non-blocking; the
-    controller ledgers these for the final review. "None" if none.
+    Issues you noticed entirely outside the fix diff, other than the
+    cross-section exception above. Non-blocking; the controller ledgers
+    these for the final review. "None" if none.
 
     ### Verdict
 
