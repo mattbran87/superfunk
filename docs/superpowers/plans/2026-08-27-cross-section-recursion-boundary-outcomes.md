@@ -7,3 +7,6 @@ before Finish deletes the plan's workspace (and its full report files).
 <!-- entries below this line -->
 ## Task 1: Clarify item 8's sibling-directory clause as non-recursive
 Shipped as planned; exact text match confirmed, one grep match, no other content in the diff beyond the intended parenthetical. No fix round (subagent spawn limit still exhausted this session, so implemented and reviewed directly). No divergence.
+
+## Task 2: Clarify the carve-out's sibling-directory clause identically
+Shipped as planned; exact text match confirmed, parity with Task 1's clause verified word-for-word. No fix round, no divergence.
