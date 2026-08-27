@@ -10,3 +10,6 @@ Shipped as planned; exact text match confirmed against the Decision block, one g
 
 ## Task 2: Backfill the two missing notes.md entries
 Shipped as planned; both entries added, confirmed via grep. Diverged briefly: the plan's Find block anchored to a mislabeled sub-project slug ("cross-section-recursion-boundary" instead of the actual "cross-section-sibling-scope"), caught immediately when the Edit tool reported no match and fixed by re-reading the file's real tail. Logged to notes.md as the first real exercise of this same plan's own newly-widened direct-implementation gate. No further follow-ups.
+
+## Task 3: Live trial for the widened trigger condition
+Shipped as planned; the trial correctly recognized the direct-implementation scenario as triggering the widened condition, quoting the step's own wording precisely, and explicitly distinguished it from the "clean on first pass" exemption. Genuinely ran the grep, got 0, and appended a real entry naming the specific finding — independently confirmed by reading the actual fixture file and git log, not just the trial's report — and correctly committed it on its own before reporting the task complete. No divergence, no follow-ups.
