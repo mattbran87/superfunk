@@ -42,11 +42,17 @@ Tracing who performed each fix further narrows the design: some recurrences came
   "triggered by...", "never run standalone," or a cross-reference like
   "see Y, below"), this is the one case where you must look outside the
   diff: grep the rest of the touched file — and the design spec, if the
-  plan's Goal line names one — for every other mention of the same key
-  terms, and read each hit. A contradiction there is New Breakage, not
-  an Out-of-Scope Observation, since the fix itself caused it even
-  though the contradicted text sits outside the literal diff.
+  plan's Goal line or a task's commit trailer names one — for every
+  other mention of the same key terms, and read each hit. A
+  contradiction there is New Breakage, not an Out-of-Scope Observation,
+  since the fix itself caused it even though the contradicted text sits
+  outside the literal diff.
   ```
+
+  (Widened to the Goal-line-or-commit-trailer channel after the final
+  whole-branch review found the narrower Goal-line-only wording didn't
+  match the two-channel convention `subagent-driven-development/SKILL.md`
+  already uses for the same lookup.)
 
   Classifying the finding as New Breakage (not Out-of-Scope) matters mechanically: Out-of-Scope Observations never extend the fix loop; New Breakage does. A contradiction the fix itself introduced belongs in the loop, not ledgered as a someday-maybe.
 
@@ -69,3 +75,6 @@ Every fix-round re-review gains a conditional exception to its scope discipline,
 
 - A proactive File Structure-time check (flagging cross-cutting mechanisms before drafting any task) — deferred in favor of the cheaper, evidence-matched Self-Review-plus-re-review pair; revisit if this recurs after both ship.
 - Extending the same check to `task-reviewer-prompt.md`'s first-pass review (not just re-review) — no evidence yet that a first review, as opposed to a fix round, missed this failure shape; only fix rounds did.
+- Item 8 narrows Recommendation 3's literal wording ("name every other section") to a grep-and-confirm step that produces no written artifact, matching the reminder shape of Self-Review items 1-7 rather than adopting the File Structure step's directory-check visibility convention ("note which X you checked... so the check stays visible instead of silently not happening"). The final whole-branch review flagged this narrowing as undocumented at Decision time; recording it here now. Revisit with a visibility clause if a future review finds this check silently skipped, the way the outcomes-bookkeeping and notes.md gates needed one before they gained mechanical checks.
+- Widening item 8's and the carve-out's grep scope beyond the target file (plus its design spec) to sibling files in the same skill directory that describe the same mechanism — the final whole-branch review found exactly this gap in the carve-out's own shipped edit (`re-review-prompt.md`'s Scope section needed updating, and so did a cross-reference in the sibling file `subagent-driven-development/SKILL.md`, which item 8's own wording would not have caught). Fixed directly for this one instance rather than widening the check's scope now; revisit if sibling-file contradictions recur.
+- Both live trials (Falsifiable Criteria 3-4) exercise only a positive, single-file, two-branch case. Untested: a negative case where ordinary conditional language correctly does not trigger the check, the "and the design spec" clause of either instruction, and a mechanism spanning more than two sections. Deferred rather than re-run now — the trigger fires on specific phrasing rather than any conditional language, and a false fire costs one grep and read rather than a false finding, so the untested negative case carries lower risk than the positive cases already covered. Revisit if a false-positive report actually occurs, or if a future recurrence spans more than two sections.
