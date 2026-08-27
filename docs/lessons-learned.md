@@ -166,3 +166,11 @@ This sub-project shipped a check (writing-plans Self-Review item 8, and a re-rev
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/self-apply-cross-section-check-to-hand-fixes.md*
+
+### A Deferred item that survives two consecutive sub-projects on the same mechanism needs an explicit decision, not a third deferral (2026-08-27-cross-section-sibling-scope)
+
+The design spec for `cross-section-mechanism-consistency` deferred trial coverage for the negative (correctly-does-not-fire) case, reasoning the cost asymmetry favored testing the positive cases first. This sub-project — extending the same two mechanisms one clause further — deferred the identical gap again, for the identical reasoning, without noting the gap had already survived one full extension untouched. Applying the self-apply-cross-section-check-to-hand-fixes Pattern worked cleanly this time (the final review found no self-referential contradiction), which shows a Deferred item can coexist with an otherwise-clean sub-project indefinitely: nothing about "the mechanism works" forces anyone to revisit what it still doesn't test. **Rule:** when a Deferred item from one spec still applies, unresolved, to a second spec extending the same mechanism, treat the recurrence itself as the trigger — either resolve it now or record an explicit reason it stays deferred a further time, rather than re-copying the same bullet forward silently.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/escalate-deferred-items-on-second-recurrence.md*
