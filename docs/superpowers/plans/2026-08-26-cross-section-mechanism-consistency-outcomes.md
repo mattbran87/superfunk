@@ -13,3 +13,6 @@ Shipped as planned; approved with two Minors noted, both design-spec-level (not 
 
 ## Task 3: Live trial for Self-Review item 8
 Shipped as planned; the trial correctly triggered item 8's pattern and identified the routing contradiction, independently reproduced with entirely different section names and domain content by a second agent. No divergence, no follow-ups.
+
+## Task 4: Live trial for re-review carve-out
+Shipped as planned; the trial correctly triggered the carve-out, looked outside the diff, and filed the contradiction as New Breakage rather than Out-of-Scope, independently reproduced with an entirely different fixture (lock-file lifecycle instead of config routing) by a second agent. No divergence, no follow-ups.
