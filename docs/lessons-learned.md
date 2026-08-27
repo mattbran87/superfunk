@@ -158,3 +158,11 @@ This sub-project shipped a mechanical gate specifically to catch notes.md loggin
 **Tags:** none yet — tags deferred.
 
 *No pattern promoted for the git-checkable-preconditions half of this Rule — folded directly into `docs/patterns/gate-the-next-dispatch-on-outcomes-bookkeeping.md`'s existing numbered list instead of a new Pattern file. The verify-with-timestamps half stays a Lesson only, not yet promoted: one instance so far, revisit if it recurs.*
+
+### A newly-shipped cross-section check doesn't apply itself to the fixes that ship it (2026-08-26-cross-section-mechanism-consistency)
+
+This sub-project shipped a check (writing-plans Self-Review item 8, and a re-review carve-out) specifically to catch a fix to one part of a document leaving another part describing the same mechanism contradicted. The sub-project's own final whole-branch review found its shipped carve-out did exactly that: `re-review-prompt.md`'s own Scope section, and a sibling line in `subagent-driven-development/SKILL.md`, both stayed unqualified after the carve-out shipped an exception to them. A first fix wave reconciled one contradicting line per file — then a scoped re-review of that fix wave found a second, same-shape contradiction still standing in each of the same two files (the Red Flags table's "go to the ledger, not the loop," and the prompt's own opening "nothing else"). Both new items 8 and the carve-out apply automatically inside the workflows they instrument (a plan's Self-Review, a dispatched re-review) — but the controller's own hand-edits during a final-review fix wave sit outside both workflows, so nothing prompted the controller to run the same grep-and-read discipline against its own diff. **Rule:** when hand-fixing content that describes a routing, trigger, or lifecycle mechanism — including fixes to the cross-section check's own shipped text — deliberately re-apply the check's own grep-and-read step to the fix itself, and expect the first pass to close only the one contradiction that prompted it; budget for a re-review round to catch what it missed.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/self-apply-cross-section-check-to-hand-fixes.md*
