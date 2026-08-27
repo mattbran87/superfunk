@@ -182,3 +182,11 @@ This session's Agent-tool subagent spawn limit (200 of 200) was reached mid-exec
 **Tags:** none yet — tags deferred.
 
 *No pattern promoted — one instance so far, and the underlying constraint (a session-level spawn limit) is infrastructure, not a recurring design flaw; revisit if it recurs.*
+
+### A gate's precondition can be silently unmet without the gate ever noticing (2026-08-27-cross-section-negative-case-trials)
+
+The Finish bookkeeping gate (shipped one sub-project earlier) checks off a process-review Recommendation by finding a `review-after-*.md` reference in a spec's Context section. This sub-project's own design spec, closing the review's second Recommendation, first cited only the two intermediate specs that had deferred the gap — never the review file itself, since the citation felt redundant while writing the Context section by hand. The gate would have silently reported "no review file named: skip this step," treating an uncited Recommendation exactly like a spec with none to close, rather than flagging a likely-missing citation. Caught only because the controller re-read the spec once more before running Finish, not because any check forced the read. **Rule:** a mechanical gate that keys off a specific citation existing is only as reliable as the discipline that puts the citation there in the first place — when a spec closes a process-review Recommendation, verify its Context literally names the `review-after-*.md` file, not just the intermediate specs the gap traveled through, before trusting the gate to catch it later.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — this is a specific instance of the already-promoted `docs/patterns/self-apply-cross-section-check-to-hand-fixes.md`-adjacent theme (a mechanism's blind spot found in its own use), recorded in `2026-08-27-finish-bookkeeping-gate-design.md`'s Deferred section for now; promote only if a future spec repeats the same missing-citation shape.*
