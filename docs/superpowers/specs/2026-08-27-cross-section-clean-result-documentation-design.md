@@ -1,7 +1,7 @@
 # Cross-Section Clean-Result Documentation — Design
 
 **Date:** 2026-08-27
-**Status:** Approved
+**Status:** Shipped
 
 ## Context
 
