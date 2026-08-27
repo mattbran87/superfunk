@@ -542,6 +542,28 @@ right now — the same ask-don't-force pattern as any other checkpoint
 in this process. Run it if your human partner agrees; otherwise leave
 the tracker as-is and continue.
 
+If the spec's Context section names a
+`docs/superpowers/process-reviews/review-after-*.md` file, that file
+holds the Recommendation this spec closes. Open it, find the matching
+`- [ ]` Recommendation by content, and check it off: change it to
+`- [x]` and append `(Shipped as <what shipped>, commit <sha>.)` naming
+this spec and its key implementing commit. Commit this change in the
+same commit as the Status and tracker updates above. No review file
+named: skip this step.
+
+Before moving on, verify this Finish pass's own bookkeeping landed:
+
+```bash
+grep -c "^\*\*Status:\*\* Shipped" <spec-file>
+grep -c "<spec filename>" docs/superpowers/process-reviews/tracker.md
+grep -c "\[x\].*<a few distinctive words from the Recommendation's own original text>" <review-file>
+```
+
+Run the third check only when a review file was named above. Each
+check that applies should return at least 1. A 0 means that action
+never happened — do it now, before starting the Lessons-learned
+capture below, not left for a later final review to notice.
+
 Capture a notable learning in `docs/lessons-learned.md`, or record
 that nothing notable arose — either answer completes this step. A
 new Lesson entry: `### <title> (<spec-slug>)` as an H3 heading under
