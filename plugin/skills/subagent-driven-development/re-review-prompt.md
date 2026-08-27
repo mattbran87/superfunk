@@ -52,6 +52,10 @@ Subagent (general-purpose):
     does not block this task and does not extend the loop. A broad
     whole-branch review happens after all tasks are complete.
 
+    One exception: if the fix diff changes a routing, trigger, or lifecycle
+    mechanism, look outside the diff too — see the cross-section check
+    under New Breakage in the Fix Diff, below.
+
     ## Tests
 
     The implementer re-ran the tests covering the amended code and appended
@@ -85,10 +89,11 @@ Subagent (general-purpose):
     "triggered by...", "never run standalone," or a cross-reference like
     "see Y, below"), this is the one case where you must look outside the
     diff: grep the rest of the touched file — and the design spec, if the
-    plan's Goal line names one — for every other mention of the same key
-    terms, and read each hit. A contradiction there is New Breakage, not
-    an Out-of-Scope Observation, since the fix itself caused it even
-    though the contradicted text sits outside the literal diff.
+    plan's Goal line or a task's commit trailer names one — for every
+    other mention of the same key terms, and read each hit. A
+    contradiction there is New Breakage, not an Out-of-Scope Observation,
+    since the fix itself caused it even though the contradicted text sits
+    outside the literal diff.
 
     ### Out-of-Scope Observations
 

@@ -391,8 +391,10 @@ whole suite.
 where FIX_BASE is the head the previous review saw, and dispatch
 [re-review-prompt.md](re-review-prompt.md) with the findings list, the
 brief, the report file, and the printed diff path. The re-reviewer verdicts
-each finding ADDRESSED or NOT ADDRESSED and flags new breakage in the fix
-diff only. New Critical/Important breakage in the fix diff joins the open
+each finding ADDRESSED or NOT ADDRESSED and flags new breakage the fix
+caused — normally confined to the diff, but extending to a cross-section
+contradiction outside it when the fix touched a routing, trigger, or
+lifecycle mechanism. New Critical/Important breakage joins the open
 findings list. Out-of-scope observations go to the ledger as deferred
 minors — they never extend the loop.
 
