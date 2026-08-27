@@ -212,7 +212,10 @@ the same target file, every other file in the same
 subdirectories) if the target file lives in one, and the design spec,
 if it also describes this mechanism — for every other mention of the
 key terms involved, and read each hit. Confirm the edit doesn't leave
-any of them contradicting the new content.
+any of them contradicting the new content. If none of them
+contradict, and this plan traces to a design spec, add one sentence
+to that spec's Deferred or Consequences section explaining why the
+checked file(s) needed no change.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
