@@ -1,7 +1,7 @@
 # Notes.md Direct-Mode Gate — Design
 
 **Date:** 2026-08-27
-**Status:** Approved
+**Status:** Shipped
 
 ## Context
 
