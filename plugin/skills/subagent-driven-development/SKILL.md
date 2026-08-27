@@ -596,6 +596,15 @@ something this step must create. This keeps the index accurate the
 same moment the rest of Finish's bookkeeping happens, rather than
 letting it drift until someone notices.
 
+Before deleting the workspace below, check this plan's ledger
+(`<workspace>/progress.md`) for any `parked` line whose ruling calls
+the finding real rather than contestable — a "reviewer is wrong"
+ruling needs no bug; it already resolved as correctly not one. For
+each real-and-deferred parked finding, invoke superpowers:bug-tracking's
+Step 2 to record it durably in `docs/bugs/` before its only record —
+the ledger text itself — disappears with the workspace below. No
+real-and-deferred parked findings: skip this step.
+
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
