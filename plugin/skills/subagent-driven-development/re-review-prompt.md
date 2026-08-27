@@ -89,12 +89,13 @@ Subagent (general-purpose):
     lifecycle mechanism (language like "if X exists, proceed to...",
     "triggered by...", "never run standalone," or a cross-reference like
     "see Y, below"), this is the one case where you must look outside the
-    diff: grep the rest of the touched file — and the design spec, if the
-    plan's Goal line or a task's commit trailer names one — for every
-    other mention of the same key terms, and read each hit. A
-    contradiction there is New Breakage, not an Out-of-Scope Observation,
-    since the fix itself caused it even though the contradicted text sits
-    outside the literal diff.
+    diff: grep the rest of the touched file, every other file in the
+    same `plugin/skills/<name>/` directory if the touched file lives in
+    one, and the design spec, if the plan's Goal line or a task's
+    commit trailer names one — for every other mention of the same key
+    terms, and read each hit. A contradiction there is New Breakage,
+    not an Out-of-Scope Observation, since the fix itself caused it
+    even though the contradicted text sits outside the literal diff.
 
     ### Out-of-Scope Observations
 
