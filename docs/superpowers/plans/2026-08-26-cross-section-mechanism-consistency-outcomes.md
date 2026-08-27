@@ -10,3 +10,6 @@ Shipped as planned; approved with one Minor noted (item 8's raw-source line-wrap
 
 ## Task 2: Add scope carve-out to re-review-prompt.md
 Shipped as planned; approved with two Minors noted, both design-spec-level (not this task's drift): the spec-location clause only covers the Goal-line channel, not the commit-trailer channel SKILL.md's Finish step also recognizes; and Task 1's item 8 gates the design-spec grep on content while this carve-out gates it on plan structure, a minor asymmetry between the two otherwise-identical mechanisms. No divergence, no follow-ups.
+
+## Task 3: Live trial for Self-Review item 8
+Shipped as planned; the trial correctly triggered item 8's pattern and identified the routing contradiction, independently reproduced with entirely different section names and domain content by a second agent. No divergence, no follow-ups.
