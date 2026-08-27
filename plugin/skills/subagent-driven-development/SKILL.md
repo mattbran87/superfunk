@@ -671,6 +671,7 @@ Task reviewer: Spec ❌:
   - Missing: Progress reporting (spec says "report every 100 items")
   Issues (Important): Magic number (100)
 
+[notes.md: append Task 2 findings — Missing progress reporting; Magic number (100)]
 [Fix round 1: resume the implementer with both findings]
 Implementer: Added progress reporting, extracted PROGRESS_INTERVAL constant.
   Re-ran test/recovery.test.js — 10/10 passing. Fix report appended.
@@ -692,6 +693,14 @@ Re-reviewer: Missing progress reporting — ADDRESSED (src/recovery.js:41).
 [After all tasks]
 [Run review-package PLAN_FILE MERGE_BASE HEAD; dispatch final code-reviewer, most capable model]
 Final reviewer: All requirements met. Deferred minors triaged: none block merge.
+
+[Finish: spec Status Approved -> Shipped, committed]
+[Finish: appended feature-plan-design.md to tracker.md's Specs shipped since]
+[Finish: no Recommendation to check off -- this plan didn't trace to a process review]
+[Finish: notes.md gate -- Task 2's fix round already logged above, check passes]
+[Finish: captured a Lesson in lessons-learned.md; no pattern promoted, one instance so far]
+[Finish: no concept-index entry needed -- no skill/feature/significant directory created]
+[Finish: no real-and-deferred parked findings -- bug-tracking step skipped]
 
 [Delete this plan's workspace — the record now lives in git]
 
