@@ -10,3 +10,6 @@ Shipped as planned; file created with exact content, both grep checks passed. Im
 
 ## Task 2: Wire the Finish-time auto-ledger into subagent-driven-development
 Shipped as planned; exact text match confirmed against the Decision block. One planned verification grep didn't match because the plan's own single-line pattern happened to span a line wrap in the shipped text — confirmed correct via a broader grep instead, not a defect in the shipped content. No divergence.
+
+## Task 3: Live trial for on-demand bug reporting
+Shipped as planned; the trial correctly created BUG-0001 with the exact schema, correct tracker row, and one clean commit — independently confirmed against the actual fixture files, not just the trial's report. The trial made one reasonable, unprompted judgment call (inferring three Reproduction steps from the bug description, since none were explicitly supplied) — noted as sound use of the schema's "if applicable" allowance, not a defect. No divergence, no follow-ups.
