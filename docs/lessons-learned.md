@@ -174,3 +174,11 @@ The design spec for `cross-section-mechanism-consistency` deferred trial coverag
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/escalate-deferred-items-on-second-recurrence.md*
+
+### When subagent dispatch is unavailable, the review discipline still applies directly (2026-08-27-finish-bookkeeping-gate)
+
+This session's Agent-tool subagent spawn limit (200 of 200) was reached mid-execution, before Task 1 could be dispatched to an implementer subagent. Rather than skip the two-stage spec-compliance and code-quality review subagent-driven-development normally requires, the controller performed both checks directly: comparing the shipped diff word-for-word against the design spec's Decision block, and independently grepping sibling files for any restatement needing reconciliation, exactly as a dispatched reviewer's prompt would have instructed. Both live trials still ran normally, since `claude -p --plugin-dir` invocations are separate CLI processes, not Agent-tool subagents, and don't draw from the same budget. **Rule:** subagent dispatch is a delivery mechanism for the review discipline, not the discipline itself — when dispatch is unavailable, perform the same explicit, evidence-based checks directly rather than treating their absence as license to skip review.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — one instance so far, and the underlying constraint (a session-level spawn limit) is infrastructure, not a recurring design flaw; revisit if it recurs.*
