@@ -13,3 +13,6 @@ Shipped as planned. Spec compliance confirmed exact text match. Code-quality rev
 
 ## Task 3: Live trial for item 8's sibling-directory scope
 Shipped as planned; the trial correctly triggered item 8's pattern, explicitly enumerated and checked the sibling file (not just the edited target file), and correctly cited the sibling's contradicting line. The trial also surfaced two unprompted secondary observations (the fixture's proposed edit was internally self-contradictory on its own "always" qualifier, and a real fix would need to touch the sibling file too) — noted as evidence of thorough engagement, not a fixture defect, since the trial's actual job (does the widened grep reach the sibling) was met regardless. No divergence, no follow-ups.
+
+## Task 4: Live trial for the carve-out's sibling-directory scope
+Shipped as planned; the trial correctly triggered the carve-out's pattern, explicitly enumerated and checked the sibling file, and filed the sibling contradiction as New Breakage (not Out-of-Scope), citing the exact contradicting line. Independently surfaced the same "always" self-contradiction Task 3's trial had also caught, in a completely separate fixture/session — corroborating evidence the fixture's design flaw is real and consistently detected, not a fluke of one trial. No divergence, no follow-ups.
