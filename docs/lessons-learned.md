@@ -190,3 +190,11 @@ The Finish bookkeeping gate (shipped one sub-project earlier) checks off a proce
 **Tags:** none yet — tags deferred.
 
 *No pattern promoted — this is a specific instance of the already-promoted `docs/patterns/self-apply-cross-section-check-to-hand-fixes.md`-adjacent theme (a mechanism's blind spot found in its own use), recorded in `2026-08-27-finish-bookkeeping-gate-design.md`'s Deferred section for now; promote only if a future spec repeats the same missing-citation shape.*
+
+### A worked example illustrating a process goes stale every time that process gains a new step, and nothing re-checks it (2026-08-27-bug-tracking)
+
+`subagent-driven-development/SKILL.md`'s Example Workflow section walks through the whole plan-to-push flow, including a Finish segment ending "Final reviewer: All requirements met... [Delete this plan's workspace]." `per-task-outcome-capture` once found and fixed this same example going stale after adding the outcomes-file step. Since then, five more additions to Finish — the spec-Status flip and tracker update, the Recommendation-checkbox step, the notes.md gate, and now this sub-project's bug-tracking step — each shipped without anyone revisiting the example, because no task in any of those plans touched the Example Workflow section itself, and nothing prompts a check of illustrative prose when the process it illustrates changes. **Rule:** a worked example demonstrating a multi-step process needs its own explicit check whenever a plan adds a step to that process — not just a check that the new step's own instructions are self-consistent, but a check that any worked example elsewhere in the same file still shows the real sequence. A plan task that adds a Finish step should ask "does the Example Workflow need updating too?" as its own line item, not assume File Structure's silence about that section means nothing to check.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/refresh-worked-examples-when-their-process-changes.md — this is the sixth instance of the same shape (one fix, then five more additions that never revisited it), past any reasonable threshold for "wait and see."*
