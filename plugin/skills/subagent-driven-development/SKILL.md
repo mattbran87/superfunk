@@ -605,6 +605,14 @@ Step 2 to record it durably in `docs/bugs/` before its only record —
 the ledger text itself — disappears with the workspace below. No
 real-and-deferred parked findings: skip this step.
 
+If this plan traces to a design spec (per the Status-flip check
+above), run `python plugin/skills/documentation/scripts/check_docs.py
+<spec-file> <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or
+`ALREADY_UPDATED`: skip the rest of this step. `ACTION_NEEDED`:
+invoke superpowers:documentation's Step 2 to draft the README/CHANGELOG
+update from the printed spec content. No design spec: skip this step
+entirely — nothing to read a `User-Facing` field from.
+
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
@@ -701,6 +709,7 @@ Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 [Finish: captured a Lesson in lessons-learned.md; no pattern promoted, one instance so far]
 [Finish: no concept-index entry needed -- no skill/feature/significant directory created]
 [Finish: no real-and-deferred parked findings -- bug-tracking step skipped]
+[Finish: this plan's spec has no User-Facing field set to Yes -- documentation step skipped]
 
 [Delete this plan's workspace — the record now lives in git]
 
