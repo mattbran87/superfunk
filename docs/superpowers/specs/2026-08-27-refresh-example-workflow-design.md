@@ -55,4 +55,4 @@ Every plan whose tasks touch a documented multi-step process gains one more Self
 
 ## Deferred
 
-- Nothing identified. This closes both open Recommendations from the originating review.
+- **Found during this sub-project's own final review:** `subagent-driven-development/SKILL.md`'s process diagram (the dot digraph near the top of the file) also stops at workspace deletion, never depicting any of Finish's bookkeeping steps — the same staleness shape this sub-project fixed in the prose Example Workflow, in a third location within the same file. Left out of this sub-project's scope, since a diagram counts as a different kind of illustration than the prose walkthrough this spec's Decision names. Revisit as its own small follow-up; item 9's wording ("a worked example... e.g., an 'Example Workflow' section") already reads broadly enough to cover a diagram too, needing no wording change — only the diagram content itself needs the fix.
