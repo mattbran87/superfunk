@@ -31,7 +31,9 @@ The user also wants the fork's origin visibly preserved somewhere a reader would
 
 Version numbers stay unchanged (`6.2.0`) — this rebrands identity, not a feature release.
 
-**Every `superpowers:` skill-invocation prefix** (135 occurrences across 33 files under `plugin/`) becomes `superfunk:`, applied as one mechanical bulk operation with full verification, not 33 individual edits — a grep-and-replace across the whole `plugin/` tree, since the identical pattern appears everywhere.
+**Every `superpowers:` skill-invocation prefix in live, instructional content** becomes `superfunk:`, applied as one mechanical bulk operation with full verification rather than individual edits. "Live, instructional content" means files an agent actually reads and acts on at runtime: every file under `plugin/skills/`, plus `plugin/CLAUDE.md` and `plugin/.github/PULL_REQUEST_TEMPLATE.md` (both give contributors and agents literal skill-invocation guidance for this fork).
+
+**Historical records keep their original `superpowers:` references, unchanged**: `plugin/RELEASE-NOTES.md`'s past changelog entries, and archived design docs under `plugin/docs/plans/`, `plugin/docs/superpowers/plans/`, and `plugin/docs/superpowers/specs/` — all predating this fork, each describing what shipped under the Superpowers name at the time it happened. Rewriting these would misstate history rather than correct it.
 
 **`plugin/README.md`'s 11 harness-specific Installation sections** (Claude Code, Antigravity, Codex App, Codex CLI, Cursor, Factory Droid, Gemini CLI, GitHub Copilot CLI, Kimi Code, OpenCode, Pi) get their literal marketplace/plugin/repository references updated from `obra/superpowers*` to `mattbran87/superfunk*` wherever an install command names a specific repo or plugin identifier. Surrounding narrative prose in each section stays as-is.
 
@@ -57,7 +59,7 @@ Version numbers stay unchanged (`6.2.0`) — this rebrands identity, not a featu
 ## Falsifiable Criteria
 
 1. A direct read-through of all seven manifest files confirms every field named in the Decision block matches the new values, and no file still names `superpowers`, Jesse Vincent, or `obra/superpowers` in any of those specific fields.
-2. `grep -rc "superpowers:" plugin/` returns 0 matches across the entire `plugin/` tree (the invocation prefix fully replaced).
+2. `grep -rl "superpowers:" plugin/skills/ plugin/CLAUDE.md plugin/.github/PULL_REQUEST_TEMPLATE.md` returns no files (the invocation prefix fully replaced in live content). A separate check confirms `plugin/RELEASE-NOTES.md` and the archived docs under `plugin/docs/` still contain their original `superpowers:` references, unchanged.
 3. A direct read-through of `plugin/README.md` confirms the attribution note and Requirements section exist as specified, and all 11 harness Installation sections' literal repo/plugin references point at `mattbran87/superfunk` rather than `obra/superpowers*`.
 4. `plugin/LICENSE` stays byte-for-byte unchanged from before this spec — confirmed by diffing against the pre-change version.
 5. A disposable `--plugin-dir` trial against the renamed plugin confirms a skill resolves and invokes correctly under the new `superfunk:` prefix (e.g., dispatching a session that follows an instruction referencing `superfunk:writing-plans` or another renamed cross-reference, confirming it doesn't fail as an unknown skill).
