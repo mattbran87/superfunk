@@ -26,6 +26,14 @@ not just each one individually against the source spec.
 
 *Pattern promoted — see docs/patterns/cross-check-shared-rule-restatements.md*
 
+### Writing a check for unverified numeric claims doesn't exempt the document writing it (2026-08-28-process-review-recommendations-batch-3)
+
+This sub-project shipped three new Self-Review items specifically to catch predicted counts that never got run against real command output — closing a Miss from `documentation` and `superfunk-rebrand`. Building it, its own design spec and implementation plan hit the exact same failure shape three separate times before shipping: a predicted `grep -c "Finish:"` total assumed each new diagram node name contributes one matching line (wrong — reused node names span multiple edge lines), and a follow-up verification command's `-A 60` window assumed a diagram block's length without measuring it (wrong — the block spans 65 lines). All three got caught only by actually running the substitution and the command against real file content, not by any check that existed at the time — the mechanism being built didn't exist yet to catch its own construction. **Rule:** a document that specifies a check for a class of error doesn't inherit immunity from that same error while being written — apply the check's own discipline to the document shipping it, manually, before the mechanism exists to do it automatically.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — this is a specific instance of the already-promoted `docs/patterns/validate-tools-against-real-project-data.md`-adjacent theme (verify before shipping, not after), recorded here since the target this time is a spec/plan's own numeric prose rather than a tool's runtime behavior; promote separately only if this exact self-referential shape (a mechanism-under-construction hitting the error it prevents) recurs.*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)
