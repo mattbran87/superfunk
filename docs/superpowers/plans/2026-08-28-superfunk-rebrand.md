@@ -967,11 +967,11 @@ Expected: the agent resolves `superfunk:writing-plans` without an "Unknown skill
 
 - [ ] **Step 6: Confirm the documentation skill's Finish-time check reports the expected outcome**
 
-Run: `python plugin/skills/documentation/scripts/check_docs.py docs/superpowers/specs/2026-08-28-superfunk-rebrand-design.md <merge-base-sha> HEAD`
+Run: `python plugin/skills/documentation/scripts/check_docs.py docs/superpowers/specs/2026-08-28-superfunk-rebrand-design.md <base-sha-before-this-subproject> HEAD`
 
-(Substitute `<merge-base-sha>` with this branch's actual merge-base against the base branch.)
+Actual result (2026-08-28): `ACTION_NEEDED` (exit 1) — NOT the `ALREADY_UPDATED` this plan originally predicted. `check_docs.py`'s doc-file check does an exact bare-filename match (`f in ("README.md", "CHANGELOG.md")`), and this project's README lives at `plugin/README.md`, a nested path that never matches. Filed as BUG-0001 (`docs/bugs/BUG-0001-check-docs-nested-path-matching.md`). The tool also crashed with a `UnicodeEncodeError` on Windows console output before this was even diagnosed, since the spec's Context section uses `→` and `—` characters — filed separately as BUG-0002 (Critical), since it affects nearly every spec this project writes, not just this one.
 
-Expected: `ALREADY_UPDATED: plugin/README.md` (exit 0) — Task 5 already modified README.md, so no further documentation drafting is needed at Finish.
+Given both are now-filed, known defects, and Task 5 already made the correct, comprehensive README.md update directly (attribution note, Requirements section, all 11 install sections), no further documentation drafting happens for this sub-project — invoking the `documentation` skill's Step 2 here would just redraft what Task 5 already wrote correctly. This is a manual override of a known tool defect, not an unhandled gap.
 
 - [ ] **Step 7: No commit** — this task only verifies; nothing here changes tracked files.
 
@@ -1005,7 +1005,7 @@ This is the most user-facing change made this session — literally the plugin's
 ```
 To:
 ```markdown
-This is the most user-facing change made this session — literally the plugin's own name and installation instructions — so it also becomes the first sub-project to genuinely exercise the newly-shipped `documentation` skill's Finish-time check on a real (not fixture) case. `check_docs.py` doesn't recognize `plugin/RELEASE-NOTES.md` (this project's own established changelog file) as equivalent to `CHANGELOG.md` — a real gap the tool's first genuine use surfaces, to document and handle directly at Finish time rather than let it silently misfire. In practice this sub-project's own README.md edit satisfies `check_docs.py`'s `ALREADY_UPDATED` branch directly, so the gap doesn't block this specific case (confirmed by Task 6, Step 6 of the implementation plan).
+This is the most user-facing change made this session — literally the plugin's own name and installation instructions — so it also becomes the first sub-project to genuinely exercise the newly-shipped `documentation` skill's Finish-time check on a real (not fixture) case. `check_docs.py` doesn't recognize `plugin/RELEASE-NOTES.md` (this project's own established changelog file) as equivalent to `CHANGELOG.md` — a real gap the tool's first genuine use surfaces. In practice, this first real run surfaced two further, more general defects: `check_docs.py` never recognizes `plugin/README.md` either, since its doc-file check only matches bare root-level filenames and this project's own README lives in a subdirectory (filed as BUG-0001), and the tool crashes outright with a `UnicodeEncodeError` on Windows console output for any spec using em dashes or arrows — nearly every spec this project writes (filed as BUG-0002, Critical). Both get tracked via `docs/bugs/` rather than fixed inline here, since fixing a previously-shipped tool sits outside this sub-project's own scope; Task 5's direct, manual README.md update already covers what Step 2's drafting would have produced.
 
 The implementation plan's Task 4 checked every other top-level file in `plugin/skills/subagent-driven-development/` and `plugin/skills/writing-plans/`, plus this spec, for other descriptions of the `superpowers:`/`superfunk:` invocation-prefix mechanism itself. None exist beyond the individual invocation sites the bulk rewrite already covers, so no cross-reference needed a separate fix.
 ```
