@@ -114,7 +114,7 @@ digraph brainstorming {
 - Give it a `User-Facing:` field: `Yes` or `No` — decided during
   brainstorming, not inferred later. `Yes` means a project's README
   or CHANGELOG needs updating once this ships;
-  superpowers:documentation's Finish-time check reads this field to
+  superfunk:documentation's Finish-time check reads this field to
   decide whether to fire.
 - Include a `Consequences` section after Decision (and after Falsifiable Criteria or Testing, if either applies): what becomes easier or harder because of this decision, what assumptions must hold.
 - If `multi-lens-research` or `branching-research` ran for this decision, capture the comparison (the candidates, the recommendation, the steelmanned alternative) as an `Alternatives Considered` section. Skip the section entirely if no formal research skill ran — an empty one is the placeholder problem the self-review below already bans.

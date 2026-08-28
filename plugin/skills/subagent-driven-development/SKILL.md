@@ -74,7 +74,7 @@ digraph process {
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [shape=box];
     "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" [shape=box];
     "Final review clean: delete this plan's workspace" [shape=box];
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use superfunk:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Setup: worktree, ledger check, read plan, pre-flight review" -> "Dispatch implementer subagent (./implementer-prompt.md)";
     "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer asks questions?";
@@ -103,14 +103,14 @@ digraph process {
     "More tasks remain?" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [label="no"];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" -> "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals";
     "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" -> "Final review clean: delete this plan's workspace";
-    "Final review clean: delete this plan's workspace" -> "Use superpowers:finishing-a-development-branch";
+    "Final review clean: delete this plan's workspace" -> "Use superfunk:finishing-a-development-branch";
 }
 ```
 
 ## Setup
 
 Ensure the work happens in an isolated workspace: use
-superpowers:using-git-worktrees to create one or verify the existing one.
+superfunk:using-git-worktrees to create one or verify the existing one.
 Never start implementation on a main/master branch without your human
 partner's explicit consent.
 
@@ -504,7 +504,7 @@ branch started from, e.g. `git merge-base main HEAD`) and include the
 printed path in the final review dispatch, so the final reviewer reads
 one file instead of re-deriving the branch diff with git commands. Dispatch
 on the most capable available model (see Model Selection), using
-superpowers:requesting-code-review's
+superfunk:requesting-code-review's
 [code-reviewer.md](../requesting-code-review/code-reviewer.md). Point it at
 the ledger's deferred-minor and parked lines so it can triage which must be
 fixed before merge.
@@ -538,7 +538,7 @@ merged, so it is the right moment to record it. No spec, or already
 If you updated a spec's Status to `Shipped`, also append its filename
 to `docs/superpowers/process-reviews/tracker.md`'s "Specs shipped
 since" list, and commit that change in the same commit. If the list
-now holds 3 or more filenames, offer to run superpowers:process-review
+now holds 3 or more filenames, offer to run superfunk:process-review
 right now — the same ask-don't-force pattern as any other checkpoint
 in this process. Run it if your human partner agrees; otherwise leave
 the tracker as-is and continue.
@@ -587,7 +587,7 @@ If `docs/architecture/concept-index.md` exists, check this plan's own
 File Structure section for whether it created, renamed, moved, or
 deleted a `plugin/skills/<name>/`, a `specs/<module>/<feature>/`, or a
 directory crossing `docs/ai-code-guidelines.md`'s significant-directory
-threshold. If so, use superpowers:concept-index's Step 3 to add,
+threshold. If so, use superfunk:concept-index's Step 3 to add,
 update, or remove that row, and commit the index change in its own
 small commit. If the index file doesn't exist yet, or no File
 Structure entry crosses one of those three boundaries, skip this step
@@ -600,7 +600,7 @@ Before deleting the workspace below, check this plan's ledger
 (`<workspace>/progress.md`) for any `parked` line whose ruling calls
 the finding real rather than contestable — a "reviewer is wrong"
 ruling needs no bug; it already resolved as correctly not one. For
-each real-and-deferred parked finding, invoke superpowers:bug-tracking's
+each real-and-deferred parked finding, invoke superfunk:bug-tracking's
 Step 2 to record it durably in `docs/bugs/` before its only record —
 the ledger text itself — disappears with the workspace below. No
 real-and-deferred parked findings: skip this step.
@@ -609,7 +609,7 @@ If this plan traces to a design spec (per the Status-flip check
 above), run `python plugin/skills/documentation/scripts/check_docs.py
 <spec-file> <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or
 `ALREADY_UPDATED`: skip the rest of this step. `ACTION_NEEDED`:
-invoke superpowers:documentation's Step 2 to draft the README/CHANGELOG
+invoke superfunk:documentation's Step 2 to draft the README/CHANGELOG
 update from the printed spec content. No design spec: skip this step
 entirely — nothing to read a `User-Facing` field from.
 
@@ -617,7 +617,7 @@ Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
 
-Use superpowers:finishing-a-development-branch.
+Use superfunk:finishing-a-development-branch.
 
 ## Common Rationalizations
 
@@ -713,5 +713,5 @@ Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 
 [Delete this plan's workspace — the record now lives in git]
 
-Done! Using superpowers:finishing-a-development-branch.
+Done! Using superfunk:finishing-a-development-branch.
 ```
