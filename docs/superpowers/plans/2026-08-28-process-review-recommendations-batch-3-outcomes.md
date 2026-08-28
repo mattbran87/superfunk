@@ -10,3 +10,6 @@ Shipped as planned; exact text match confirmed by reading the file back. One too
 
 ## Task 2: Add Spec Self-Review item 6 to brainstorming
 Shipped as planned; exact text match confirmed, grep check passed (1 match). Implemented directly. No divergence.
+
+## Task 3: Refresh subagent-driven-development's process diagram
+Shipped as planned; all three grep checks passed exactly as this plan's own corrected predictions stated (old node: 0 matches, new node lines: 5, total "Finish:": 13) — no discrepancy this time, since the plan's own numbers already got verified against real content during planning (see this file's Task-4-adjacent note in the plan document itself). Implemented directly. No divergence.
