@@ -435,7 +435,7 @@ git commit -m "rebrand: update Cursor, Codex, and Kimi Code manifest identity to
 - [ ] **Step 1: Confirm the exact occurrence count before editing**
 
 Run: `grep -rn "superpowers:" plugin/skills/ plugin/CLAUDE.md plugin/.github/PULL_REQUEST_TEMPLATE.md | wc -l`
-Expected: `33`
+Expected: `32` (matching *lines*, not raw occurrences — `writing-plans/SKILL.md:110` carries two `superpowers:` references on one line, so 33 total occurrences appear on 32 matching lines)
 
 - [ ] **Step 2: Run the bulk replace across all 12 files**
 
@@ -464,7 +464,7 @@ Expected: no output (exit code 1, no matches)
 - [ ] **Step 4: Verify the replacement landed correctly**
 
 Run: `grep -rc "superfunk:" plugin/skills/ plugin/CLAUDE.md plugin/.github/PULL_REQUEST_TEMPLATE.md | awk -F: '{sum+=$2} END {print sum}'`
-Expected: `33`
+Expected: `32` (this counts matching lines per file, same as Step 1 — see that step's note)
 
 - [ ] **Step 5: Verify historical files are untouched**
 
