@@ -66,7 +66,7 @@ This groups Finish's eight bookkeeping items into two boxes, matching this diagr
 1. A direct read-through of `writing-plans/SKILL.md`'s Self-Review section confirms items 10 and 11 exist, worded identically to the Decision block above.
 2. A direct read-through of `brainstorming/SKILL.md`'s Spec Self-Review section confirms item 6 exists, worded identically to the Decision block above.
 3. A direct read-through of `subagent-driven-development/SKILL.md`'s `digraph process` block confirms the new node sequence exists exactly as specified, and the old combined `"Final review clean: delete this plan's workspace"` node no longer appears anywhere in the file.
-4. `grep -c "Finish:" plugin/skills/subagent-driven-development/SKILL.md` returns 10 — the file's 8 existing prose Example Workflow `[Finish: ...]` bracket lines (confirmed via a direct grep before this spec's own numeric claims got finalized) plus the 2 new diagram nodes this spec adds.
+4. `grep -c "Finish:" plugin/skills/subagent-driven-development/SKILL.md` returns 13 — the file's 8 existing prose Example Workflow `[Finish: ...]` bracket lines (confirmed via a direct grep before this spec's own numeric claims got finalized) plus 5 new matching lines from the diagram edit: each of the two new node names contains "Finish:" and each name appears on multiple lines (its own declaration plus each edge line naming it as a source or target), verified by testing the exact new diagram text in isolation before finalizing this count.
 
 ## Consequences
 
