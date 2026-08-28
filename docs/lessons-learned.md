@@ -198,3 +198,11 @@ The Finish bookkeeping gate (shipped one sub-project earlier) checks off a proce
 **Tags:** none yet — tags deferred.
 
 *Pattern promoted — see docs/patterns/refresh-worked-examples-when-their-process-changes.md — this is the sixth instance of the same shape (one fix, then five more additions that never revisited it), past any reasonable threshold for "wait and see."*
+
+### A required template section survives unenforced when the tool that writes documents never checks its own output against its own template (2026-08-28-documentation)
+
+`writing-plans/SKILL.md`'s required Plan Document Header has included a `## Global Constraints` section since before this fork existed. Every plan written this entire session omitted it — dozens of plans, across every sub-project — because `writing-plans`' own 9-item Self-Review checks spec coverage, placeholders, type consistency, pseudocode, sibling parity, rule restatement, lessons-learned, cross-section consistency, and worked-example currency, but never checks a plan's own header against the template the skill itself requires. The omission surfaced only by accident, while re-reading the header template for an unrelated reason during this sub-project's own plan self-review. **Rule:** when a skill's own instructions define a required document structure (a header template, a required field, a mandatory section), that skill's Self-Review needs an explicit item checking the produced document against that structure — the same way item 8 checks cross-section consistency and item 9 checks worked-example currency, but for the document's own required shape rather than its content.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/self-review-checks-own-required-template.md — the rule applies broadly (any skill defining a required structure needs this check), independent of whether this specific gap ever recurs.*
