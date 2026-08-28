@@ -127,6 +127,29 @@ A live trial claimed to verify that a new reviewer instruction ("re-read the cit
 
 *Pattern promoted — see docs/patterns/ab-test-live-trials-for-behavior-change.md*
 
+### A tool's passing fixture-based unit tests don't prove it works against a real project's actual paths and text (2026-08-28-superfunk-rebrand)
+
+`check_docs.py` shipped with 10 passing unit tests covering all three
+branches (`NOT_APPLICABLE`, `ALREADY_UPDATED`, `ACTION_NEEDED`),
+including a real-git-fixture test for the diff-based check. Its first
+invocation against this project's own real spec and branch — not a
+fixture — returned the wrong branch and then crashed outright. Two
+gaps the fixtures never exercised: the fixture's doc file sat at the
+fixture root, so the exact-bare-filename match never got tested
+against a path like this project's own `plugin/README.md`; and the
+fixture's spec text used only ASCII, so printing it never exercised
+Python's default Windows stdout encoding against the em dashes and
+arrows this project's specs use throughout. **Rule:** before treating
+a tool's fixture-based test suite as proof it works, run it at least
+once against the real project's own actual file paths and real
+prose — a fixture built for coverage of the tool's branches, not for
+resemblance to the target environment's real structure and text,
+can pass every test while still failing on first real contact.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/validate-tools-against-real-project-data.md*
+
 ### Follow this project's own outcomes-file mechanism when executing subagent-driven-development, or its own author misses it first (2026-08-24-review-recommendations-followup)
 
 The per-task outcome capture mechanism shipped three days earlier in this session, wiring `subagent-driven-development`'s "Complete the task" step to require an Outcome field in every implementer report and to append it to a git-tracked outcomes file. Executing this sub-project's own plan, the controller dispatched implementers with custom prompts that never asked for an Outcome field and never created the outcomes file — missing the very mechanism this session had just built and reviewed. **Rule:** when dispatching an implementer subagent under `subagent-driven-development`, use `implementer-prompt.md`'s actual current Report Format section (which already names every required field) rather than reconstructing a report contract from memory or from an older mental model of the template — a mechanism this project ships into its own skill files applies to running this project's own skills, not only to the tasks those skills execute.
