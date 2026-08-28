@@ -10,3 +10,6 @@ Shipped as planned; genuine RED-GREEN-RED-GREEN cycle followed throughout (watch
 
 ## Task 2: Write the documentation skill
 Shipped as planned; exact content match, both grep checks passed. Confirmed no sibling top-level file in plugin/skills/documentation/ needs reconciling (only a scripts/ subdirectory exists, non-recursive per the sibling-directory clause). No divergence.
+
+## Task 3: Add the User-Facing field requirement to brainstorming
+Shipped as planned; exact text match confirmed against the Decision block, grep checks passed. No divergence.
