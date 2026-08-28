@@ -19,3 +19,6 @@ Shipped as planned; both edits (the Finish paragraph and the Example Workflow br
 
 ## Task 5: Live trial for the ACTION_NEEDED path
 Shipped as planned; the tool itself was sanity-checked directly against the fixture before dispatching the trial (extra verification layer). The trial correctly ran check_docs.py, reported ACTION_NEEDED, and drafted genuinely good user-facing content into both CHANGELOG.md and README.md -- describing the timeout increase's effect on the user, never leaking the internal SESSION_TIMEOUT_MINUTES variable name into the doc prose. Correctly judged the README's existing Usage section needed updating too, not just the CHANGELOG. Committed separately from other Finish bookkeeping, exactly as instructed. Independently confirmed against the actual fixture files and git log, not just the trial's report. No divergence, no follow-ups.
+
+## Task 6: Live trial for the NOT_APPLICABLE path
+Shipped as planned; the tool was sanity-checked directly against the fixture first. The trial correctly reported NOT_APPLICABLE and made no edit -- independently confirmed via git log (no new commit) and README content (unchanged). No divergence, no follow-ups.
