@@ -10,3 +10,6 @@ Shipped as planned; exact field values matched the plan's before/after blocks. `
 
 ## Task 2: Rebrand Pi and Gemini CLI manifests
 Shipped as planned; only the `name` field changed in each file (superpowers → superfunk). `package.json`'s `description`, `main`, and `pi.extensions` file-path references stayed untouched, as specified — no on-disk file rename occurred. Both files validated as parseable JSON before commit. Implemented directly. No divergence.
+
+## Task 3: Rebrand Cursor, Codex, and Kimi Code manifests
+Shipped as planned across all three files; name/displayName/author/homepage/repository/interface.developerName/interface.websiteURL changed to the Superfunk identity everywhere specified. `interface.longDescription`'s "Use Superpowers to guide..." prose, `composerIcon`'s asset path, and Kimi's `sessionStart.skill`/`skillInstructions` all stayed untouched as specified. All three files validated as parseable JSON before commit. Implemented directly. No divergence.
