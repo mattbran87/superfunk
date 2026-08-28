@@ -1,5 +1,9 @@
 # Superpowers
 
+> **Superfunk** is a fork of [Superpowers](https://github.com/obra/superpowers)
+> by Jesse Vincent, customized for this project's own workflow. See
+> [LICENSE](LICENSE) for the original copyright.
+
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
 
@@ -23,97 +27,78 @@ There's a bunch more to it, but that's the core of the system. And because the s
 
 If you're using Superpowers in enterprise and could benefit from commercial support, additional tooling, or managed spending, please don't hesitate to drop us a line at sales@primeradiant.com.
 
+## Requirements
+
+- Python 3, for the `documentation` skill's Finish-time check
+  (`check_docs.py`). No other skill in this library needs it.
+
 ## Installation
 
-Installation differs by harness. If you use more than one, install Superpowers separately for each one.
+Installation differs by harness. If you use more than one, install Superfunk separately for each one.
 
 ### Claude Code
 
-Superpowers is available via the [official Claude plugin marketplace](https://claude.com/plugins/superpowers)
-
-#### Official Marketplace
-
-- Install the plugin from Anthropic's official marketplace:
+- Register the marketplace from this fork:
 
   ```bash
-  /plugin install superpowers@claude-plugins-official
-  ```
-
-#### Superpowers Marketplace
-
-The Superpowers marketplace provides Superpowers and some other related plugins for Claude Code.
-
-- Register the marketplace:
-
-  ```bash
-  /plugin marketplace add obra/superpowers-marketplace
+  /plugin marketplace add mattbran87/superfunk
   ```
 
 - Install the plugin from this marketplace:
 
   ```bash
-  /plugin install superpowers@superpowers-marketplace
+  /plugin install superfunk@superfunk
   ```
 
 ### Antigravity
 
-Install Superpowers as a plugin from this repository:
+Install Superfunk as a plugin from this repository:
 
 ```bash
-agy plugin install https://github.com/obra/superpowers
+agy plugin install https://github.com/mattbran87/superfunk
 ```
 
-Antigravity runs the plugin's session-start hook, so Superpowers is active from
+Antigravity runs the plugin's session-start hook, so Superfunk is active from
 the first message. Reinstall with the same command to update.
 
 ### Codex App
 
-Superpowers is available via the [official Codex plugin marketplace](https://github.com/openai/plugins).
+This fork isn't published to the official Codex plugin marketplace. Install
+it directly from the repository instead:
 
-- In the Codex app, click on Plugins in the sidebar.
-- You should see `Superpowers` in the Coding section.
-- Click the `+` next to Superpowers and follow the prompts.
+```bash
+codex plugin install https://github.com/mattbran87/superfunk
+```
 
 ### Codex CLI
 
-Superpowers is available via the [official Codex plugin marketplace](https://github.com/openai/plugins).
+This fork isn't published to the official Codex plugin marketplace. Install
+it directly from the repository instead:
 
-- Open the plugin search interface:
-
-  ```bash
-  /plugins
-  ```
-
-- Search for Superpowers:
-
-  ```bash
-  superpowers
-  ```
-
-- Select `Install Plugin`.
+```bash
+codex plugin install https://github.com/mattbran87/superfunk
+```
 
 ### Cursor
 
-- In Cursor Agent chat, install from marketplace:
+- In Cursor Agent chat, install from this repository:
 
   ```text
-  /add-plugin superpowers
+  /add-plugin https://github.com/mattbran87/superfunk
   ```
-
-- Or search for "superpowers" in the plugin marketplace.
 
 ### Factory Droid
 
 - Register the marketplace:
 
   ```bash
-  droid plugin marketplace add https://github.com/obra/superpowers
+  droid plugin marketplace add https://github.com/mattbran87/superfunk
   ```
 
 - Install the plugin:
 
   ```bash
-  droid plugin install superpowers@superpowers
+  droid plugin install superfunk@superfunk
   ```
 
 ### Gemini CLI
@@ -121,13 +106,13 @@ Superpowers is available via the [official Codex plugin marketplace](https://git
 - Install the extension:
 
   ```bash
-  gemini extensions install https://github.com/obra/superpowers
+  gemini extensions install https://github.com/mattbran87/superfunk
   ```
 
 - Update later:
 
   ```bash
-  gemini extensions update superpowers
+  gemini extensions update superfunk
   ```
 
 ### GitHub Copilot CLI
@@ -135,63 +120,54 @@ Superpowers is available via the [official Codex plugin marketplace](https://git
 - Register the marketplace:
 
   ```bash
-  copilot plugin marketplace add obra/superpowers-marketplace
+  copilot plugin marketplace add mattbran87/superfunk
   ```
 
 - Install the plugin:
 
   ```bash
-  copilot plugin install superpowers@superpowers-marketplace
+  copilot plugin install superfunk@superfunk
   ```
 
 ### Kimi Code
 
-Superpowers is available in Kimi Code's plugin marketplace.
+This fork isn't published to Kimi Code's plugin marketplace. Install it
+directly from the repository instead:
 
-- Open Kimi Code's plugin manager:
-
-  ```text
-  /plugins
-  ```
-
-- Go to `Marketplace` > `Superpowers` and install it.
-
-- Or install directly from this repository:
-
-  ```text
-  /plugins install https://github.com/obra/superpowers
-  ```
+```text
+/plugins install https://github.com/mattbran87/superfunk
+```
 
 - Detailed docs: [docs/README.kimi.md](docs/README.kimi.md)
 
 ### OpenCode
 
-OpenCode uses its own plugin install; install Superpowers separately even if you
+OpenCode uses its own plugin install; install Superfunk separately even if you
 already use it in another harness.
 
 - Tell OpenCode:
 
   ```
-  Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+  Fetch and follow instructions from https://raw.githubusercontent.com/mattbran87/superfunk/refs/heads/main/.opencode/INSTALL.md
   ```
 
 - Detailed docs: [docs/README.opencode.md](docs/README.opencode.md)
 
 ### Pi
 
-Install Superpowers as a Pi package from this repository:
+Install Superfunk as a Pi package from this repository:
 
 ```bash
-pi install git:github.com/obra/superpowers
+pi install git:github.com/mattbran87/superfunk
 ```
 
 For local development, run Pi with this checkout loaded as a temporary package:
 
 ```bash
-pi -e /path/to/superpowers
+pi -e /path/to/superfunk
 ```
 
-The Pi package loads the Superpowers skills and a small extension that injects the `using-superpowers` bootstrap at session startup and again after compaction. Pi has native skills, so no compatibility `Skill` tool is required. Subagent and task-list tools remain optional Pi companion packages.
+The Pi package loads the Superfunk skills and a small extension that injects the `using-superpowers` bootstrap at session startup and again after compaction. Pi has native skills, so no compatibility `Skill` tool is required. Subagent and task-list tools remain optional Pi companion packages.
 
 ## The Basic Workflow
 
