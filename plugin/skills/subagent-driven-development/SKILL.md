@@ -73,7 +73,10 @@ digraph process {
     "More tasks remain?" [shape=diamond];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [shape=box];
     "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" [shape=box];
-    "Final review clean: delete this plan's workspace" [shape=box];
+    "Final review clean" [shape=box];
+    "Finish: spec Status flip, tracker update, Recommendation checkbox, notes.md gate" [shape=box];
+    "Finish: Lessons-learned, concept-index, bug-tracking, documentation check" [shape=box];
+    "Delete this plan's workspace" [shape=box];
     "Use superfunk:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Setup: worktree, ledger check, read plan, pre-flight review" -> "Dispatch implementer subagent (./implementer-prompt.md)";
@@ -102,8 +105,11 @@ digraph process {
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [label="no"];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" -> "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals";
-    "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" -> "Final review clean: delete this plan's workspace";
-    "Final review clean: delete this plan's workspace" -> "Use superfunk:finishing-a-development-branch";
+    "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" -> "Final review clean";
+    "Final review clean" -> "Finish: spec Status flip, tracker update, Recommendation checkbox, notes.md gate";
+    "Finish: spec Status flip, tracker update, Recommendation checkbox, notes.md gate" -> "Finish: Lessons-learned, concept-index, bug-tracking, documentation check";
+    "Finish: Lessons-learned, concept-index, bug-tracking, documentation check" -> "Delete this plan's workspace";
+    "Delete this plan's workspace" -> "Use superfunk:finishing-a-development-branch";
 }
 ```
 
