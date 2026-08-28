@@ -1,7 +1,7 @@
 # Superfunk Rebrand — Design
 
 **Date:** 2026-08-28
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** Yes
 
 ## Context
