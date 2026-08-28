@@ -1,7 +1,7 @@
 # Process Review Recommendations, Batch 3 — Design
 
 **Date:** 2026-08-28
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** No
 
 ## Context
