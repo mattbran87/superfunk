@@ -1,14 +1,14 @@
 {
-  "name": "superpowers",
+  "name": "superfunk",
   "version": "6.2.0",
   "description": "An agentic skills framework & software development methodology that works: planning, TDD, debugging, and collaboration workflows.",
   "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com",
-    "url": "https://github.com/obra"
+    "name": "Matthew Brandenburg",
+    "email": "matt.bran87@gmail.com",
+    "url": "https://github.com/mattbran87"
   },
-  "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "homepage": "https://github.com/mattbran87/superfunk",
+  "repository": "https://github.com/mattbran87/superfunk",
   "license": "MIT",
   "keywords": [
     "brainstorming",
@@ -23,10 +23,10 @@
   "skills": "./skills/",
   "hooks": {},
   "interface": {
-    "displayName": "Superpowers",
+    "displayName": "Superfunk",
     "shortDescription": "Planning, TDD, debugging, and delivery workflows for coding agents",
     "longDescription": "Use Superpowers to guide agent work through brainstorming, implementation planning, test-driven development, systematic debugging, parallel execution, code review, and finish-the-branch workflows.",
-    "developerName": "Jesse Vincent",
+    "developerName": "Matthew Brandenburg",
     "category": "Developer Tools",
     "capabilities": [
       "Interactive",
@@ -37,7 +37,7 @@
       "I've got an idea for something I'd like to build.",
       "Let's add a feature to this project."
     ],
-    "websiteURL": "https://github.com/obra/superpowers",
+    "websiteURL": "https://github.com/mattbran87/superfunk",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
     "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
     "brandColor": "#F59E0B",
