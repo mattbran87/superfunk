@@ -217,6 +217,12 @@ contradict, and this plan traces to a design spec, add one sentence
 to that spec's Deferred or Consequences section explaining why the
 checked file(s) needed no change.
 
+**9. Worked-example currency:** Does any task add, remove, or reorder a
+step in a documented multi-step process (e.g., Finish's bookkeeping
+sequence, the fix loop)? If so, check whether a worked example
+elsewhere in the same file demonstrates that process. If it does,
+update it to reflect the change.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
