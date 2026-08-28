@@ -240,8 +240,8 @@ Expected: text matching the Decision block's item 6 exactly.
 Run: `grep -c "Final review clean: delete this plan's workspace" plugin/skills/subagent-driven-development/SKILL.md`
 Expected: `0`
 
-Run: `grep -n "digraph process" -A 60 plugin/skills/subagent-driven-development/SKILL.md | grep "Finish:"`
-Expected: 5 matches — the same 5 lines Task 3 Step 4 verifies, all inside the `digraph process` block specifically (not the prose Example Workflow further down the file, which this `-A 60` window doesn't reach).
+Run: `grep -n "digraph process" -A 65 plugin/skills/subagent-driven-development/SKILL.md | grep "Finish:"`
+Expected: 5 matches — the same 5 lines Task 3 Step 4 verifies, all inside the `digraph process` block specifically (not the prose Example Workflow further down the file, which this window doesn't reach). The block spans lines 48–113 (65 lines) after this task's edit — confirmed via `grep -n "digraph process\|^}"` — so `-A 60` undercounts by cutting off before the block's closing brace; `-A 65` is the verified-sufficient window.
 
 - [ ] **Step 4: Verify Falsifiable Criterion 4 — total Finish: count**
 
