@@ -10,3 +10,6 @@ Shipped as planned; exact text match confirmed against both Decision blocks, all
 
 ## Task 2: Add Self-Review item 9 to writing-plans
 Shipped as planned; exact text match confirmed, grep checks passed. Diverged briefly: my own commit message misattributed the originating final review to the wrong sub-project ("cross-section-mechanism-consistency" instead of "bug-tracking") — caught on self-review before pushing, fixed via commit --amend, logged to notes.md per this session's own newly-widened direct-implementation gate. No further follow-ups.
+
+## Task 3: Live trial for Self-Review item 9
+Shipped as planned; the trial correctly triggered item 9, precisely located the matching worked example, and proposed a concrete, correctly-formatted update matching the example's existing bracket-line style. Independently confirmed the dry run stayed dry — no edits landed in the fixture. The trial also surfaced an unprompted, genuinely useful observation outside item 9's own scope (the Process section's "these two checks" preamble also goes stale once a third step exists) — correctly self-classified as task-scope correctness, not an item 9 finding. No divergence, no follow-ups.
