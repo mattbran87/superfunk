@@ -13,3 +13,6 @@ Shipped as planned; exact content match, both grep checks passed. Confirmed no s
 
 ## Task 3: Add the User-Facing field requirement to brainstorming
 Shipped as planned; exact text match confirmed against the Decision block, grep checks passed. No divergence.
+
+## Task 4: Wire the Finish-time check into subagent-driven-development
+Shipped as planned; both edits (the Finish paragraph and the Example Workflow bracket line) confirmed exact against the Decision block. No divergence.
