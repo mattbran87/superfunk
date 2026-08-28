@@ -223,6 +223,20 @@ sequence, the fix loop)? If so, check whether a worked example
 elsewhere in the same file demonstrates that process. If it does,
 update it to reflect the change.
 
+**10. Verified numeric expectations:** For each step whose `Expected:`
+value states a specific count (a test count, a grep match count, a
+line count), confirm you ran the actual command during plan-writing
+and copied its real output — not an estimate, and not carried over
+from an earlier draft after other steps changed. An estimated count
+nobody actually ran counts as a plan failure, the same as a
+placeholder.
+
+**11. Template compliance:** Does this plan's own document header
+match every element the Plan Document Header section above requires
+(Goal, Architecture, Tech Stack, Global Constraints)? A required
+section silently missing from this plan's own header counts as the
+same class of gap as a missing task for a spec requirement.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
