@@ -71,6 +71,7 @@ digraph process {
 
     "Setup: worktree, ledger check, read plan, pre-flight review" [shape=box];
     "More tasks remain?" [shape=diamond];
+    "Pre-final-review doc check: check_docs.py, draft if ACTION_NEEDED" [shape=box];
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [shape=box];
     "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" [shape=box];
     "Final review clean" [shape=box];
@@ -103,7 +104,8 @@ digraph process {
     "Park findings in ledger with rulings" -> "Append ledger completion + outcomes entry, mark todo complete";
     "Append ledger completion + outcomes entry, mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
-    "More tasks remain?" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" [label="no"];
+    "More tasks remain?" -> "Pre-final-review doc check: check_docs.py, draft if ACTION_NEEDED" [label="no"];
+    "Pre-final-review doc check: check_docs.py, draft if ACTION_NEEDED" -> "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)";
     "Dispatch final code reviewer (../requesting-code-review/code-reviewer.md)" -> "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals";
     "Final findings? ONE fix dispatch, one scoped re-review, adjudicate residuals" -> "Final review clean";
     "Final review clean" -> "Finish: spec Status flip, tracker update, Recommendation checkbox, notes.md gate";
@@ -504,6 +506,20 @@ parked-with-ruling at the cap.
 
 ## Final Review
 
+Before dispatching the final reviewer, check whether this plan traces to
+a design spec (named in the plan's Goal line or a task's commit trailer,
+e.g. "Part of docs/superpowers/specs/..."). If it does, run `python
+plugin/skills/documentation/scripts/check_docs.py <spec-file>
+<merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or `ALREADY_UPDATED`:
+continue to dispatch below — the feature task already handled this, per
+writing-plans' User-Facing Documentation Timing requirement.
+`ACTION_NEEDED`: invoke superfunk:documentation's Step 2 to draft the
+README/CHANGELOG update from the printed spec content, commit it, and
+only then dispatch the final reviewer. No design spec: skip this check
+entirely. Running this before the final reviewer sees the branch means a
+gap the plan's own task missed still gets caught before the most
+expensive review runs, not after.
+
 The final whole-branch review gets a package too: run
 `scripts/review-package PLAN_FILE MERGE_BASE HEAD` (MERGE_BASE = the commit the
 branch started from, e.g. `git merge-base main HEAD`) and include the
@@ -611,14 +627,6 @@ Step 2 to record it durably in `docs/bugs/` before its only record —
 the ledger text itself — disappears with the workspace below. No
 real-and-deferred parked findings: skip this step.
 
-If this plan traces to a design spec (per the Status-flip check
-above), run `python plugin/skills/documentation/scripts/check_docs.py
-<spec-file> <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or
-`ALREADY_UPDATED`: skip the rest of this step. `ACTION_NEEDED`:
-invoke superfunk:documentation's Step 2 to draft the README/CHANGELOG
-update from the printed spec content. No design spec: skip this step
-entirely — nothing to read a `User-Facing` field from.
-
 Then delete this plan's workspace
 (`rm -rf <workspace>`) — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
@@ -705,6 +713,7 @@ Re-reviewer: Missing progress reporting — ADDRESSED (src/recovery.js:41).
 ...
 
 [After all tasks]
+[Pre-final-review doc check: this plan's spec has no User-Facing field set to Yes -- check skipped]
 [Run review-package PLAN_FILE MERGE_BASE HEAD; dispatch final code-reviewer, most capable model]
 Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 
@@ -715,7 +724,6 @@ Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 [Finish: captured a Lesson in lessons-learned.md; no pattern promoted, one instance so far]
 [Finish: no concept-index entry needed -- no skill/feature/significant directory created]
 [Finish: no real-and-deferred parked findings -- bug-tracking step skipped]
-[Finish: this plan's spec has no User-Facing field set to Yes -- documentation step skipped]
 
 [Delete this plan's workspace — the record now lives in git]
 
