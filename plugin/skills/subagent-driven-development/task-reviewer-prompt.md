@@ -124,13 +124,18 @@ Subagent (general-purpose):
       sizes — focus on what this change contributed.)
 
     **Project conventions:**
-    - Read `docs/ai-code-guidelines.md` and check whether the diff
-      follows it — in particular: naming, explicit-over-implicit, flat
-      control flow, dead code, side-effect isolation, why-comments,
-      hazard signal words, signal clarity, behavioral test naming.
-    - Read `docs/code-standards.md` and check whether the diff and its
-      commit messages follow it — in particular: file naming, commit
-      message format, and the severity-trailer rule for risky changes.
+    - Read `docs/ai-code-guidelines.md`, if it exists, and check
+      whether the diff follows it — in particular: naming,
+      explicit-over-implicit, flat control flow, dead code,
+      side-effect isolation, why-comments, hazard signal words, signal
+      clarity, behavioral test naming. File missing: skip this check —
+      the categories above still apply as general best practice, but
+      cite specific evidence only from a document you actually read.
+    - Read `docs/code-standards.md`, if it exists, and check whether
+      the diff and its commit messages follow it — in particular: file
+      naming, commit message format, and the severity-trailer rule for
+      risky changes. File missing: skip this check, for the same
+      reason.
     - A violation is a Code Quality finding like any other, cited by
       file:line.
 

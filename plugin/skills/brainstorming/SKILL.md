@@ -109,7 +109,7 @@ digraph brainstorming {
 
 - Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
-- Check the written spec against `docs/code-standards.md`'s Spec File Conventions section before committing — self-contained (readable without external context beyond `CLAUDE.md`), testable acceptance criteria (observable and binary for Falsifiable Criteria, or quoted evidence from disposable scratch trials for a Testing section). That section's Status-line and template rules target feature-tracking's `spec.md`, not this design-spec system — the next bullet's `Status` vocabulary governs here instead.
+- Check the written spec against `docs/code-standards.md`'s Spec File Conventions section before committing, if that file exists — self-contained (readable without external context beyond `CLAUDE.md`), testable acceptance criteria (observable and binary for Falsifiable Criteria, or quoted evidence from disposable scratch trials for a Testing section). That section's Status-line and template rules target feature-tracking's `spec.md`, not this design-spec system — the next bullet's `Status` vocabulary governs here instead. No `docs/code-standards.md` yet: apply the two named criteria directly, without the file.
 - Give it a `Status` line: `Proposed`, `Approved` (not yet implemented), or `Superseded by <filename>`. Never a free-text description — `subagent-driven-development`'s Finish step is what advances `Approved` to `Shipped` once the work actually ships.
 - Give it a `User-Facing:` field: `Yes` or `No` — decided during
   brainstorming, not inferred later. `Yes` means a project's README

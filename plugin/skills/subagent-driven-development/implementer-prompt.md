@@ -16,11 +16,12 @@ Subagent (general-purpose):
     It contains the full task text from the plan.
 
     Also read `docs/ai-code-guidelines.md` and `docs/code-standards.md`
-    before you begin — together they hold this project's code
-    conventions (naming, control flow, dead code, side effects,
-    comments, tests), which apply as you write, and file/commit
-    conventions (file naming, git message format), which apply when
-    you commit.
+    before you begin, if they exist — together they hold this
+    project's code conventions (naming, control flow, dead code, side
+    effects, comments, tests), which apply as you write, and
+    file/commit conventions (file naming, git message format), which
+    apply when you commit. Either file missing: skip reading it and
+    follow the category list above as general best practice instead.
 
     ## Context
 
