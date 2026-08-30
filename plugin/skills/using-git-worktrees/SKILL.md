@@ -54,6 +54,21 @@ The user has asked for an isolated workspace (Step 0 consent). Do you already ha
 
 Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
 
+**Safety Verification (before Step 2):** Determine where the native
+tool placed the worktree — its own report, or `git worktree list` run
+from the main repo. If that path sits inside the main repository's
+working tree (its path starts with `git rev-parse --show-toplevel`'s
+output from the main repo), verify it's ignored:
+`git check-ignore -q <path>`. If NOT ignored, add an ignore rule for it
+to `.gitignore` and commit the change, from the main repo, before
+proceeding to Step 2. If the native tool placed the worktree entirely
+outside the main repository's working tree, skip this check — no
+ignore rule applies. A native tool's directory choice needs the same
+verification a manually-chosen one already gets in Step 1b below;
+without it, a second full checkout (and anything the worktree installs,
+like a `.venv/`) sits one `git add -A` away from landing in the
+repository it exists to isolate.
+
 Only proceed to Step 1b if you have no native worktree tool available.
 
 ### 1b. Git Worktree Fallback
