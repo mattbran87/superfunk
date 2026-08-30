@@ -1,7 +1,7 @@
 # Dangling Doc References and Convention Bootstrap — Design
 
 **Date:** 2026-08-30
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** No
 
 ## Context
