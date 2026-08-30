@@ -150,6 +150,15 @@ spec. See docs/patterns/verify-plan-commands-against-real-content.md
 for the specific failure shapes a plausible-looking prediction has
 actually hit before — checking it against a known list beats
 re-discovering the same trap.
+7. **Quote and source-freshness verification:** Does the spec cite an
+external or previously-read document's content, or present anything
+in quotation marks? If so, grep the source for the exact quoted
+phrase, and re-read the full document fresh if it describes state (a
+report, a tracker, a shipped file) that might have changed since you
+last read it — not just what you recall it saying. See
+docs/patterns/re-verify-quotes-against-source-before-citing.md for
+the specific failure shapes a plausible-looking citation has actually
+hit before.
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
