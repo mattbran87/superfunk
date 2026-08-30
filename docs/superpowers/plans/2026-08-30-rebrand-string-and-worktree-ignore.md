@@ -73,10 +73,15 @@ session_context="<EXTREMELY_IMPORTANT>\nYou have superfunk.\n\n**Below is the fu
 
 Leave lines 10, 11, and 26 (the `using_superpowers_content`/`using_superpowers_escaped` variable names and the `skills/using-superpowers/SKILL.md` path) and line 37 (the upstream issue link) untouched — they reference the unrenamed skill directory and an upstream attribution link, not this fork's own identity.
 
-- [ ] **Step 4: Verify the occurrence count and script syntax**
+- [ ] **Step 4: Verify the bad strings are gone and the fixed strings are present**
 
-Run: `grep -c "superpowers" plugin/hooks/session-start`
-Expected: `4`
+A bare `grep -c "superpowers"` can't verify this fix: the retained `using-superpowers` skill name (lines 10, 11, 26, and now line 27's own `superfunk:using-superpowers`) contains "superpowers" as a substring, so that count can never reach a clean number this task's edit controls. Verify the specific strings instead.
+
+Run: `grep -c "You have superpowers\|'superpowers:using-superpowers'\|SessionStart hook for superpowers plugin" plugin/hooks/session-start`
+Expected: `0`
+
+Run: `grep -c "You have superfunk\|'superfunk:using-superpowers'\|SessionStart hook for superfunk plugin" plugin/hooks/session-start`
+Expected: `2` (line 2's comment, line 27's combined string — verified by running both checks against the real edited file, not assumed)
 
 Run: `bash -n plugin/hooks/session-start`
 Expected: no output (valid bash syntax)
@@ -162,8 +167,11 @@ git commit -m "fix(skills): add Safety Verification to using-git-worktrees' nati
 
 - [ ] **Step 1: Verify Falsifiable Criterion 1 — session-start**
 
+Run: `grep -c "You have superpowers\|'superpowers:using-superpowers'\|SessionStart hook for superpowers plugin" plugin/hooks/session-start`
+Expected: `0`
+
 Run: `grep -n "superpowers" plugin/hooks/session-start`
-Expected: exactly 4 matches, at the unchanged lines (skill-directory references and the upstream issue link) — no match reading "SessionStart hook for superpowers plugin" or "You have superpowers."
+Expected: 5 matches (lines 10, 11, 26, 27, 37) — all legitimate: lines 10/11/26 reference the unrenamed `using-superpowers` skill directory, line 27 contains that same substring inside its now-correct `superfunk:using-superpowers`, and line 37 links to an upstream issue. A bare count of this pattern can never reach a clean round number this task controls, since the retained skill name always contributes matches — the check above is the one that actually verifies the fix.
 
 - [ ] **Step 2: Verify Falsifiable Criterion 2 — using-git-worktrees**
 
