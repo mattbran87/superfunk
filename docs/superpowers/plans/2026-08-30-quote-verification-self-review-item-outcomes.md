@@ -7,3 +7,6 @@ before Finish deletes the plan's workspace (and its full report files).
 <!-- entries below this line -->
 ## Task 1: Add Spec Self-Review item 7
 Shipped as planned; exact text match confirmed, grep check passed (1 match), baseline verified at 0 before the edit. Implemented directly (subagent spawn limit still exhausted). No divergence.
+
+## Task 2: Check off the Recommendation and verify
+Shipped as planned; checkbox landed with its exact disposition note, grep check passed (1 match), baseline verified at 0 before the edit. Implemented directly. No divergence.
