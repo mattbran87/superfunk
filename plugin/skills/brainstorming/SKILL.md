@@ -67,6 +67,18 @@ digraph brainstorming {
 - Check out the current project state first (files, docs, recent commits). For each directory you examine, attempt to read its `.context.md` — skip if none exists — it holds the directory's purpose, key design decisions, and what to be careful about (per `docs/ai-code-guidelines.md`'s Per-Directory Context Files section). Note which directories you checked when you present findings, so the check stays visible instead of silently not happening.
 - Check `docs/superpowers/process-reviews/tracker.md`, if it exists, for two independent conditions: a review due (3+ specs shipped since the last review, never run), or an open Recommendation in the last review file (an unchecked `- [ ]` item in `docs/superpowers/process-reviews/review-after-*.md`). Surface both, if either applies. Ask your human partner to act on each, or explicitly defer it, before continuing to clarifying questions. A deferred Recommendation gets a `(deferred: <reason>)` note beside the item in the review file. A deferred review-due check gets its note in the tracker instead, since it has no per-item home. No tracker file yet: skip this check.
 - Read `docs/lessons-learned.md` in full, and run `Glob docs/patterns/*.md`, reading any pattern file relevant to this idea's domain — both before any clarifying question. Note which patterns you read, or that none applied, when you present findings, so the check stays visible instead of silently not happening. No `docs/lessons-learned.md` yet: skip this check.
+- Check for a `CLAUDE.md`, `AGENTS.md`, or `GEMINI.md` at the project
+  root, and for `docs/ai-code-guidelines.md`. If either is missing,
+  offer once (ask-don't-force, never blocking): "This project has no
+  [instructions file for AI agents / coding conventions doc] yet.
+  Want me to scaffold a starter version from a few quick questions
+  before we continue?" If accepted, ask up to three questions, one at
+  a time: the project's language/stack (skip if already evident from
+  existing files), any coding conventions already followed informally,
+  and anything future sessions should know upfront (build/test
+  commands, architecture notes). Draft whichever file(s) were missing
+  from the answers, commit them, then continue. If declined, or both
+  files already exist, proceed without further mention.
 - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
 - If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
 - For appropriately-scoped projects, ask questions one at a time to refine the idea
