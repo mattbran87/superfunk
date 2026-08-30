@@ -10,3 +10,6 @@ Shipped as planned; the inlined text matched exactly, the old file got deleted. 
 
 ## Task 2: Guard the three unguarded doc-read sites
 Shipped as planned; all three guards matched exactly, all three grep checks passed at the predicted values (1, 2, 1), with baselines verified at 0 before the edits. Implemented directly. No divergence.
+
+## Task 3: Add the convention-bootstrap bullet to brainstorming
+Shipped as planned; exact text match confirmed, grep check passed (1 match). Implemented directly. No divergence.
