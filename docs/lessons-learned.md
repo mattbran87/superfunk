@@ -56,7 +56,15 @@ Most of a design spec got written from an earlier read of the external trial fin
 
 **Tags:** none yet — tags deferred.
 
-*No pattern promoted — a single instance so far, and the underlying cause (an external document getting corrected after this session's first read) is closer to an environmental fluke than a recurring design flaw; revisit if it recurs.*
+*Pattern promoted — see docs/patterns/re-verify-quotes-against-source-before-citing.md — the same underlying risk (citing a source from memory instead of a fresh read) recurred in the very next sub-project, this time as two fabricated "direct quotes," past the "revisit if it recurs" threshold this entry itself set.*
+
+### A quoted "direct quote" needs the same verification as a numeric claim (2026-08-30-fix-wave-regression-amendment)
+
+A design spec's Context section presented two sentences in quotation marks, attributed to a specific source file, both reconstructed from memory of an earlier read rather than copied from the file. One substituted "cap"/"stop" for the real text's "rule"/"prevent" — a paraphrase close enough to read as faithful. The other didn't exist verbatim anywhere in the file; it was invented from the general shape of a nearby paragraph. Grepping the source file for the quoted phrases before finalizing found no match for either, which is what surfaced the problem — a quote that can't be found by searching for its own words was never really a quote. **Rule:** before presenting anything inside quotation marks and attributed to a specific source, grep that source for the exact phrase — the same verification a numeric claim already requires, extended to prose. A quotation mark is a stronger claim than an estimate; it asserts the words themselves came from somewhere, not just a close reasonable summary.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/re-verify-quotes-against-source-before-citing.md — filed alongside the sibling entry above as the same failure mode applied to prose rather than a document-level "has this changed" check.*
 
 ## Review
 
