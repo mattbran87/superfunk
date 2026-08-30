@@ -258,6 +258,25 @@ include its own documentation step, per the section above? A plan that
 defers this to a separate task or relies on Finish to catch it repeats
 the same class of gap this item exists to close.
 
+**13. Hostile-input pass:** For each code block a task specifies, name
+the input class it does not handle — metacharacters in user-supplied
+text, a value that already exists, a discarded return value, an
+operation that cannot be cancelled, or any other input the block's
+own logic doesn't account for. Either handle it in the plan, or
+record it as an accepted limitation in the spec's Consequences
+section. A code block with an unexamined input class counts as a plan
+failure, the same as a missing test.
+
+**14. Stale-workaround grep:** If any task removes a limitation (a
+missing command, an unsupported case, a manual step), write down the
+exact phrase the tool used to describe that limitation — the error
+message, docstring, or README text a user would have hit. Grep the
+codebase for that phrase's distinctive words — not the new feature's
+name, which limitation-era text never mentions — per
+docs/patterns/hunt-the-workaround-not-the-feature.md. List every hit
+as a task requirement: each one either needs updating to reflect the
+new capability, or needs removing if it no longer applies.
+
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Execution Handoff
