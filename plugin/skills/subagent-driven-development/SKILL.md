@@ -598,8 +598,13 @@ Lesson express a prospective rule that applies across many future
 situations?" A Lesson promotes to a Pattern when it answers that
 question yes, or when the same failure mode recurs a second time —
 whichever comes first. On promotion, write `docs/patterns/<slug>.md`
-from `docs/patterns/pattern-template.md`, and add `*Pattern promoted
-— see docs/patterns/<slug>.md*` after the entry. Otherwise add `*No
+with this structure: a `# <Pattern Name>` title and one-line
+description, then `## Context` (what situation makes this pattern
+apply), `## Pattern` (the rule itself, as an imperative instruction),
+`## Example` (one or more worked examples), and `## Originating
+lessons` (one bullet per lesson: `- "<title>" (<spec-slug>)`). Add
+`*Pattern promoted — see docs/patterns/<slug>.md*` after the entry.
+Otherwise add `*No
 pattern promoted — <one-line reason>.*` after the entry. Commit both
 the Lesson (and, if written, the Pattern) in the same commit as the
 tracker update above, or their own commit if the tracker didn't
