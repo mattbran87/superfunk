@@ -241,7 +241,10 @@ line count), confirm you ran the actual command during plan-writing
 and copied its real output — not an estimate, and not carried over
 from an earlier draft after other steps changed. An estimated count
 nobody actually ran counts as a plan failure, the same as a
-placeholder.
+placeholder. See docs/patterns/verify-plan-commands-against-real-content.md
+for the specific failure shapes a plausible-looking prediction has
+actually hit before — checking it against a known list beats
+re-discovering the same trap.
 
 **11. Template compliance:** Does this plan's own document header
 match every element the Plan Document Header section above requires

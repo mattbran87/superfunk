@@ -134,7 +134,10 @@ After writing the spec document, look at it with fresh eyes:
 section state a specific count (occurrences, files, lines) about the
 existing codebase? If so, confirm you ran the actual command and
 copied its real output — not an estimate — before finalizing the
-spec.
+spec. See docs/patterns/verify-plan-commands-against-real-content.md
+for the specific failure shapes a plausible-looking prediction has
+actually hit before — checking it against a known list beats
+re-discovering the same trap.
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
