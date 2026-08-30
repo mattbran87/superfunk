@@ -42,6 +42,14 @@ The prior entry deferred promoting this theme to a Pattern, pending recurrence. 
 
 *Pattern promoted — see docs/patterns/verify-plan-commands-against-real-content.md — this is the third and fourth instance of the same self-referential shape (documentation, batch-3 x3, this sub-project x2 — six total), past any reasonable threshold for "wait and see."*
 
+### A search pattern can match a substring that's legitimately retained elsewhere (2026-08-30-rebrand-string-and-worktree-ignore)
+
+A plan verifying a rebrand fix predicted `grep -c "superpowers"` on `session-start` would drop from 6 to 4 after fixing two lines. It only dropped to 5: the retained `using-superpowers` skill name is itself a substring match for "superpowers," including inside the now-correctly-fixed line's own `superfunk:using-superpowers` — so the bare substring count could never reach any clean target this fix controls. The actual fix was correct throughout; only the verification method was flawed. **Rule:** when a fix touches one occurrence of a string that's also a substring of something deliberately unchanged nearby, verify by checking the specific bad string's absence and the specific good string's presence — not by counting the shared substring, which can never isolate the two.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — folded into the existing `docs/patterns/verify-plan-commands-against-real-content.md` as a further instance of "verify the exact command against real content," not a new distinct rule; added to that pattern's Example section.*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)

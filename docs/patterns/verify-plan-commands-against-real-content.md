@@ -14,9 +14,11 @@ Before finalizing any plan step with a predicted count or a grep-based verificat
 
 - A plan predicted `grep -c "User-Facing Documentation Timing"` would return 2, assuming a new Self-Review item's text would repeat a section's exact capitalized heading phrase. The item's actual text used different capitalization ("User-facing documentation timing"), a distinct case-sensitive string — the real count was 1.
 - A plan's verification step used `grep -c "^## Mutation Check"` against a file that wraps its entire reviewer template in an indented code fence. Every heading in that file sits four spaces in, never at column 0, so the anchored pattern returned 0 regardless of whether the new section existed — a structurally guaranteed false negative, not a miscounted true positive.
+- A plan verifying a rebrand fix predicted a bare `grep -c "superpowers"` would drop to a specific clean number, not accounting for a deliberately-retained skill name (`using-superpowers`) that contains the same substring — the count could never reach that number regardless of whether the fix was correct, because the search pattern couldn't distinguish "the bad old string" from "a legitimate substring occurrence nearby."
 
 ## Originating lessons
 
 - "A tool's passing fixture-based unit tests don't prove it works against a real project's actual paths and text" (2026-08-28-superfunk-rebrand)
 - "Writing a check for unverified numeric claims doesn't exempt the document writing it" (2026-08-28-process-review-recommendations-batch-3)
 - "The same self-referential blind spot recurred twice more, in two new shapes" (2026-08-30-doc-timing-and-mutation-check)
+- "A search pattern can match a substring that's legitimately retained elsewhere" (2026-08-30-rebrand-string-and-worktree-ignore)
