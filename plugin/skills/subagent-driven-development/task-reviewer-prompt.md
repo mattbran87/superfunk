@@ -75,6 +75,19 @@ Subagent (general-purpose):
     Warnings or other noise in the implementer's reported test output are
     findings — test output should be pristine.
 
+    ## Mutation Check
+
+    For each new test in this diff that asserts a load-bearing property — an
+    edge case, an invariant, a boundary condition, or any assertion the plan
+    or spec treats as a correctness guarantee, not a trivial "returns X"
+    check — revert the specific implementation line(s) the test claims to
+    guard, run that one test, confirm it fails (goes red), then restore the
+    code to its exact prior state. A test that stays green after reverting
+    its guarded line cannot actually catch the regression it claims to
+    guard against — report it as an Important finding, not a footnote.
+    Skip this check only for a test with no clear guarded line to revert (a
+    pure smoke test, for example) and say so.
+
     ## Part 1: Spec Compliance
 
     Compare the diff against What Was Requested:
@@ -169,6 +182,12 @@ Subagent (general-purpose):
 
     ### Strengths
     [What's well done? Be specific.]
+
+    ### Mutation Check
+
+    For each load-bearing test mutated: file:line, the line reverted, and
+    whether the test went red (✅) or stayed green (❌ — filed as an
+    Important finding above).
 
     ### Issues
 
