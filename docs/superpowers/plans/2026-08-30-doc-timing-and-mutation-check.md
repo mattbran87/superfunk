@@ -302,8 +302,8 @@ git commit -m "fix(skills): move documentation check from Finish to a pre-final-
 
 - [ ] **Step 1: Confirm the current Tests / Part 1 boundary**
 
-Run: `grep -n "^## Tests$\|^## Part 1: Spec Compliance" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
-Expected: two matches, confirming where the new section gets inserted between them.
+Run: `grep -n "## Tests$\|## Part 1: Spec Compliance" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
+Expected: two matches, confirming where the new section gets inserted between them. (Unanchored at the start: this file's headings sit inside an indented code-fence template, 4 spaces in, so a `^##`-anchored pattern returns nothing — confirmed by running the anchored version first and getting zero matches before switching to this unanchored form.)
 
 - [ ] **Step 2: Insert the Mutation Check section**
 
@@ -360,8 +360,8 @@ To:
 
 - [ ] **Step 4: Verify both additions landed**
 
-Run: `grep -c "^## Mutation Check\|^### Mutation Check" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
-Expected: `2`
+Run: `grep -c "Mutation Check" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
+Expected: `2` — both headings sit inside an indented code-fence template (4 spaces), so an anchored `^##`/`^###` pattern doesn't match; verified by running the anchored version first (got 0, unexpectedly) and the unanchored version against the real file before finalizing this check.
 
 - [ ] **Step 5: Commit**
 
@@ -404,8 +404,8 @@ Expected: every `Pre-final-review doc check` line number appears before its corr
 
 - [ ] **Step 4: Verify Falsifiable Criterion 4 — task-reviewer-prompt**
 
-Run: `grep -A11 "^## Mutation Check" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
-Expected: text matching the Decision block's section exactly.
+Run: `grep -A11 "## Mutation Check" plugin/skills/subagent-driven-development/task-reviewer-prompt.md`
+Expected: text matching the Decision block's section exactly (both the `##` and `###` headings, since the pattern isn't anchored and the file indents both 4 spaces inside its template code fence).
 
 - [ ] **Step 5: Verify Falsifiable Criterion 5 — live trial**
 
