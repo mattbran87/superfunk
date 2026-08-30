@@ -39,4 +39,4 @@ None rising to the 3-fix-round threshold. `pattern-template-and-convention-boots
 
 ## Recommendations
 
-- [ ] Add a Self-Review item (or extend an existing one) in `brainstorming/SKILL.md`'s Spec Self-Review, cross-referencing `docs/patterns/re-verify-quotes-against-source-before-citing.md`: before finalizing a spec, grep the cited source for any sentence presented in quotation marks, and re-read the full source fresh if it describes an external or previously-read document whose state might have changed since the last read. Addresses M1 and G1.
+- [x] Add a Self-Review item (or extend an existing one) in `brainstorming/SKILL.md`'s Spec Self-Review, cross-referencing `docs/patterns/re-verify-quotes-against-source-before-citing.md`: before finalizing a spec, grep the cited source for any sentence presented in quotation marks, and re-read the full source fresh if it describes an external or previously-read document whose state might have changed since the last read. Addresses M1 and G1. (Shipped as Spec Self-Review item 7, commit `a8589511a10ff0b5041de5a3b45f326c9a18f2a8`.)
