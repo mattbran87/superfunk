@@ -87,8 +87,8 @@ Run: `rm docs/patterns/pattern-template.md`
 Run: `grep -c "docs/patterns/pattern-template.md" plugin/skills/subagent-driven-development/SKILL.md`
 Expected: `0`
 
-Run: `grep -rc "pattern-template.md" plugin/ docs/ --include="*.md"`
-Expected: `0` (no remaining references anywhere in the repo)
+Run: `grep -rc "pattern-template.md" plugin/ --include="*.md" | grep -v ":0"`
+Expected: no output (exit 1) — every file under `plugin/` has zero references. Scoped to `plugin/` only, not the whole repo: historical specs, plans, and `notes.md` entries legitimately still mention `pattern-template.md` as a record of what happened, the same "don't rewrite history" precedent this project already applies elsewhere — a repo-wide check would incorrectly expect those to disappear too.
 
 Run: `ls docs/patterns/pattern-template.md`
 Expected: `No such file or directory` (the file no longer exists)
