@@ -50,6 +50,14 @@ A plan verifying a rebrand fix predicted `grep -c "superpowers"` on `session-sta
 
 *No pattern promoted — folded into the existing `docs/patterns/verify-plan-commands-against-real-content.md` as a further instance of "verify the exact command against real content," not a new distinct rule; added to that pattern's Example section.*
 
+### A source document can change after you've already read it once (2026-08-30-pattern-template-and-convention-bootstrap)
+
+Most of a design spec got written from an earlier read of the external trial findings report, treating its original D2/D3 finding ("the files don't exist anywhere," "the framework invented a format") as settled fact. The report carried a same-day correction, embedded in the same file, retracting both claims — the files exist in this dev repo, and nothing got improvised. The correction only surfaced because a tangential numeric claim ("25+ commits") got checked against the source text as part of routine verification, and reading enough context around the real number to fix it meant reading the correction too. Without that unrelated check, the spec would have shipped a fix for a finding that no longer described reality. **Rule:** a source document already read once, especially a living report another process might revise, needs a fresh full read immediately before building a second artifact from it — not a recall of what it said the first time.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — a single instance so far, and the underlying cause (an external document getting corrected after this session's first read) is closer to an environmental fluke than a recurring design flaw; revisit if it recurs.*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)
