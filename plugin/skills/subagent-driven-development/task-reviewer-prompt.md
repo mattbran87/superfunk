@@ -86,7 +86,13 @@ Subagent (general-purpose):
     its guarded line cannot actually catch the regression it claims to
     guard against — report it as an Important finding, not a footnote.
     Skip this check only for a test with no clear guarded line to revert (a
-    pure smoke test, for example) and say so.
+    pure smoke test, for example) and say so. A related trap: a test
+    comparing two strings with `in` (substring containment) instead of
+    `==` can look like it asserts equality while accepting anything one
+    string contains the other — if a comparison the plan or spec treats
+    as an equality guarantee uses `in`, flag it even if its own mutation
+    check passes, since containment can stay true across a mutation that
+    breaks the equality the test actually meant to pin.
 
     ## Part 1: Spec Compliance
 
