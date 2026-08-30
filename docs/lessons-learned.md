@@ -34,6 +34,14 @@ This sub-project shipped three new Self-Review items specifically to catch predi
 
 *No pattern promoted — this is a specific instance of the already-promoted `docs/patterns/validate-tools-against-real-project-data.md`-adjacent theme (verify before shipping, not after), recorded here since the target this time is a spec/plan's own numeric prose rather than a tool's runtime behavior; promote separately only if this exact self-referential shape (a mechanism-under-construction hitting the error it prevents) recurs.*
 
+### The same self-referential blind spot recurred twice more, in two new shapes (2026-08-30-doc-timing-and-mutation-check)
+
+The prior entry deferred promoting this theme to a Pattern, pending recurrence. It recurred twice in this sub-project alone: (1) a plan predicted `grep -c "User-Facing Documentation Timing"` would return 2, reasoning a new Self-Review item's text would repeat a section's exact heading phrase — it used different capitalization instead, so the real count was 1; (2) a plan's verification command used an anchored `grep -c "^## Mutation Check"` against a file that wraps its entire template in an indented code fence, so no heading ever sits at column 0 — the anchored pattern returned 0 matches every time, not a wrong count but a structurally guaranteed false negative. Both were caught by actually running the command against real file content before finalizing, not by assumption. **Rule:** verifying a plan's numeric or pattern-matching claims means running the exact command against the exact real content — not just checking the number "feels right," and not assuming a grep pattern that works on one file's structure works on another's (an anchored pattern is only as good as the assumption that the target text starts at column 0).
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — see docs/patterns/verify-plan-commands-against-real-content.md — this is the third and fourth instance of the same self-referential shape (documentation, batch-3 x3, this sub-project x2 — six total), past any reasonable threshold for "wait and see."*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)
