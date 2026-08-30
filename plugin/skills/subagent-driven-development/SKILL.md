@@ -542,7 +542,14 @@ Then run exactly one scoped re-review of the fix wave
 (`scripts/review-package PLAN_FILE FIX_BASE HEAD` over the fix range,
 [re-review-prompt.md](re-review-prompt.md)).
 Adjudicate any residual findings as in the task loop's breaker: park with
-rulings, or stop on load-bearing ones. There is no second fix wave —
+rulings, or stop on load-bearing ones — with one exception. A finding
+that's a regression the fix wave itself introduced (absent before the
+wave, not one it failed to address) gets exactly one additional scoped
+fix dispatch, scoped to that regression alone, followed by one more
+scoped re-review over that narrower range. This stays bounded by
+construction: it fires at most once, only for a defect the wave itself
+caused. Everything else follows the existing rule unchanged — there is
+no second fix wave for a finding the first wave simply failed to fix;
 residual load-bearing findings surface to your human partner when
 finishing-a-development-branch presents the options.
 
