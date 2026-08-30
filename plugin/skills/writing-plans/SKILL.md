@@ -91,6 +91,18 @@ deliverable needs them; split only where a reviewer could meaningfully
 reject one task while approving its neighbor. Each task ends with an
 independently testable deliverable.
 
+## User-Facing Documentation Timing
+
+If the spec carries `User-Facing: Yes`, the task whose deliverable adds
+or changes that user-facing surface must include its own step running
+`python plugin/skills/documentation/scripts/check_docs.py <spec-file>
+<task-base-sha> <task-head-sha>` and, if it reports `ACTION_NEEDED`,
+drafting the README/CHANGELOG update — in that same task, committed
+alongside the surface it documents. Never defer this to a separate later
+task or to Finish: a reviewer who reaches the final whole-branch review
+before the docs exist reviews a branch that contradicts its own README
+by construction.
+
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
@@ -236,6 +248,12 @@ match every element the Plan Document Header section above requires
 (Goal, Architecture, Tech Stack, Global Constraints)? A required
 section silently missing from this plan's own header counts as the
 same class of gap as a missing task for a spec requirement.
+
+**12. User-facing documentation timing:** If the spec carries
+`User-Facing: Yes`, does the task shipping the user-facing surface
+include its own documentation step, per the section above? A plan that
+defers this to a separate task or relies on Finish to catch it repeats
+the same class of gap this item exists to close.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
