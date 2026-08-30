@@ -1,7 +1,7 @@
 # Hostile-Input Pass and Stale-Workaround Grep — Design
 
 **Date:** 2026-08-30
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** No
 
 ## Context
