@@ -112,6 +112,14 @@ instruction's own wording won't reveal.
 
 ## Testing
 
+### `claude -p`'s last-message-only output can make a working fix read as broken (2026-08-30-checkpoint-priority-and-conditional-gate)
+
+A live trial asked a pending question, then sent an approval that would trigger a mandated checkpoint two turns later. The final printed message never mentioned the question — read at face value, the fix looked like it had failed the exact scenario it existed to close. Reading the real session transcript directly showed the fix worked correctly both times: the question got answered at the top of each response, before any checkpoint output, exactly as designed — `-p` had simply never printed the earlier assistant message that contained the answer, printing only the turn's final message. This is the identical "methodological trap" the original external trial's own report already documented and explicitly flagged: "read this before trusting any future trial." A trial built specifically to verify the fix for that report's findings fell into that same reporting gap anyway. **Rule:** never conclude a multi-turn `-p` trial failed from the printed output alone — read the actual `.jsonl` transcript (`~/.claude/projects/<project>/<session-id>.jsonl`) for any turn where the expected behavior might have occurred in an intermediate message `-p` didn't print.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — the underlying warning already exists, undiminished, in the original trial's own report; this is a second demonstration of the same warning going unheeded by default, not a new rule. Promote only if a future trial repeats this exact mistake a third time without the report's warning already being read first.*
+
 ### A --plugin-dir trial fixture needs the real convention docs it's testing copied in, not just the scratch structure (2026-08-21-hazard-signal-words)
 
 A live trial dispatched a scratch session to read `docs/ai-code-guidelines.md`
