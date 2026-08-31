@@ -60,3 +60,10 @@ If your harness appears here, read its reference file for special instructions:
 ## User Instructions
 
 User instructions (CLAUDE.md, AGENTS.md, GEMINI.md, etc, direct requests) take precedence over skills, which in turn override default behavior. Only skip skill workflows or instructions when your human partner has explicitly told you to.
+
+If the user's message carries a question or request alongside an
+approval or consent, answer or address it in the same response —
+before or alongside any mandated checkpoint or gate output. A
+checkpoint's own template text is not a reason to drop something else
+the user just asked; a pending question outranks emitting the
+checkpoint verbatim.
