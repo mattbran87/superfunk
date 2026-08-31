@@ -149,8 +149,8 @@ To:
 
 - [ ] **Step 5: Verify both additions landed**
 
-Run: `grep -c "overstates or understates its own list" plugin/skills/brainstorming/SKILL.md`
-Expected: `1` (corrected anchor — "own body produces exactly this kind" is a phrase from this spec's own Context section describing the defect, not from the actual inserted skill text; checked against the real drafted insertion text before finalizing this command, per docs/patterns/verify-plan-commands-against-real-content.md)
+Run: `grep -c "overstates or understates" plugin/skills/brainstorming/SKILL.md`
+Expected: `1` (twice-corrected anchor — the original "own body produces exactly this kind" quoted this spec's own Context section, not the inserted skill text; the first fix, "overstates or understates its own list," spans a markdown line wrap in the actual file, so it never matches as one line either. Both errors caught by running the command against the real file, not assumed.)
 
 Run: `grep -c "consent covers decisions already settled" plugin/skills/brainstorming/SKILL.md`
 Expected: `1`
@@ -178,7 +178,7 @@ git commit -m "feat(skills): add Self-Review count-verification and make brainst
 Run: `grep -A7 "pending question outranks" plugin/skills/using-superpowers/SKILL.md`
 Expected: text matching the Decision block's paragraph exactly.
 
-Run: `grep -B3 -A2 "overstates or understates its own list" plugin/skills/brainstorming/SKILL.md`
+Run: `grep -B3 -A2 "overstates or understates" plugin/skills/brainstorming/SKILL.md`
 Expected: text matching the Decision block's count-verification sentence exactly. (Corrected anchor, same reason as Task 2 Step 5.)
 
 Run: `grep -B1 -A5 "gave blanket consent covering this stage" plugin/skills/brainstorming/SKILL.md`
