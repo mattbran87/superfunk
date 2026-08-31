@@ -97,7 +97,14 @@ digraph brainstorming {
 
 - Once you believe you understand what you're building, present the design
 - Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
-- Ask after each section whether it looks right so far
+- Ask after each section whether it looks right so far — unless the
+  user already gave blanket consent covering this stage, or the
+  section only restates a decision the user made explicitly earlier.
+  In either case, state the section and continue without re-asking.
+  If the section introduces a decision the user hasn't made yet, ask
+  about that specific new decision even under blanket consent —
+  consent covers decisions already settled, not ones that haven't
+  come up.
 - Cover: architecture, components, data flow, error handling, testing
 - For each design decision, name what actually checks or enforces it — a review step, a script, a derived value — not just what states it (per `docs/principles.md`'s Mechanisms, Not Goodwill principle). Flag a decision with no enforcement mechanism as a gap instead of presenting it as settled.
 - Be ready to go back and clarify if something doesn't make sense
@@ -159,6 +166,12 @@ last read it — not just what you recall it saying. See
 docs/patterns/re-verify-quotes-against-source-before-citing.md for
 the specific failure shapes a plausible-looking citation has actually
 hit before.
+
+Before reporting these findings to the user, verify any count you're
+about to state (e.g., "three ambiguities") actually matches the list
+you give right after it — a count that overstates or understates its
+own list creates the exact gap this step exists to close, and it's
+what the user will ask about first if it's wrong.
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
