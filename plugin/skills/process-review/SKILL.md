@@ -87,7 +87,10 @@ standalone without one of these triggers:
      target file and the exact change, e.g. `- [ ] Add X check to
      docs/ai-code-guidelines.md`. A Catch or a one-off outcomes entry
      alone, with no recurring pattern and no concrete follow-up, needs
-     no Recommendation — the review loop already handled it.
+     no Recommendation — the review loop already handled it. A
+     Recommendation that adds a check or a gate names the check it
+     replaces, or states `net new load` followed by a one-line
+     justification. No Recommendation adds a check silently.
    - **Retirements** — one checkbox item per check or gate this
      review proposes removing. Open the section with the window's
      attribution coverage: how many entries name a check against how
