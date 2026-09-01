@@ -88,6 +88,24 @@ standalone without one of these triggers:
      docs/ai-code-guidelines.md`. A Catch or a one-off outcomes entry
      alone, with no recurring pattern and no concrete follow-up, needs
      no Recommendation — the review loop already handled it.
+   - **Retirements** — one checkbox item per check or gate this
+     review proposes removing. Open the section with the window's
+     attribution coverage: how many entries name a check against how
+     many read `none — found ad hoc` or carry no check field at all.
+     A window where unattributed entries dominate makes Zero-yield
+     unusable, and the section says so rather than proposing removals
+     the data cannot support. Each item names the check, the proposed
+     action, and exactly one reason from this set:
+     - **Subsumed** — name the check that already covers it.
+     - **Superseded** — name what changed in the mechanism it guards.
+     - **Vacuous** — name the precondition that never holds here.
+     - **Zero-yield** — no entry attributes a Catch to this check
+       across the last 3 reviews, and the check existed at the start
+       of that window. State both facts.
+     A review that finds nothing to retire writes "None." A reason
+     outside this set does not qualify — an open-ended reason lets
+     any check get argued away, which turns removal into a tool for
+     deleting whatever a reviewer finds inconvenient.
 6. Write the review to
    `docs/superpowers/process-reviews/review-after-<last-spec-slug>.md`,
    where `<last-spec-slug>` is the filename (minus `.md`) of the most
@@ -105,3 +123,11 @@ Every Recommendation names a real target file and a real, specific
 change — never "improve X" or "consider Y." If a Miss, Friction
 point, or Gap has no clear fix, say so explicitly in that section
 instead of forcing a vague Recommendation.
+
+Every Retirement names a real check and a real reason from the fixed
+set. A Subsumed reason names the covering check; a Superseded reason
+names what changed; a Vacuous reason names the precondition; a
+Zero-yield reason states the review count and the check's age. A
+reason naming none of these counts as a placeholder, the same as a
+vague Recommendation. Proposing a removal on an overlap that does not
+hold damages the framework faster than proposing no removal at all.
