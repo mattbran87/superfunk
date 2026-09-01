@@ -71,8 +71,16 @@ Copy three directories from `~/.claude/skills/` into `plugin/skills/`:
 
 `plugin/.claude-plugin/plugin.json` and `marketplace.json` enumerate no
 skills, so neither file needs a skill entry. Claude Code discovers
-`skills/*/SKILL.md` automatically. Both files get a version bump from `6.2.0`
-to `6.3.0`.
+`skills/*/SKILL.md` automatically.
+
+The plugin version moves from `6.2.0` to `6.3.0`. `plugin/.version-bump.json`
+declares seven files that carry that version, and all seven change together:
+`package.json`, `.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`,
+`.codex-plugin/plugin.json`, `.kimi-plugin/plugin.json`,
+`.claude-plugin/marketplace.json`, and `gemini-extension.json`.
+`plugin/scripts/bump-version.sh` exists to do this in one step, but it
+requires `jq`, which this environment lacks, so the seven edits happen by
+hand.
 
 `adhd-research` stays at user level. It shells out to an external `adhd` CLI.
 `branching-research` already exists as its portable equivalent, by its own
@@ -208,8 +216,9 @@ change.
    worded as Decision section 5 states.
 7. `multi-lens-research/SKILL.md` step 3 contains the null-option baseline
    paragraph, worded as Decision section 6 states.
-8. `plugin/.claude-plugin/plugin.json` and
-   `plugin/.claude-plugin/marketplace.json` both read `6.3.0`.
+8. All seven files `plugin/.version-bump.json` declares read `6.3.0`,
+   checked by iterating that file's own list rather than by naming files
+   from memory.
 9. Two disposable `--plugin-dir` trials run the same brainstorming prompt: one
    against the current step 4, one against the revised step 4. The revised run
    produces a do-nothing candidate and a named flip factor. The current run

@@ -86,28 +86,25 @@ Expected: `22`
 Run: `for s in multi-lens-research branching-research calibrating-recommendations; do grep -c "^name: $s" "plugin/skills/$s/SKILL.md"; done`
 Expected: `1` three times — each file's frontmatter `name:` matches its directory, as the skill loader requires.
 
-- [ ] **Step 5: Bump the version in both manifests**
+- [ ] **Step 5: Bump the version in all seven declared files**
 
-In `plugin/.claude-plugin/plugin.json`, change:
-```json
-  "version": "6.2.0",
-```
-To:
-```json
-  "version": "6.3.0",
-```
+`plugin/.version-bump.json` declares seven files that carry the plugin version. Bump every one from `6.2.0` to `6.3.0`, changing only the version value:
 
-In `plugin/.claude-plugin/marketplace.json`, change:
-```json
-      "version": "6.2.0",
-```
-To:
-```json
-      "version": "6.3.0",
-```
+- `plugin/package.json`
+- `plugin/.claude-plugin/plugin.json`
+- `plugin/.cursor-plugin/plugin.json`
+- `plugin/.codex-plugin/plugin.json`
+- `plugin/.kimi-plugin/plugin.json`
+- `plugin/.claude-plugin/marketplace.json` (field path `plugins.0.version`)
+- `plugin/gemini-extension.json`
 
-Run: `grep -c '"6.3.0"' plugin/.claude-plugin/plugin.json plugin/.claude-plugin/marketplace.json`
-Expected: `1` for each file. (`"6.2.0"` currently returns `1` in each, confirmed this session.)
+Do NOT use `plugin/scripts/bump-version.sh`. It requires `jq`, which this environment does not have — `which jq` returns nothing and the script dies at line 46 with `jq: command not found`, confirmed this session. Hand-edit the seven files.
+
+Run:
+```bash
+cd plugin && for f in package.json .claude-plugin/plugin.json .cursor-plugin/plugin.json .codex-plugin/plugin.json .kimi-plugin/plugin.json .claude-plugin/marketplace.json gemini-extension.json; do printf "%-38s " "$f"; grep -o '"version": *"[0-9.]*"' "$f" | head -2 | tr '\n' ' '; echo; done
+```
+Expected: all seven print `"version": "6.3.0"`. (All seven read `6.2.0` before this task, confirmed this session.)
 
 - [ ] **Step 6: Run the user-facing documentation check**
 
@@ -132,14 +129,17 @@ Record the script's exact output in this task's outcomes entry either way.
 
 ---
 
-### Task 2: Repair the six `adhd-research` references in the plugin copy
+### Task 2: Fit the adopted copies to the plugin
 
 **Files:**
 - Modify: `plugin/skills/branching-research/SKILL.md`
+- Modify: `plugin/skills/multi-lens-research/SKILL.md`
 
 **Interfaces:**
-- Consumes: Task 1's copied `plugin/skills/branching-research/SKILL.md`.
-- Produces: a plugin copy whose every skill reference resolves inside `plugin/skills/`. Task 6's Step 2 verifies this.
+- Consumes: Task 1's copied skill files.
+- Produces: plugin copies whose every skill reference resolves inside `plugin/skills/`, whose REQUIRED SUB-SKILL markers use the house namespace form, and whose descriptions name detectable triggers. Task 6's Step 2 verifies the reference resolution.
+
+Steps 4 and 5 were added after Task 1's code quality review found them. All three repairs share one root cause: these files were written for a user-level context where `adhd-research` exists, no plugin namespace applies, and the description could position against a sibling. None of that holds inside the plugin.
 
 - [ ] **Step 1: Confirm the six references and their line numbers**
 
@@ -208,7 +208,38 @@ To:
 - **Collapsing "don't show me the pre-mortem/steelman" into "don't invoke `calibrating-recommendations`"** — confirmed failure mode from prior testing of this technique. A request about the output's contents is not an instruction about which steps to run.
 ```
 
-- [ ] **Step 4: Verify every reference resolves**
+- [ ] **Step 4: Add the `superfunk:` namespace prefix to both REQUIRED SUB-SKILL markers**
+
+`plugin/skills/writing-skills/SKILL.md:283` states the house form: `**REQUIRED SUB-SKILL:** Use superfunk:test-driven-development`. All four pre-existing markers in the plugin follow it. Both adopted copies use a bare backticked name instead, which does not match the Skill tool's resolution name.
+
+In `plugin/skills/multi-lens-research/SKILL.md:55`, change ``**REQUIRED SUB-SKILL:** Use `calibrating-recommendations` `` to `**REQUIRED SUB-SKILL:** Use superfunk:calibrating-recommendations`.
+
+In `plugin/skills/branching-research/SKILL.md:69`, make the same substitution. Also split the marker out of the step's sentence bolding: it currently reads `5. **Form a tentative recommendation from the shortlist. REQUIRED SUB-SKILL:** Use ...`, which swallows the marker. It must stand alone as `**REQUIRED SUB-SKILL:**`, matching every house instance.
+
+Leave every bare backticked skill name in ordinary prose unchanged — that form is house-acceptable and appears throughout `brainstorming`, `bug-tracking`, and `documentation`.
+
+Run: `grep -rn "REQUIRED SUB-SKILL" plugin/skills/ | grep -c "superfunk:"`
+Expected: `6` — the four pre-existing markers plus these two.
+
+- [ ] **Step 5: Rewrite `branching-research`'s description to name a detectable trigger**
+
+The description at `plugin/skills/branching-research/SKILL.md:3` distinguishes the skill by *"you want the generation and critique steps done natively (no external tool dependency) with full visibility into the framing prompts."* That fails two `writing-skills` rules: it summarizes the workflow (banned at `writing-skills/SKILL.md:102` and `:180`), and it names a tooling preference no problem context ever exhibits, so the skill cannot trigger on a real request. The concrete triggers — fuzzy debugging, naming, API surface design, strategy — sit only in the body at line 16 and never reach the description.
+
+The clause also positions against `adhd-research`, which this plan deliberately leaves at user level, making it the same dangling-reference class this task exists to fix.
+
+Change:
+```markdown
+description: Use when a problem needs wide creative divergence before a calibrated recommendation, but you want the generation and critique steps done natively (no external tool dependency) with full visibility into the framing prompts.
+```
+To:
+```markdown
+description: Use when a problem needs wide creative divergence before a calibrated recommendation — fuzzy debugging, naming, API surface design, or strategy, where the right angles aren't known in advance and a fixed comparison grid would be too narrow.
+```
+
+Run: `grep -c "external tool dependency" plugin/skills/branching-research/SKILL.md`
+Expected: `0`
+
+- [ ] **Step 6: Verify every reference resolves**
 
 Run: `grep -rc "adhd-research" plugin/skills/branching-research/SKILL.md`
 Expected: `0`
@@ -216,11 +247,11 @@ Expected: `0`
 Run: `grep -rl "adhd-research" plugin/skills/ | wc -l`
 Expected: `0` — satisfying spec Falsifiable Criterion 2.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add plugin/skills/branching-research/SKILL.md
-git commit -m "fix(skills): resolve branching-research references to adhd-research, which stays user-level"
+git add plugin/skills/branching-research/SKILL.md plugin/skills/multi-lens-research/SKILL.md
+git commit -m "fix(skills): fit adopted research skills to the plugin — references, namespace, trigger"
 ```
 
 ---
@@ -431,9 +462,16 @@ grep -c "do-nothing/defer candidate" plugin/skills/brainstorming/SKILL.md
 grep -c "Skip the section entirely" plugin/skills/brainstorming/SKILL.md
 grep -c "What would flip the ranking" plugin/skills/calibrating-recommendations/SKILL.md
 grep -c "do-nothing/defer baseline" plugin/skills/multi-lens-research/SKILL.md
-grep -c '"6.3.0"' plugin/.claude-plugin/plugin.json plugin/.claude-plugin/marketplace.json
+grep -rn "REQUIRED SUB-SKILL" plugin/skills/ | grep -c "superfunk:"
 ```
-Expected, in order: three paths listed; `0`; `2`; `0`; `1`; `1`; `1` for each manifest.
+Expected, in order: three paths listed; `0`; `2`; `0`; `1`; `1`; `6`.
+
+Then check the version across all seven declared files, driven off `plugin/.version-bump.json`'s own list rather than a remembered set of paths (spec Criterion 8):
+
+```bash
+cd plugin && grep -o '"path": *"[^"]*"' .version-bump.json | sed 's/.*: *"//;s/"//' | while read f; do printf "%-38s " "$f"; grep -o '"version": *"[0-9.]*"' "$f" | head -2 | tr '\n' ' '; echo; done; cd - >/dev/null
+```
+Expected: seven lines, every one reading `"version": "6.3.0"`.
 
 - [ ] **Step 2: Verify every skill reference in the three adopted files resolves (spec Criterion 3)**
 
