@@ -158,14 +158,20 @@ After writing the spec document, look at it with fresh eyes:
 3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
 4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
 5. **Enforcement check:** Does each design decision in the written spec name what checks or enforces it, or explicitly flag the gap (per Mechanisms, Not Goodwill)? A mechanism named only during the presentation conversation and not carried into the file doesn't count.
-6. **Numeric-claim verification:** Does any Context or Decision
-section state a specific count (occurrences, files, lines) about the
-existing codebase? If so, confirm you ran the actual command and
+6. **Claim verification:** Does any Context or Decision section state
+a specific count (occurrences, files, lines) about the existing
+codebase, or a claim about what the system or the model already does
+— that no skill asks for X, that two checks overlap, that nothing
+enforces Y? For a count, confirm you ran the actual command and
 copied its real output — not an estimate — before finalizing the
-spec. See docs/patterns/verify-plan-commands-against-real-content.md
-for the specific failure shapes a plausible-looking prediction has
-actually hit before — checking it against a known list beats
-re-discovering the same trap.
+spec. For a behavioral claim, name the observation that established
+it: a Catch record in notes.md, a control arm, a logged outcome. A
+grep over source text observes text, and an absent instruction does
+not establish an absent behavior. See
+docs/patterns/verify-plan-commands-against-real-content.md and
+docs/patterns/check-the-record-before-adding-or-retiring-a-rule.md
+for the specific failure shapes each has actually hit before —
+checking against a known list beats re-discovering the same trap.
 7. **Quote and source-freshness verification:** Does the spec cite an
 external or previously-read document's content, or present anything
 in quotation marks? If so, grep the source for the exact quoted

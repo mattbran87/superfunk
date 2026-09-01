@@ -1,7 +1,7 @@
 # Behavioral-Claim Verification — Design
 
 **Date:** 2026-09-01
-**Status:** Approved
+**Status:** Shipped (run 2 reached decision-rule branch 2; item 6 carries the tested wording)
 **User-Facing:** Yes
 
 ## Context
@@ -204,6 +204,59 @@ for this reason.
    selects, character for character.
 8. A grep for `check-the-record-before-adding-or-retiring-a-rule` across
    `plugin/skills/` returns matches only inside `brainstorming/SKILL.md`.
+
+### RESULT — two runs; run 1 inconclusive, run 2 reached branch 2
+
+**Run 1 produced no evidence.** Its criteria named one specific sentence per
+fixture. Both widened arms found a target-class claim at a different sentence,
+and neither control found one anywhere, so the criteria measured which claim an
+agent chose to examine. `ab-test-live-trials-for-behavior-change.md` Rule 3
+governs that shape. `62950d7` records run 1 as inconclusive, with its four
+outputs, rather than as a pass or a failure.
+
+Re-scoring run 1's outputs under a looser criterion would have selected the
+criterion to fit results already seen. `192c30a` therefore registered a
+class-level criterion, and run 2 ran fresh afterward.
+
+**Run 2, scored blind against `192c30a`:**
+
+| Fixture | Control | Widened | Favours the widening |
+|---|---|---|---|
+| F1 · research-skill-adoption | missed | **detected** | **yes** |
+| F2 · convention-retirement | missed | missed | no |
+
+Branch 2 applies: one fixture favours the widening, so Decision 2 ships.
+
+The judge scored the F1 widened arm on a sentence that names the changed
+wording as its own reason: "The self-review's own item 6 (arm2 version) says:
+'A grep over source text observes text, and an absent instruction does not
+establish an absent behavior.'" That result also replicates run 1's F1
+outcome, now under a criterion that predates the output.
+
+**F2 did not favour the widening in either run, and this spec claims no
+coverage there.** The widening reaches the shape "an absent instruction
+establishes an absent behavior." It does not reliably reach "two checks'
+titles establish that they overlap." A reader should treat the second shape as
+uncovered.
+
+**The F1 control's near-miss marks the boundary.** It wrote: "The keyword probe
+isn't reproducible. Context asserts 'a keyword probe... returns zero matches
+for either' without recording the terms. The claim holds (I confirmed it), but
+as written nobody can re-run it." That finding treats the probe as a
+reproducibility problem and confirms the claim. It never asks what a zero
+result over source text establishes about model behavior. The gap between that
+and the widened arm's finding measures exactly what the widening adds.
+
+**Scale caveat.** Two fixtures, one model, one prompt each, two runs of the F1
+pair and two of the F2 pair. F1 detected in both widened runs and in neither
+control run. F2 detected in nothing. This shows a difference on one premise
+shape and no difference on the other.
+
+**Trial artifact, inherited by both runs.** Every arm read its own
+`--plugin-dir` path as project state. Run 1's F1 control built a blocking
+finding on that directory as a third lineage of the skills. The contamination
+stays symmetric across arms and does not favour either, and it consumes
+attention that a real finding could have used.
 
 ## Consequences
 
