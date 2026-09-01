@@ -555,10 +555,12 @@ finishing-a-development-branch presents the options.
 
 ## Finish
 
-When the final whole-branch review is clean and its fixes are merged,
-check whether this plan traces to a design spec (named in the plan's
-Goal line or a task's commit trailer, e.g. "Part of
-docs/superpowers/specs/..."). If it does, update that spec's `Status`
+When the final whole-branch review is clean and its fix wave's commits sit
+on this branch — not yet merged to the base branch, which
+`finishing-a-development-branch` handles afterward — check whether this
+plan traces to a design spec (named in the plan's Goal line or a task's
+commit trailer, e.g. "Part of docs/superpowers/specs/..."). If it does,
+update that spec's `Status`
 line from `Approved` to `Shipped` and commit the change on this branch
 — the only point in this process where the work is both reviewed and
 merged, so it is the right moment to record it. No spec, or already
