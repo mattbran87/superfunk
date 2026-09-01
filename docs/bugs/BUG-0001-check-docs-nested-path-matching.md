@@ -29,5 +29,15 @@ Concretely reproduced 2026-08-28 running `check_docs.py` against
 `docs/superpowers/specs/2026-08-28-superfunk-rebrand-design.md` over
 a range that included the Task 5 `plugin/README.md` edit.
 
+**Second occurrence, 2026-09-01.** Reproduced again running
+`check_docs.py` against
+`docs/superpowers/specs/2026-09-01-research-skill-adoption-design.md`
+over a range that included a `plugin/README.md` edit. A fresh
+implementer with no knowledge of this bug hit the same
+`ACTION_NEEDED`, independently diagnosed the same root cause at line
+47, and escalated rather than treating the result as a real gap. Two
+occurrences in five days, both costing an implementer time to
+re-derive a known defect.
+
 ## Resolution
 (filled in when Status becomes Fixed or Won't Fix — what changed, commit SHA)

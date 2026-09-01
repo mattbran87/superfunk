@@ -13,7 +13,7 @@
 - Every text block this plan writes into a target file must match the design spec's Decision block exactly, character-for-character. The spec at `docs/superpowers/specs/2026-09-01-research-skill-adoption-design.md` governs; this plan never paraphrases it.
 - Spec Falsifiable Criterion 2 (`grep` for `adhd-research` across `plugin/skills/` returns zero matches) holds only from Task 2 onward. Task 1 deliberately lands the copy with its references intact, so Task 2's diff shows exactly which lines the repair touches.
 - After Task 2, `plugin/skills/branching-research/SKILL.md` diverges from `~/.claude/skills/branching-research/SKILL.md`. The plugin copy wins. Do not sync the user-level copy back over it.
-- No file outside `plugin/skills/`, `plugin/.claude-plugin/`, and this plan's own outcomes file gets modified.
+- No file outside `plugin/skills/`, `plugin/.claude-plugin/`, `plugin/README.md`, and this plan's own outcomes file gets modified. Task 1's Step 6 documentation check targets `plugin/README.md`, since this repository holds no root `README.md`.
 - Task 6 can falsify the change. If both trial arms produce a do-nothing candidate and a named flip factor, stop and report — do not ship Tasks 3-5.
 
 ---
@@ -119,14 +119,16 @@ git commit -m "feat(skills): adopt multi-lens-research, branching-research, cali
 python plugin/skills/documentation/scripts/check_docs.py docs/superpowers/specs/2026-09-01-research-skill-adoption-design.md <task-1-base-sha> $(git rev-parse HEAD)
 ```
 
-If the script prints `ACTION_NEEDED`, read the Context/Decision/Consequences content it prints and draft the README/CHANGELOG update it names, then amend it into this task's commit:
+Expect `ACTION_NEEDED`. This repository holds no root `README.md`, and `check_docs.py:47` matches bare filenames only (`f in ("README.md", "CHANGELOG.md")`), so it cannot report `ALREADY_UPDATED` for a nested path here. BUG-0001 already tracks that defect, Status Open, and this marks its second occurrence. Treat `ACTION_NEEDED` as expected rather than as a signal the doc update got skipped.
+
+Read the Context/Decision/Consequences content the script prints, then add the three adopted skills to `plugin/README.md`'s Skills Library section — the real user-facing list of invocable skills in this repository — and amend it into this task's commit:
 
 ```bash
-git add README.md CHANGELOG.md
+git add plugin/README.md
 git commit --amend --no-edit
 ```
 
-If the script prints anything else, record its exact output in this task's outcomes entry and continue.
+Record the script's exact output in this task's outcomes entry either way.
 
 ---
 
