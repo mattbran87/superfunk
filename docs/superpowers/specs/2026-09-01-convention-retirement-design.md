@@ -292,3 +292,26 @@ instead of silently driving removals.
   this spec targets.
 - **Backfilling attribution onto the 88 existing entries.** Rejected rather
   than deferred; reconstructing it from memory would fabricate the data.
+- **The coverage rule groups `none — found ad hoc` with entries carrying no
+  check field, but its stated justification covers only the latter.** The
+  rule explains itself by saying the absence of a check's name proves nothing
+  about that check's yield. That holds for an entry with no field, which
+  records nothing. It does not hold for `none — found ad hoc`, which records
+  a positive fact — no check fired — and supplies exactly the evidence
+  Zero-yield needs. The practical effect runs backwards: honest logging of
+  "no check caught this," the correct value for most catches in the first
+  window, pushes coverage toward "unattributed dominates" and declares
+  Zero-yield unusable precisely when the data improves. A conservative
+  grouping still has a defensible purpose — the coverage test cannot
+  distinguish an honest `none — found ad hoc` from a lazy default — but the
+  text argues one reason and applies another. Left unfixed deliberately.
+  Zero-yield cannot fire for at least 3 more reviews, so nothing depends on
+  resolving this now, and changing an unproven mechanism on reasoning alone
+  repeats the error the A/B trial exposed twice on 2026-09-01. Revisit when
+  Zero-yield first becomes reachable.
+- **The Retirements section says nothing about inherited rejections.** Trial
+  run 2 deferred to run 1's rejections rather than re-deriving them, which
+  the text neither permits nor forbids. If inheritance becomes the norm, a
+  wrong rejection calcifies and no mechanism revisits it. Left unfixed for
+  the same reason as above: three runs have produced zero proposals, so no
+  evidence yet shows which way the silence resolves in practice.

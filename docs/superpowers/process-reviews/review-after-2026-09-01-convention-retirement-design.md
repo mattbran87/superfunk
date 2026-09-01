@@ -3,6 +3,17 @@
 **Date:** 2026-09-01
 **Window:** the three specs below, covering 21 commits since the 2026-08-30 review.
 
+## Execution environment — read before weighing M1, M2, and G2
+
+Superfunk never loaded as a plugin during this window. `~/.claude/plugins/config.json` reads `{"repositories": {}}`, and the session ran upstream `superpowers@claude-plugins-official` 5.1.0, whose `writing-plans` carries 3 Self-Review items to superfunk's 14, whose `brainstorming` carries 4 spec-review items to superfunk's 7, and which ships no `process-review` skill at all.
+
+Superfunk's conventions therefore got applied by hand: its 14 Self-Review items, its Pseudocode triggers, its Global Constraints header, and this review's own procedure were all read from the repository's files and performed manually, by the same agent that wrote the documents under review.
+
+Two consequences for the findings below:
+
+- **M1, M2, and G2 report a check that a self-interested reader applied to its own work, not a skill that fired in fresh context.** The scope gap they identify belongs to the check's wording and holds regardless. The evidence that the check "did not catch" the failures is weaker than a live invocation would give, since the same agent authored both the plan and its review.
+- **The trial findings are exempt.** Every `--plugin-dir` invocation pointed at this repository's plugin, so the research-skill-adoption A/B trial and both convention-retirement retirement runs exercised superfunk's real skills in fresh sessions. Those findings carry full weight.
+
 ## Specs Reviewed
 
 - `2026-08-30-checkpoint-priority-and-conditional-gate-design.md`
