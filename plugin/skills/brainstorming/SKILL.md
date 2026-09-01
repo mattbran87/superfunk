@@ -74,11 +74,19 @@ digraph brainstorming {
   Want me to scaffold a starter version from a few quick questions
   before we continue?" If accepted, ask up to three questions, one at
   a time: the project's language/stack (skip if already evident from
-  existing files), any coding conventions already followed informally,
-  and anything future sessions should know upfront (build/test
-  commands, architecture notes). Draft whichever file(s) were missing
-  from the answers, commit them, then continue. If declined, or both
-  files already exist, proceed without further mention.
+  existing files), any coding conventions already followed informally
+  (skip if a linter or formatter config already establishes them
+  observably), and anything future sessions should know upfront —
+  build/test commands, architecture notes (ask this one outright on a
+  new or near-empty repo; observation cannot substitute for it there).
+  Draft whichever file(s) were missing from the answers, commit them,
+  then continue. If drafting `docs/ai-code-guidelines.md`, its
+  Per-Directory Context Files section must copy this project's own
+  Format block verbatim (the `**Purpose:**` bold line, not a
+  `## Purpose` heading or any other paraphrase) — this is the exact
+  line `concept-index` parses, so the two halves stay in sync by
+  construction rather than by chance. If declined, or both files
+  already exist, proceed without further mention.
 - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
 - If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
 - For appropriately-scoped projects, ask questions one at a time to refine the idea
