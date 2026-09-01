@@ -1,7 +1,7 @@
 # Spec-Time Rule-Membership Check — Design
 
 **Date:** 2026-09-01
-**Status:** Approved
+**Status:** Shipped (the trial reached decision-rule branch 3; item 2 carries the tested wording)
 **User-Facing:** Yes
 
 ## Context
@@ -157,6 +157,12 @@ Candidate wording for arm 3, and for the shipped version if arm 3 wins:
    member silently.
 ```
 
+**The shipped wording differs from this draft.** Item 2 occupies one line of a
+numbered list, so arm 3 ran the procedure as one flowing paragraph rather than
+as sub-bullets. `plugin/skills/brainstorming/SKILL.md` now carries exactly the
+text arm 3 ran. This block stays as the readable form of the same procedure.
+Shipping the draft instead would ship an untested wording.
+
 ### 3. Add no restatement elsewhere until the trial reports
 
 `writing-plans`' Self-Review and `subagent-driven-development`'s
@@ -202,8 +208,8 @@ claiming coverage the trial did not show.
 
 ## Falsifiable Criteria
 
-1. A fresh git repository holds the `75d66d3` tree, and `git log --oneline`
-   inside it returns exactly one commit.
+1. Before any arm runs, a fresh git repository holds the `75d66d3` tree, and
+   `git log --oneline` inside it returns exactly one commit.
 2. `git log --all` inside the fixture returns no commit whose message or diff
    names the adoption fix.
 3. The three arm prompts match byte for byte, apart from nothing at all — the
@@ -221,6 +227,63 @@ claiming coverage the trial did not show.
    selects.
 9. A grep for `rule membership` across `plugin/skills/writing-plans/` and
    `plugin/skills/subagent-driven-development/` returns zero matches.
+
+### RESULT — the trial ran on 2026-09-01 and reached branch 3
+
+Commit `83fd4dd` recorded the criterion and the decision rule. Every arm ran
+after it, so criterion 5 holds.
+
+The three arms loaded `C:/sf-rulemember-plugins/arm{1,2,3}`, which differ at
+exactly one line — line 157, item 2. Each arm ran against its own copy of the
+taskq tree at `75d66d3`, rebuilt as a single-commit repository. One prompt
+served all three. No arm's plugin and no prompt contained the string `queued`.
+
+A separate agent scored the three outputs unlabeled and shuffled, and never
+learned which arm produced which file:
+
+| Arm | Item 2 carried | Verdict |
+|---|---|---|
+| 1 · Control | the wording that shipped before today | missed |
+| 2 · Mandate | plus "name anything ... wrong, unverified, or self-defeating" | missed |
+| 3 · Procedure | plus the rule-membership procedure | **detected** |
+
+The judge scored arm 3 on this sentence: "`queued` has exactly one producer,
+and it is inside the failure handler ... A `queued` record is only ever written
+after an attempt executed and raised."
+
+Arm 3 reached the Critical from source alone. It quoted the intent, listed each
+member of rule 1, named each member's producer, read `StateWriter.queued`'s
+docstring, and derived the unbounded-retry consequence from `retry.py:63`. It
+also found that the spec's own Open Question 3 treats mid-backoff adoption as
+hypothetical while rule 1 already permits it.
+
+**Both control arms produced real findings, and neither reached this one.**
+Arm 1 reported findings from all seven items; arm 2 reported eight. Arm 1 came
+closest, and the gap shows what the procedure adds: it asked which
+`max_attempts` an adopted job runs under, chose a reading, and moved on. It
+never asked what a `queued` record means.
+
+All three arms independently found one defect the original trial never
+recorded: the spec claims the on-disk format stays readable by every shipped
+version, and `state_of()` raises on an unknown record type.
+
+**Scale caveat.** One fixture, one model, one prompt, one run per arm. This
+shows the procedure detected what two weaker wordings missed in this scenario.
+It does not measure how often it fires, or what it costs on a spec that
+enumerates many lists.
+
+**Trial artifact, recorded rather than fixed.** The taskq fixture carries its
+own `docs/patterns/` directory, which lacks the two files items 6 and 7 cite.
+Both arms ran those items from the step text alone. Item 2 cites no pattern
+file, so this does not affect the comparison.
+
+**Criterion 1 measures the fixture before the arms run.** Each arm's copy holds
+two commits afterward. Every arm committed its own inline fixes, because item 7
+of the self-review tells it to. That records agent behavior, not fixture drift.
+
+**One E-Prime exception.** The judge's scored sentence, quoted above, contains
+two banned forms. Rewriting a direct quotation would falsify it, so the
+quotation stands as the source wrote it.
 
 ## Consequences
 
@@ -246,15 +309,28 @@ outcome.
 
 ## Deferred
 
-- **Promote two lessons into one pattern.**
+- **Two lessons describe one failure, and this spec declines to merge them.**
   `docs/lessons-learned.md:108` and `:124` each close with "single occurrence"
   and each defer promotion pending a recurrence. Both describe one failure:
   evidence gathered from an artifact's text, and a claim made about that
   artifact's behavior. Entry 108 grepped 24 skill files and concluded the model
   produces no such behavior. Entry 124 read check titles and first sentences
-  and concluded those checks overlap. The recurrence condition each entry names
-  already holds. This needs its own decision, not a third deferral, per
-  `docs/patterns/escalate-deferred-items-on-second-recurrence.md`.
+  and concluded those checks overlap. Each entry writes its recurrence
+  condition in the vocabulary of its own instance, so neither entry can satisfy
+  the other's condition, and both keep reading as a single occurrence forever.
+
+  Merging them stays out of scope, because a merge optimizes the wrong step.
+  A measurement taken on 2026-09-01: of the 16 files in `docs/patterns/`,
+  **11 carry no citation from any file under `plugin/skills/`**. Those 11
+  reach an agent only through `writing-plans` Self-Review item 7, which asks
+  the reader to find "any entry relevant to this plan's domain" in a 343-line
+  file. That describes a judgment item, and this spec's own trial shows what
+  judgment items produce. `escalate-deferred-items-on-second-recurrence.md`,
+  the pattern that governs a decision like this one, sits among the 11.
+
+  A twelfth uncited pattern changes nothing. The next sub-project takes the
+  citation rate itself, and the merge decision follows from whatever gives a
+  pattern a real trigger.
 - **A pre-build falsification arm for behavioral premises.** When a spec's
   justification rests on a claim about current behavior, the plan's first task
   could run the pre-change arm and falsify the claim before any edit lands.

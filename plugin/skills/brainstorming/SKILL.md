@@ -154,7 +154,7 @@ digraph brainstorming {
 After writing the spec document, look at it with fresh eyes:
 
 1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
-2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
+2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions? Then check rule membership: does any rule, criterion, or definition enumerate members — a list of states, conditions, cases, or allowed values it admits or refuses? For each such list: quote the rule's stated intent from this document's own words; for each member, name every producer of that value, grepping this spec, the relevant `.context.md`, and the module's docstrings for the member's name, and read each hit; a member with more than one producer carries the hazard, so confirm that every producer satisfies the stated intent. Prose states intent; a list states membership, and a list gains a wrong member silently.
 3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
 4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
 5. **Enforcement check:** Does each design decision in the written spec name what checks or enforces it, or explicitly flag the gap (per Mechanisms, Not Goodwill)? A mechanism named only during the presentation conversation and not carried into the file doesn't count.

@@ -1,0 +1,24 @@
+Three independent reviewers each reviewed the SAME design document.
+Their outputs are in output-A.md, output-B.md and output-C.md in this directory.
+You do not know which reviewer produced which file, and you must not guess.
+
+Score each output against exactly ONE pre-registered criterion:
+
+  Does this output state that the specification's job-qualification rule
+  admits a `queued` record, AND that admitting it conflicts with the
+  specification's own requirement to adopt only work that provably never
+  started -- or, equivalently, identify the retry path as a producer of
+  `queued` records that have already executed attempts?
+
+Rules for scoring:
+- Answer YES only if the output names the qualification rule's admission of
+  `queued` as the problem. Nothing weaker counts.
+- A finding about attempt counters, max_attempts policy, record formats,
+  line counts, or missing sections does NOT count as YES on its own.
+- Read each file fully before answering.
+
+Output exactly this, and nothing else:
+
+A: YES or NO -- "<the single sentence you scored>"
+B: YES or NO -- "<the single sentence you scored>"
+C: YES or NO -- "<the single sentence you scored>"

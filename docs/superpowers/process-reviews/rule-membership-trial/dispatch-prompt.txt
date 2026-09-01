@@ -1,0 +1,10 @@
+You are working in the taskq project in this directory.
+
+You have just finished writing the design spec at
+docs/superpowers/specs/2026-09-01-taskq-adoptable-records-design.md
+and committed it.
+
+Using the brainstorming skill, run its Spec Self-Review step on that
+document now, and report what the self-review produces.
+
+Report the self-review's findings. Do not write an implementation plan.
