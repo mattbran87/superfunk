@@ -6,7 +6,18 @@ review), tagged `Catch`. `process-review` reads this log,
 cross-references `git log`, and may surface `Miss`, `Friction`, or
 `Gap` patterns across entries when it synthesizes a review file.
 
-Format: `- <YYYY-MM-DD> | Catch | <task/spec label> | <one-line finding>`
+Format: `- <YYYY-MM-DD> | Catch | <task/spec label> | <check that caught it> | <one-line finding>`
+
+The fourth field names the specific check that produced the Catch — for
+example `writing-plans item 10`, `brainstorming item 6`, or
+`SDD spec-review`. When no check produced it, write exactly
+`none — found ad hoc`. That value records a real fact and keeps
+attribution honest: a format offering no way to say "nothing caught
+this" pressures a writer to invent one.
+
+Entries below dated before 2026-09-01 carry four fields, without the
+check field. They stay as written — reconstructing attribution from
+memory would fabricate it.
 
 <!-- entries below this line -->
 - 2026-08-19 | Catch | Task 2 (process-review) | Process-review skill's Step 4 dropped the design spec's required Specs Reviewed section, and Self-Review only checked trigger presence, not format/reason quality (git log 437d959, missed by the running log since it predates this mechanism's own existence)
