@@ -219,7 +219,7 @@ In `plugin/skills/branching-research/SKILL.md:69`, make the same substitution. A
 Leave every bare backticked skill name in ordinary prose unchanged — that form is house-acceptable and appears throughout `brainstorming`, `bug-tracking`, and `documentation`.
 
 Run: `grep -rn "REQUIRED SUB-SKILL" plugin/skills/ | grep -c "superfunk:"`
-Expected: `6` — the four pre-existing markers plus these two.
+Expected: `7` — five pre-existing matches plus these two. The five sit at `executing-plans:37`, `writing-plans:122`, `writing-plans:295`, `writing-plans:299`, and `writing-skills:283`. Note that the last one is the standard's own "✅ Good" example line, which matches this pattern because it documents it; count it rather than assuming a match means a real marker.
 
 - [ ] **Step 5: Rewrite `branching-research`'s description to name a detectable trigger**
 
@@ -464,7 +464,7 @@ grep -c "What would flip the ranking" plugin/skills/calibrating-recommendations/
 grep -c "do-nothing/defer baseline" plugin/skills/multi-lens-research/SKILL.md
 grep -rn "REQUIRED SUB-SKILL" plugin/skills/ | grep -c "superfunk:"
 ```
-Expected, in order: three paths listed; `0`; `2`; `0`; `1`; `1`; `6`.
+Expected, in order: three paths listed; `0`; `2`; `0`; `1`; `1`; `7`.
 
 Then check the version across all seven declared files, driven off `plugin/.version-bump.json`'s own list rather than a remembered set of paths (spec Criterion 8):
 
