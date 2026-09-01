@@ -16,3 +16,6 @@ Shipped as planned; the Mutation Check sentence and the new pattern file (`docs/
 
 ## Task 4: `finishing-a-development-branch` Step 7 — F3a recognize `.claude/worktrees/`
 Shipped as planned; Step 7 now recognizes `.claude/worktrees/` and states the native-exit-tool-first preference, exactly as the brief specified. Implemented directly (subagent spawn limit still exhausted). Verification used short anchors from the start; both checks passed on the first run. No divergence.
+
+## Task 5: `finishing-a-development-branch` Option 2 — F7 forge-confirmation sentence
+Shipped as planned; the forge-confirmation sentence landed exactly as the brief specified, in the same file as Task 4 but a non-overlapping section (Option 2, not Step 7). Implemented directly (subagent spawn limit still exhausted). Verification passed on the first run. No divergence.
