@@ -145,6 +145,11 @@ tooling — its CLI if one is available, or the creation URL most forges
 print when you push — following the repo's PR template and conventions if
 present, and report the URL to your human partner.
 
+Confirm the forge CLI actually created a PR — its exit status and printed
+URL — before reporting one back to your human partner; a successful push
+alone does not mean a PR exists. If the repository has no forge remote (a
+bare or local-only `origin`), say so plainly and stop after the push.
+
 Keep the worktree — your human partner iterates on PR feedback there.
 
 ### Option 3: Keep As-Is
