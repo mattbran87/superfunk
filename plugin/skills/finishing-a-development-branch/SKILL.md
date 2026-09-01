@@ -188,8 +188,13 @@ Step 2, from before that directory change.
 
 **If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
 
-**If `WORKTREE_PATH` is under `.worktrees/` or `worktrees/`:** Superpowers
-created this worktree — we own cleanup:
+**If `WORKTREE_PATH` is under `.worktrees/`, `worktrees/`, or
+`.claude/worktrees/`:** Superpowers created this worktree — we own
+cleanup. If a native worktree-exit tool created it (the same one
+`using-git-worktrees` used to enter it), try that tool first — it owns
+placement and branching, so it is the matching way back out. Fall back to
+the manual commands below only if no native exit tool exists, or it
+fails:
 
 ```bash
 git worktree remove "$WORKTREE_PATH"
