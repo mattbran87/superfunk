@@ -9,6 +9,14 @@ description: Use when implementation is complete, all tests pass, and you need t
 
 **Core principle:** Verify tests → Detect environment → Offer review → Present options → Execute choice → Clean up.
 
+Spec-Status and process-review-tracker bookkeeping is the dispatching
+skill's job (`subagent-driven-development`'s Finish section), and it runs
+before this skill gets invoked — none of the 3 options below repeat it.
+Arriving here from a path that skips that Finish step (a manual merge, or
+`superfunk:executing-plans`, which has no Finish step of its own) means
+that bookkeeping has not happened; flag this to your human partner rather
+than assuming it already did.
+
 **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
 
 ## Step 1: Verify Tests
