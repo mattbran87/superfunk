@@ -8,6 +8,37 @@ heading.
 
 ## Workflow
 
+### A line-wrap verification anchor can fail twice in one plan's first two tasks alone (taskq-trial-batch1-mechanical-fixes)
+
+Both of this plan's first two tasks hit the same failure shape back to
+back: a verification grep phrase, copied from the plan's own drafted
+insertion, wrapped across two lines once the edit landed in the real
+file, so the grep returned 0 against correctly-shipped content. Both
+were self-caught during direct execution (running the actual grep, not
+trusting the plan's stated `Expected:` value) and re-verified with a
+shorter, same-line anchor. This is not a new failure shape —
+`docs/patterns/verify-plan-commands-against-real-content.md` already
+names markdown line-wrap as one of its five-plus documented sub-cases,
+and a prior sub-project's own notes.md entry
+(2026-09-01, Task 3, convention-retirement) already proposed a
+candidate fix: write the drafted insertion to a scratch file and run
+the intended grep against that file during plan-writing, rather than
+predicting how it will wrap once inserted. That candidate fix remains
+unimplemented — this plan's own item-10 pass (Task 2 of this same
+plan) widened the item's scope without adopting it. **Rule:** two
+occurrences of the same known failure shape inside one plan's first two
+tasks is stronger evidence than a single prior sub-project's notes.md
+entry; treat it as a signal to schedule the candidate fix itself as a
+near-term batch, not just to log a third recurrence.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — `docs/patterns/verify-plan-commands-against-real-content.md`
+already covers this exact failure shape; this entry documents two more
+occurrences and elevates the priority of implementing its own
+already-proposed candidate fix, rather than describing a new failure
+mode.*
+
 ### Cross-check a shared rule's restatements across every file a plan writes it into (2026-08-20-lessons-and-patterns-design)
 
 When translating one design-spec rule into multiple target files within
