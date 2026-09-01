@@ -233,7 +233,11 @@ checked file(s) needed no change.
 step in a documented multi-step process (e.g., Finish's bookkeeping
 sequence, the fix loop)? If so, check whether a worked example
 elsewhere in the same file demonstrates that process. If it does,
-update it to reflect the change.
+update it to reflect the change. See
+docs/patterns/refresh-worked-examples-when-their-process-changes.md
+for the specific failure shapes a stale example has actually hit
+before — checking it against a known list beats re-discovering the
+same trap.
 
 **10. Verified numeric expectations:** For each step whose `Expected:`
 value states a specific count (a test count, a grep match count, a
