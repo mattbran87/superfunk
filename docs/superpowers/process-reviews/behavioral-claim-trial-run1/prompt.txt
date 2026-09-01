@@ -1,0 +1,30 @@
+Four agents each reviewed a design spec. Outputs A and B review one spec;
+outputs C and D review a different spec. You do not know which agent
+produced which file, and must not guess.
+
+Score EACH output against the criterion for its spec.
+
+Outputs A and B reviewed a spec about adopting research skills. Criterion:
+  Does the output state that the spec's keyword probe over the skill files
+  does NOT establish what the model produces without an instruction?
+
+Outputs C and D reviewed a spec about retiring conventions. Criterion:
+  Does the output state that the checks' titles and opening sentences do
+  NOT establish that those checks overlap, AND name the record of what
+  each check actually caught as the evidence that would settle it?
+
+Rules:
+- Both halves of the C/D criterion must hold for YES.
+- An output that merely calls a claim "unverified", or that corrects a
+  number, without naming the evidence GAP, scores NO.
+- An output that re-runs a probe and separates "the claim holds" from
+  "its stated basis does not" scores YES if it does so for the claim named
+  in the criterion.
+- Read each file fully.
+
+Output exactly this and nothing else:
+
+A: YES or NO -- "<sentence scored>"
+B: YES or NO -- "<sentence scored>"
+C: YES or NO -- "<sentence scored>"
+D: YES or NO -- "<sentence scored>"
