@@ -13,3 +13,6 @@ Shipped as planned; the new closing sentence on item 10 landed exactly as the br
 
 ## Task 3: Task reviewer's token-containment trap + new pattern file — F14
 Shipped as planned; the Mutation Check sentence and the new pattern file (`docs/patterns/assert-on-a-token-the-context-cannot-supply.md`, all 4 required sections confirmed) both landed exactly as the brief specified. Implemented directly (subagent spawn limit still exhausted). This task's own verification used short, same-line grep anchors from the start (learning from Tasks 1-2's wrap catches), and all three checks passed on the first run. No divergence.
+
+## Task 4: `finishing-a-development-branch` Step 7 — F3a recognize `.claude/worktrees/`
+Shipped as planned; Step 7 now recognizes `.claude/worktrees/` and states the native-exit-tool-first preference, exactly as the brief specified. Implemented directly (subagent spawn limit still exhausted). Verification used short anchors from the start; both checks passed on the first run. No divergence.
