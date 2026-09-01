@@ -533,8 +533,12 @@ D1–D4 and D9–D10 re-trigger.
 
 - Full child-session transcript (every assistant message, including ones `-p` never printed):
   `~/.claude/projects/C--sf-bookmark-cli-trial/659f8ca6-433f-4f5e-b723-c07e3b724c9f.jsonl`
-- Per-turn prompts and outputs: the trial scratchpad, `p01–p25.txt` / `o01–o25.txt`
-  (and `o*.all.txt` from turn 18 onward, which contain all assistant blocks)
+- Reproduction harness, with the `-p` truncation caveat and re-run instructions:
+  `./external-trial-bookmark-cli-harness/` — `run-turn.ps1`, `extract_turn.py`,
+  `trial-settings.json`, `README.md`
+- Per-turn prompts and outputs (`p01–p26` / `o01–o26`) were **not** preserved separately; they
+  are reconstructable from the transcript above using `extract_turn.py`, which also recovers
+  the intermediate assistant messages `claude -p` never printed
 - The project's own process record: `C:\sf-bookmark-cli-trial\docs\superpowers\process-reviews\notes.md`
 - **The process-review the framework produced about itself, with five actionable
   Recommendations naming files in this plugin:**
