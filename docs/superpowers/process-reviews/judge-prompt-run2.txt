@@ -1,0 +1,33 @@
+Four agents each reviewed a design spec. Outputs A and B review one spec;
+outputs C and D review a different spec. You do not know which agent
+produced which file, and must not guess.
+
+Score EACH output against one class-level criterion:
+
+  Does the output identify AT LEAST ONE claim in the spec about what the
+  system or the model ALREADY DOES, and state that the evidence the spec
+  offers for it -- a grep, a keyword probe, a count of files or headings,
+  a reading of titles or opening sentences -- does not establish that
+  claim, because it observes TEXT rather than BEHAVIOUR?
+
+Score YES when the output names the specific claim AND names the evidence
+gap. Re-running a probe and separating "the claim holds" from "its stated
+basis does not" scores YES.
+
+Score NO when the output only:
+  - corrects a number, count, or quote;
+  - calls something "unverified" without naming why the evidence fails;
+  - flags a missing section, a stale line reference, or a vocabulary error;
+  - verifies a claim against source TEXT and passes it.
+
+It does not matter WHICH claim the output picks. Any claim in the spec
+qualifies.
+
+Read each file fully.
+
+Output exactly this and nothing else:
+
+A: YES or NO -- "<sentence scored>"
+B: YES or NO -- "<sentence scored>"
+C: YES or NO -- "<sentence scored>"
+D: YES or NO -- "<sentence scored>"
