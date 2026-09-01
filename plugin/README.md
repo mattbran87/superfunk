@@ -209,6 +209,11 @@ The Pi package loads the Superfunk skills and a small extension that injects the
 - **finishing-a-development-branch** - Merge/PR decision workflow
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
 
+**Research & Decision-Making**
+- **multi-lens-research** - Dispatch parallel lenses over a problem with several defensible approaches, to avoid anchoring on the first plausible one
+- **branching-research** - Wide creative divergence before a calibrated recommendation, done natively with no external tool dependency
+- **calibrating-recommendations** - Synthesize several independently-generated candidates into a single, calibrated recommendation before presenting it
+
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)
 - **using-superpowers** - Introduction to the skills system
