@@ -1,7 +1,7 @@
 # Research Skill Adoption — Design
 
 **Date:** 2026-09-01
-**Status:** Draft
+**Status:** Shipped (Decision section 5 withdrawn after the A/B trial)
 **User-Facing:** Yes
 
 ## Context

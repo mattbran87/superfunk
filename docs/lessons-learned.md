@@ -66,6 +66,22 @@ A design spec's Context section presented two sentences in quotation marks, attr
 
 *Pattern promoted — see docs/patterns/re-verify-quotes-against-source-before-citing.md — filed alongside the sibling entry above as the same failure mode applied to prose rather than a document-level "has this changed" check.*
 
+### A negative trial result needs its scenario checked before it counts as evidence (2026-09-01-research-skill-adoption)
+
+An A/B trial testing three new step-4 requirements reported that the null-option requirement "did not fire" in either arm. Read literally, that says the mechanism does not work. It said nothing of the kind: the trial prompt included "treat this as fully specified," which hands the agent a settled decision to build and forecloses "build nothing" before it starts. No candidate set produced under that prompt could have contained a defer option, so the trial could only ever return a negative regardless of the mechanism's quality. Re-running with a scenario where deferring stayed defensible produced the real finding — and it pointed the opposite way from the first read's implication, showing the pre-change arm handling restraint *better* than the post-change arm. **Rule:** before recording a trial's negative result as a property of the mechanism, ask whether the scenario could have produced a positive one. A prompt that forecloses the behavior under test is a trial-design defect, the same class as `ab-test-live-trials-for-behavior-change.md`'s Rule 2 prompt that hands the agent its own answer — Rule 2 covers prompts that make failure impossible; this covers prompts that make success impossible.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — added to docs/patterns/ab-test-live-trials-for-behavior-change.md as a third rule, since it is the same document's subject matter and the inverse of its existing Rule 2.*
+
+### An added instruction can suppress a behavior the model already produced (2026-09-01-research-skill-adoption)
+
+Two of three requirements added to `brainstorming`'s step 4 turned out to be behaviors the model already volunteered unprompted: the flip factor appeared in three of four trial arms, and in the null-option scenario the *unmodified* skill made "measure before caching" its first approach and its recommendation while the *modified* skill offered three implementations and relegated restraint to a caveat. The instruction did not add the behavior; adding it alongside two others appears to have crowded the step and produced a more mechanical, implementation-focused answer set. **Rule:** before adding an instruction to make a model do X, check whether it already does X without one — an A/B arm answers this in a single run. Verifying that an instruction is followed is not the same as verifying it changed anything, and a requirement that duplicates existing behavior is not merely redundant; it consumes attention that was producing the behavior spontaneously.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — single occurrence. Revisit if a second added instruction is found to suppress rather than cause its target behavior.*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)

@@ -26,12 +26,24 @@ A `--plugin-dir` trial can dispatch an agent, plant a scenario, and confirm the 
 3. If the trial as written already tells the agent the answer, treat that as a trial-design defect before trusting a "correctly skipped" result — rewrite it as a scenario-only prompt and re-run before relying on the finding.
 4. No second arm or checkout is needed for this rule — the fix is prompt design, not an A/B comparison.
 
+**Rule 3 — a negative result needs its scenario checked before it counts as evidence.**
+
+Rule 2 covers a prompt that makes failure impossible. This covers the inverse: a prompt that makes success impossible, where the trial returns a negative no matter how good the mechanism is.
+
+1. When a trial reports the behavior under test did not appear, ask first whether the scenario could have produced it at all. A prompt that settles the question the mechanism exists to reopen forecloses the result before the agent starts.
+2. Watch specifically for framing that hands over a decision: "treat this as fully specified," "the requirement is X," "we've decided to build Y." Any of these kills a mechanism whose job is to question whether to build.
+3. Rewrite the scenario so the behavior under test stays genuinely available, then re-run before recording the finding.
+4. A negative result from a scenario that could not have gone positive is a trial-design defect, not evidence about the mechanism. Do not record it as either a pass or a failure — record it as inconclusive and re-run.
+
 ## Example
 
 - **Rule 1:** A new reviewer instruction ("re-read the cited doc before citing it in a finding") got verified by a trial that primed a false belief about a doc's rule and confirmed the reviewer caught it. The trial's own prompt said "follow the reviewer template's instructions about re-reading cited docs" and "quote the exact current text ... read fresh from disk" — both force the correct behavior regardless of the instruction under test. A true A/B run (same fixture, no coaching, once against the plugin before the instruction shipped and once after) found both arms independently caught the planted error — the pre-edit reviewer did this unprompted. The instruction added no detectable behavioral difference in this scenario. The design spec's Falsifiable Criterion got corrected to say so explicitly, rather than let the original coached trial's "pass" stand as unqualified proof.
 - **Rule 2:** A trial meant to confirm a Finish-step trigger correctly skips a plan that only modifies an existing file (no add/rename/delete) told the agent directly: "This plan's File Structure section stated: 'Modify: ...' -- no skill, feature, or directory was created, renamed, moved, or deleted." The agent reported completing the check with no index change, which proved only that it can read a scenario it was handed the answer to, not that its trigger logic discriminates on its own.
 
+- **Rule 3:** A trial testing whether a new step-4 requirement makes brainstorming include a do-nothing candidate reported the behavior absent from both arms. The prompt said "treat this as fully specified," which hands the agent a settled decision to build — no candidate set produced under it could have contained a defer option, so the trial could only return a negative. Re-running with a scenario where deferring stayed defensible (180ms p50 latency at 4 requests per second, no complaint or breached SLO) produced the real finding, and it pointed the opposite way: the pre-change arm made "measure before caching" its first approach *and* its recommendation, while the post-change arm carrying the instruction offered three implementations and relegated restraint to a caveat. The first trial's negative said nothing about the mechanism; the second one falsified it outright.
+
 ## Originating lessons
 
 - "A live trial priming a false belief needs a true A/B control to show an instruction actually changed behavior" (2026-08-24-review-recommendations-followup)
 - "A trial confirming a trigger doesn't fire must not hand the agent its own answer" (2026-08-25-concept-index)
+- "A negative trial result needs its scenario checked before it counts as evidence" (2026-09-01-research-skill-adoption)
