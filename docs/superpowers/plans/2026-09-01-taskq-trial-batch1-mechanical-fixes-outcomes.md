@@ -19,3 +19,9 @@ Shipped as planned; Step 7 now recognizes `.claude/worktrees/` and states the na
 
 ## Task 5: `finishing-a-development-branch` Option 2 — F7 forge-confirmation sentence
 Shipped as planned; the forge-confirmation sentence landed exactly as the brief specified, in the same file as Task 4 but a non-overlapping section (Option 2, not Step 7). Implemented directly (subagent spawn limit still exhausted). Verification passed on the first run. No divergence.
+
+## Task 6: `subagent-driven-development` Finish — F2 disambiguate "merged"
+Shipped as planned; the opening sentence now reads "fix wave's commits sit on this branch — not yet merged to the base branch," exactly as the brief specified, and the old "its fixes are merged" text confirmed gone. Implemented directly (subagent spawn limit still exhausted). Verification passed on the first run. No divergence.
+
+## Task 7: `finishing-a-development-branch` Overview — F2a bookkeeping-responsibility sentence
+Shipped as planned; the Overview now states the bookkeeping-responsibility boundary exactly as the brief specified, in the same file as Tasks 4 and 5 but a non-overlapping section (Overview, not Step 7 or Option 2). Implemented directly (subagent spawn limit still exhausted). Verification passed on the first run. No divergence. This was the plan's last task.
