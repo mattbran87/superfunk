@@ -1,7 +1,7 @@
 # Convention Retirement — Design
 
 **Date:** 2026-09-01
-**Status:** Draft
+**Status:** Shipped (Context corrected and Criteria 7-8 amended after the trials)
 **User-Facing:** No
 
 ## Context
@@ -33,10 +33,30 @@ numbered check. The framework therefore cannot answer "has item 7 ever caught
 anything," which forecloses any retirement rule that depends on a check's
 yield.
 
-### Subsumption already exists
+### Subsumption candidates — examined and rejected after the trials
 
-Three overlaps exist among shipped checks today, so a retirement pass has
-work on its first run rather than waiting for future accumulation:
+**Corrected after implementation.** This section originally asserted that
+three overlaps exist among shipped checks today, and used that claim to argue
+a retirement pass would have work on its first run. Two live trials examined
+all three against the shipped text and rejected every one, with citations
+this spec's author then verified:
+
+- Items 5, 6, 8, and 9 share a theme but not a trigger or an action.
+  `notes.md` 2026-08-27 records that "item 8's own grep scope (same file plus
+  design spec only) would not have caught this instance," so item 8 does not
+  reach item 9's territory.
+- Item 11 covers a gap items 1 and 2 never reached. `notes.md` 2026-08-28
+  records that the missing Global Constraints header went undetected across
+  every plan that session because the Self-Review "has no item checking a
+  plan's own header against its own required template." Item 11 exists
+  because of that gap. Its "same class of gap" wording makes an analogy about
+  severity, not a coverage claim.
+- Item 10 and `brainstorming` item 6 fire on different artifacts at different
+  phases — item 6 on a spec's claims about the existing codebase, item 10 on
+  a plan's `Expected:` values. Retiring either leaves its own document
+  unchecked.
+
+The three claims as originally written follow, kept for the record:
 
 1. `writing-plans` items 5, 6, 8, and 9 all check one theme — whether an edit
    stays consistent with related content elsewhere. Sibling-pattern parity,
@@ -169,10 +189,35 @@ checks it:
    criterion 6, carries the risk: a section that confidently proposes
    deleting checks on invented overlap damages the framework faster than no
    retirement mechanism at all.
+
+   **RESULT: untested.** Both trial runs proposed zero Retirements, so no
+   proposal existed to check. The runs did the opposite of the feared
+   failure — they examined six candidates across the two runs and rejected
+   every one against real shipped text, rather than reaching for a removal.
+   That gives no evidence about how the section behaves when it does propose
+   one. This criterion stays open until a review proposes a Retirement.
 8. The trial's fixture receives no hint about the three subsumption candidates
    this spec's Context names. A run seeded with those candidates tests
    nothing, per `docs/patterns/ab-test-live-trials-for-behavior-change.md`
    Rule 2.
+
+   **RESULT: passed in part, on the second attempt.** Run 1's fixture leaked
+   the candidates: the build copied this spec into the fixture's specs
+   directory, and its Context names all three. The run detected the
+   contamination and disclosed it unprompted. Run 2 removed that spec, and
+   the leak survived anyway by a second route — the fixture's git history
+   still held run 1's committed review file, which the run retrieved with
+   `git show` and again disclosed unprompted.
+
+   Run 2 nonetheless demonstrated genuine independent discovery on a
+   candidate no document named: `writing-plans` item 12, tested for Vacuous.
+   The run grepped all 10 fixture specs, found exactly one carrying
+   `User-Facing: Yes`, and rejected the vacuity claim on that evidence. It
+   also tested items 13 and 14 for Zero-yield and rejected them on the
+   check's-age half of the rule, both having shipped inside the window.
+
+   Scrubbing a fixture means scrubbing its git history too, not only its
+   working tree.
 
 ## Alternatives Considered
 

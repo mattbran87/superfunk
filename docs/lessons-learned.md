@@ -82,6 +82,22 @@ Two of three requirements added to `brainstorming`'s step 4 turned out to be beh
 
 *No pattern promoted — single occurrence. Revisit if a second added instruction is found to suppress rather than cause its target behavior.*
 
+### A trial fixture's git history leaks what its working tree no longer does (2026-09-01-convention-retirement)
+
+A trial tested whether `process-review`'s new Retirements section would surface subsumption candidates on its own. The fixture was built by copying the project's real specs directory, which included the design spec whose Context names all three candidates — so run 1 was handed its own answer. Deleting that spec and re-running did not fix it: the fixture's git history still held run 1's committed review file, and run 2 read it with `git show` while establishing its review window, then disclosed the contamination itself. Two scrub attempts, two surviving leak paths, both found by the trial rather than by its author. **Rule:** a trial fixture is a git repository, so scrubbing it means scrubbing its history, not just its working tree — and after removing a leaking file, rebuild from a fresh `git init` rather than deleting, since `git show <sha>:<path>` stays readable to any agent with a legitimate reason to look at history.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — added to docs/patterns/seed-trial-fixtures-with-real-docs.md as a counterpart rule, since seeding a fixture with real docs and scrubbing it of the answer are two halves of the same construction step.*
+
+### Candidates asserted to justify a design can fail the design's own first test (2026-09-01-convention-retirement)
+
+The convention-retirement spec's Context asserted three concrete subsumption overlaps among shipped checks, and used them to argue the new Retirements section would have real work on its first run. Two live trials examined all three against the shipped text and rejected every one, with citations that survived independent verification: `notes.md` 2026-08-28 records that the Self-Review "has no item checking a plan's own header against its own required template," which is precisely why item 11 exists rather than duplicating items 1 and 2. The claims were made from reading check titles and first sentences, not from reading what each check had actually caught. **Rule:** when a spec's justification rests on specific claims about existing artifacts, check those claims against the record of what those artifacts did — not just against their text. A justification that fails the mechanism's own first run does not invalidate the mechanism, but it does mean the design shipped without the evidence its author believed it had.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — single occurrence, and adjacent to the already-promoted `re-verify-quotes-against-source-before-citing.md`. Revisit if a second spec's justifying claims fail their own first trial.*
+
 ## Review
 
 ### Verify a code-quality finding against source intent and existing precedent before treating a literal rule-match as a defect (2026-08-20-checklist-construction)
