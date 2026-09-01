@@ -92,7 +92,14 @@ Subagent (general-purpose):
     string contains the other — if a comparison the plan or spec treats
     as an equality guarantee uses `in`, flag it even if its own mutation
     check passes, since containment can stay true across a mutation that
-    breaks the equality the test actually meant to pin.
+    breaks the equality the test actually meant to pin. A second related
+    trap: an assertion that a document or output contains a specific
+    token can pass today only because something else in the same
+    content already supplies that token — deleting the exact thing the
+    assertion exists to protect then leaves it green. For any assertion
+    of this shape, check whether the asserted token already appears
+    elsewhere in the same content, independent of the mutation check
+    above. See docs/patterns/assert-on-a-token-the-context-cannot-supply.md.
 
     ## Part 1: Spec Compliance
 
