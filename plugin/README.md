@@ -210,9 +210,9 @@ The Pi package loads the Superfunk skills and a small extension that injects the
 - **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
 
 **Research & Decision-Making**
-- **multi-lens-research** - Dispatch parallel lenses over a problem with several defensible approaches, to avoid anchoring on the first plausible one
-- **branching-research** - Wide creative divergence before a calibrated recommendation, done natively with no external tool dependency
-- **calibrating-recommendations** - Synthesize several independently-generated candidates into a single, calibrated recommendation before presenting it
+- **multi-lens-research** - Parallel-lens comparison of solution approaches
+- **branching-research** - Native wide-divergence research, no external dependency
+- **calibrating-recommendations** - Calibrated synthesis of candidate recommendations
 
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)
