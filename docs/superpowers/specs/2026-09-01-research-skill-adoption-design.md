@@ -162,10 +162,12 @@ reorder the candidates — distinct from what would lower confidence in the
 pick, which asks how the recommendation fails on its own terms>
 ```
 
-Add a matching entry to that skill's Common Mistakes table:
+Add a matching entry to that skill's Common Mistakes list. That list uses
+bullets, not a table, so the entry takes bullet form and goes after the final
+`Logging a severe pre-mortem finding without reconsidering` bullet:
 
 ```markdown
-| **Restating the pre-mortem as the flip factor** | The pre-mortem asks how the pick fails. The flip factor asks how narrowly the pick won. A recommendation that wins by a wide margin on every factor says so; one that wins on a single close call names that call. |
+- **Restating the pre-mortem as the flip factor** — the pre-mortem asks how the pick fails on its own terms; the flip factor asks how narrowly the pick won. A recommendation that wins by a wide margin on every factor says so plainly; one that wins on a single close call names that call.
 ```
 
 The skill's existing contract governs this field like the others: it stays
