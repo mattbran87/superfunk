@@ -24,7 +24,7 @@ You MUST create a task for each of these items and complete them in order:
 1. **Explore project context** — check files, docs, recent commits, and attempt `.context.md` for any directory the idea touches, skipping if none exists
 2. **Offer the visual companion just-in-time** — NOT upfront. The first time a question would genuinely be clearer shown than described, offer it then (its own message); on approval its browser tab opens for you. If no visual question ever arises, never offer it. See the Visual Companion section below.
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
-4. **Propose 2-3 approaches** — with trade-offs and your recommendation. Every proposal set meets three requirements: include a do-nothing/defer candidate and name what happens if this design ships nothing; state confidence and name the project-specific evidence behind it; name the factor that, if it moved, would flip the ranking. For a decision with several defensible paths, dispatch `multi-lens-research` or `branching-research` instead of proposing inline.
+4. **Propose 2-3 approaches** — with trade-offs and your recommendation. State your confidence in that recommendation, and name the project-specific evidence behind it — a file you read, a prior decision's outcome, a measured quantity. Reasoning depth doesn't count. For a decision with several defensible paths, dispatch `multi-lens-research` or `branching-research` instead of proposing inline.
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
 6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
 7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
@@ -89,11 +89,9 @@ digraph brainstorming {
 **Exploring approaches:**
 
 - Propose 2-3 different approaches with trade-offs
-- Include a do-nothing/defer candidate in every proposal set — name what happens if this design ships nothing. All other candidates propose action; nothing else in this skill argues for restraint.
 - Present options conversationally with your recommendation and reasoning
 - Lead with your recommended option and explain why
 - State your confidence, and name the project-specific evidence behind it — a file you read, a prior decision's outcome, a measured quantity. Reasoning depth doesn't count.
-- Name the factor that, if it moved, would flip the ranking. A recommendation that wins on every factor says so; one that wins on a single close call names that call.
 - YAGNI ruthlessly - remove unnecessary features from every approach and design
 
 **Presenting the design:**
@@ -139,7 +137,7 @@ digraph brainstorming {
   superfunk:documentation's Finish-time check reads this field to
   decide whether to fire.
 - Include a `Consequences` section after Decision (and after Falsifiable Criteria or Testing, if either applies): what becomes easier or harder because of this decision, what assumptions must hold.
-- Capture an `Alternatives Considered` section in every spec that records a choice between approaches. If `multi-lens-research` or `branching-research` ran for this decision, capture the full comparison — the candidates, the recommendation, the steelmanned alternative. If only step 4's inline proposal ran, capture the short form — the candidates including the do-nothing option, the recommendation with its confidence, and the flip factor. Skip the section only when the design records no choice between approaches; an empty section repeats the placeholder problem the self-review below already bans.
+- Capture an `Alternatives Considered` section in every spec that records a choice between approaches. If `multi-lens-research` or `branching-research` ran for this decision, capture the full comparison — the candidates, the recommendation, the steelmanned alternative. If only step 4's inline proposal ran, capture the short form — the candidates, and the recommendation with its confidence and the named evidence behind it. Skip the section only when the design records no choice between approaches; an empty section repeats the placeholder problem the self-review below already bans.
 - If this design changes or replaces a decision an earlier spec made, update that earlier spec's `Status` to `Superseded by <this-filename>` as part of writing this one, and commit both files together.
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 - Commit the design document to git

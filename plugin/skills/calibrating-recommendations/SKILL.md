@@ -46,7 +46,6 @@ Every recommendation carries a confidence level, named evidence, and what would 
 **Confidence:** [High | Medium] — <one-sentence rationale>
 **Why confident:** <named project-specific evidence — file path, prior decision outcome, SME finding, measured quantity>
 **What would lower it:** <grounded in the pre-mortem finding>
-**What would flip the ranking:** <the single factor that, if it moved, would reorder the candidates — distinct from what would lower confidence in the pick, which asks how the recommendation fails on its own terms>
 ```
 
 **Low-Confidence Output** (inversion — no recommendation line):
@@ -84,4 +83,3 @@ If a lean toward the recommended option was stated before the recommendation was
 - **Steelmanning every rejected candidate** — dilutes the one steelman that actually matters for calibration; the rest stay one-liners.
 - **Writing a shallow pre-mortem** — "this could be wrong if the assumptions don't hold" restates that failure is possible without saying what the failure looks like. Name the specific way it fails.
 - **Logging a severe pre-mortem finding without reconsidering** — noting a serious flaw isn't the same as acting on it; the recommendation, confidence, or both must actually respond to what it found.
-- **Restating the pre-mortem as the flip factor** — the pre-mortem asks how the pick fails on its own terms; the flip factor asks how narrowly the pick won. A recommendation that wins by a wide margin on every factor says so plainly; one that wins on a single close call names that call.

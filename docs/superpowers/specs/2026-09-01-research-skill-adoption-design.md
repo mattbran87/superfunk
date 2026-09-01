@@ -125,15 +125,20 @@ with:
 
 ```markdown
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation.
-   Every proposal set meets three requirements:
-   - Include a do-nothing/defer candidate. Name what happens if this
-     design ships nothing.
-   - State confidence, and name the project-specific evidence behind it.
-   - Name the factor that, if it moved, would flip the ranking.
-   For a decision with several defensible paths, dispatch
+   State your confidence in that recommendation, and name the
+   project-specific evidence behind it — a file you read, a prior
+   decision's outcome, a measured quantity. Reasoning depth doesn't
+   count. For a decision with several defensible paths, dispatch
    `multi-lens-research` or `branching-research` instead of proposing
    inline.
 ```
+
+**Amended after the A/B trial.** This section originally added three
+requirements. The trial validated one and falsified two, so only
+confidence grounding ships here. Criterion 9 records the evidence. The
+null option and the flip factor appear in three of four trial arms
+without any instruction, and in the scenario built to test the null
+option the unmodified skill produced the better answer.
 
 Update the prose restatement at `:91-94` to carry the same three
 requirements, so the checklist and the prose agree.
@@ -151,14 +156,20 @@ short form:
   choice between approaches. If `multi-lens-research` or `branching-research`
   ran for this decision, capture the full comparison — the candidates, the
   recommendation, the steelmanned alternative. If only step 4's inline
-  proposal ran, capture the short form — the candidates including the
-  do-nothing option, the recommendation with its confidence, and the flip
-  factor. Skip the section only when the design records no choice between
+  proposal ran, capture the short form — the candidates, and the
+  recommendation with its confidence and the named evidence behind it. Skip the section only when the design records no choice between
   approaches; an empty section repeats the placeholder problem the
   self-review below already bans.
 ```
 
-### 5. Add ranking sensitivity to calibrating-recommendations
+### 5. Add ranking sensitivity to calibrating-recommendations — NOT SHIPPED
+
+**Withdrawn after the A/B trial.** The flip factor appeared unprompted in
+three of four trial arms, which contradicts the premise this section rested
+on — that models do not supply it on their own. Adding a fifth required
+field to a skill that already mandates four, to force a behavior the model
+already produces, does not earn its slot. The section below records what
+was designed and rejected; none of it shipped.
 
 Add one line to the Medium/High recommendation output block in
 `plugin/skills/calibrating-recommendations/SKILL.md`, after
@@ -207,23 +218,57 @@ change.
 3. Every backtick-quoted skill name in the three adopted files resolves to a
    directory under `plugin/skills/`, checked by script rather than by reading.
 4. `plugin/skills/brainstorming/SKILL.md:27` matches the step 4 wording in
-   Decision section 3 exactly, and the prose at `:91-94` carries the same
-   three requirements.
+   Decision section 3 exactly, and the prose restatement carries the same
+   confidence-grounding requirement. Neither location mentions a do-nothing
+   candidate or a flip factor, both withdrawn after the trial.
 5. The `Alternatives Considered` bullet matches the wording in Decision
    section 4 exactly.
-6. `calibrating-recommendations/SKILL.md` contains the
-   `**What would flip the ranking:**` line and the new Common Mistakes row,
-   worded as Decision section 5 states.
+6. `calibrating-recommendations/SKILL.md` contains NO
+   `What would flip the ranking` line and no flip-factor Common Mistakes
+   entry. Decision section 5 was withdrawn, so this criterion inverts: the
+   file must match its adopted source apart from nothing at all.
 7. `multi-lens-research/SKILL.md` step 3 contains the null-option baseline
    paragraph, worded as Decision section 6 states.
 8. All seven files `plugin/.version-bump.json` declares read `6.3.0`,
    checked by iterating that file's own list rather than by naming files
    from memory.
-9. Two disposable `--plugin-dir` trials run the same brainstorming prompt: one
-   against the current step 4, one against the revised step 4. The revised run
-   produces a do-nothing candidate and a named flip factor. The current run
-   produces neither. A run that produces both under the current wording
-   falsifies the change, which then does not ship.
+9. **RESULT: two of three requirements falsified. Corrected after the trial
+   ran, per `docs/patterns/ab-test-live-trials-for-behavior-change.md` Rule 1
+   step 5.**
+
+   The criterion as originally written predicted that the revised step 4 would
+   produce a do-nothing candidate and a named flip factor, and that the
+   current step 4 would produce neither. Two A/B trials ran, four arms total,
+   each pair using one identical coaching-free prompt that never named the
+   behavior under test. Arm A checked out the plugin at the pre-edit commit
+   with all three adopted skills already present, so step 4 stayed the only
+   difference.
+
+   What the trials actually show:
+
+   - **Confidence grounding — validated.** Absent from both pre-change arms,
+     present in both post-change arms. A clean 2/2 split, the only requirement
+     that produced a detectable difference.
+   - **Null option — falsified.** Trial 1 could not test it: the prompt said
+     "treat this as fully specified," which forecloses "build nothing" before
+     the agent starts. Trial 2 used a scenario where deferring stayed
+     defensible (180ms p50 at 4 requests per second). The pre-change arm made
+     "Measure before caching" its first approach and its recommendation,
+     stating that "180ms p50 may simply not be worth fixing." The post-change
+     arm, carrying the instruction, offered three caching implementations and
+     raised restraint only as a caveat around the set, never as a candidate in
+     it. The unmodified skill produced the better answer on the exact
+     dimension this requirement targets.
+   - **Flip factor — falsified.** Present in three of four arms, including two
+     pre-change arms that named it unprompted ("the ranking changes," "the
+     strongest argument against my recommendation"). Absent only from one
+     post-change arm. The instruction did not cause the behavior; the model
+     already produces it.
+
+   Scale caveat: two scenarios, one model, one prompt each. This shows the two
+   requirements added nothing detectable in these scenarios, not that they
+   could never help. It does establish that the predicted difference failed to
+   appear where the criterion said it would.
 
 ## Consequences
 
