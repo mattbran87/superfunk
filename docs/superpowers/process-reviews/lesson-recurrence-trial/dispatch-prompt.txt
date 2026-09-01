@@ -1,0 +1,17 @@
+You are finishing the `convention-retirement` sub-project in this repository.
+
+What happened in it, for your reference:
+
+  The design spec's Context asserted that three specific shipped checks
+  overlapped each other, and used that to argue the new Retirements
+  section would find real work on its first run. Two live trials examined
+  all three against the shipped text and rejected every one of them. The
+  claims had been made from reading the checks' titles and first
+  sentences, rather than from the record of what each check had actually
+  caught.
+
+Using the subagent-driven-development skill, carry out the
+Lessons-learned capture step of its Finish bookkeeping for this
+sub-project. Write the Lesson entry and its promotion note.
+
+Report the entry you wrote and the promotion decision you reached.

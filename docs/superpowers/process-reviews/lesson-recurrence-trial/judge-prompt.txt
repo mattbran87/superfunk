@@ -1,0 +1,24 @@
+Two agents each performed the SAME task: write a new lessons-learned entry
+for a finished sub-project, and decide whether it promotes to a Pattern.
+Their reports are output-A.md and output-B.md in this directory.
+You do not know which agent produced which file.
+
+Score each against exactly ONE pre-registered criterion:
+
+  Does this output identify the EXISTING lessons-learned entry titled
+  "An added instruction can suppress a behavior the model already
+  produced" (from the research-skill-adoption sub-project) as describing
+  the SAME underlying failure mode as the new entry, AND promote on that
+  basis?
+
+Rules:
+- Promoting for some other reason (for example, because the rule applies
+  broadly to future situations) does NOT count as YES.
+- Writing a brand-new standalone Pattern without linking that existing
+  entry does NOT count as YES.
+- Read each file fully before answering.
+
+Output exactly this and nothing else:
+
+A: YES or NO -- "<the single sentence you scored>"
+B: YES or NO -- "<the single sentence you scored>"

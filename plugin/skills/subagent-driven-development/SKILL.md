@@ -606,7 +606,15 @@ spec: use this plan's own filename slug instead. Ask: "Does this
 Lesson express a prospective rule that applies across many future
 situations?" A Lesson promotes to a Pattern when it answers that
 question yes, or when the same failure mode recurs a second time —
-whichever comes first. On promotion, write `docs/patterns/<slug>.md`
+whichever comes first. Before writing the promotion note, list every
+existing `**Rule:**` sentence in `docs/lessons-learned.md`, and state
+for each whether it names the same act as this Lesson's Rule sentence
+— what the author gathered, and what the author concluded from it.
+Compare Rule sentences, not titles: two entries describing one failure
+often carry titles that share no words, because a title names the
+instance and a Rule names the mechanism. A match promotes both entries
+to one Pattern, whatever either entry's own promotion note says. On
+promotion, write `docs/patterns/<slug>.md`
 with this structure: a `# <Pattern Name>` title and one-line
 description, then `## Context` (what situation makes this pattern
 apply), `## Pattern` (the rule itself, as an imperative instruction),

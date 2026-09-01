@@ -1,7 +1,7 @@
 # Lesson Recurrence Check — Design
 
 **Date:** 2026-09-01
-**Status:** Approved
+**Status:** Shipped (the trial reached decision-rule branch 2; the promotion step carries the tested wording)
 **User-Facing:** Yes
 
 ## Context
@@ -108,9 +108,11 @@ instance and a Rule names the mechanism. A match promotes both entries to one
 Pattern, whatever either entry's own promotion note says.
 ```
 
-The enumeration bounds the work. The file holds roughly thirty Rule sentences,
-so the writer reads a fixed list instead of recalling an open-ended one. The
-irreducible judgment shrinks to one question per entry.
+The enumeration bounds the work. `docs/lessons-learned.md` holds 28 Rule
+sentences at this spec's HEAD, and 25 at the trial fixture's commit — both
+counts measured, not estimated. The writer reads a fixed list instead of
+recalling an open-ended one. The irreducible judgment shrinks to one question
+per entry.
 
 ## Alternatives Considered
 
@@ -135,10 +137,12 @@ and a wording change that may fail. Against it: a hand-merge repairs one pair
 and leaves the mechanism that produced the pair untouched, so entry 125 and
 entry 140 repeat it. This spec treats the pair as a symptom.
 
-**Pre-mortem on candidate 1.** The enumeration grows with the file. At thirty
-Rule sentences the writer reads a bounded list. At two hundred the step turns
+**Pre-mortem on candidate 1.** The enumeration grows with the file. At 28 Rule
+sentences the writer reads a bounded list. At two hundred the step turns
 costly, and a writer under pressure skims rather than enumerates. Falsifiable
-Criterion 7 records this limit rather than claiming the procedure scales.
+Criterion 7 records this limit rather than claiming the procedure scales. The
+file gained 3 Rule sentences between the fixture's commit and this spec, so a
+later reader can measure the growth rate rather than guess it.
 
 ## Falsifiable Criteria
 
@@ -158,6 +162,70 @@ Criterion 7 records this limit rather than claiming the procedure scales.
    so a later reader sees the scaling limit without reading this spec.
 8. `subagent-driven-development/SKILL.md` carries the wording of the arm the
    decision rule selects, character for character.
+
+### RESULT — the trial ran on 2026-09-01 and reached branch 2
+
+Commit `8a50b47` recorded the criterion and the decision rule before either arm
+ran. The two plugin copies differed in one file at one line. A leak probe over
+the shared prompt returned no match for `recurrence`, `recurs`, `entry 108`,
+`added instruction`, `already produced`, `promote both`, or `same failure`.
+
+| Arm | The promotion step carried | Verdict |
+|---|---|---|
+| 1 · Control | the wording that shipped before today | **missed** |
+| 2 · Procedure | plus the enumeration | **detected** |
+
+A separate agent scored both outputs unlabeled and shuffled.
+
+**Arm 1 promoted, and still missed.** That result matters more than a refusal
+to promote would. Arm 1 wrote a new standalone Pattern,
+`verify-overlap-claims-before-proposing-removal.md`, and justified it on the
+prospective-rule test: "the rule applies to any argument for removal." It
+checked two nearby *patterns* before writing a new file, and never compared
+against the *lessons*. Entry 108 went unnamed.
+
+So the control arm does not fail by filing a single occurrence. It fails by
+minting a third near-duplicate, which grows the very pile that makes the next
+comparison harder.
+
+**Arm 2 named entry 108, promoted both, and amended entry 108's own note.** It
+produced the better abstraction as well. Arm 1's pattern covers removal
+arguments only. Arm 2's, `check-the-record-before-adding-or-retiring-a-rule`,
+covers both directions and states why they share one mechanism: each gathers a
+shipped instruction's function from text rather than from evidence of its
+behavior, then edits the instruction set on that basis — one adding, one
+retiring — and a live run falsified both.
+
+**Arm 2 undercounted, and the procedure still worked.** It reported comparing
+against "all 17 existing ones." The fixture holds 25 Rule sentences, measured
+from `git show fbcec90:docs/lessons-learned.md`. The enumeration reached 17 of
+25 and found the match anyway. This spec records that as a real execution
+defect rather than rounding it into a clean pass. A partial enumeration that
+happens to contain the matching entry proves less than an exhaustive one.
+
+**Scale caveat.** One fixture, one model, one prompt, one run per arm. This
+shows the enumeration found a link the shipped wording missed in this scenario.
+It does not measure how often either outcome repeats.
+
+**Fixture note.** Both arms appended their own entry to the fixture's
+`docs/lessons-learned.md`, so each arm's working copy holds 26 Rule sentences
+afterward. The pristine count of 25 comes from git, not from the post-run
+tree.
+
+**Criterion 7 fails, and criteria 7 and 8 contradict each other.** Criterion 7
+requires the shipped step to state the enumeration's scaling cost in its own
+words. Criterion 8 requires the shipped step to match the tested arm character
+for character. Arm 2 carried no cost sentence, so no wording satisfies both.
+
+Criterion 8 wins. Shipping a string no arm ran repeats the failure this whole
+sub-project exists to stop, and a missing cost sentence costs a later reader one
+lookup. Criterion 7 therefore stands as **failed**, not as satisfied by a
+convenient reading.
+
+This spec's own Falsifiable Criteria formed an enumerated list holding two
+members that cannot both hold. The rule-membership check shipped in `c5c969d`
+covers exactly that shape, and this author did not run it over this document's
+criteria list. Recorded here rather than quietly repaired.
 
 ## Consequences
 
