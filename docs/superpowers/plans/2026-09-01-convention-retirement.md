@@ -137,8 +137,10 @@ To:
 
 - [ ] **Step 3: Verify**
 
-Run: `grep -c "carrying no attribution" plugin/skills/process-review/SKILL.md`
+Run: `grep -c "predates the attribution field" plugin/skills/process-review/SKILL.md`
 Expected: `1`
+
+Do NOT anchor on "carrying no attribution". That phrase spans a line wrap in the inserted text — "carrying no" ends one line and "attribution:" begins the next — so a single-line `grep` returns `0` no matter how correctly the edit landed. Confirmed by running it. Use the non-wrapping phrase above.
 
 Run: `grep -c "found ad hoc" plugin/skills/process-review/SKILL.md`
 Expected: `1` — Task 3 raises this to `2`.
@@ -229,7 +231,7 @@ Run: `grep -c "Subsumed" plugin/skills/process-review/SKILL.md`
 Expected: `2` — one in Step 5's reason set, one in No Placeholders.
 
 Run: `grep -c "Zero-yield" plugin/skills/process-review/SKILL.md`
-Expected: `2` — same two locations.
+Expected: `3` — the bolded reason item, the attribution-coverage sentence that names it ("makes Zero-yield unusable"), and the No Placeholders line. `Subsumed`, `Superseded`, and `Vacuous` each return `2`, since only `Zero-yield` gets a prose mention outside its own reason item.
 
 Run: `grep -c "found ad hoc" plugin/skills/process-review/SKILL.md`
 Expected: `2` — Task 2's Step 2 plus this task's attribution-coverage line.
@@ -317,12 +319,12 @@ Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
 grep -c "check that caught it" docs/superpowers/process-reviews/notes.md
 grep -c "found ad hoc" docs/superpowers/process-reviews/notes.md
 grep -c "Subsumed" plugin/skills/process-review/SKILL.md
-grep -c "Zero-yield" plugin/skills/process-review/SKILL.md
-grep -c "carrying no attribution" plugin/skills/process-review/SKILL.md
+grep -c "Zero-yield" plugin/skills/process-review/SKILL.md   # 3, not 2 — see Task 3 Step 4
+grep -c "predates the attribution field" plugin/skills/process-review/SKILL.md
 grep -c "net new load" plugin/skills/process-review/SKILL.md
 git log -p --follow -- docs/superpowers/process-reviews/notes.md | grep -c "^-- 20"
 ```
-Expected, in order: `1`, `1`, `2`, `2`, `1`, `1`, `0`. The last confirms that no historical entry ever left the file.
+Expected, in order: `1`, `1`, `2`, `3`, `1`, `1`, `0`. The last confirms that no historical entry ever left the file.
 
 - [ ] **Step 2: Build the fixture with this repository's real files**
 
