@@ -33,7 +33,13 @@ standalone without one of these triggers:
    shipped since" list — these are the specs this review covers.
 2. Read `docs/superpowers/process-reviews/notes.md`. Collect every
    entry dated after the tracker's last-review date (or every entry,
-   if the tracker reads "none yet").
+   if the tracker reads "none yet"). An entry carries either four
+   fields (date, Catch, label, finding) or five (date, Catch, label,
+   check, finding). Read a four-field entry as carrying no
+   attribution: it predates the attribution field, and nothing
+   reconstructs which check found it. Read the literal value
+   `none — found ad hoc` in a five-field entry the same way — a real
+   record that no check produced that Catch, not a missing value.
 3. For each spec in the "Specs shipped since" list, derive its plan's
    basename by stripping the trailing `-design` from the spec's
    filename (minus `.md`) — the trailing occurrence specifically,
