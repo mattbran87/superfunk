@@ -244,7 +244,13 @@ nobody actually ran counts as a plan failure, the same as a
 placeholder. See docs/patterns/verify-plan-commands-against-real-content.md
 for the specific failure shapes a plausible-looking prediction has
 actually hit before — checking it against a known list beats
-re-discovering the same trap.
+re-discovering the same trap. This item's scope also covers any
+numeric budget the plan's Global Constraints section states — a
+line-count ceiling, a performance target, a size limit. Sum each
+task's own added or changed line counts against a stated ceiling
+before finalizing the plan; a budget nobody checked against the
+plan's own arithmetic counts as the same failure as an unchecked
+`Expected:` value.
 
 **11. Template compliance:** Does this plan's own document header
 match every element the Plan Document Header section above requires
