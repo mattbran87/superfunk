@@ -111,7 +111,7 @@ Two of three requirements added to `brainstorming`'s step 4 turned out to be beh
 
 **Tags:** none yet — tags deferred.
 
-*No pattern promoted — single occurrence. Revisit if a second added instruction is found to suppress rather than cause its target behavior.*
+*Pattern promoted — see docs/patterns/check-the-record-before-adding-or-retiring-a-rule.md. This entry originally deferred promotion pending a second suppression instance. The Rule-sentence enumeration shipped in `5c2ea7c` matched it instead against "Candidates asserted to justify a design can fail the design's own first test" — a second instance of the underlying act, not of the suppression symptom. Both entries promote together.*
 
 ### A trial fixture's git history leaks what its working tree no longer does (2026-09-01-convention-retirement)
 
@@ -127,7 +127,7 @@ The convention-retirement spec's Context asserted three concrete subsumption ove
 
 **Tags:** none yet — tags deferred.
 
-*No pattern promoted — single occurrence, and adjacent to the already-promoted `re-verify-quotes-against-source-before-citing.md`. Revisit if a second spec's justifying claims fail their own first trial.*
+*Pattern promoted — see docs/patterns/check-the-record-before-adding-or-retiring-a-rule.md. This entry originally deferred promotion pending a second instance, and named `re-verify-quotes-against-source-before-citing.md` as the nearest neighbour. The Rule-sentence enumeration shipped in `5c2ea7c` found the real match one entry away: "An added instruction can suppress a behavior the model already produced." Both gather a static description and conclude actual behavior — one to add a rule, one to retire one.*
 
 ## Review
 
