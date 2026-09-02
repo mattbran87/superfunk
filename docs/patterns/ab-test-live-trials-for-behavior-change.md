@@ -18,6 +18,7 @@ A `--plugin-dir` trial can dispatch an agent, plant a scenario, and confirm the 
 3. Run the identical coaching-free prompt against both checkouts, using the same fixture.
 4. Compare the two results directly. Only a difference between the two arms counts as evidence the instruction changed anything. Identical results in both arms mean the instruction added no detectable value in that scenario — report this honestly, even if an earlier, coached trial already reported a "pass."
 5. If the design spec or plan already cites the single-arm trial as its Falsifiable Criterion, correct that criterion once the A/B result comes in — state plainly what the criterion actually shows (the instruction gets followed) versus what it does not show (the instruction changed the outcome).
+6. Pre-register the decision rule by scoring each arm and fixture independently, then combining the per-unit states exhaustively — enumerate the full outcome space, never a list of example branches. An outcome with no covering branch means the decision rule fails this step.
 
 **Rule 2 — verifying a trigger correctly does NOT fire needs a scenario the agent evaluates itself, not a stated answer.**
 
