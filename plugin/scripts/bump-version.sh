@@ -25,30 +25,45 @@ fi
 # Handles both simple ("version") and nested ("plugins.0.version") paths.
 read_json_field() {
   local file="$1" field="$2"
-  # Convert dot-path to jq path: "plugins.0.version" -> .plugins[0].version
-  local jq_path
-  jq_path=$(echo "$field" | sed -E 's/\.([0-9]+)/[\1]/g' | sed 's/^/./' | sed 's/\.\././g')
-  jq -r "$jq_path" "$file"
+  node -e '
+    const fs = require("fs");
+    const [file, field] = process.argv.slice(1);
+    let v = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const part of field.split(".")) v = v[part];
+    console.log(v);
+  ' "$file" "$field"
 }
 
-# Write a dotted field path in a JSON file, preserving formatting.
+# Write a dotted field path in a JSON file (2-space indent, trailing newline).
 write_json_field() {
   local file="$1" field="$2" value="$3"
-  local jq_path
-  jq_path=$(echo "$field" | sed -E 's/\.([0-9]+)/[\1]/g' | sed 's/^/./' | sed 's/\.\././g')
-  local tmp="${file}.tmp"
-  jq "$jq_path = \"$value\"" "$file" > "$tmp" && mv "$tmp" "$file"
+  node -e '
+    const fs = require("fs");
+    const [file, field, value] = process.argv.slice(1);
+    const root = JSON.parse(fs.readFileSync(file, "utf8"));
+    const parts = field.split(".");
+    let obj = root;
+    for (const part of parts.slice(0, -1)) obj = obj[part];
+    obj[parts[parts.length - 1]] = value;
+    fs.writeFileSync(file, JSON.stringify(root, null, 2) + "\n");
+  ' "$file" "$field" "$value"
 }
 
 # Read the list of declared files from config.
 # Outputs lines of "path<TAB>field"
 declared_files() {
-  jq -r '.files[] | "\(.path)\t\(.field)"' "$CONFIG"
+  node -e '
+    const cfg = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+    for (const f of cfg.files) console.log(f.path + "\t" + f.field);
+  ' "$CONFIG"
 }
 
 # Read the audit exclude patterns from config.
 audit_excludes() {
-  jq -r '.audit.exclude[]' "$CONFIG" 2>/dev/null
+  node -e '
+    const cfg = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+    for (const p of (cfg.audit && cfg.audit.exclude) || []) console.log(p);
+  ' "$CONFIG" 2>/dev/null
 }
 
 # --- commands ---
