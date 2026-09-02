@@ -255,6 +255,13 @@ task's own added or changed line counts against a stated ceiling
 before finalizing the plan; a budget nobody checked against the
 plan's own arithmetic counts as the same failure as an unchecked
 `Expected:` value.
+For each task that inserts new text and verifies it with a grep, write
+the task's drafted insertion text to a scratch file and run the task's
+own verification grep against that file before finalizing the plan. A
+grep that returns 0 against the drafted text means the anchor fails
+after insertion too — a wrapped line, a duplicate, or a count that
+exists only in text not yet inserted. Fix the anchor or the text now,
+not at execution time.
 
 **11. Template compliance:** Does this plan's own document header
 match every element the Plan Document Header section above requires

@@ -246,4 +246,28 @@ that skips it fails the step's first real test.
 
 ## RESULT
 
-*(filled at Finish)*
+- **R1 — SHIPPED.** The A/B trial reached decision-rule branch 1 (arm 1
+  no / arm 2 yes). The blind judge quoted arm 2's scratch-file grep of
+  its own drafted insertion text (`grep -c '## Error-Message Copy'
+  /tmp/cs-scratch.md`, run after appending the draft to a scratch copy,
+  before finalizing) and quoted arm 1's only greps running against the
+  pre-existing target file, which the criterion excludes. Both quotes
+  got checked against the criterion's wording before the label mapping
+  was unsealed (pattern Rule 4). Item 10 now carries the tested string
+  character-for-character. Trial archive:
+  `docs/superpowers/process-reviews/r1-drafted-insertion-trial/`.
+- **R2 — shipped** (commit 92e6028): Rule 1 point 6 inserted,
+  character-identical to the registered string; this spec's own R1
+  decision rule demonstrates the required form.
+- **R3 — shipped** (commit 5c6b4d2): all four acceptance checks passed
+  with recorded outputs — `--check` exit 0 at 6.4.0 across seven files,
+  zero `jq` matches, round-trip diff touched only version lines in
+  exactly seven files, `--audit` ran to completion.
+- **R4 — shipped** (commits fa2637c, 5e55af4): eight-item Step 3
+  section in executing-plans; bump gate in SDD's Finish plus worked
+  example; normalized-extraction diff of the gate wording across both
+  files printed IDENTICAL (verified independently by the task reviewer).
+- Surprise worth recording: the control arm appended its drafted text
+  and verified with `diff`/`tail` instead of grep — reasonable behavior
+  the criterion correctly did not credit, since the shipped mechanism's
+  claim concerns grep-anchor verification specifically.
