@@ -30,7 +30,49 @@ For each task:
 3. Run verifications as specified
 4. Mark as completed
 
-### Step 3: Complete Development
+### Step 3: Finish Bookkeeping
+
+After all tasks complete and verified, and before Step 4, perform the
+same bookkeeping superfunk:subagent-driven-development's Finish section
+performs for dispatched plans:
+
+1. **notes.md gate:** Verify each executed task's catches and findings
+   got logged to `docs/superpowers/process-reviews/notes.md`. Append any
+   missing lines now.
+2. **Spec Status flip:** If this plan traces to a design spec, update
+   that spec's `Status` line to `Shipped` and commit the change.
+3. **Tracker append:** Append the spec filename to
+   `docs/superpowers/process-reviews/tracker.md`'s "Specs shipped since"
+   list, in the same commit. At 3 or more entries, offer to run
+   superfunk:process-review now — ask, don't force.
+4. **Recommendation checkbox:** If the spec's Context names a
+   `review-after-*.md` file, find the matching `- [ ]` line, change it
+   to `- [x]`, and append `(Shipped as <what shipped>, commit <sha>.)`
+   — in the same commit as items 2–3.
+5. **Verify items 2–4 landed:**
+   ```bash
+   grep -c "^\*\*Status:\*\* Shipped" <spec-file>
+   grep -c "<spec filename>" docs/superpowers/process-reviews/tracker.md
+   grep -c "\[x\].*<distinctive words from the Recommendation>" <review-file>
+   ```
+   Each applicable check returns at least 1. A 0 means that action never
+   happened — do it now.
+6. **Lessons capture:** Capture a notable learning in
+   `docs/lessons-learned.md`, or record that nothing notable arose.
+   Follow the detailed lesson-and-promotion procedure in
+   superfunk:subagent-driven-development's Finish section.
+7. **Version bump:**
+   If the branch's diff touches `plugin/`, run
+   `plugin/scripts/bump-version.sh <new-version>` and commit the result —
+   minor bump for `plugin/skills/` changes, patch otherwise. Unsure
+   whether the bump already happened: run `--check` first.
+8. **Concept index:** If this plan's File Structure created, renamed,
+   moved, or deleted a skill, feature, or significant directory, update
+   `docs/architecture/concept-index.md` per superfunk:concept-index
+   Step 3, using the trigger conditions in
+   superfunk:subagent-driven-development's Finish section.
+
+### Step 4: Complete Development
 
 After all tasks complete and verified:
 - Announce: "I'm using the finishing-a-development-branch skill to complete this work."
