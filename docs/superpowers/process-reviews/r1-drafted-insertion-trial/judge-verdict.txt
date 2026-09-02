@@ -1,0 +1,17 @@
+I've read all four files. Verdicts:
+
+**A: YES**
+
+**A evidence:** From A-commands.txt, the session first appended its drafted insertion text to a scratch copy (`cp docs/code-standards.md /tmp/cs-scratch.md && cat >> /tmp/cs-scratch.md <<'EOF' ... EOF`), then ran:
+
+> `grep -c '## Error-Message Copy' /tmp/cs-scratch.md; tail -n 7 /tmp/cs-scratch.md; echo '---diff-check---'; tail -n 10 /tmp/cs-scratch.md | head -1; wc -l /tmp/cs-scratch.md docs/code-standards.md`
+
+That `grep -c '## Error-Message Copy' /tmp/cs-scratch.md` is a grep run during plan writing against a file that contained the drafted insertion text (the scratch copy after the append), and the plan confirms it happened before finalization (A-plan.md: "the `1`, the 7-line `tail` output, and the `148` line count were produced by actually appending the drafted block to a scratch copy of the current file and running the verification commands against it"). The scratch file is not the pre-existing target — it contained the drafted text at grep time — so it satisfies the criterion.
+
+**B: NO**
+
+**B evidence:** The only greps B ran were, from B-commands.txt:
+
+> `grep -c "Never truncate an identifier" docs/code-standards.md; grep -c "Error-Message Copy" docs/code-standards.md; tail -c 200 docs/code-standards.md | od -c | tail -5`
+
+These ran in the first command block, before the append in the second block, against the pre-existing target file (both returned 0 matches per B-plan.md: "the file currently contains zero occurrences of 'Error-Message Copy' ... (`grep -c` returned 0 for both)") — which the criterion explicitly excludes. After B appended the drafted text to the file, its verification used only `git diff --stat` and `diff <(tail -n 7 docs/code-standards.md) <(printf ...)` — not grep. The plan's Step 1/3 checks it describes for execution time are likewise `diff`-based, not grep, so the "described future grep" clause doesn't apply either. No grep was ever run against a file containing the drafted insertion text.

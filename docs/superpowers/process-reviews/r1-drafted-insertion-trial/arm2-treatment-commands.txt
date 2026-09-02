@@ -1,0 +1,18 @@
+---
+grep -c '## Error-Message Copy' docs/code-standards.md; echo "exit=$?"; tail -c 20 docs/code-standards.md | od -c | tail -3
+---
+cp docs/code-standards.md /tmp/cs-scratch.md && cat >> /tmp/cs-scratch.md <<'EOF'
+
+---
+
+## Error-Message Copy
+
+Error messages must name the failing input and the expected
+format in the same sentence, so a user can correct the mistake
+without reading source code. Log lines above WARN must carry the
+request identifier. Never truncate an identifier in user-facing
+output.
+EOF
+grep -c '## Error-Message Copy' /tmp/cs-scratch.md; tail -n 7 /tmp/cs-scratch.md; echo '---diff-check---'; tail -n 10 /tmp/cs-scratch.md | head -1; wc -l /tmp/cs-scratch.md docs/code-standards.md
+---
+rm -f /tmp/cs-scratch.md
