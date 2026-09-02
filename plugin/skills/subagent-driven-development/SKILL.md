@@ -627,6 +627,11 @@ the Lesson (and, if written, the Pattern) in the same commit as the
 tracker update above, or their own commit if the tracker didn't
 change.
 
+If the branch's diff touches `plugin/`, run
+`plugin/scripts/bump-version.sh <new-version>` and commit the result —
+minor bump for `plugin/skills/` changes, patch otherwise. Unsure
+whether the bump already happened: run `--check` first.
+
 If `docs/architecture/concept-index.md` exists, check this plan's own
 File Structure section for whether it created, renamed, moved, or
 deleted a `plugin/skills/<name>/`, a `specs/<module>/<feature>/`, or a
@@ -744,6 +749,7 @@ Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 [Finish: no Recommendation to check off -- this plan didn't trace to a process review]
 [Finish: notes.md gate -- Task 2's fix round already logged above, check passes]
 [Finish: captured a Lesson in lessons-learned.md; no pattern promoted, one instance so far]
+[Finish: branch diff touches plugin/skills/ -- ran scripts/bump-version.sh with a minor bump, committed]
 [Finish: no concept-index entry needed -- no skill/feature/significant directory created]
 [Finish: no real-and-deferred parked findings -- bug-tracking step skipped]
 
