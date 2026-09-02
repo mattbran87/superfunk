@@ -14,3 +14,9 @@
 - Commit: fa2637c. Spec ✅ (inserted section byte-matches the brief; renumbering clean; items 1-8 verified present), quality Approved.
 - DONE_WITH_CONCERNS resolved: check_docs.py printed ACTION_NEEDED; reviewer ruled the no-edit disposition valid (README one-line summaries contradict nothing, no CHANGELOG exists, tool failure modes tracked as BUG-0001/0002).
 - Outcome: Shipped as planned; no divergence.
+
+## Task 4: R4b — bump gate in SDD Finish
+- Commit: 5e55af4. Spec ✅ (both insertions exact; 6 insertions, 0 deletions), quality Approved.
+- Reviewer independently re-ran the normalized identity extraction: IDENTICAL, byte-for-byte including the U+2014 em-dash.
+- Minor parked with ruling: worked-example's terse "scripts/bump-version.sh" matches sibling example shorthand; accepted.
+- Outcome: Shipped as planned; no divergence.
