@@ -30,3 +30,8 @@
 ## Task 6: R1 ship + RESULT fill
 - Commit: ef31db9. Spec ✅ (exactly two files; placement and paragraph continuity verified; RESULT corroborated against the trial archive), quality Approved.
 - Outcome: Shipped as planned; no divergence.
+
+## Finish
+- Final whole-branch review: READY TO MERGE, two Minors — judge-prompt archive gap (remediated in the Finish commit, judge-prompt.txt added) and a harmless opener redundancy (accepted with ruling).
+- Finish executed the batch's own new executing-plans Step 3 list end-to-end (spec criterion 5): notes gate (2 final-review lines appended), Status flip, tracker append (1 entry — below the 3-entry review offer), all four checkboxes annotated, verification greps 1/1/1, lesson captured and promoted (enumerate-lists-to-their-structural-end), version bump 6.4.0 -> 6.5.0 via the freshly ported script (first live execution: 7/7 in sync, audit clear), concept-index skipped (no directory-crossing change), bug-tracking sweep skipped (no real-and-deferred parked findings).
+- Batch complete: R1 shipped trial-gated, R2/R3/R4 shipped mechanical. 13 task commits + Finish wave.
