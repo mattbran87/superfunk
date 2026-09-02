@@ -26,3 +26,7 @@
 - Both arms ran clean on first launch (no classifier blocks). Blind judge: A(=arm2 treatment) YES — quoted a scratch-file grep of drafted insertion text run before finalization; B(=arm1 control) NO — only greps ran against the pre-existing target, excluded by the criterion. Quotes verified against criterion wording before unsealing the mapping.
 - Decision-rule branch: arm1 no / arm2 yes — SHIP the exact string.
 - Outcome: Shipped as planned; the mechanism fired unprompted in treatment and not in control on its first genuinely blind test.
+
+## Task 6: R1 ship + RESULT fill
+- Commit: ef31db9. Spec ✅ (exactly two files; placement and paragraph continuity verified; RESULT corroborated against the trial archive), quality Approved.
+- Outcome: Shipped as planned; no divergence.
