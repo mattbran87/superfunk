@@ -1,0 +1,22 @@
+You are finishing the `2026-08-28-process-review-recommendations-batch-3`
+sub-project in this repository.
+
+What happened in it, for your reference:
+
+  The sub-project shipped three new Self-Review items to catch predicted
+  counts that never got run against real command output. While building
+  it, its own design spec and implementation plan hit that same failure
+  three separate times before shipping. A predicted `grep -c "Finish:"`
+  total assumed each new diagram node name contributes one matching line,
+  which was wrong, because reused node names span multiple edge lines. A
+  follow-up verification command's `-A 60` window assumed a diagram
+  block's length without measuring it, and the block spans 65 lines. All
+  three got caught only by running the substitution and the command
+  against real file content. The mechanism being built did not exist yet
+  to catch its own construction.
+
+Using the subagent-driven-development skill, carry out the
+Lessons-learned capture step of its Finish bookkeeping for this
+sub-project. Write the Lesson entry and its promotion note.
+
+Report the entry you wrote and the promotion decision you reached.

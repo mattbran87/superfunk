@@ -212,6 +212,48 @@ It does not measure how often either outcome repeats.
 afterward. The pristine count of 25 comes from git, not from the post-run
 tree.
 
+### RESULT — second fixture, run 2026-09-01, criterion registered in `e1aac64`
+
+The first result rested on one fixture and one run per arm. A second fixture
+re-tested it: superfunk at `0dc8e45`, 17 Rule sentences, rebuilt as a
+single-commit repository. The criterion scored process rather than answer,
+because naming one adjacent pattern from recall counts as the failure under
+test, and the shipped history did exactly that.
+
+| Arm | Compared against the set | Promotion it produced |
+|---|---|---|
+| 1 · Control | **no** | created a separate new Pattern file |
+| 2 · Enumeration | **yes** | folded into the existing Pattern, retitled to cover both shapes |
+
+Branch 2 applies. The enumeration replicates on a second fixture.
+
+**The measured difference sits in pattern proliferation, not in the answer.**
+Both arms named `validate-tools-against-real-project-data.md`. The control
+rejected it as distinct and opened a second file. The enumeration arm treated
+it as the match and extended it. Fixture 1 showed the same direction: its
+control minted a new standalone Pattern rather than linking to an existing
+entry. Two fixtures, unrelated subject matter, same effect.
+
+**This spec's author held a false premise, and the trial corrected it.** The
+fixture got selected because `self-apply-cross-section-check-to-hand-fixes.md`
+looked like a closer match than the pattern the history chose. The enumeration
+arm read every Rule, listed the self-apply entry among the fifteen it examined,
+and ruled it out with a stated reason. The original author and an enumerating
+agent agree against this spec's author, who compared two Rule sentences by
+reading them. Recorded rather than removed, because the fixture still measured
+the process the criterion named.
+
+**The enumeration undercounts, now twice.** Fixture 1's arm reported 17 of 25.
+Fixture 2's arm reported 16 of 17. Neither enumeration reached every entry. The
+second arm diagnosed the cause in its own output: `grep -c` over a
+line-anchored pattern returns 2, because most Rule sentences sit mid-paragraph,
+so an agent counting by that route undercounts. The procedure produces its
+effect despite incomplete coverage, and a later revision that makes the
+enumeration exhaustive would test whether coverage changes the answer.
+
+**Scale.** Two fixtures, one model, one prompt each, one run per arm per
+fixture. Four runs total across both fixtures.
+
 **Criterion 7 fails, and criteria 7 and 8 contradict each other.** Criterion 7
 requires the shipped step to state the enumeration's scaling cost in its own
 words. Criterion 8 requires the shipped step to match the tested arm character
