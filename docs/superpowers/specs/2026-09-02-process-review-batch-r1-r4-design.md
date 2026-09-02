@@ -172,6 +172,17 @@ own mirror-list: SDD's actual Finish holds a concept-index step that R4's
 review wording also omitted — the same missing-member shape, caught at
 spec time this once.
 
+The full enumeration of SDD's Finish, for the record, holds nine members:
+Status flip, tracker append, Recommendation checkbox, verification greps,
+lessons capture, concept-index, bug-tracking sweep of parked ledger
+findings, workspace deletion, and the finishing-a-development-branch
+invocation. The last three stay out of the new section deliberately:
+the bug-tracking sweep and workspace deletion read SDD's ledger and
+workspace, which inline execution does not create, and `executing-plans`
+Step 4 already invokes `finishing-a-development-branch`. A member
+excluded with a stated reason differs from a member missed — the first
+two drafts of this list missed members.
+
 In SDD's Finish: insert the version-bump gate as its own step. The plan
 picks the exact anchor position.
 
