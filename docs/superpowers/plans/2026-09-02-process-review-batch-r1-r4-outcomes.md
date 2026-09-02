@@ -20,3 +20,9 @@
 - Reviewer independently re-ran the normalized identity extraction: IDENTICAL, byte-for-byte including the U+2014 em-dash.
 - Minor parked with ruling: worked-example's terse "scripts/bump-version.sh" matches sibling example shorthand; accepted.
 - Outcome: Shipped as planned; no divergence.
+
+## Task 5: R1 A/B trial
+- Commit: a2bb970 (archive). Controller-run (divergence from dispatch, deliberate: trial harness mechanics + Rule 4 quote-checking duty).
+- Both arms ran clean on first launch (no classifier blocks). Blind judge: A(=arm2 treatment) YES — quoted a scratch-file grep of drafted insertion text run before finalization; B(=arm1 control) NO — only greps ran against the pre-existing target, excluded by the criterion. Quotes verified against criterion wording before unsealing the mapping.
+- Decision-rule branch: arm1 no / arm2 yes — SHIP the exact string.
+- Outcome: Shipped as planned; the mechanism fired unprompted in treatment and not in control on its first genuinely blind test.
