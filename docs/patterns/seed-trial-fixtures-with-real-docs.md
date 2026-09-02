@@ -35,6 +35,20 @@ part of it.
    protects the finding; one that stays quiet lets a leaked result read as
    independent discovery.
 
+## Third rule — the harness directory is part of the fixture surface
+
+The `--plugin-dir` path the trial passes is readable by the agent under test,
+and a thorough agent will read it and reason about it as project state.
+
+1. Before running, check what the harness copy itself reveals: version fields
+   that anticipate the change under test, the edited skill text, files the
+   copy carries that the fixture's own tree lacks.
+2. Keep the harness copies identical across arms except for the line under
+   test, so whatever leaks, leaks symmetrically.
+3. Read any arm finding that cites the harness path as a trial artifact and
+   record it as one — not as a defect in the fixture's project, and not as a
+   reason to discard the run.
+
 ## Example
 
 - A trial dispatched a scratch session to read `docs/ai-code-guidelines.md` and `docs/code-standards.md` and apply the Hazard Signal Words / commit-trailer conventions. The fixture only had a bare `README.md`. The session correctly reported it couldn't find either file, then produced generic hazard/commit conventions instead of the specific ANSI Z535 vocabulary under test — a result that looked plausible but verified nothing. Rebuilding the fixture with both docs copied in produced a trial that actually exercised the wiring.
@@ -42,7 +56,10 @@ part of it.
 
 - **Counterpart rule:** A trial testing whether `process-review`'s new Retirements section would independently surface subsumption candidates had its fixture built by copying the project's real specs directory — which included the design spec whose own Context names all three candidates. The run detected the contamination and disclosed it unprompted. The spec was deleted and the trial re-run; the leak survived anyway, because the fixture's git history still held the first run's committed review file, which the second run retrieved with `git show` while establishing its review window. It disclosed that too. Two scrub attempts, two surviving leak paths, both found by the trial rather than by its author.
 
+- **Third rule:** In three A/B trials run the same day, arms inspected their `--plugin-dir` path and treated it as project state. One control arm produced a *blocking* finding on the harness copy — "a third lineage of the skills," whose `plugin.json` already carried the version the spec under review proposed — and asked for a decision before proceeding. Symmetric across arms, so no verdict was biased, but the false blocking finding consumed attention the real defect needed.
+
 ## Originating lessons
 
 - "A --plugin-dir trial fixture needs the real convention docs it's testing copied in, not just the scratch structure" (2026-08-21-hazard-signal-words)
 - "Scrubbing a trial fixture means scrubbing its git history too, not only its working tree" (2026-09-01-convention-retirement)
+- "A --plugin-dir trial's harness directory reads as project state to the agent under test" (2026-09-01-behavioral-claim-verification)

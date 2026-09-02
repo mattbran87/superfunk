@@ -35,6 +35,14 @@ Rule 2 covers a prompt that makes failure impossible. This covers the inverse: a
 3. Rewrite the scenario so the behavior under test stays genuinely available, then re-run before recording the finding.
 4. A negative result from a scenario that could not have gone positive is a trial-design defect, not evidence about the mechanism. Do not record it as either a pass or a failure — record it as inconclusive and re-run.
 
+**Rule 4 — a positive result needs its scored evidence checked before it ships anything.**
+
+Rule 3 covers a negative that the scenario foreclosed. This covers the inverse hazard at the other end of the pipeline: a judge's YES that does not actually satisfy the criterion, which ships a mechanism on manufactured evidence.
+
+1. Require the judge to quote the exact sentence it scored, not just a verdict — a bare YES/NO output leaves nothing to audit.
+2. Before acting on a YES, read the quoted sentence against the criterion's own wording and confirm it addresses the claim the criterion names, not merely something in the same document.
+3. A YES whose quoted evidence misses the criterion is a mis-score, not a pass. Record the run as inconclusive and re-run with a corrected criterion or judge prompt — do not re-score the same outputs under a loosened criterion, which selects the criterion to fit results already seen.
+
 ## Example
 
 - **Rule 1:** A new reviewer instruction ("re-read the cited doc before citing it in a finding") got verified by a trial that primed a false belief about a doc's rule and confirmed the reviewer caught it. The trial's own prompt said "follow the reviewer template's instructions about re-reading cited docs" and "quote the exact current text ... read fresh from disk" — both force the correct behavior regardless of the instruction under test. A true A/B run (same fixture, no coaching, once against the plugin before the instruction shipped and once after) found both arms independently caught the planted error — the pre-edit reviewer did this unprompted. The instruction added no detectable behavioral difference in this scenario. The design spec's Falsifiable Criterion got corrected to say so explicitly, rather than let the original coached trial's "pass" stand as unqualified proof.
@@ -42,8 +50,11 @@ Rule 2 covers a prompt that makes failure impossible. This covers the inverse: a
 
 - **Rule 3:** A trial testing whether a new step-4 requirement makes brainstorming include a do-nothing candidate reported the behavior absent from both arms. The prompt said "treat this as fully specified," which hands the agent a settled decision to build — no candidate set produced under it could have contained a defer option, so the trial could only return a negative. Re-running with a scenario where deferring stayed defensible (180ms p50 latency at 4 requests per second, no complaint or breached SLO) produced the real finding, and it pointed the opposite way: the pre-change arm made "measure before caching" its first approach *and* its recommendation, while the post-change arm carrying the instruction offered three implementations and relegated restraint to a caveat. The first trial's negative said nothing about the mechanism; the second one falsified it outright.
 
+- **Rule 4:** A four-output blind judging returned `A: YES`, which under the pre-registered decision rule meant ship. The sentence the judge quoted addressed a different claim than the criterion named — the `Alternatives Considered` heading count, where the criterion named a keyword-probe inference. Only reading the quote against the criterion's wording caught it; the verdict line alone read as a clean pass. Scored strictly, no arm had met its criterion. The run was recorded as inconclusive, a class-level criterion was registered in a commit that predated any new output, and the trial re-ran fresh — the re-run then produced a genuine detection on the same fixture.
+
 ## Originating lessons
 
 - "A live trial priming a false belief needs a true A/B control to show an instruction actually changed behavior" (2026-08-24-review-recommendations-followup)
 - "A trial confirming a trigger doesn't fire must not hand the agent its own answer" (2026-08-25-concept-index)
 - "A negative trial result needs its scenario checked before it counts as evidence" (2026-09-01-research-skill-adoption)
+- "A blind judge's YES needs its quoted evidence checked against the criterion before it counts" (2026-09-01-behavioral-claim-verification)
