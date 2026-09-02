@@ -157,33 +157,42 @@ Gaps G2).
 
 ## Recommendations
 
-- [ ] **R1** — Add the drafted-insertion check to `writing-plans` Self-Review
+- [x] **R1** — Add the drafted-insertion check to `writing-plans` Self-Review
   item 10 (`plugin/skills/writing-plans/SKILL.md`): before finalizing a
   plan, write each task's drafted insertion text to a scratch file and run
   the task's own verification grep against that file — a baseline-only run
   cannot catch a wrap, a duplicate, or an undercount that exists only in
   text not yet inserted. Net new load — five logged occurrences across
   three sub-projects, candidate fix proposed twice, explicitly requested by
-  the latest outcomes file.
-- [ ] **R2** — Add one sentence to
+  the latest outcomes file. (Shipped as the trial-gated item-10 addition in
+  2026-09-02-process-review-batch-r1-r4-design.md — A/B trial reached the
+  ship branch, treatment fired unprompted, control did not — commit ef31db9.)
+- [x] **R2** — Add one sentence to
   `docs/patterns/ab-test-live-trials-for-behavior-change.md` Rule 1:
   pre-register the decision rule by scoring each arm/fixture independently
   and combining the per-unit states exhaustively — enumerate the outcome
   space, never example branches. Net new load — the missing-branch defect
   recurred in both same-day specs (M1), caught only by post-hoc
-  self-application.
-- [ ] **R3** — Remove the `jq` dependency from
+  self-application. (Shipped as Rule 1 point 6 in
+  2026-09-02-process-review-batch-r1-r4-design.md, commit 92e6028.)
+- [x] **R3** — Remove the `jq` dependency from
   `plugin/scripts/bump-version.sh` (port the JSON reads to python or node,
   both present on this machine) so `--check` can actually run here. Names
   the check it replaces: the script's own currently-unrunnable `--check`
   mode. Second-window recurrence of the exact drift it exists to prevent
-  (M2).
-- [ ] **R4** — Add a Finish bookkeeping section to
+  (M2). (Shipped as the node -e helper port in
+  2026-09-02-process-review-batch-r1-r4-design.md, commit 5c6b4d2 —
+  --check now runs on this machine.)
+- [x] **R4** — Add a Finish bookkeeping section to
   `plugin/skills/executing-plans/SKILL.md` mirroring SDD's list (notes.md
   gate, tracker append, version bump when `plugin/skills/` changed, lessons
   capture, spec Status flip), so the inline path carries the same gates as
   the dispatched path. Net new load — 3 of 4 reviewed specs shipped with
-  zero real-time bookkeeping (M4).
+  zero real-time bookkeeping (M4). (Shipped as the eight-item Step 3
+  section plus the version-bump gate in both skills, in
+  2026-09-02-process-review-batch-r1-r4-design.md, commits fa2637c and
+  5e55af4 — the gate the review's own wording named had zero producers,
+  so the batch added it to SDD too.)
 
 ## Retirements
 

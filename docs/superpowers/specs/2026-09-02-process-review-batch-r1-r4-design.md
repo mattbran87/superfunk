@@ -1,7 +1,7 @@
 # Process-Review Batch R1–R4 — Design
 
 **Date:** 2026-09-02
-**Status:** Approved
+**Status:** Shipped (all four Recommendations closed; R1 via the A/B trial's ship branch)
 **User-Facing:** Yes
 
 ## Context
