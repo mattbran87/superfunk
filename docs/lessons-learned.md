@@ -8,6 +8,14 @@ heading.
 
 ## Workflow
 
+### A skill's internal "use X instead" aside can override an explicit instruction to use the skill it's written inside (executing-plans-review-step)
+
+A live trial explicitly instructed a session to "use superfunk:executing-plans" — naming the skill by name, with no ambiguity in the request. The session invoked `subagent-driven-development` instead, and justified it by paraphrasing `executing-plans`' own Note: "Tell your human partner that... if subagents are available, use subagent-driven-development instead of this skill." That sentence exists to give the session something to *say* to its human partner (a recommendation to surface, phrased as advice), not an instruction to silently substitute a different skill for the one just explicitly named. The session read it as the latter, and the resulting run never touched the feature the trial existed to test. A repeat with an explicit "do not substitute a different skill" instruction corrected it. Grepped the plugin for the same "use X instead" shape elsewhere — `executing-plans/SKILL.md:14` is currently the only instance, so this isn't yet a demonstrated recurring failure, but the underlying risk is general: any skill file carrying advice about a *preferred alternative*, phrased close to an instruction, risks a session treating "mention this to your partner" as "silently redirect there," especially when dispatch happens to be available and the alternative sounds more capable. **Rule:** an explicit, named skill-choice instruction from a human partner takes precedence over a skill's own internal aside recommending a different skill — a "tell your human partner X" note is something to say, not something to act on unprompted, and a skill that wants to actively redirect execution needs to say so as an instruction, not bury it as advice.
+
+**Tags:** none yet — tags deferred.
+
+*No pattern promoted — single occurrence found in the plugin (`executing-plans/SKILL.md:14`); the general principle (explicit instruction beats an internal aside) doesn't currently name a second concrete instance to compare against. Revisit if a similar misreading recurs anywhere else in the plugin.*
+
 ### A line-wrap verification anchor can fail twice in one plan's first two tasks alone (taskq-trial-batch1-mechanical-fixes)
 
 Both of this plan's first two tasks hit the same failure shape back to
