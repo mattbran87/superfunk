@@ -30,9 +30,55 @@ For each task:
 3. Run verifications as specified
 4. Mark as completed
 
+### Step 2.5: Whole-Branch Review
+
+After all tasks complete and verified, and before Step 3's bookkeeping,
+review the whole branch — mirroring `subagent-driven-development`'s
+Final Review, adapted for a session that may or may not have subagent
+access:
+
+1. **Documentation check:** If this plan traces to a design spec (named
+   in the plan's Goal line or a task's commit trailer), run `python
+   plugin/skills/documentation/scripts/check_docs.py <spec-file>
+   <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or `ALREADY_UPDATED`:
+   continue. `ACTION_NEEDED`: invoke superfunk:documentation's Step 2 to
+   draft the README/CHANGELOG update and commit it before continuing. No
+   design spec: skip this check.
+2. **Attempt to dispatch a reviewer.** Try dispatching a subagent on the
+   most capable available model, using superfunk:requesting-code-review's
+   [code-reviewer.md](../requesting-code-review/code-reviewer.md), with
+   `BASE_SHA` = the commit before Step 1 began and `HEAD_SHA` = the
+   current commit.
+3. **No subagent dispatch available:** perform the same review yourself,
+   directly — read the full diff between those two commits and apply
+   `code-reviewer.md`'s own rubric (plan alignment, code quality,
+   architecture, testing, production readiness) and Output Format
+   (Strengths, Issues by severity, Recommendations, Assessment) as your
+   own direct assessment, not a dispatched subagent's report.
+4. **Findings:** append one line per finding to
+   `docs/superpowers/process-reviews/notes.md`
+   (`- <YYYY-MM-DD> | Catch | Final review | <one-line finding>`), then
+   fix all of them in one pass — not one fix per finding — and run
+   exactly one scoped re-review of the fix diff (dispatched if possible,
+   direct otherwise). Adjudicate any residual finding as
+   `subagent-driven-development`'s Final Review does: park a contestable
+   or non-load-bearing finding with a ruling, or stop and report to your
+   human partner if it's load-bearing — with the same one-time exception
+   for a regression the fix itself introduces (bounded to fire at most
+   once, only for a defect the fix wave caused). There is no second fix
+   wave for a finding the first wave simply failed to fix.
+5. **Bug-tracking:** for each parked finding whose ruling calls it real
+   rather than contestable, invoke superfunk:bug-tracking's Step 2 to
+   record it in `docs/bugs/` before continuing — this is `executing-plans`'
+   only opportunity to do so; nothing else in this skill preserves a
+   deferred finding once the review above is done. No real-and-deferred
+   parked findings: skip this step.
+
+Only once this review is clean does Step 3 begin.
+
 ### Step 3: Finish Bookkeeping
 
-After all tasks complete and verified, and before Step 4, perform the
+After Step 2.5's review is clean, and before Step 4, perform the
 same bookkeeping superfunk:subagent-driven-development's Finish section
 performs for dispatched plans:
 
