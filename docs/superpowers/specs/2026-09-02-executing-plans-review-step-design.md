@@ -1,6 +1,6 @@
 # Executing-Plans Review Step — Design
 
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** No
 
 ## Context
