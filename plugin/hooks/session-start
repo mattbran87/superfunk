@@ -24,7 +24,26 @@ escape_for_json() {
 }
 
 using_superpowers_escaped=$(escape_for_json "$using_superpowers_content")
-session_context="<EXTREMELY_IMPORTANT>\nYou have superfunk.\n\n**Below is the full content of your 'superfunk:using-superpowers' skill - your introduction to using skills. For all other skills, use the 'Skill' tool:**\n\n${using_superpowers_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# Probe for the context-mode companion plugin. Superfunk requires nothing and
+# every skill runs without it, so absence produces one note, never an error.
+# The probe checks installation on disk, not availability in this session -- a
+# hook subprocess cannot see the agent's tool list.
+#
+# SUPERFUNK_SKIP_DEP_CHECK=1 suppresses the probe. Trial harnesses set it so the
+# injected bootstrap stays byte-identical across machines; a note that appears
+# on one machine and not another breaks finding attribution.
+companion_note=""
+if [ -z "${SUPERFUNK_SKIP_DEP_CHECK:-}" ]; then
+    claude_home="${CLAUDE_CONFIG_DIR:-${HOME:-}/.claude}"
+    if [ ! -d "${claude_home}/plugins/cache/context-mode" ] \
+       && [ ! -d "${claude_home}/plugins/marketplaces/context-mode" ]; then
+        companion_raw="Recommended companion not detected: context-mode. Once installed, its own hooks route large Bash, Read, Grep, WebFetch, and Agent output through a sandbox, so raw bytes stay out of the context window. Superfunk requires no dependency and every skill runs without it. To install: /plugin marketplace add mksglu/context-mode, then /plugin install context-mode@context-mode"
+        companion_note="\\n\\n$(escape_for_json "$companion_raw")"
+    fi
+fi
+
+session_context="<EXTREMELY_IMPORTANT>\nYou have superfunk.\n\n**Below is the full content of your 'superfunk:using-superpowers' skill - your introduction to using skills. For all other skills, use the 'Skill' tool:**\n\n${using_superpowers_escaped}\n</EXTREMELY_IMPORTANT>${companion_note}"
 
 # Output context injection as JSON.
 # Cursor hooks expect additional_context (snake_case).

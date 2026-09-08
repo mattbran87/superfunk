@@ -32,6 +32,25 @@ If you're using Superpowers in enterprise and could benefit from commercial supp
 - Python 3, for the `documentation` skill's Finish-time check
   (`check_docs.py`). No other skill in this library needs it.
 
+## Recommended companion
+
+Superfunk requires no plugin dependency, and every skill runs without one.
+
+[context-mode](https://github.com/mksglu/context-mode) pairs well with it. Once
+installed, its own PreToolUse hooks route large `Bash`, `Read`, `Grep`,
+`WebFetch`, and `Agent` output through a sandbox, so raw bytes stay out of the
+context window. No superfunk skill calls its tools — the routing happens on
+context-mode's side, whether or not superfunk runs.
+
+```bash
+/plugin marketplace add mksglu/context-mode
+/plugin install context-mode@context-mode
+```
+
+The SessionStart hook checks whether context-mode exists on disk and notes its
+absence once per session. Set `SUPERFUNK_SKIP_DEP_CHECK=1` to suppress that
+check — trial harnesses need a byte-identical bootstrap across machines.
+
 ## Installation
 
 Installation differs by harness. If you use more than one, install Superfunk separately for each one.
