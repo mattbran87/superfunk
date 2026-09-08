@@ -14,7 +14,7 @@ When code is added to this project, update this file with:
 
 ## Document writing conventions
 
-All specs and design documents in this project must follow the rules in the `writing-controlled-documents` skill (`C:\Users\marko\.claude\skills\writing-controlled-documents`):
+All specs and design documents in this project must follow the rules in the `simple-english-docs` skill (`C:\Users\marko\.claude\skills\simple-english-docs`):
 - **Simplified Technical English (STE)** rules apply to all documents — sentence length limits, active voice, imperative mood for instructions, one term per concept, vertical lists over dense paragraphs.
 - **E-Prime** (no "to be" forms) additionally applies to spec/plan/requirements/design docs — rewrite state-claims ("X is Y") into checkable mechanisms ("X does Y" / "X happens when Y").
 - Run the skill's self-check before finalizing any such document.
