@@ -299,13 +299,17 @@ Five edits:
 
 4. **`process-review` step 5, Specs Reviewed.** Each listed spec names
    every outcomes file the review read for it, or `none`.
-5. **The three spec-trace definitions.** Each one decides whether a plan
+5. **The four spec-trace definitions.** Each one decides whether a plan
    "traces to a design spec" from the plan's "Goal line or a task's commit
    trailer". Each one gains the `**Spec:**` field as the first source:
    - `plugin/skills/subagent-driven-development/SKILL.md`, Final Review
      (line 509)
    - `plugin/skills/subagent-driven-development/SKILL.md`, Finish (line 561)
    - `plugin/skills/executing-plans/SKILL.md`, Step 2.5 item 1 (line 40)
+   - `plugin/skills/subagent-driven-development/re-review-prompt.md`,
+     the cross-section check (line 95). The plan's first enumeration
+     missed this copy, because it words the definition differently;
+     the Task 4 review found it.
 
    The two SDD copies use identical wording today. The `executing-plans`
    copy omits the `e.g.` example. The edit keeps that difference and
@@ -384,7 +388,7 @@ findings, and every review finding gets the `Catch` type.
    Both plans name the spec in their `**Spec:**` field. A literal run of
    the new step 3 reaches both outcomes files.
 9. This batch's own plan carries a `**Spec:**` line that names this spec.
-   All three spec-trace definitions name the `**Spec:**` field.
+   All four spec-trace definitions name the `**Spec:**` field.
 10. The `notes.md` header holds the five-type table and the pipe rule.
     `process-review` step 2 names all five types and routes each one to
     the section the table in part G lists.

@@ -92,7 +92,8 @@ Subagent (general-purpose):
     diff: grep the rest of the touched file, every other file in the
     same `plugin/skills/<name>/` directory (top-level files only, not
     subdirectories) if the touched file lives in one, and the design
-    spec, if the plan's Goal line or a task's commit trailer names one
+    spec, if the plan's `**Spec:**` field, its Goal line, or a task's
+    commit trailer names one
     — for every other mention of the same key terms, and read each
     hit. A contradiction there is New Breakage, not an Out-of-Scope
     Observation, since the fix itself caused it

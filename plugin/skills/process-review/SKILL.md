@@ -65,9 +65,12 @@ standalone without one of these triggers:
    commonly a spec shipped before this mechanism existed), and that
    absence never counts as an error; more than one match is a genuine
    ambiguity — name the candidate filenames in the review's Gaps
-   section and skip reading any of them, rather than guessing. Then,
-   however many files the two rules above matched, read the outcomes
-   file of every plan whose `**Spec:**` header field names this spec.
+   section and skip reading any of them, rather than guessing. Then
+   read the outcomes file of every plan whose `**Spec:**` header field
+   names this spec, whatever the two rules above found. This rule
+   overrides the ambiguity skip: read a date-rule candidate whose
+   plan's `**Spec:**` field names this spec, and drop it from the Gaps
+   note.
    A spec that shipped through more than one plan has more than one
    outcomes file, and its later plans carry dates no spec shares. Collect
    every entry reporting a real divergence or follow-up from a file
