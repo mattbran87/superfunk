@@ -115,7 +115,7 @@ header rule: escape a literal `|` inside a field. One superfunk entry
 3. **Part E keeps the verdict and marks each failed section.** The first
    line and the exit codes stay unchanged. Four callers branch on the
    verdict name: `documentation` Step 2, SDD Final Review, `executing-plans`
-   step 1, and `writing-plans` User-Facing Documentation Timing. A new
+   Step 2.5, and `writing-plans` User-Facing Documentation Timing. A new
    verdict needs a new branch in all four. A caller that misses the
    branch falls through with no instruction, which repeats the silent
    failure that part E exists to fix.
@@ -194,17 +194,27 @@ Carried from the 09-08 spec. Insert directly under the
    released a different v6.3.0, so the two histories share version
    numbers by coincidence only.
 2. Four new entries in the file's existing `## vX.Y.Z (YYYY-MM-DD)`
-   format, newest first:
-   - v6.6.0: Step 2.5 whole-branch review for `executing-plans`.
-   - v6.5.0: R1–R4 batch — the trial-gated drafted-insertion check, the
-     outcome-space rule, the bump script without `jq`, and the Finish
-     bookkeeping and bump gate.
-   - v6.4.0: three trial-gated mechanisms — the rule-membership check,
-     the Rule-sentence enumeration, and the behavioral-claim widening.
-   - v6.3.0: the rebrand to superfunk and its fix waves.
+   format, newest first. Each version's content comes from the commits
+   between its bump and the bump before it:
+   - v6.6.0 (2026-09-03): Step 2.5 whole-branch review for
+     `executing-plans`.
+   - v6.5.0 (2026-09-02): R1–R4 batch — the trial-gated drafted-insertion
+     check, the outcome-space rule, the bump script without `jq`, and the
+     Finish bookkeeping and bump gate.
+   - v6.4.0 (2026-09-01): `process-review` Retirements and the attribution
+     field; the taskq batch-1 fixes; three trial-gated mechanisms — the
+     rule-membership check, the Rule-sentence enumeration, and the
+     behavioral-claim widening.
+   - v6.3.0 (2026-09-01): the fork's first release — every change from
+     the fork point through the research-skill adoption, including the
+     rebrand to superfunk. The rebrand commit `5196ecf` left the version
+     at 6.2.0, so v6.3.0 first carries it.
 
-   Each entry gets 2 to 4 bullets sourced from the specs. Dates come from
-   the bump commits. The plan drafts the full text.
+   Each entry gets 2 to 4 bullets. The plan drafts the full text.
+
+   The 09-08 spec assigned the rebrand alone to v6.3.0 and left
+   convention-retirement and taskq batch 1 out of v6.4.0. `git log`
+   between the bump commits shows both ranges as listed above.
 
 Everything from the `## v6.2.0` heading down stays byte-identical.
 
@@ -263,8 +273,10 @@ Three edits:
    The other three callers act on the verdict line only, so they need no
    change.
 
-`test_check_docs.py` gains three tests: a numbered heading, a plural
-heading, and an absent section that prints the marker.
+`test_check_docs.py` gains four tests: a numbered heading, a plural
+heading, a longer heading that must not match, and an absent section
+that prints the marker. Part D adds two more: a nested
+`plugin/RELEASE-NOTES.md` path and an em dash on a `cp1252` console.
 
 ### F. `**Spec:**` header field
 
@@ -293,7 +305,7 @@ Five edits:
    - `plugin/skills/subagent-driven-development/SKILL.md`, Final Review
      (line 509)
    - `plugin/skills/subagent-driven-development/SKILL.md`, Finish (line 561)
-   - `plugin/skills/executing-plans/SKILL.md`, step 1 (line 40)
+   - `plugin/skills/executing-plans/SKILL.md`, Step 2.5 item 1 (line 40)
 
    The two SDD copies use identical wording today. The `executing-plans`
    copy omits the `e.g.` example. The edit keeps that difference and
@@ -364,7 +376,7 @@ findings, and every review finding gets the `Catch` type.
    BUG-0001 and BUG-0002 show a closed status.
 6. A run of `extract_section` against every `User-Facing: Yes` spec
    returns zero empty sections in superfunk (from 2) and zero in
-   ArcGISProMCP (from 15). `test_check_docs.py` passes with 13 tests.
+   ArcGISProMCP (from 15). `test_check_docs.py` passes with 16 tests.
 7. An `ACTION_NEEDED` run against a spec without a `## Consequences`
    heading prints `SECTION_NOT_FOUND: read "Consequences" from the spec
    directly` and exits 1.
@@ -424,6 +436,11 @@ findings, and every review finding gets the `Catch` type.
 - A `Gap` still waits for the next review, up to three specs away. The
   disposition makes the wait cheaper to act on. It does not shorten the
   wait.
+- The plan's cross-section pass found no other text to change. It
+  checked `process-review/SKILL.md`'s frontmatter, Core principle, and
+  No Placeholders section for a claim that `notes.md` holds only
+  `Catch`, and it searched `plugin/` and `docs/patterns/` for another
+  list of plan-header elements. Neither search found one.
 
 ## Alternatives Considered
 
