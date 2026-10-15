@@ -1,8 +1,38 @@
 # Superpowers Release Notes
 
+> **Fork note.** superfunk diverged from obra/superpowers after v6.2.0.
+> Entries above the v6.2.0 heading describe superfunk. Upstream later
+> released its own v6.3.0 with different content, so the two histories
+> share version numbers by coincidence only.
+
 ## v6.7.0 (unreleased)
 
 - **`check_docs.py` reads numbered and plural section headings, and marks a section it cannot find.** `## 2. Decision` and `## Decisions` now match. A missing section prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The script also recognizes `plugin/README.md` and `plugin/RELEASE-NOTES.md`, and no longer crashes on a Windows console.
+- **Every version bump writes a RELEASE-NOTES entry.** Both Finish paths add the entry in the same commit as the bump. This file gains entries for v6.3.0 through v6.6.0.
+
+## v6.6.0 (2026-09-03)
+
+- **`executing-plans` reviews the whole branch before Finish.** A new Step 2.5 runs the documentation check, then dispatches a whole-branch reviewer — or applies the same rubric directly when no subagent dispatch exists. It fixes every finding in one pass with one scoped re-review, and files real-and-deferred parked findings to `docs/bugs/`.
+
+## v6.5.0 (2026-09-02)
+
+- **`writing-plans` Self-Review item 10 checks drafted insertions.** Each task's verification grep now runs against the task's drafted text in a scratch file before the plan ships. An A/B trial gated this change.
+- **Trial decision rules enumerate the outcome space.** Rule 1 of `docs/patterns/ab-test-live-trials-for-behavior-change.md` gains point 6: score each arm on its own, then combine the per-arm states exhaustively.
+- **`bump-version.sh` no longer needs `jq`.** Its JSON reads moved to node, so `--check` runs on a machine without `jq`.
+- **`executing-plans` gains Finish bookkeeping, and both Finish paths gain a version-bump gate.**
+
+## v6.4.0 (2026-09-01)
+
+- **`process-review` gains a Retirements section.** A review can propose the removal of a check for one of four fixed reasons: Subsumed, Superseded, Vacuous, or Zero-yield. `notes.md` entries gain a field that names the check behind each Catch, and every Recommendation names the check it replaces or states `net new load`.
+- **Fixes from the taskq trial, batch 1.** `brainstorming` scaffold questions gain skip conditions. `finishing-a-development-branch` confirms that a PR exists before it reports success, and recognizes `.claude/worktrees/`. `writing-plans` item 10 covers asserted budgets. `subagent-driven-development` names the token-containment guard trap.
+- **Three trial-gated checks.** `brainstorming` Spec Self-Review item 2 gains the rule-membership check, and item 6 widens to behavioral claims. Lesson promotion in `subagent-driven-development` compares a new Rule sentence against every existing one before it writes the promotion note.
+
+## v6.3.0 (2026-09-01)
+
+- **superfunk forks from obra/superpowers.** The plugin takes the superfunk name and the `superfunk:` skill prefix. Install commands point at `mattbran87/superfunk`.
+- **A process feedback loop.** `process-review` synthesizes the `notes.md` running log and per-task outcome files into dated reviews. `docs/lessons-learned.md` captures lessons at Finish and promotes recurring ones to `docs/patterns/`. Finish gains bookkeeping gates.
+- **Eight new skills:** `process-review`, `concept-index`, `bug-tracking`, `documentation`, `project-definition`, `multi-lens-research`, `branching-research`, and `calibrating-recommendations`.
+- **Stronger planning checks.** `writing-plans` gains a Pseudocode section, a Global Constraints header, and a Self-Review that grows to 14 items.
 
 ## v6.2.0 (2026-07-23)
 

@@ -111,7 +111,10 @@ performs for dispatched plans:
    If the branch's diff touches `plugin/`, run
    `plugin/scripts/bump-version.sh <new-version>` and commit the result —
    minor bump for `plugin/skills/` changes, patch otherwise. Unsure
-   whether the bump already happened: run `--check` first.
+   whether the bump already happened: run `--check` first. Before that
+   commit, append this version's entry to `plugin/RELEASE-NOTES.md` — a
+   `## vX.Y.Z (date)` heading and at least one bullet — and include it in
+   the same commit as the bump.
 8. **Concept index:** If this plan's File Structure created, renamed,
    moved, or deleted a skill, feature, or significant directory, update
    `docs/architecture/concept-index.md` per superfunk:concept-index

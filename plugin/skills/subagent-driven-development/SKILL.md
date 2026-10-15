@@ -630,7 +630,10 @@ change.
 If the branch's diff touches `plugin/`, run
 `plugin/scripts/bump-version.sh <new-version>` and commit the result —
 minor bump for `plugin/skills/` changes, patch otherwise. Unsure
-whether the bump already happened: run `--check` first.
+whether the bump already happened: run `--check` first. Before that
+commit, append this version's entry to `plugin/RELEASE-NOTES.md` — a
+`## vX.Y.Z (date)` heading and at least one bullet — and include it in
+the same commit as the bump.
 
 If `docs/architecture/concept-index.md` exists, check this plan's own
 File Structure section for whether it created, renamed, moved, or
@@ -749,7 +752,7 @@ Final reviewer: All requirements met. Deferred minors triaged: none block merge.
 [Finish: no Recommendation to check off -- this plan didn't trace to a process review]
 [Finish: notes.md gate -- Task 2's fix round already logged above, check passes]
 [Finish: captured a Lesson in lessons-learned.md; no pattern promoted, one instance so far]
-[Finish: branch diff touches plugin/skills/ -- ran scripts/bump-version.sh with a minor bump, committed]
+[Finish: branch diff touches plugin/skills/ -- ran scripts/bump-version.sh with a minor bump, appended the RELEASE-NOTES entry, committed both together]
 [Finish: no concept-index entry needed -- no skill/feature/significant directory created]
 [Finish: no real-and-deferred parked findings -- bug-tracking step skipped]
 
