@@ -4,7 +4,7 @@ Append-only log. Each entry records one finding, tagged with one of the
 five types below. A finding a review catches on its first pass
 (spec-compliance, code-quality, or the final whole-branch review) gets
 `Catch`. `process-review` reads this log, cross-references `git log`,
-and routes each type to one section of its review file.
+and routes each type to one destination.
 
 Format: `- <YYYY-MM-DD> | <type> | <task/spec label> | <field 4> | <field 5>`
 

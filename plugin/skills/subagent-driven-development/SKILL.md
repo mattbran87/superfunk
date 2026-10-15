@@ -633,9 +633,11 @@ If the branch's diff touches `plugin/`, run
 `plugin/scripts/bump-version.sh <new-version>` and commit the result —
 minor bump for `plugin/skills/` changes, patch otherwise. Unsure
 whether the bump already happened: run `--check` first. Before that
-commit, append this version's entry to `plugin/RELEASE-NOTES.md` — a
-`## vX.Y.Z (date)` heading and at least one bullet — and include it in
-the same commit as the bump.
+commit, add this version's entry at the top of
+`plugin/RELEASE-NOTES.md`, under the Fork note — or, if a
+`## vX.Y.Z (unreleased)` heading already exists, replace `unreleased`
+with the date — so the file holds a `## vX.Y.Z (date)` heading with
+at least one bullet. Include it in the same commit as the bump.
 
 If `docs/architecture/concept-index.md` exists, check this plan's own
 File Structure section for whether it created, renamed, moved, or

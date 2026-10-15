@@ -225,9 +225,12 @@ identically and edited together
 (`plugin/skills/subagent-driven-development/SKILL.md` and
 `plugin/skills/executing-plans/SKILL.md`):
 
-> Before that commit, append this version's entry to
-> `plugin/RELEASE-NOTES.md` — a `## vX.Y.Z (date)` heading and at
-> least one bullet — and include it in the same commit as the bump.
+> Before that commit, add this version's entry at the top of
+> `plugin/RELEASE-NOTES.md`, under the Fork note — or, if a
+> `## vX.Y.Z (unreleased)` heading already exists, replace
+> `unreleased` with the date — so the file holds a
+> `## vX.Y.Z (date)` heading with at least one bullet. Include it in
+> the same commit as the bump.
 
 The existing normalized-extraction identity check extends to cover the
 longer block. The gate paragraph now carries two duties: the bump and the
@@ -299,7 +302,7 @@ Five edits:
    > spec that shipped through more than one plan has more than one
    > outcomes file, and its later plans carry dates no spec shares.
 
-4. **`process-review` step 5, Specs Reviewed.** Each listed spec names
+4. **`process-review` step 6, Specs Reviewed.** Each listed spec names
    every outcomes file the review read for it, or `none`.
 5. **The four spec-trace definitions.** Each one decides whether a plan
    "traces to a design spec" from the plan's "Goal line or a task's commit
@@ -355,7 +358,7 @@ Two edits:
    The step keeps its rules for four-field entries and for
    `none — found ad hoc`. It also reads entries on unescaped `|` only.
 
-Step 5's Misses, Gaps, and Friction bullets each gain one clause that
+Step 6's Misses, Gaps, and Friction bullets each gain one clause that
 admits their logged type. The `Catch`-only write sites stay unchanged:
 SDD line 365, SDD line 536, and `executing-plans` line 60 log review
 findings, and every review finding gets the `Catch` type.
@@ -418,9 +421,9 @@ findings, and every review finding gets the `Catch` type.
   survives only by hand-copying.
 - The watchlist does its job only while `process-review` runs. A long
   gap between reviews delays every trigger check by the same gap.
-- The bump-gate paragraph now carries two duties. A third duty joins the
-  watchlist as a gate-accretion entry, so the gate never grows
-  without a record.
+- The bump-gate paragraph now carries two duties. A third duty must
+  first add a gate-accretion entry to the watchlist, so the gate never
+  grows without a record. No seed watches the gate today.
 - `check_docs.py` recognizes exactly four doc paths. A doc file outside
   that set repeats BUG-0001's failure. The set stays a list, so the
   rule-membership check applies to any future edit of it.

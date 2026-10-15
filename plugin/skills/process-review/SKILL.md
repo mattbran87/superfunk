@@ -5,7 +5,8 @@ description: Use when a design-spec Status trigger or brainstorming gate signals
 
 # Process Review
 
-Read `docs/superpowers/process-reviews/notes.md`, each shipped spec's
+Read `docs/superpowers/process-reviews/notes.md`,
+`docs/superpowers/process-reviews/watchlist.md`, each shipped spec's
 plan outcomes file (if one exists), and recent git history across the
 specs shipped since the last review. Synthesize findings into a dated
 review file, and reset the tracker.
@@ -17,9 +18,10 @@ entry, or a specific commit, not to memory of how the work felt.
 ## When to Use
 
 Reads `docs/superpowers/process-reviews/tracker.md`,
-`docs/superpowers/process-reviews/notes.md`, and each shipped spec's
-plan outcomes file (if one exists). Invoked by two callers, never run
-standalone without one of these triggers:
+`docs/superpowers/process-reviews/notes.md`,
+`docs/superpowers/process-reviews/watchlist.md`, and each shipped
+spec's plan outcomes file (if one exists). Invoked by two callers,
+never run standalone without one of these triggers:
 
 - `subagent-driven-development`'s Finish step, when the tracker's
   "Specs shipped since" list reaches 3 entries.
@@ -70,12 +72,11 @@ standalone without one of these triggers:
    names this spec, whatever the two rules above found. This rule
    overrides the ambiguity skip: read a date-rule candidate whose
    plan's `**Spec:**` field names this spec, and drop it from the Gaps
-   note.
-   A spec that shipped through more than one plan has more than one
-   outcomes file, and its later plans carry dates no spec shares. Collect
-   every entry reporting a real divergence or follow-up from a file
-   you did read; skip an entry that reads "shipped as planned" with no
-   divergence or follow-up, since it carries no signal.
+   note. A spec that shipped through more than one plan has more than
+   one outcomes file, and its later plans carry dates no spec shares.
+   Collect every entry reporting a real divergence or follow-up from
+   a file you did read; skip an entry that reads "shipped as planned"
+   with no divergence or follow-up, since it carries no signal.
 4. Cross-reference `git log --oneline` for each shipped spec's
    implementing commits (the spec name usually appears in a commit
    trailer, e.g. "Part of docs/superpowers/specs/..."). For any fix
@@ -83,7 +84,10 @@ standalone without one of these triggers:
    entry, treat it as a Catch the running log missed, and include it.
 5. Append the window's `Watch` entries to
    `docs/superpowers/process-reviews/watchlist.md`, in that file's
-   entry format. Then, for every watchlist entry, evaluate its trigger
+   entry format. Derive each new entry's slug and its Watching field
+   from the entry's label. Skip a `Watch` entry the watchlist already
+   holds — the same origin label and trigger. Then, for every
+   watchlist entry, evaluate its trigger
    against this window's evidence. A tripped entry becomes a
    Recommendation that names the entry's pre-decided action. A
    resolved or obsolete entry leaves the file, with a one-line removal

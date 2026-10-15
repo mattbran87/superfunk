@@ -12,6 +12,8 @@
 
 ## Global Constraints
 
+> **Execution note (2026-10-15).** Review fix rounds changed some text after this plan got written: Task 4 added a fourth spec-trace definition (`re-review-prompt.md`) and an override clause to `process-review` step 3, and the final review rewrote the bump-gate sentence and `process-review` step 5. The spec and the outcomes file record the shipped text; where this plan's quoted text differs, the spec governs.
+
 - Spec carries `User-Facing: Yes`. Every task runs `check_docs.py` over its own range and adds its own bullet under `## v6.7.0 (unreleased)` in `plugin/RELEASE-NOTES.md`, in the same task.
 - No trials (spec Decision 2). No task dispatches a `--plugin-dir` session.
 - In `plugin/RELEASE-NOTES.md`, everything from the `## v6.2.0 (2026-07-23)` heading down stays byte-identical.
