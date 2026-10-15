@@ -38,7 +38,8 @@ Final Review, adapted for a session that may or may not have subagent
 access:
 
 1. **Documentation check:** If this plan traces to a design spec (named
-   in the plan's Goal line or a task's commit trailer), run `python
+   in the plan's `**Spec:**` field, its Goal line, or a task's commit
+   trailer), run `python
    plugin/skills/documentation/scripts/check_docs.py <spec-file>
    <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or `ALREADY_UPDATED`:
    continue. `ACTION_NEEDED`: invoke superfunk:documentation's Step 2 to

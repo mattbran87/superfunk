@@ -127,6 +127,8 @@ by construction.
 
 **Tech Stack:** [Key technologies/libraries]
 
+**Spec:** [Path to the design spec this plan implements, or "none"]
+
 ## Global Constraints
 
 [The spec's project-wide requirements — version floors, dependency limits,
@@ -265,7 +267,7 @@ not at execution time.
 
 **11. Template compliance:** Does this plan's own document header
 match every element the Plan Document Header section above requires
-(Goal, Architecture, Tech Stack, Global Constraints)? A required
+(Goal, Architecture, Tech Stack, Spec, Global Constraints)? A required
 section silently missing from this plan's own header counts as the
 same class of gap as a missing task for a spec requirement.
 

@@ -10,6 +10,7 @@
 - **`check_docs.py` reads numbered and plural section headings, and marks a section it cannot find.** `## 2. Decision` and `## Decisions` now match. A missing section prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The script also recognizes `plugin/README.md` and `plugin/RELEASE-NOTES.md`, and no longer crashes on a Windows console.
 - **Every version bump writes a RELEASE-NOTES entry.** Both Finish paths add the entry in the same commit as the bump. This file gains entries for v6.3.0 through v6.6.0.
 - **`notes.md` admits five entry types, and `process-review` routes each one.** `Catch`, `Miss`, `Gap`, `Friction`, and `Watch` each reach their own review section. `Watch` entries move to a durable `watchlist.md`, and every review checks each watchlist trigger.
+- **Plans name their spec in a `**Spec:**` header field.** `process-review` reads the outcomes file of every plan that names a spec, so a spec shipped through two plans keeps both plans in its review.
 
 ## v6.6.0 (2026-09-03)
 

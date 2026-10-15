@@ -507,8 +507,9 @@ parked-with-ruling at the cap.
 ## Final Review
 
 Before dispatching the final reviewer, check whether this plan traces to
-a design spec (named in the plan's Goal line or a task's commit trailer,
-e.g. "Part of docs/superpowers/specs/..."). If it does, run `python
+a design spec (named in the plan's `**Spec:**` field, its Goal line, or a
+task's commit trailer, e.g. "Part of docs/superpowers/specs/..."). If it
+does, run `python
 plugin/skills/documentation/scripts/check_docs.py <spec-file>
 <merge-base-sha> <head-sha>`. `NOT_APPLICABLE` or `ALREADY_UPDATED`:
 continue to dispatch below — the feature task already handled this, per
@@ -558,8 +559,9 @@ finishing-a-development-branch presents the options.
 When the final whole-branch review is clean and its fix wave's commits sit
 on this branch — not yet merged to the base branch, which
 `finishing-a-development-branch` handles afterward — check whether this
-plan traces to a design spec (named in the plan's Goal line or a task's
-commit trailer, e.g. "Part of docs/superpowers/specs/..."). If it does,
+plan traces to a design spec (named in the plan's `**Spec:**` field, its
+Goal line, or a task's commit trailer, e.g. "Part of
+docs/superpowers/specs/..."). If it does,
 update that spec's `Status`
 line from `Approved` to `Shipped` and commit the change on this branch
 — the only point in this process where the work is both reviewed and

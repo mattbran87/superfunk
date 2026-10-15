@@ -65,7 +65,11 @@ standalone without one of these triggers:
    commonly a spec shipped before this mechanism existed), and that
    absence never counts as an error; more than one match is a genuine
    ambiguity — name the candidate filenames in the review's Gaps
-   section and skip reading any of them, rather than guessing. Collect
+   section and skip reading any of them, rather than guessing. Then,
+   however many files the two rules above matched, read the outcomes
+   file of every plan whose `**Spec:**` header field names this spec.
+   A spec that shipped through more than one plan has more than one
+   outcomes file, and its later plans carry dates no spec shares. Collect
    every entry reporting a real divergence or follow-up from a file
    you did read; skip an entry that reads "shipped as planned" with no
    divergence or follow-up, since it carries no signal.
@@ -85,7 +89,9 @@ standalone without one of these triggers:
 6. Synthesize the collected entries and outcomes entries into the
    review's sections:
    - **Specs Reviewed** — list the "Specs shipped since" filenames
-     from the tracker; these are the specs this review covers.
+     from the tracker; these are the specs this review covers. Under
+     each spec, name every outcomes file this review read for it, or
+     `none`.
    - **Catches** — list each Catch entry, grouped by spec.
    - **Misses** — a Catch that recurs across 2 or more of the
      reviewed specs signals something upstream should catch it
