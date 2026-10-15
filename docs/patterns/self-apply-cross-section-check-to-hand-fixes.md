@@ -8,12 +8,15 @@ When you hand-fix content describing a routing, trigger, or lifecycle mechanism 
 
 ## Pattern
 
-Before finalizing a hand-edit to content matching the cross-section trigger (language like "if X exists, proceed to...", "triggered by...", "never run standalone," or a cross-reference like "see Y, below"), grep the same file — and any sibling file or design spec that also describes the mechanism — for every other mention of the key terms, and read each hit. Do this even when the edit itself is a fix for a cross-section finding: fixing the one contradiction a reviewer named does not guarantee no other contradiction exists. Plan on a follow-up re-review round specifically to check for a second instance the first pass missed, rather than assuming one pass converges.
+Before finalizing a hand-edit to content matching the cross-section trigger (language like "if X exists, proceed to...", "triggered by...", "never run standalone," or a cross-reference like "see Y, below"), grep the same file — and any sibling file or design spec that also describes the mechanism — for every other mention of the key terms, and read each hit. Do this even when the edit itself is a fix for a cross-section finding: fixing the one contradiction a reviewer named does not guarantee no other contradiction exists. Plan on a follow-up re-review round specifically to check for a second instance the first pass missed, rather than assuming one pass converges. The same holds when you write fix instructions for someone else: list every copy of the changed text as an edit target, including a design spec's own quote of it, and find the copies by searching each key term of the mechanism rather than one phrase of its current wording.
 
 ## Example
 
 - `cross-section-mechanism-consistency`'s own final-review fix wave (commit `99ed48c`) reconciled `re-review-prompt.md`'s Scope section and one line of `subagent-driven-development/SKILL.md` with the newly-shipped carve-out. A scoped re-review of that fix wave then found a second unqualified diff-only statement still standing in each of the same two files — the Red Flags table's "go to the ledger, not the loop," and the prompt's own opening "nothing else" — closed only in a follow-up round (commit `3d75180`).
 
+- `watchlist-and-findings-batch` (2026-10-15) missed the spec's quote twice. Task 4's fix round 1 rewrote `process-review` step 3, and the final review's fix wave extended step 5. Both times the controller's fix instructions changed the skill and left the spec's word-for-word quote of it stale (fixed in `7b4381d` and `27b6df2`). The plan had also found the spec-trace definitions with one phrase grep and missed a fourth, differently worded copy in `re-review-prompt.md` (fixed in `4871b53`). A scoped re-review's cross-section sweep caught all three.
+
 ## Originating lessons
 
 - "A newly-shipped cross-section check doesn't apply itself to the fixes that ship it" (2026-08-26-cross-section-mechanism-consistency)
+- "A fix to a mechanism's text leaves the spec's own quote of it stale" (2026-10-15-watchlist-and-findings-batch)

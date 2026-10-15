@@ -181,6 +181,14 @@ instruction's own wording won't reveal.
 
 *Pattern promoted — see docs/patterns/verify-reviewer-can-see-what-it-checks.md*
 
+### A fix to a mechanism's text leaves the spec's own quote of it stale (2026-10-15-watchlist-and-findings-batch)
+
+This batch's spec quotes the skill text it ships, word for word. Twice, a fix round changed that skill text and left the spec's quote behind. Task 4's fix round 1 rewrote `process-review` step 3, and the spec's part F quote kept the old rule. The final review's fix wave added two sentences to step 5, and the spec's part A quote kept the old step. In both cases the controller wrote the fix instructions. Each set listed the skill file and some spec edits — counts, a list, another quote — but not the quote of the very text it changed. A scoped re-review caught both, each time through its cross-section sweep. A third miss had the same root: the plan found the spec-trace definitions by grepping one phrase, "traces to a design spec", and a fourth copy in `re-review-prompt.md` used other words, so no task named it. **Rule:** when a fix or a plan changes text that describes a mechanism, list every copy of that text as an edit target before the change lands — the skill files, sibling templates, and the spec's own quotes — and find the copies by searching each key term of the mechanism, not one phrase of its current wording.
+
+**Tags:** none yet — tags deferred.
+
+*Pattern promoted — folded into docs/patterns/self-apply-cross-section-check-to-hand-fixes.md as a second example and a sentence in its Pattern. Compared against all 32 existing Rule sentences per the promotion step's enumeration (paragraph-joined extraction; 33 raw `**Rule:**` tokens, one of them an inline mention inside the last entry's prose): two name the same act. "when hand-fixing content that describes a routing, trigger, or lifecycle mechanism … deliberately re-apply the check's own grep-and-read step to the fix itself" gathers a fix's own edit set and concludes it is done without sweeping the other copies — this entry's act exactly, with controller-written fix instructions standing in for hand-edits. "bound every enumeration by the structure's own terminator" covers the phrase-grep miss: a search bounded by the wording you expected is an enumeration bounded by expectation. Its pattern already holds that rule, so this entry joins the cross-section pattern, the closer match. Nearest non-match, ruled out: "when a plan restates the same rule in more than one target file, cross-check every restatement against every other restatement" — that rule covers restatements the plan itself writes, not existing copies a fix forgets.*
+
 ## Testing
 
 ### `claude -p`'s last-message-only output can make a working fix read as broken (2026-08-30-checkpoint-priority-and-conditional-gate)
