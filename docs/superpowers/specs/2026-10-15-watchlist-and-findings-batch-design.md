@@ -292,10 +292,12 @@ Five edits:
    "(Goal, Architecture, Tech Stack, Global Constraints)" gains `Spec`.
 3. **`process-review` step 3, third rule.** After the date rule, add:
 
-   > Then, however many files the two rules above matched, read the
-   > outcomes file of every plan whose `**Spec:**` header field names this
-   > spec. A spec that shipped through more than one plan has more than
-   > one outcomes file, and its later plans carry dates no spec shares.
+   > Then read the outcomes file of every plan whose `**Spec:**` header
+   > field names this spec, whatever the two rules above found. This rule
+   > overrides the ambiguity skip: read a date-rule candidate whose plan's
+   > `**Spec:**` field names this spec, and drop it from the Gaps note. A
+   > spec that shipped through more than one plan has more than one
+   > outcomes file, and its later plans carry dates no spec shares.
 
 4. **`process-review` step 5, Specs Reviewed.** Each listed spec names
    every outcomes file the review read for it, or `none`.
