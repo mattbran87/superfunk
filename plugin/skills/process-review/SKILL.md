@@ -33,13 +33,24 @@ standalone without one of these triggers:
    shipped since" list — these are the specs this review covers.
 2. Read `docs/superpowers/process-reviews/notes.md`. Collect every
    entry dated after the tracker's last-review date (or every entry,
-   if the tracker reads "none yet"). An entry carries either four
+   if the tracker reads "none yet"). Split each entry on unescaped `|`
+   only, and read `\|` as a literal pipe. Field 2 names the entry's
+   type, per the type table in the file's header: `Catch`, `Miss`,
+   `Gap`, `Friction`, or `Watch`. A `Catch` entry carries either four
    fields (date, Catch, label, finding) or five (date, Catch, label,
    check, finding). Read a four-field entry as carrying no
    attribution: it predates the attribution field, and nothing
    reconstructs which check found it. Read the literal value
    `none — found ad hoc` in a five-field entry the same way — a real
    record that no check produced that Catch, not a missing value.
+   Route each type to one destination:
+   - `Catch` — the Catch synthesis in step 6.
+   - `Miss` — step 6's Misses section directly, without the
+     recurrence threshold.
+   - `Gap` — step 6's Gaps section, with its field-4 disposition.
+     Read an empty field 4 as `(no mechanism proposed)`.
+   - `Friction` — step 6's Friction section.
+   - `Watch` — the watchlist in step 5.
 3. For each spec in the "Specs shipped since" list, derive its plan's
    basename by stripping the trailing `-design` from the spec's
    filename (minus `.md`) — the trailing occurrence specifically,
@@ -63,7 +74,15 @@ standalone without one of these triggers:
    trailer, e.g. "Part of docs/superpowers/specs/..."). For any fix
    commit whose message names a defect with no matching notes.md
    entry, treat it as a Catch the running log missed, and include it.
-5. Synthesize the collected Catches and outcomes entries into the
+5. Append the window's `Watch` entries to
+   `docs/superpowers/process-reviews/watchlist.md`, in that file's
+   entry format. Then, for every watchlist entry, evaluate its trigger
+   against this window's evidence. A tripped entry becomes a
+   Recommendation that names the entry's pre-decided action. A
+   resolved or obsolete entry leaves the file, with a one-line removal
+   note in the review. Every other entry stays. The review names how
+   many entries it checked, so an unread watchlist shows up as a zero.
+6. Synthesize the collected entries and outcomes entries into the
    review's sections:
    - **Specs Reviewed** — list the "Specs shipped since" filenames
      from the tracker; these are the specs this review covers.
@@ -73,14 +92,18 @@ standalone without one of these triggers:
      earlier. Name the pattern and which specs it recurred in. An
      outcomes-reported divergence that recurs across 2 or more of the
      reviewed specs joins this section too, the same recurrence
-     threshold.
+     threshold. A logged `Miss` entry joins this section directly,
+     without the recurrence threshold, and its Recommendation targets
+     the check its field 4 names.
    - **Friction** — a task or spec whose commit history shows 3 or
      more fix rounds, or any note that reads as procedural friction
-     rather than a code defect.
+     rather than a code defect. A logged `Friction` entry joins this
+     section too.
    - **Gaps** — a convention repeatedly caught by the same reviewer,
      with no earlier check backing it up. An outcomes-reported
      follow-up too vague to act on yet joins this section too, as a
-     candidate needing more definition.
+     candidate needing more definition. A logged `Gap` entry joins this
+     section too, with its disposition.
    - **Recommendations** — one checkbox item per Miss, Friction
      point, or Gap identified above, plus one per outcomes-reported
      follow-up that names a concrete file and change. Each names a
@@ -109,16 +132,17 @@ standalone without one of these triggers:
      outside this set does not qualify — an open-ended reason lets
      any check get argued away, which turns removal into a tool for
      deleting whatever a reviewer finds inconvenient.
-6. Write the review to
+7. Write the review to
    `docs/superpowers/process-reviews/review-after-<last-spec-slug>.md`,
    where `<last-spec-slug>` is the filename (minus `.md`) of the most
    recently shipped spec in the "Specs shipped since" list.
-7. Update `docs/superpowers/process-reviews/tracker.md`: set "Last
+8. Update `docs/superpowers/process-reviews/tracker.md`: set "Last
    review" to `<spec-filename> — <YYYY-MM-DD>` (e.g.
    `2026-08-19-process-review-design.md — 2026-08-19`), using this
    review's spec filename and today's date, and clear "Specs shipped
    since" to `(none)`.
-8. Commit the review file and the tracker update together.
+9. Commit the review file, the watchlist update, and the tracker
+   update together.
 
 ## No Placeholders
 

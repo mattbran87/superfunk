@@ -1,12 +1,24 @@
 # Process Review — Running Notes
 
-Append-only log. Each entry marks one finding a review catches on its
-first pass (spec-compliance, code-quality, or the final whole-branch
-review), tagged `Catch`. `process-review` reads this log,
-cross-references `git log`, and may surface `Miss`, `Friction`, or
-`Gap` patterns across entries when it synthesizes a review file.
+Append-only log. Each entry records one finding, tagged with one of the
+five types below. A finding a review catches on its first pass
+(spec-compliance, code-quality, or the final whole-branch review) gets
+`Catch`. `process-review` reads this log, cross-references `git log`,
+and routes each type to one section of its review file.
 
-Format: `- <YYYY-MM-DD> | Catch | <task/spec label> | <check that caught it> | <one-line finding>`
+Format: `- <YYYY-MM-DD> | <type> | <task/spec label> | <field 4> | <field 5>`
+
+| Type | Records | Field 4 | Field 5 |
+|---|---|---|---|
+| `Catch` | A defect found before it shipped | The check that caught it | The finding |
+| `Miss` | A defect that got past a check that should have caught it | The check that missed it | The finding |
+| `Gap` | A class of defect that no check covers | The mechanism it wants, or `(no mechanism proposed)` | The finding |
+| `Friction` | Process cost with no defect behind it | The step that cost too much | The finding |
+| `Watch` | A condition to watch, with a pre-decided action | `trigger: <condition>` | `action: <pre-decided action>` |
+
+A literal `|` inside a field gets written as `\|`. A reader splits an
+entry on unescaped `|` only. Entries written before 2026-10-15 stay as
+written, including any unescaped `|` inside a finding.
 
 The fourth field names the specific check that produced the Catch — for
 example `writing-plans item 10`, `brainstorming item 6`, or
