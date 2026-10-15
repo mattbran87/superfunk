@@ -1,5 +1,9 @@
 # Superpowers Release Notes
 
+## v6.7.0 (unreleased)
+
+- **`check_docs.py` reads numbered and plural section headings, and marks a section it cannot find.** `## 2. Decision` and `## Decisions` now match. A missing section prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The script also recognizes `plugin/README.md` and `plugin/RELEASE-NOTES.md`, and no longer crashes on a Windows console.
+
 ## v6.2.0 (2026-07-23)
 
 ### Subagent-Driven Development

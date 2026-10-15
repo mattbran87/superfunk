@@ -13,7 +13,7 @@ def read_user_facing(spec_text):
 
 
 def extract_section(spec_text, heading):
-    pattern = r'^## ' + re.escape(heading) + r'\n(.*?)(?=^## |\Z)'
+    pattern = r'^##\s+(?:\d+\.\s+)?' + re.escape(heading) + r's?[ \t]*\n(.*?)(?=^## |\Z)'
     match = re.search(pattern, spec_text, re.MULTILINE | re.DOTALL)
     if not match:
         return ""
@@ -33,6 +33,7 @@ def main():
         print("Usage: check_docs.py <spec_file> <base_sha> <head_sha>")
         sys.exit(2)
 
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     spec_file, base_sha, head_sha = sys.argv[1], sys.argv[2], sys.argv[3]
 
     with open(spec_file, "r", encoding="utf-8") as f:
@@ -44,7 +45,7 @@ def main():
         sys.exit(0)
 
     files = changed_files(base_sha, head_sha)
-    doc_files = [f for f in files if f in ("README.md", "CHANGELOG.md")]
+    doc_files = [f for f in files if f in ("README.md", "CHANGELOG.md", "plugin/README.md", "plugin/RELEASE-NOTES.md")]
     if doc_files:
         print("ALREADY_UPDATED: {}".format(", ".join(doc_files)))
         sys.exit(0)
@@ -54,12 +55,9 @@ def main():
     consequences = extract_section(spec_text, "Consequences")
 
     print("ACTION_NEEDED")
-    print("## Context")
-    print(context)
-    print("## Decision")
-    print(decision)
-    print("## Consequences")
-    print(consequences)
+    for heading, body in (("Context", context), ("Decision", decision), ("Consequences", consequences)):
+        print("## " + heading)
+        print(body or 'SECTION_NOT_FOUND: read "{}" from the spec directly'.format(heading))
     sys.exit(1)
 
 

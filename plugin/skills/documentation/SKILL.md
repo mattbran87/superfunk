@@ -32,7 +32,7 @@ Triggered by `subagent-driven-development`'s Finish step — never run this step
 
 1. Run `python plugin/skills/documentation/scripts/check_docs.py <spec_file> <base_sha> <head_sha>`.
 2. If the output starts with `NOT_APPLICABLE` or `ALREADY_UPDATED`: nothing to do, skip the rest of this step.
-3. If the output starts with `ACTION_NEEDED`: read the Context/Decision/Consequences content the script printed. Draft:
+3. If the output starts with `ACTION_NEEDED`: read the Context/Decision/Consequences content the script printed. A section printed as `SECTION_NOT_FOUND` means the script could not find that heading in the spec — read that section from the spec file directly. Draft:
    - A `CHANGELOG.md` entry, newest-first, in plain language describing what changed and why a user would care — not the internal implementation detail, the user-facing effect.
    - A `README.md` update, only if the change affects something the README already documents (a new feature the Usage section should mention, a changed installation step). Skip the README if the change doesn't affect anything already documented there.
 4. Commit both files together, in their own commit separate from Finish's other bookkeeping commits: `git commit -m "docs: update README/CHANGELOG for <short description>"`.

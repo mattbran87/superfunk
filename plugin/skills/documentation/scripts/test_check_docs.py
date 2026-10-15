@@ -144,3 +144,86 @@ def test_end_to_end_action_needed(tmp_path):
     assert "Users hit a bug." in result.stdout
     assert "Fix the bug this way." in result.stdout
     assert "Users see correct behavior now." in result.stdout
+
+
+def test_extract_section_numbered_heading():
+    spec = "## 1. Context\n\nNumbered context.\n\n## 2. Decision\n\nNumbered decision.\n"
+    assert extract_section(spec, "Context") == "Numbered context."
+    assert extract_section(spec, "Decision") == "Numbered decision."
+
+
+def test_extract_section_plural_heading():
+    spec = "## Decisions\n\nPlural decision.\n\n## Consequences\n\nLast.\n"
+    assert extract_section(spec, "Decision") == "Plural decision."
+
+
+def test_extract_section_rejects_longer_heading():
+    spec = "## Decision Log\n\nNot the decision.\n"
+    assert extract_section(spec, "Decision") == ""
+
+
+def test_end_to_end_missing_section_prints_marker(tmp_path):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _init_repo(repo)
+    spec = repo / "spec.md"
+    spec.write_text(
+        "**Date:** 2026-10-15\n**User-Facing:** Yes\n\n"
+        "## Context\n\nUsers hit a bug.\n\n"
+        "## Decision\n\nFix the bug this way.\n"
+    )
+    base_sha = _commit_all(repo, "base")
+    (repo / "fix.py").write_text("x = 2")
+    head_sha = _commit_all(repo, "fix")
+
+    result = subprocess.run(
+        [sys.executable, CHECK_DOCS_PATH, str(spec), base_sha, head_sha],
+        cwd=repo, capture_output=True, text=True
+    )
+    assert result.returncode == 1
+    assert result.stdout.startswith("ACTION_NEEDED")
+    assert 'SECTION_NOT_FOUND: read "Consequences" from the spec directly' in result.stdout
+    assert "Users hit a bug." in result.stdout
+
+
+def test_end_to_end_already_updated_nested_release_notes(tmp_path):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _init_repo(repo)
+    spec = repo / "spec.md"
+    spec.write_text("**Date:** 2026-10-15\n**User-Facing:** Yes\n\n## Context\n\nSomething.\n")
+    base_sha = _commit_all(repo, "base")
+    (repo / "plugin").mkdir()
+    (repo / "plugin" / "RELEASE-NOTES.md").write_text("# Notes")
+    head_sha = _commit_all(repo, "update release notes")
+
+    result = subprocess.run(
+        [sys.executable, CHECK_DOCS_PATH, str(spec), base_sha, head_sha],
+        cwd=repo, capture_output=True, text=True
+    )
+    assert result.returncode == 0
+    assert "ALREADY_UPDATED: plugin/RELEASE-NOTES.md" in result.stdout
+
+
+def test_end_to_end_em_dash_on_cp1252_console(tmp_path):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _init_repo(repo)
+    spec = repo / "spec.md"
+    spec.write_text(
+        "**Date:** 2026-10-15\n**User-Facing:** Yes\n\n"
+        "## Context\n\nAn em dash — and an arrow → here.\n",
+        encoding="utf-8",
+    )
+    base_sha = _commit_all(repo, "base")
+    (repo / "fix.py").write_text("x = 2")
+    head_sha = _commit_all(repo, "fix")
+
+    env = dict(os.environ, PYTHONIOENCODING="cp1252")
+    result = subprocess.run(
+        [sys.executable, CHECK_DOCS_PATH, str(spec), base_sha, head_sha],
+        cwd=repo, capture_output=True, env=env
+    )
+    assert result.returncode == 1
+    assert b"Traceback" not in result.stderr
+    assert "An em dash — and an arrow → here." in result.stdout.decode("utf-8")
