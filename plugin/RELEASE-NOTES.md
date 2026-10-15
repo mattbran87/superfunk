@@ -5,7 +5,7 @@
 > released its own v6.3.0 with different content, so the two histories
 > share version numbers by coincidence only.
 
-## v6.7.0 (unreleased)
+## v6.7.0 (2026-10-15)
 
 - **`check_docs.py` reads numbered and plural section headings, and marks a section it cannot find.** `## 2. Decision` and `## Decisions` now match. A missing section prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The script also recognizes `plugin/README.md` and `plugin/RELEASE-NOTES.md`, and no longer crashes on a Windows console.
 - **Every version bump writes a RELEASE-NOTES entry.** Both Finish paths add the entry in the same commit as the bump. This file gains entries for v6.3.0 through v6.6.0.
