@@ -1,7 +1,7 @@
 # Watchlist and Findings Batch — Design
 
 **Date:** 2026-10-15
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** Yes
 
 ## Context
@@ -468,4 +468,24 @@ Each choice came from step 4's inline proposal. No research skill ran.
 
 ## RESULT
 
-*(filled at Finish)*
+Shipped on `master`, 2026-10-15, in four tasks plus one final-review fix wave.
+
+| Part | Shipped in |
+|---|---|
+| D, E (`check_docs.py`) | `b760721`; bugs closed in `4a63f86` |
+| B, C (release notes, bump duty) | `232ba81`; v6.3.0 claim corrected in `1b7bd5b` |
+| G, A (vocabulary, watchlist) | `e1db96b` |
+| F (`**Spec:**` field) | `d12c77f`; fixes in `4871b53` and `7b4381d` |
+| Final-review fix wave | `a7979b7`; regression fix in `27b6df2` |
+
+Criteria 1–10 hold. The task reviews and the final review checked each one, and the final reviewer re-ran pytest (16 passed), the real-data heading sweep (0 empty sections in both repos), and the bump-gate identity diff (`IDENTICAL`). Criterion 11 runs in this Finish's bump commit.
+
+What the reviews changed after the plan got written:
+
+- The v6.3.0 release-note bullet credited superfunk with a Global Constraints header that already existed at the fork point. The bullet now drops that clause.
+- The plan found three spec-trace definitions with a phrase grep. A fourth copy in `re-review-prompt.md` used other words, and it now names the field too.
+- The `**Spec:**` rule in `process-review` step 3 collided with the date rule's ambiguity skip. The `**Spec:**` rule now overrides the skip.
+- The final review found that step 5's first live run would duplicate the three seeded `Watch` entries, and that the bump-gate sentence read two ways. Step 5 now skips held entries, and the gate now says where the entry goes and what happens to an `(unreleased)` heading.
+- Twice, a fix changed skill text and left this spec's quote of it stale (Task 4 fix round 1, and the final fix wave). A scoped re-review caught both.
+
+Out-of-scope items stay open: G1–G3 themselves, the SDD Finish step that reads `Gap` entries, and findings A1–A4 and A7–A10.
