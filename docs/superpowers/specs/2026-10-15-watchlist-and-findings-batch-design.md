@@ -174,8 +174,11 @@ Insert a new step between steps 4 and 5 (later steps renumber):
 
 > Append the window's Watch entries to
 > `docs/superpowers/process-reviews/watchlist.md` in the entry format
-> above. Then, for every watchlist entry, evaluate its trigger against
-> this window's evidence. A tripped entry becomes a Recommendation that
+> above. Derive each new entry's slug and its Watching field from the
+> entry's label. Skip a `Watch` entry the watchlist already holds — the
+> same origin label and trigger. Then, for every watchlist entry,
+> evaluate its trigger against this window's evidence. A tripped entry
+> becomes a Recommendation that
 > names the entry's pre-decided action. A resolved or obsolete entry
 > leaves the file, with a one-line removal note in the review. Every
 > other entry stays. The review names how many entries it checked, so an
