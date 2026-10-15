@@ -794,7 +794,7 @@ In `plugin/RELEASE-NOTES.md`, directly after the bullet that begins `- **Every v
 
 ```bash
 git add docs/superpowers/process-reviews/notes.md docs/superpowers/process-reviews/watchlist.md plugin/skills/process-review/SKILL.md plugin/RELEASE-NOTES.md
-git commit -m "feat(process-review): five notes.md entry types, typed routing, and a durable watchlist
+git commit -m "feat(process-review): add five notes.md entry types, typed routing, and a durable watchlist
 
 Part of docs/superpowers/specs/2026-10-15-watchlist-and-findings-batch-design.md"
 python plugin/skills/documentation/scripts/check_docs.py docs/superpowers/specs/2026-10-15-watchlist-and-findings-batch-design.md <task-base-sha> HEAD
@@ -993,7 +993,7 @@ Expected: `4`.
 
 ```bash
 git add plugin/skills/writing-plans/SKILL.md plugin/skills/process-review/SKILL.md plugin/skills/subagent-driven-development/SKILL.md plugin/skills/executing-plans/SKILL.md plugin/RELEASE-NOTES.md
-git commit -m "feat(writing-plans): plans name their spec in a **Spec:** field, and process-review reads every plan that names a spec
+git commit -m "feat(writing-plans): add a **Spec:** plan-header field, and read every plan that names a spec in process-review
 
 Part of docs/superpowers/specs/2026-10-15-watchlist-and-findings-batch-design.md"
 python plugin/skills/documentation/scripts/check_docs.py docs/superpowers/specs/2026-10-15-watchlist-and-findings-batch-design.md <task-base-sha> HEAD
