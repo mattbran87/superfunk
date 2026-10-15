@@ -1,7 +1,7 @@
 # BUG-0002: check_docs.py crashes with UnicodeEncodeError on Windows console
 
 **Severity:** Critical
-**Status:** Open
+**Status:** Fixed
 **Origin:** Reported 2026-08-28 by session (found during superfunk-rebrand's Task 6 verification)
 **External ID:** (blank until synced to an external tracker)
 
@@ -35,4 +35,4 @@ Concretely reproduced 2026-08-28 running `check_docs.py` against
 uses `→` and `—` throughout its Context section.
 
 ## Resolution
-(filled in when Status becomes Fixed or Won't Fix — what changed, commit SHA)
+`main()` now calls `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` before any output (commit `b760721`). A test runs the script under `PYTHONIOENCODING=cp1252` with an em dash and an arrow in the spec, and checks for no traceback.

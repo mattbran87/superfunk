@@ -1,7 +1,7 @@
 # BUG-0001: check_docs.py doesn't recognize nested README.md/CHANGELOG.md paths
 
 **Severity:** Important
-**Status:** Open
+**Status:** Fixed
 **Origin:** Reported 2026-08-28 by session (found during superfunk-rebrand's Task 6 verification)
 **External ID:** (blank until synced to an external tracker)
 
@@ -40,4 +40,4 @@ occurrences in five days, both costing an implementer time to
 re-derive a known defect.
 
 ## Resolution
-(filled in when Status becomes Fixed or Won't Fix — what changed, commit SHA)
+`check_docs.py`'s doc-path set now lists `plugin/README.md` and `plugin/RELEASE-NOTES.md` beside the two root-level names (commit `b760721`). A test covers a nested `plugin/RELEASE-NOTES.md`. The set stays an explicit list: a doc file outside it still reads as `ACTION_NEEDED`.

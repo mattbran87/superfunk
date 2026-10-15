@@ -76,5 +76,5 @@ The implementation plan's Task 4 checked every other top-level file in `plugin/s
 
 - Full narrative-prose rebrand (every mention of "Superpowers" as a described concept, not just the manifest/prefix identity) — no evidence yet this matters beyond the functional and explicitly-requested scope above.
 - Renaming the `using-superpowers` skill's own directory/name — the plugin-name-prefix fix alone resolves the functional concern; a rename here risks the bootstrap mechanism every session depends on, for no corresponding gain.
-- Recognizing `RELEASE-NOTES.md` (or other equivalent changelog filenames) as equivalent to `CHANGELOG.md` in `check_docs.py` — a real gap surfaced by this very sub-project's own Finish step; revisit once this instance gets handled, if it recurs on a different project.
+- Recognizing `RELEASE-NOTES.md` (or other equivalent changelog filenames) as equivalent to `CHANGELOG.md` in `check_docs.py` — a real gap surfaced by this very sub-project's own Finish step; revisit once this instance gets handled, if it recurs on a different project. (Resolved by `2026-10-15-watchlist-and-findings-batch-design.md`, part D: `check_docs.py` now recognizes `plugin/RELEASE-NOTES.md`.)
 - Bumping the manifests' version number — this spec rebrands identity, not features; a version bump waits for a separate, later decision.
