@@ -32,7 +32,7 @@
 - **superfunk forks from obra/superpowers.** The plugin takes the superfunk name and the `superfunk:` skill prefix. Install commands point at `mattbran87/superfunk`.
 - **A process feedback loop.** `process-review` synthesizes the `notes.md` running log and per-task outcome files into dated reviews. `docs/lessons-learned.md` captures lessons at Finish and promotes recurring ones to `docs/patterns/`. Finish gains bookkeeping gates.
 - **Eight new skills:** `process-review`, `concept-index`, `bug-tracking`, `documentation`, `project-definition`, `multi-lens-research`, `branching-research`, and `calibrating-recommendations`.
-- **Stronger planning checks.** `writing-plans` gains a Pseudocode section, a Global Constraints header, and a Self-Review that grows to 14 items.
+- **Stronger planning checks.** `writing-plans` gains a Pseudocode section, and its Self-Review grows to 14 items.
 
 ## v6.2.0 (2026-07-23)
 
