@@ -1,7 +1,7 @@
 # Watchlist and Release-Notes Batch — Design
 
 **Date:** 2026-09-08
-**Status:** Approved
+**Status:** Superseded by 2026-10-15-watchlist-and-findings-batch-design.md
 **User-Facing:** Yes
 
 ## Context
