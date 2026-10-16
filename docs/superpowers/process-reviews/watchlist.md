@@ -42,3 +42,7 @@ Entry format:
   - Watching: the M2 sentence in `subagent-driven-development`'s fix loop and Final Review.
   - Trigger: a scoped re-review finds a stale copy of text that a fix dispatch changed.
   - Action when tripped: trial-gate the M2 sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.
+- **dispatch-claim-check** (added 2026-10-15, dispatch-claim-check)
+  - Watching: the implementer-prompt sentence that tells an implementer to check the controller's Context claims against the tree.
+  - Trigger: a review or an outcomes entry finds a false controller claim in a dispatch that the implementer built on without reporting it.
+  - Action when tripped: trial-gate the sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.

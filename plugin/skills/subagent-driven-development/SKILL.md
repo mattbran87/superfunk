@@ -219,9 +219,12 @@ and fix-round diffs need it.
   first — it is your requirements, with the exact values to use verbatim";
   (3) interfaces and decisions from earlier tasks that the brief cannot
   know; (4) your resolution of any ambiguity you noticed in the brief;
-  (5) the report-file path and report contract. Exact values (numbers,
-  magic strings, signatures, test cases) appear only in the brief. Never
-  make a subagent read the whole plan file.
+  (5) the report-file path and report contract. Put parts (1), (3), and
+  (4) under the template's Context heading. The implementer checks that
+  section's claims against the tree, so a claim you place anywhere else
+  skips that check. Exact values (numbers, magic strings, signatures,
+  test cases) appear only in the brief. Never make a subagent read the
+  whole plan file.
 - **Directory context:** before dispatching, list the directories this
   task touches — from the task brief's file structure — and read the
   `.context.md` for each one (per `docs/ai-code-guidelines.md`'s

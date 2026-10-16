@@ -27,6 +27,12 @@ Subagent (general-purpose):
 
     [Scene-setting: where this fits, dependencies, architectural context]
 
+    The controller wrote this section, not the plan. It may carry a claim
+    from memory of earlier tasks: a type or file that exists, a count, a
+    line number, a commit. Check each such claim against the tree before
+    you rely on it. If one does not match, say so in your report rather
+    than build around it.
+
     ## Before You Begin
 
     If you have questions about:
