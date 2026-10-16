@@ -5,7 +5,7 @@
 > released its own v6.3.0 with different content, so the two histories
 > share version numbers by coincidence only.
 
-## v6.9.0 (unreleased)
+## v6.9.0 (2026-10-16)
 
 - **Implementers check the controller's Context claims against the tree.** The controller puts its own dispatch text under the implementer template's Context section, which the template marks as controller-written. An implementer checks each existence claim, count, line number, or commit there before it relies on the claim, and it reports any mismatch. A new watchlist entry tracks whether this works.
 
