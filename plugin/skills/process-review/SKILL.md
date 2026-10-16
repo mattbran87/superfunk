@@ -41,8 +41,9 @@ never run standalone without one of these triggers:
    `Gap`, `Friction`, or `Watch`. A `Catch` entry carries either four
    fields (date, Catch, label, finding) or five (date, Catch, label,
    check, finding). Read a four-field entry as carrying no
-   attribution: it predates the attribution field, and nothing
-   reconstructs which check found it. Read the literal value
+   attribution: it predates the attribution field, or it came from a
+   write-site template that still showed four fields (through
+   2026-10-15), and nothing reconstructs which check found it. Read the literal value
    `none — found ad hoc` in a five-field entry the same way — a real
    record that no check produced that Catch, not a missing value.
    Route each type to one destination:

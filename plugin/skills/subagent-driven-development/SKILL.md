@@ -362,7 +362,7 @@ Before the loop starts, two routes leave it immediately:
 Everything else enters the loop. Before the first fix dispatch,
 append one line per open finding to
 `docs/superpowers/process-reviews/notes.md`:
-`- <YYYY-MM-DD> | Catch | Task <N> (<plan-slug>) | <one-line finding>`.
+`- <YYYY-MM-DD> | Catch | Task <N> (<plan-slug>) | <check that caught it> | <one-line finding>`.
 `<plan-slug>` is the plan's filename with both the `.md` extension and
 the leading `YYYY-MM-DD-` date prefix removed (`2026-08-25-concept-index.md`
 → `concept-index`) — the short form every real entry in that file
@@ -534,7 +534,7 @@ fixed before merge.
 
 If the final whole-branch review returns findings, append one line per
 finding to `docs/superpowers/process-reviews/notes.md`
-(`- <YYYY-MM-DD> | Catch | Final review | <one-line finding>`), then
+(`- <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>`), then
 dispatch ONE fix subagent with the complete findings list — not one
 fixer per finding.
 Per-finding fixers each rebuild context and re-run suites; a real

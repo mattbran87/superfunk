@@ -5,6 +5,10 @@
 > released its own v6.3.0 with different content, so the two histories
 > share version numbers by coincidence only.
 
+## v6.8.0 (unreleased)
+
+- **`notes.md` write-site templates show all five fields.** The fix-loop and final-review templates in `subagent-driven-development` and `executing-plans` now carry the check field, and a final-review entry names its plan. `process-review` no longer reads every four-field entry as older than 2026-09-01.
+
 ## v6.7.0 (2026-10-15)
 
 - **`check_docs.py` reads numbered and plural section headings, and marks a section it cannot find.** `## 2. Decision` and `## Decisions` now match. A missing section prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The script also recognizes `plugin/README.md` and `plugin/RELEASE-NOTES.md`, and no longer crashes on a Windows console.

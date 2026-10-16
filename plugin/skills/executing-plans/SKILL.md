@@ -58,7 +58,7 @@ access:
    own direct assessment, not a dispatched subagent's report.
 4. **Findings:** append one line per finding to
    `docs/superpowers/process-reviews/notes.md`
-   (`- <YYYY-MM-DD> | Catch | Final review | <one-line finding>`), then
+   (`- <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>`), then
    fix all of them in one pass — not one fix per finding — and run
    exactly one scoped re-review of the fix diff (dispatched if possible,
    direct otherwise). Adjudicate any residual finding as

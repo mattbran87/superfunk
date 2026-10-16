@@ -28,7 +28,9 @@ attribution honest: a format offering no way to say "nothing caught
 this" pressures a writer to invent one.
 
 Entries below dated before 2026-09-01 carry four fields, without the
-check field. They stay as written — reconstructing attribution from
+check field, and so do six later entries copied from write-site
+templates that still showed four fields (fixed 2026-10-15). They stay
+as written — reconstructing attribution from
 memory would fabricate it.
 
 <!-- entries below this line -->
