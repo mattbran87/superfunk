@@ -11,7 +11,7 @@ Two ArcGISProMCP findings target `subagent-driven-development`'s dispatch step (
 - **A4 — nothing confirms the controller's own dispatch claims against the tree.** SDD Step 1 (`plugin/skills/subagent-driven-development/SKILL.md:208-276`) builds a dispatch from five parts. Part (2), the task brief, comes from the plan word for word. Parts (1), (3), and (4) come from the controller, and no step checks them. On one ArcGISProMCP branch, 2 of 9 dispatches carried false controller claims: a type the controller wrote and then deleted, a wrong tool count, and a wrong home for a test file. The findings file calls this "the thinnest evidence base of the four".
 - **A10 — nothing names where each part of a brief came from.** An implementer cannot tell which lines came from the plan and which from the controller, so it cannot calibrate its trust. On ArcGISProMCP's `arcade` branch, 5 implementers corrected the brief they received, and all 5 were right. Each correction followed an instruction in the brief to check citations against the source rather than against the brief.
 
-Superfunk's own record holds almost no evidence for either finding. A search of `docs/superpowers/process-reviews/notes.md` finds one dispatch-related Catch (`:43`), and it describes a different failure: pseudocode folded into the wrong task. One related instance came up on 2026-10-15. A final-review fix brief stated a wrong expected count, and the fix agent reported the mismatch rather than force the check to pass.
+Superfunk's own record holds almost no evidence for either finding. A search of `docs/superpowers/process-reviews/notes.md` finds one dispatch-related Catch (`:43`), and it describes a different failure: pseudocode folded into the wrong task. One related instance came up on 2026-10-15. A final-review fix brief stated a wrong expected count, and the fix agent reported the mismatch rather than force the check to pass. That instance sat in a fix dispatch, which this change does not reach (see Out of Scope).
 
 The implementer template already separates the two sources. In `plugin/skills/subagent-driven-development/implementer-prompt.md`, the "Task Description" section points at the brief, and the "Context" section holds the controller's own text. No sentence tells the implementer that nothing checked the Context text.
 
@@ -35,6 +35,8 @@ In `plugin/skills/subagent-driven-development/SKILL.md` Step 1, in the "Task bri
 
 > Put parts (1), (3), and (4) under the template's Context heading. The implementer checks that section's claims against the tree, so a claim you place anywhere else skips that check.
 
+The fix round also rewrote the sentence that follows it in Step 1. It now reads: "Exact values the plan states (numbers, magic strings, signatures, test cases) appear only in the brief, except a value your part (4) resolution selects. A value from an earlier task's run, such as a commit or a measured count, goes under Context." The old sentence said exact values appear only in the brief, which a plan written before any task ran cannot satisfy for a value from that run.
+
 ### 3. Watchlist entry
 
 Append to `docs/superpowers/process-reviews/watchlist.md`:
@@ -42,7 +44,7 @@ Append to `docs/superpowers/process-reviews/watchlist.md`:
 ```markdown
 - **dispatch-claim-check** (added 2026-10-15, dispatch-claim-check)
   - Watching: the implementer-prompt sentence that tells an implementer to check the controller's Context claims against the tree.
-  - Trigger: a review or an outcomes entry finds a false controller claim in a dispatch that the implementer built on without reporting it.
+  - Trigger: a review or an outcomes entry finds a false controller claim in an implementer dispatch built from `implementer-prompt.md`, which the implementer built on without reporting it.
   - Action when tripped: trial-gate the sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.
 ```
 
@@ -64,6 +66,7 @@ At Finish, change the findings file's "In progress" line for A4 and A10 (in its 
 - Checks on the brief itself. The brief comes from the plan, and `writing-plans`' Self-Review owns plan errors.
 - `executing-plans`. It dispatches no implementer, so it has no Context section to label.
 - An A/B trial (Decision 3).
+- Fix dispatches and reviewer dispatches. The fix loop's resume message, a round 4–5 fresh implementer, the Final Review's fix subagent, and every reviewer dispatch carry controller claims too, but none of them uses the implementer template's Context section, so the claim check does not reach them. Two instances already sit in that gap: the 2026-10-15 fix brief's wrong expected count, and a 2026-10-16 reviewer dispatch for this batch's own Task 1 that named a "Placeholders section" `implementer-prompt.md` does not have. The reviewer reported that claim as vacuous rather than build on it.
 
 ## Consequences
 

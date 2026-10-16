@@ -44,5 +44,5 @@ Entry format:
   - Action when tripped: trial-gate the M2 sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.
 - **dispatch-claim-check** (added 2026-10-15, dispatch-claim-check)
   - Watching: the implementer-prompt sentence that tells an implementer to check the controller's Context claims against the tree.
-  - Trigger: a review or an outcomes entry finds a false controller claim in a dispatch that the implementer built on without reporting it.
+  - Trigger: a review or an outcomes entry finds a false controller claim in an implementer dispatch built from `implementer-prompt.md`, which the implementer built on without reporting it.
   - Action when tripped: trial-gate the sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.

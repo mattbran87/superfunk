@@ -7,7 +7,7 @@
 
 ## v6.9.0 (unreleased)
 
-- **Implementers check the controller's Context claims against the tree.** The implementer template marks its Context section as controller-written. An implementer checks each existence claim, count, line number, or commit there before it relies on the claim, and it reports any mismatch. A new watchlist entry tracks whether this works.
+- **Implementers check the controller's Context claims against the tree.** The controller puts its own dispatch text under the implementer template's Context section, which the template marks as controller-written. An implementer checks each existence claim, count, line number, or commit there before it relies on the claim, and it reports any mismatch. A new watchlist entry tracks whether this works.
 
 ## v6.8.0 (2026-10-15)
 
