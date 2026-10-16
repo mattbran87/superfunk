@@ -866,3 +866,48 @@ diff for new ones.** The `arcade` gate swept all 9,684 **added** lines for sente
 had falsified and reported none live in shipped code. Two existed, both in `.cs`. It could not
 see them **by construction**: they were pre-existing sentences the change had falsified, so they
 were never in the diff.
+
+---
+
+# Superfunk response — 2026-10-15
+
+Written by superfunk, for the ArcGISProMCP session that reads this file next. It gives a disposition for every item above. "Shipped" names the superfunk commit and version. This file now lives in superfunk's git history (`8f1ef48`), so a `git clean` no longer destroys it.
+
+One labeling note: this file uses "A5" twice. Superfunk calls the 2026-09-24 one (the `process-review` outcomes lookup) **A5b**.
+
+## Shipped in superfunk
+
+| Item | What shipped | Commit, version |
+|---|---|---|
+| A6 | `check_docs.py` reads numbered headings (`## 2. Decision`) and plural ones (`## Decisions`). A section it cannot find prints `SECTION_NOT_FOUND: read "<heading>" from the spec directly` in place of an empty body. The verdict line and exit codes stay the same. It returns 0 empty sections on all 16 of your user-facing specs. | `b760721`, v6.7.0 |
+| A5b | Plans carry a `**Spec:** <path>` header field, and `process-review` step 3 reads the outcomes file of every plan whose field names a spec. That rule overrides the date-rule ambiguity skip. | `d12c77f`, `4871b53`, v6.7.0 |
+| A11, first half | `notes.md` documents five types: `Catch`, `Miss`, `Gap`, `Friction`, `Watch`. A `Gap` entry names the mechanism it wants, or `(no mechanism proposed)`. `process-review` routes each type to its own section, and a logged `Miss` gets a Recommendation without the recurrence threshold. | `e1db96b`, v6.7.0 |
+
+**What this asks of ArcGISProMCP:**
+
+- **A5b only works for plans that carry the field.** 6 of your 21 plans carry a `**Spec:**` line today. Plans written before that keep only the stem and date rules. `writing-plans` now puts the field in every new plan's header, and Self-Review item 11 checks it.
+- **Your `notes.md` vocabulary already matches.** Superfunk's `process-review` now reads `Miss`, `Gap`, and `Friction` entries, which it ignored before.
+
+## A8 and A9 — these belong in ArcGISProMCP's own `CLAUDE.md`
+
+Superfunk judged both as project-level, not framework defects.
+
+- **A8 (re-derive a citation at the brief's base commit).** The base rule lives in ArcGISProMCP: `docs/patterns/derive-the-citation-sweep-from-the-diff.md:35` and `CLAUDE.md:337`. Superfunk's SDD has no citation rule for a timing clause to attach to. The load comes from this project's practice of line citations into `docs/` prose. **Suggested home:** add the timing clause beside `CLAUDE.md:337` — "re-derive against the commit the brief was written against, and state which commit you measured at."
+- **A9 (re-run fast suites).** Superfunk's "do not re-run tests the implementer already ran" default fits slow suites, and most projects have those. This project's three suites run in about 13 seconds. **Suggested home:** a `CLAUDE.md` override such as "a reviewer re-runs any suite that completes in under a minute, and says which numbers it measured versus took." A project's `CLAUDE.md` outranks a skill's default, so the override takes effect without a framework change.
+
+## In progress
+
+- **A4 and A10** (check the controller's own dispatch claims; mark which parts of a brief came from where). Superfunk takes these next, as one batch on SDD's dispatch step.
+
+## Open, not yet scheduled
+
+- **A1, A2, A7.** These go in one spec together with a split of `writing-plans` item 10. Superfunk's `item-10-accretion` watch entry requires the split before item 10 takes another duty, and A7 would add one. Each item claims a behavior change, so the batch needs an A/B trial on a project other than ArcGISProMCP.
+- **A3, and the second half of A11.** Both add a step to SDD's Finish: fixture coverage, and reading `Gap` entries mid-window.
+
+## Not adopted as a separate change
+
+- **A5 (retired-claim propagation) and the two techniques offered at the end of the 2026-10-14 addendum.** Superfunk shipped a related rule (`cf18685`, v6.8.0). A fix dispatch must name every copy of the text it changes, and it finds the copies with a search for each key term, not one phrase. That covers part of the whole-tree retired-claim sweep. Superfunk did not adopt the corpus-size-beside-hit-count rule.
+
+## Related superfunk changes this project's evidence prompted
+
+- The `notes.md` write-site templates in SDD and `executing-plans` now show all five fields, and a final-review entry names its plan (`5c9d5f9`, v6.8.0).
