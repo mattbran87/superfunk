@@ -222,9 +222,10 @@ and fix-round diffs need it.
   (5) the report-file path and report contract. Put parts (1), (3), and
   (4) under the template's Context heading. The implementer checks that
   section's claims against the tree, so a claim you place anywhere else
-  skips that check. Exact values (numbers, magic strings, signatures,
-  test cases) appear only in the brief. Never make a subagent read the
-  whole plan file.
+  skips that check. Exact values the plan states (numbers, magic strings,
+  signatures, test cases) appear only in the brief. A value from an
+  earlier task's run, such as a commit or a measured count, goes under
+  Context. Never make a subagent read the whole plan file.
 - **Directory context:** before dispatching, list the directories this
   task touches — from the task brief's file structure — and read the
   `.context.md` for each one (per `docs/ai-code-guidelines.md`'s
