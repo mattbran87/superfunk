@@ -5,7 +5,7 @@
 > released its own v6.3.0 with different content, so the two histories
 > share version numbers by coincidence only.
 
-## v6.8.0 (unreleased)
+## v6.8.0 (2026-10-15)
 
 - **`notes.md` write-site templates show all five fields.** The fix-loop and final-review templates in `subagent-driven-development` and `executing-plans` now carry the check field, and a final-review entry names its plan. `process-review` no longer reads every four-field entry as older than 2026-09-01.
 - **Fix dispatches name every copy of the text they change.** When a finding changes text that describes a mechanism, the controller lists each copy — sibling files and the design spec's own quotes — in the fix dispatch. A new watchlist entry tracks whether this works.
