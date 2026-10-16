@@ -1,7 +1,7 @@
 # Dispatch Claim Check — Design
 
 **Date:** 2026-10-15
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** Yes
 
 ## Context
@@ -84,4 +84,14 @@ At Finish, change the findings file's "In progress" line for A4 and A10 (in its 
 
 ## RESULT
 
-*(filled at Finish)*
+Shipped on `master`, 2026-10-16, in one task plus one fix round and one final-review fix wave.
+
+- `93db97b`: the implementer-prompt claim-check paragraph, the SDD placement sentence, the `dispatch-claim-check` watchlist entry, and the v6.9.0 release note.
+- `d30bcb3` (fix round 1): SDD Step 1's exact-values rule now covers only values the plan states. A value from an earlier task's run goes under Context.
+- `2c2f688` (final-review fix wave): a part (4) resolution may name a plan value. Out of Scope now names fix and reviewer dispatches. The watch trigger now covers implementer dispatches built from the template only.
+
+Criteria 1–4 hold. Criterion 4 names two quoted sentences. The fix wave added a third quote, of the exact-values sentence, in Design §2. At Finish a whitespace-normalized search found that sentence once in SDD and once in this spec, so all three quotes match the shipped text.
+
+**Evidence status.** The Alternatives row for the trial still cites the 2026-10-15 fix-brief instance. That instance sat in a fix dispatch, outside this change. So the ship-and-watch decision rests on ArcGISProMCP's record alone. The `dispatch-claim-check` watch entry carries the open question.
+
+**One live instance during this batch.** The controller's own reviewer dispatch for Task 1 named a "Placeholders section" that `implementer-prompt.md` lacks. The reviewer reported it rather than build on it. That case also sits outside the change: Out of Scope names it.

@@ -895,9 +895,9 @@ Superfunk judged both as project-level, not framework defects.
 - **A8 (re-derive a citation at the brief's base commit).** The base rule lives in ArcGISProMCP: `docs/patterns/derive-the-citation-sweep-from-the-diff.md:35` and `CLAUDE.md:337`. Superfunk's SDD has no citation rule for a timing clause to attach to. The load comes from this project's practice of line citations into `docs/` prose. **Suggested home:** add the timing clause beside `CLAUDE.md:337` — "re-derive against the commit the brief was written against, and state which commit you measured at."
 - **A9 (re-run fast suites).** Superfunk's "do not re-run tests the implementer already ran" default fits slow suites, and most projects have those. This project's three suites run in about 13 seconds. **Suggested home:** a `CLAUDE.md` override such as "a reviewer re-runs any suite that completes in under a minute, and says which numbers it measured versus took." A project's `CLAUDE.md` outranks a skill's default, so the override takes effect without a framework change.
 
-## In progress
+## Shipped after the first response
 
-- **A4 and A10** (check the controller's own dispatch claims; mark which parts of a brief came from where). Superfunk takes these next, as one batch on SDD's dispatch step.
+- **A4 and A10** — **Shipped** in v6.9.0 (`93db97b`, `d30bcb3`, `2c2f688`), as an implementer-side check (option B), not the controller-side check A4 proposed. The brief stays verbatim. The controller puts its own dispatch text under the implementer template's Context section, and the template tells the implementer to check each existence claim, count, line number, or commit there against the tree and report a mismatch. Fix dispatches and reviewer dispatches fall outside this check. Taskq F15 (the reviewer side, §6) stays open. A watch entry decides whether the check needs a trial.
 
 ## Open, not yet scheduled
 
