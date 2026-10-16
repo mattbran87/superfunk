@@ -393,7 +393,10 @@ and returns the short contract. Before re-dispatching the reviewer, confirm
 the fix report contains the covering tests, the command run, and the
 output; dispatch the re-review once all three are present. Name the
 covering test files in the fix message — a one-line fix does not need the
-whole suite.
+whole suite. When a finding changes text that describes a mechanism, name
+every copy of that text in the fix dispatch — sibling files and the design
+spec's own quotes — found with a search for each key term, not for one
+phrase.
 
 **The re-review is scoped.** Run `scripts/review-package PLAN_FILE FIX_BASE HEAD`
 where FIX_BASE is the head the previous review saw, and dispatch
@@ -536,7 +539,10 @@ If the final whole-branch review returns findings, append one line per
 finding to `docs/superpowers/process-reviews/notes.md`
 (`- <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>`), then
 dispatch ONE fix subagent with the complete findings list — not one
-fixer per finding.
+fixer per finding. When a finding changes text that describes a mechanism,
+name every copy of that text in the fix dispatch — sibling files and the
+design spec's own quotes — found with a search for each key term, not for
+one phrase.
 Per-finding fixers each rebuild context and re-run suites; a real
 session's final-review fix wave cost more than all its tasks combined.
 Then run exactly one scoped re-review of the fix wave

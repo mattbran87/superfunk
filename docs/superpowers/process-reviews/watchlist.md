@@ -38,3 +38,7 @@ Entry format:
   - Watching: attribution coverage of `Catch` entries.
   - Trigger: a review window where unattributed catches again dominate, which blocks Zero-yield.
   - Action when tripped: raise a Recommendation that targets each write site that produced the unattributed entries, so it writes field 4.
+- **fix-dispatch-copy-listing** (added 2026-10-15, review-recommendations-m1-m2-f1-g1)
+  - Watching: the M2 sentence in `subagent-driven-development`'s fix loop and Final Review.
+  - Trigger: a scoped re-review finds a stale copy of text that a fix dispatch changed.
+  - Action when tripped: trial-gate the M2 sentence per `docs/patterns/ab-test-live-trials-for-behavior-change.md`, or rewrite it.
