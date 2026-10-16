@@ -1,4 +1,4 @@
 # Process Review Tracker
 
-**Last review:** 2026-09-01-behavioral-claim-verification-design.md — 2026-09-01
-**Specs shipped since:** 2026-09-02-process-review-batch-r1-r4-design.md, 2026-09-02-executing-plans-review-step-design.md, 2026-10-15-watchlist-and-findings-batch-design.md
+**Last review:** 2026-10-15-watchlist-and-findings-batch-design.md — 2026-10-15
+**Specs shipped since:** (none)
