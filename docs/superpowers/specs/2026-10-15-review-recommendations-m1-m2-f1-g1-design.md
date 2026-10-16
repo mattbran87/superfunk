@@ -1,7 +1,7 @@
 # Review Recommendations M1, M2, F1, G1 — Design
 
 **Date:** 2026-10-15
-**Status:** Approved
+**Status:** Shipped
 **User-Facing:** Yes
 
 ## Context
@@ -114,4 +114,23 @@ Add this clause to the process-review offer in both `plugin/skills/subagent-driv
 
 ## RESULT
 
-*(filled at Finish)*
+Shipped on `master`, 2026-10-15, in three tasks plus one final-review fix wave.
+
+| Recommendation | Shipped in |
+|---|---|
+| M1 (five-field templates) | `5c9d5f9`; boundary and `<plan-slug>` fixes in `9f007f9` |
+| M2 (copy-listing in fix dispatches) | `cf18685` |
+| F1 (read `process-review` from disk) | `c643edc`; "this branch" defined in `9f007f9` |
+| G1 (check off every Recommendation) | `c643edc`; one commit per Recommendation in `9f007f9` |
+
+Criteria 1–7 hold. The task reviews and the final review each re-ran them. Criterion 8 runs in this Finish.
+
+What the final review changed:
+
+- The `notes.md` header's four-field boundary now names the commit that shipped the check field (`2cdfe94`). Six entries dated 2026-09-01 predate that commit, so a date-only boundary miscounted.
+- `executing-plans` defines `<plan-slug>` beside its own template. The spec claimed that SDD's definition covers it, but an `executing-plans` session may never load SDD.
+- The F1 clause says what "this branch" means on `master`, and the check-off note names one commit per Recommendation.
+
+First evidence for M2: the final-review fix brief listed every copy of each changed text, spec quotes included, before the fix ran. Its scoped re-review found no stale copy. The two fix waves of the previous batch had each left one behind. The `fix-dispatch-copy-listing` watchlist entry did not trip.
+
+The line citations in Context (`notes.md:142`, `:149-153`) record the state before Task 1. Task 1 added two header lines, so those entries now sit at `:144` and `:151-155`.
