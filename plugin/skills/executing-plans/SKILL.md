@@ -91,10 +91,13 @@ performs for dispatched plans:
 3. **Tracker append:** Append the spec filename to
    `docs/superpowers/process-reviews/tracker.md`'s "Specs shipped since"
    list, in the same commit. At 3 or more entries, offer to run
-   superfunk:process-review now — ask, don't force.
+   superfunk:process-review now — ask, don't force. If this branch
+   changed `plugin/skills/process-review/`, follow that file as read
+   from disk, because the Skill tool serves the text loaded at session
+   start.
 4. **Recommendation checkbox:** If the spec's Context names a
-   `review-after-*.md` file, find the matching `- [ ]` line, change it
-   to `- [x]`, and append `(Shipped as <what shipped>, commit <sha>.)`
+   `review-after-*.md` file, find each matching `- [ ]` line this spec
+   closes, change it to `- [x]`, and append `(Shipped as <what shipped>, commit <sha>.)`
    — in the same commit as items 2–3.
 5. **Verify items 2–4 landed:**
    ```bash
@@ -102,7 +105,8 @@ performs for dispatched plans:
    grep -c "<spec filename>" docs/superpowers/process-reviews/tracker.md
    grep -c "\[x\].*<distinctive words from the Recommendation>" <review-file>
    ```
-   Each applicable check returns at least 1. A 0 means that action never
+   Run the third check once per Recommendation this spec closes. Each
+   applicable check returns at least 1. A 0 means that action never
    happened — do it now.
 6. **Lessons capture:** Capture a notable learning in
    `docs/lessons-learned.md`, or record that nothing notable arose.
