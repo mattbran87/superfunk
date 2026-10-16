@@ -11,3 +11,6 @@ Shipped all five edits (fix-loop template, both final-review templates, process-
 
 ## Task 2: Name every copy in a fix dispatch (M2)
 Shipped the M2 sentence verbatim in both SKILL.md fix-dispatch paragraphs (fix loop and Final Review), appended the `fix-dispatch-copy-listing` watchlist entry, and added the RELEASE-NOTES bullet directly after Task 1's bullet. Nothing diverged from the brief — all exact-text blocks, verification commands, and the commit/docs-check sequence matched their Expected values on the first pass.
+
+## Task 3: Read `process-review` from disk, and check off every closed Recommendation (F1, G1)
+Shipped all five edits exactly as the brief specified — F1 disk-read clauses in both SDD Finish and `executing-plans` Step 3 item 3, plural check-off wording in both skills' Finish/Step 3 sections, and the Task 3 RELEASE-NOTES bullet. Nothing diverged from the brief on my own initiative. Step 7's cross-section grep and Step 8's spec-quote grep both came back clean.
