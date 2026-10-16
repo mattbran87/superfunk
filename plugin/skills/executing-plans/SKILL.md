@@ -58,7 +58,9 @@ access:
    own direct assessment, not a dispatched subagent's report.
 4. **Findings:** append one line per finding to
    `docs/superpowers/process-reviews/notes.md`
-   (`- <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>`), then
+   (`- <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>`,
+   where `<plan-slug>` is the plan's filename without its `.md`
+   extension and its leading `YYYY-MM-DD-` date prefix), then
    fix all of them in one pass — not one fix per finding — and run
    exactly one scoped re-review of the fix diff (dispatched if possible,
    direct otherwise). Adjudicate any residual finding as
@@ -91,14 +93,15 @@ performs for dispatched plans:
 3. **Tracker append:** Append the spec filename to
    `docs/superpowers/process-reviews/tracker.md`'s "Specs shipped since"
    list, in the same commit. At 3 or more entries, offer to run
-   superfunk:process-review now — ask, don't force. If this branch
-   changed `plugin/skills/process-review/`, follow that file as read
-   from disk, because the Skill tool serves the text loaded at session
-   start.
+   superfunk:process-review now — ask, don't force. If this branch (the
+   diff from the plan's base commit to HEAD) changed
+   `plugin/skills/process-review/`, follow that file as read from disk,
+   because the Skill tool serves the text loaded at session start.
 4. **Recommendation checkbox:** If the spec's Context names a
    `review-after-*.md` file, find each matching `- [ ]` line this spec
    closes, change it to `- [x]`, and append `(Shipped as <what shipped>, commit <sha>.)`
-   — in the same commit as items 2–3.
+   naming the commit that implemented that Recommendation — in the same
+   commit as items 2–3.
 5. **Verify items 2–4 landed:**
    ```bash
    grep -c "^\*\*Status:\*\* Shipped" <spec-file>

@@ -27,11 +27,11 @@ example `writing-plans item 10`, `brainstorming item 6`, or
 attribution honest: a format offering no way to say "nothing caught
 this" pressures a writer to invent one.
 
-Entries below dated before 2026-09-01 carry four fields, without the
-check field, and so do six later entries copied from write-site
-templates that still showed four fields (fixed 2026-10-15). They stay
-as written — reconstructing attribution from
-memory would fabricate it.
+Entries below written before the check field shipped (2026-09-01,
+`2cdfe94`) carry four fields, without the check field, and so do six
+later entries copied from write-site templates that still showed four
+fields (fixed 2026-10-15). They stay as written — reconstructing
+attribution from memory would fabricate it.
 
 <!-- entries below this line -->
 - 2026-08-19 | Catch | Task 2 (process-review) | Process-review skill's Step 4 dropped the design spec's required Specs Reviewed section, and Self-Review only checked trigger presence, not format/reason quality (git log 437d959, missed by the running log since it predates this mechanism's own existence)

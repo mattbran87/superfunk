@@ -580,19 +580,19 @@ since" list, and commit that change in the same commit. If the list
 now holds 3 or more filenames, offer to run superfunk:process-review
 right now — the same ask-don't-force pattern as any other checkpoint
 in this process. Run it if your human partner agrees; otherwise leave
-the tracker as-is and continue. If this branch changed
-`plugin/skills/process-review/`, follow that file as read from disk,
-because the Skill tool serves the text loaded at session start.
+the tracker as-is and continue. If this branch (the diff from the plan's
+base commit to HEAD) changed `plugin/skills/process-review/`, follow
+that file as read from disk, because the Skill tool serves the text
+loaded at session start.
 
 If the spec's Context section names a
 `docs/superpowers/process-reviews/review-after-*.md` file, that file
 holds the Recommendations this spec closes. Open it, find each matching
 `- [ ]` Recommendation by content, and check off every one this spec
-closes: change it to
-`- [x]` and append `(Shipped as <what shipped>, commit <sha>.)` naming
-this spec and its key implementing commit. Commit this change in the
-same commit as the Status and tracker updates above. No review file
-named: skip this step.
+closes: change it to `- [x]` and append `(Shipped as <what shipped>,
+commit <sha>.)` naming this spec and the commit that implemented that
+Recommendation. Commit this change in the same commit as the Status and
+tracker updates above. No review file named: skip this step.
 
 Before moving on, verify this Finish pass's own bookkeeping landed:
 

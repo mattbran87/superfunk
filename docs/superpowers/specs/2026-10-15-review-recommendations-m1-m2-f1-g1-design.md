@@ -46,9 +46,9 @@ Two sites sit outside the Recommendations' literal text, and this batch covers t
    - <YYYY-MM-DD> | Catch | Final review (<plan-slug>) | <check that caught it> | <one-line finding>
    ```
 
-   The two copies stay identical. The `<plan-slug>` definition at SDD line 366 already covers the new final-review form.
+   The two copies stay identical. SDD defines `<plan-slug>` at line 366; `executing-plans` gains its own one-sentence definition beside its template, because an `executing-plans` session may never load SDD.
 3. `plugin/skills/process-review/SKILL.md` step 2. Replace "Read a four-field entry as carrying no attribution: it predates the attribution field, and nothing reconstructs which check found it." with "Read a four-field entry as carrying no attribution: it predates the attribution field, or it came from a write-site template that still showed four fields (through 2026-10-15), and nothing reconstructs which check found it."
-4. The `notes.md` header, lines 30–32. Replace "Entries below dated before 2026-09-01 carry four fields, without the check field." with "Entries below dated before 2026-09-01 carry four fields, without the check field, and so do six later entries copied from write-site templates that still showed four fields (fixed 2026-10-15)." The rest of the paragraph stays.
+4. The `notes.md` header, lines 30–32. Replace "Entries below dated before 2026-09-01 carry four fields, without the check field." with "Entries below written before the check field shipped (2026-09-01, `2cdfe94`) carry four fields, without the check field, and so do six later entries copied from write-site templates that still showed four fields (fixed 2026-10-15)." The rest of the paragraph stays.
 
 ### M2. Name every copy in a fix dispatch
 
@@ -72,13 +72,14 @@ Add a seventh entry to `docs/superpowers/process-reviews/watchlist.md`:
 
 Add this clause to the process-review offer in both `plugin/skills/subagent-driven-development/SKILL.md` Finish and `plugin/skills/executing-plans/SKILL.md` Step 3 item 3:
 
-> If this branch changed `plugin/skills/process-review/`, follow that file as read from disk, because the Skill tool serves the text loaded at session start.
+> If this branch (the diff from the plan's base commit to HEAD) changed `plugin/skills/process-review/`, follow that file as read from disk, because the Skill tool serves the text loaded at session start.
 
 ### G1. Check off every closed Recommendation
 
 1. SDD Finish: "holds the Recommendation this spec closes. Open it, find the matching `- [ ]` Recommendation by content, and check it off" becomes "holds the Recommendations this spec closes. Open it, find each matching `- [ ]` Recommendation by content, and check off every one this spec closes".
 2. `executing-plans` Step 3 item 4: "find the matching `- [ ]` line" becomes "find each matching `- [ ]` line this spec closes".
 3. Both third verification greps gain a lead-in: run the grep once per closed Recommendation.
+4. Both check-off notes name the commit that implemented each Recommendation, so a spec that closes several Recommendations records one commit per Recommendation.
 
 ## Falsifiable Criteria
 
